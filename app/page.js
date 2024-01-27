@@ -20,7 +20,7 @@ export default function Home() {
             </div>
         </div>
           <div >
-              <ul className={'flex flex-col p-4 lg:flex-row gap-3 justify-around list-disc text-2xl'}>
+              <ul className={'flex flex-col p-4 lg:flex-row gap-3 xl:gap-5 justify-around list-disc text-2xl gap-4'}>
                   <li className={''}>Company registration</li>
                   <li>Market research</li>
                   <li>Ready-made business purchase</li>
