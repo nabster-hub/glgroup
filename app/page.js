@@ -19,23 +19,24 @@ export default function Home() {
 
         </div>
       <header className={"container mx-auto mb-32 z-10 text-white"}>
-        <div className={'flex flex-col lg:flex-row gap-4 justify-between md:items-center mb-10'}>
+        <div className={'flex flex-col lg:flex-row gap-4 justify-between items-center mb-10'}>
             <div className={'flex gap-3 items-center'}>
                 <Image
+                    className={'logo'}
                     src={'/img/logo.png'}
                     width={'80'}
                     height={'80'}
                 />
-                <div className={'text-3xl md:text-4xl xl:text-6xl font-bold'}>
+                <div className={'text-3xl md:text-3xl xl:text-5xl font-bold'}>
                     Good Luck Group
                 </div>
             </div>
-            <div className={'text-4xl font-semibold'}>
+            <div className={'text-2xl md:text-3xl xl:text-4xl font-semibold description'}>
                 Start your Business in Indonesia
             </div>
         </div>
           <div >
-              <ul className={'flex flex-col p-4 lg:flex-row gap-3 xl:gap-5 justify-around text-2xl text-white gap-4s list-disc'}>
+              <ul className={'flex flex-col p-4 lg:flex-row gap-3 lg:gap-4 xl:gap-8 justify-around text-2xl text-white list-disc'}>
                   <li className={''}>Company registration</li>
                   <li>Market research</li>
                   <li>Ready-made business purchase</li>
@@ -44,7 +45,7 @@ export default function Home() {
           </div>
       </header>
         <div className={'container mx-auto z-10 text-white'}>
-            <div className={'flex text-4xl font-bold justify-center items-center md:text-6xl text-center lg:text-left md:font-normal'}>
+            <div className={'flex text-4xl font-bold justify-center items-center md:text-6xl text-center xl:text-left md:font-normal'}>
                 NEW WEBSITE WILL LAUNCH SOON
             </div>
         </div>
