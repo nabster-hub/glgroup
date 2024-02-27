@@ -11,9 +11,9 @@ import clsx from "clsx";
 
 const Header = ({}) => {
     return (
-        <header className={clsx('py-5 mb-6', styles.header)}>
+        <header className={clsx('py-5 mb-6 text-white', styles.header)}>
             <div className={'container flex justify-between'}>
-                <div className={'flex gap-10 font-gilroy text-base font-normal '}>
+                <div className={'flex gap-10 font-gilroy text-base font-normal'}>
                     <Link href={'#'} className={'hover:text-yellow-active'}>О компании</Link>
                     <Link href={'#'} className={'hover:text-yellow-active'}>Контакты</Link>
                     <Link href={'#'} className={'hover:text-yellow-active'}>Услуги</Link>
@@ -32,7 +32,7 @@ const Header = ({}) => {
                             <Image src={fb} alt={'facebook'}></Image>
                         </Link>
                     </div>
-                    <div className={'flex gap-3 items-center hover:text-yellow-active'}>
+                    <div className={'flex gap-3 items-center hover:text-yellow-active '}>
                         <Image src={letter} alt={'email'}/>
                         <span className={'font-gilroy font-bold text-sm'}>info@gl-group.consulting </span>
                     </div>
