@@ -29,7 +29,7 @@ const Menu = () => {
                 <Link href={'#'} className={'hover:text-yellow-active'}>
                     Контакты
                 </Link>
-                <Link href={'#'} className={clsx('border-yellow-active border rounded-3xl text-yellow-active px-11 px-4 hover:bg-yellow-active hover:text-black')}>
+                <Link href={'#'} className={clsx('border-yellow-active border rounded-3xl text-yellow-active px-3 py-2.5 hover:bg-yellow-active hover:text-black')}>
                     Обратный звонок
                 </Link>
             </div>

@@ -1,0 +1,54 @@
+
+.content{
+  padding-top: 13.5%;
+  z-index: 10;
+
+  .line{
+    background: #FFDA2B;
+    width: 95px;
+    height: 3px;
+    margin-left: 90px;
+    margin-bottom: 66px;
+  }
+  .textBlock{
+    display: flex;
+    flex-direction: column;
+    margin-left: 90px;
+    text-align: left;
+    width: 65%;
+  }
+  .groupName{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 30%;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+  .header{
+    font-family: var(--font-gilroy);
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 105px;
+
+  }
+
+  .button{
+    margin-top: 32px;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 44px 18px 44px;
+    border-radius: 85px;
+    box-shadow: 0px 25px 74px 0px rgba(255, 218, 43, 0.4);
+    background: rgb(255, 218, 43);
+    color: #121212;
+    font-family: var(--font-gilroys);
+    font-size: 21px;
+    line-height: 25px;
+    font-weight: 700;
+  }
+
+}

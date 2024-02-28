@@ -26,7 +26,6 @@ const Header = ({}) => {
                         </Link>
                         <Link href={'#'}>
                             <Image src={vk} alt={'vk'}></Image>
-
                         </Link>
                         <Link href={'#'}>
                             <Image src={fb} alt={'facebook'}></Image>
@@ -37,7 +36,7 @@ const Header = ({}) => {
                         <span className={'font-gilroy font-bold text-sm'}>info@gl-group.consulting </span>
                     </div>
                     <div className="flex gap-3 hover:text-yellow-active">
-                        <Image src={whatsapp} alt={'WhatsApp'}/>
+                    <Image src={whatsapp} alt={'WhatsApp'}/>
                         <span className={'font-gilroy font-bold text-xl'}>+62 813 987 65 54</span>
                     </div>
                     <div className="flex gap-3 font-gilroy font-bold text-sm items-center">

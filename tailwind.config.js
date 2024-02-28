@@ -6,23 +6,23 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    colors: {
-      current: 'currentColor',
-      transparent: 'transparent',
-      'yellow-active': '#FFDA2B',
-      'white': '#fff',
-      'black': '#000',
-    },
+
     screens: {
-      '2xl': '1440px',
+      '2xl': '1280px',
     },
     container: {
       center: true,
+      padding: '1rem',
     },
     extend: {
       fontFamily: {
         formular: ['var(--font-formular)'],
         gilroy: ['var(--font-gilroy)'],
+      },
+      colors: {
+        current: 'currentColor',
+        transparent: 'transparent',
+        'yellow-active': '#FFDA2B',
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
