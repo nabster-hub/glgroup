@@ -13,13 +13,13 @@ const Header = ({}) => {
     return (
         <header className={clsx('py-5 mb-6 text-white', styles.header)}>
             <div className={'container flex justify-between'}>
-                <div className={'flex gap-10 font-gilroy text-base font-normal'}>
+                <div className={'hidden md:flex md:flex-row  gap-10 font-gilroy text-base font-normal'}>
                     <Link href={'#'} className={'hover:text-yellow-active'}>О компании</Link>
                     <Link href={'#'} className={'hover:text-yellow-active'}>Контакты</Link>
                     <Link href={'#'} className={'hover:text-yellow-active'}>Услуги</Link>
                     <Link href={'#'} className={'hover:text-yellow-active'}>Блог</Link>
                 </div>
-                <div className={'flex gap-10'}>
+                <div className={'hidden md:flex gap-10'}>
                     <div className={'flex items-center gap-4'}>
                         <Link href={'#'}>
                             <Image src={telegram} alt={'telegram'}></Image>
