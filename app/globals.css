@@ -8,7 +8,7 @@
   --background-end-rgb: 255, 255, 255;
   --swiper-navigation-top-offset: 54%;
   --swiper-pagination-fraction-color: #fff;
-
+  --color-text: #121212;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +21,7 @@
 
 body {
   background: white;
+  color: var(--color-text);
 }
 
 @layer utilities {
@@ -98,9 +99,17 @@ body {
   justify-content: flex-end;
   padding-right : 1rem;
 }
-.h2{
+.h2, h2{
   font-family: var(--font-gilroy);
   font-weight: 700;
   font-size: 46px;
   line-height: 56px;
+  color: var(--color-text);
+}
+.h3, h3{
+  font-family: var(--font-gilroy);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--color-text);
 }
