@@ -8,18 +8,19 @@ import letter from '/public/img/icons/letter.svg';
 import whatsapp from '/public/img/icons/whatsapp.svg';
 import Image from "next/image";
 import clsx from "clsx";
+import MobileMenu from "@/app/components/MobileMenu/MobileMenu";
 
 const Header = ({}) => {
     return (
         <header className={clsx('py-5 mb-6 text-white', styles.header)}>
-            <div className={'container flex justify-between'}>
-                <div className={'hidden md:flex md:flex-row  gap-10 font-gilroy text-base font-normal'}>
+            <div className={'container flex justify-between h-full'}>
+                <div className={'flex gap-10 font-gilroy text-base font-normal'}>
                     <Link href={'#'} className={'hover:text-yellow-active'}>О компании</Link>
                     <Link href={'#'} className={'hover:text-yellow-active'}>Контакты</Link>
                     <Link href={'#'} className={'hover:text-yellow-active'}>Услуги</Link>
                     <Link href={'#'} className={'hover:text-yellow-active'}>Блог</Link>
                 </div>
-                <div className={'hidden md:flex gap-10'}>
+                <div className={'flex gap-10'}>
                     <div className={'flex items-center gap-4'}>
                         <Link href={'#'}>
                             <Image src={telegram} alt={'telegram'}></Image>
@@ -36,7 +37,7 @@ const Header = ({}) => {
                         <span className={'font-gilroy font-bold text-sm'}>info@gl-group.consulting </span>
                     </div>
                     <div className="flex gap-3 hover:text-yellow-active">
-                    <Image src={whatsapp} alt={'WhatsApp'}/>
+                        <Image src={whatsapp} alt={'WhatsApp'}/>
                         <span className={'font-gilroy font-bold text-xl'}>+62 813 987 65 54</span>
                     </div>
                     <div className="flex gap-3 font-gilroy font-bold text-sm items-center">
@@ -49,6 +50,7 @@ const Header = ({}) => {
                         </Link>
                     </div>
                 </div>
+                {/*<MobileMenu />*/}
             </div>
         </header>
     );

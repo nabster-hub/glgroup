@@ -62,7 +62,7 @@ export default function Slider() {
                     <SwiperSlide key={"slide" + idx}>
                         <div className={clsx("absolute top-0 w-full", styles.content)}>
                             <div className="container text-white">
-                                <div className={styles.line}></div>
+                                <div className={clsx(styles.line, 'mx-auto')}></div>
                                 <div className={styles.textBlock}>
                                     <span className={styles.groupName}>GL group consulting</span>
                                     {/*<div className={'font-gilroy text-7xl text-white font-bold mb-6'}>*/}
@@ -70,7 +70,7 @@ export default function Slider() {
                                         {e.header}
                                     </div>
                                     {e?.text && (
-                                        <span className={'text-white text-xl font-medium block w-[80%]'}>{e.text}</span>
+                                        <span className={'text-white text-xl font-medium block md:w-[80%]'}>{e.text}</span>
                                     )}
                                     <Link href={e.url} className={styles.button}>
                                         {e.label}

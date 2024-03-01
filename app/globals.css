@@ -95,6 +95,12 @@ body {
   position: absolute;
   left: auto;
   display: flex;
-  justify-content: end;
-  padding-right: 1rem;
+  justify-content: flex-end;
+  padding-right : 1rem;
+}
+.h2{
+  font-family: var(--font-gilroy);
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 56px;
 }
