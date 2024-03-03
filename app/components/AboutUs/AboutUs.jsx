@@ -7,7 +7,7 @@ import Link from "next/link";
 const AboutUs = props => {
     return (
         <section>
-            <div className={'container flex pt-24 gap-12 justify-between mb-24'}>
+            <div className={'container flex flex-col-reverse lg:flex-row pt-24 gap-12 justify-between mb-24'}>
                 <div className={styles.textBlock}>
                     <div className={styles.titleBlock}>
                         <span className={styles.subLabel}>О нас</span>
