@@ -2,6 +2,13 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import clsx from "clsx";
+ import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
+ import StoryblokProvider from "@/app/components/StoryblokProvider/StoryblokProvider";
+
+ storyblokInit({
+   accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
+   use: [apiPlugin],
+ });
 
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
 
@@ -170,8 +177,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+      <StoryblokProvider>
     <html lang="en">
       <body className={clsx(inter.className)}>{children}</body>
     </html>
+      </StoryblokProvider>
   );
 }

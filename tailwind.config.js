@@ -7,14 +7,15 @@ module.exports = {
   ],
   theme: {
 
-    screens: {
-      '2xl': '1280px',
-    },
-    container: {
-      center: true,
-      padding: '1rem',
-    },
+
     extend: {
+      screens: {
+        '2xl': '1280px',
+      },
+      container: {
+        center: true,
+        padding: '1rem',
+      },
       fontFamily: {
         formular: ['var(--font-formular)'],
         gilroy: ['var(--font-gilroy)'],
