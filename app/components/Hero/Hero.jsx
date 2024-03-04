@@ -7,11 +7,13 @@ import clsx from "clsx";
 import {Swiper} from "swiper";
 
 const Hero = ({topmenu}) => {
+    const headMenu = topmenu[0];
+    const menu = topmenu[1];
     return (
         <div className={clsx(styles.hero, '')}>
             <div className="absolute top-0 w-full z-10">
-                <Header links={topmenu}/>
-                <Menu/>
+                <Header links={headMenu}/>
+                <Menu menu={menu}/>
             </div>
             <Slider />
         </div>
