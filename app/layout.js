@@ -4,10 +4,18 @@ import "./globals.css";
 import clsx from "clsx";
  import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
  import StoryblokProvider from "@/app/components/StoryblokProvider/StoryblokProvider";
-
+ import hero from '/app/components/Hero/Hero';
+ import slider from '/app/components/Slider/Slider';
+ import StoryblokBridgeLoader from "@storyblok/react/bridge-loader";
+import Page from '/app/components/Page';
  storyblokInit({
    accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    use: [apiPlugin],
+   components:{
+     page: Page,
+     hero: hero,
+     sliderMain: slider,
+   },
  });
 
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
@@ -177,10 +185,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-      <StoryblokProvider>
     <html lang="en">
       <body className={clsx(inter.className)}>{children}</body>
+      <StoryblokBridgeLoader options={{}} />
     </html>
-      </StoryblokProvider>
   );
 }
