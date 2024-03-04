@@ -6,11 +6,11 @@ import Slider from "@/app/components/Slider/Slider";
 import clsx from "clsx";
 import {Swiper} from "swiper";
 
-const Hero = () => {
+const Hero = ({topmenu}) => {
     return (
         <div className={clsx(styles.hero, '')}>
             <div className="absolute top-0 w-full z-10">
-                <Header/>
+                <Header links={topmenu}/>
                 <Menu/>
             </div>
             <Slider />

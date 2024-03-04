@@ -10,12 +10,19 @@ import Image from "next/image";
 import clsx from "clsx";
 import MobileMenu from "@/app/components/MobileMenu/MobileMenu";
 
-const Header = ({}) => {
+const Header = ({links}) => {
+    console.log(links[0])
+    const itemLinks = links?.links;
+    console.log(itemLinks);
     return (
         <header className={clsx('py-5 mb-6 text-white', styles.header)}>
+
             <div className={'container flex justify-between h-full'}>
                 <div className={'flex gap-10 font-gilroy text-base font-normal'}>
-                    <Link href={'#'} className={'hover:text-yellow-active'}>О компании</Link>
+                    {links?.links && links.links.map((e, _uid)=>(
+                         <Link href={e.link} className={'hover:text-yellow-active'}>{e.label}</Link>
+                    ))}
+
                     <Link href={'#'} className={'hover:text-yellow-active'}>Контакты</Link>
                     <Link href={'#'} className={'hover:text-yellow-active'}>Услуги</Link>
                     <Link href={'#'} className={'hover:text-yellow-active'}>Блог</Link>
