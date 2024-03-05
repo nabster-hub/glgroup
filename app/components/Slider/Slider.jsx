@@ -11,11 +11,12 @@ import styles from './slider.module.scss'
 import Link from "next/link";
 
 
-export default function Slider() {
+export default function Slider({items}) {
     const paginationRef = useRef(null);
     const arrowPrev = useRef(null);
     const arrowNext = useRef(null);
-
+    const data = items[0];
+    console.log(data)
 
     const slider = [
         {
@@ -58,22 +59,21 @@ export default function Slider() {
 
                 className="mySwiper"
             >
-                {slider.map((e, idx)=>(
-                    <SwiperSlide key={"slide" + idx}>
+                {data.slide.map((e, _uid)=>(
+                        <SwiperSlide key={_uid}>
                         <div className={clsx("absolute top-0 w-full", styles.content)}>
                             <div className="container text-white">
                                 <div className={clsx(styles.line, 'mx-auto')}></div>
                                 <div className={styles.textBlock}>
-                                    <span className={styles.groupName}>GL group consulting</span>
-                                    {/*<div className={'font-gilroy text-7xl text-white font-bold mb-6'}>*/}
+                                    <span className={styles.groupName}>{data?.label}</span>
                                     <div className={styles.header}>
-                                        {e.header}
+                                        {e.title}
                                     </div>
-                                    {e?.text && (
-                                        <span className={'text-white text-xl font-medium block md:w-[80%]'}>{e.text}</span>
+                                    {e?.description && (
+                                        <span className={'text-white text-xl font-medium block md:w-[80%]'}>{e.description}</span>
                                     )}
-                                    <Link href={e.url} className={styles.button}>
-                                        {e.label}
+                                    <Link href={e?.link.linktype === "story" ? "/"+e.link.cached_url : e.link.cached_url} className={styles.button}>
+                                        {e.button}
                                     </Link>
 
                                 </div>
@@ -81,7 +81,7 @@ export default function Slider() {
                             </div>
                         </div>
 
-                        <Image src={e.img}
+                        <Image src={e.image.filename}
                             // width={1920}
                             // height={960}
                                fill
@@ -92,6 +92,7 @@ export default function Slider() {
                                style={{
                                    objectFit: "cover",
                                }}
+                               alt={e.image.alt}
                             //sizes={'(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 25vw'}
                         />
 

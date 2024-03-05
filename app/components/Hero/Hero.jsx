@@ -5,17 +5,16 @@ import Menu from "@/app/components/menu/menu";
 import Slider from "@/app/components/Slider/Slider";
 import clsx from "clsx";
 import {Swiper} from "swiper";
+import {fetchData} from "@/lib/api";
 
-const Hero = ({topmenu}) => {
-    const headMenu = topmenu[0];
-    const menu = topmenu[1];
+const  Hero = ({blok}) => {
+
+    const heroBlock = blok.heroBlock[0];
     return (
         <div className={clsx(styles.hero, '')}>
-            <div className="absolute top-0 w-full z-10">
-                <Header links={headMenu}/>
-                <Menu menu={menu}/>
-            </div>
-            <Slider />
+            {heroBlock.slide && (
+                <Slider items={blok?.heroBlock}/>
+            )}
         </div>
 
     );
