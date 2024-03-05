@@ -16,29 +16,7 @@ export default function Slider({items}) {
     const arrowPrev = useRef(null);
     const arrowNext = useRef(null);
     const data = items[0];
-    console.log(data)
 
-    const slider = [
-        {
-          img: '/img/banner1.png',
-          header: 'Начните свой бизнес в Индонезии',
-          text: 'Получите профессиональную поддержку и экспертное сопровождение в реализации своих предпринимательских идей',
-          label: 'Задать вопрос',
-          url: '#',
-        },
-        {
-          img: '/img/banner2.jpg',
-          header: 'Купите готовый бизнес на Бали',
-          label: 'Узнать подробнее',
-          url: '#',
-        },
-        {
-          img: '/img/banner3.jpg',
-          header: 'Зарегистрируйте компанию и откройте счет в Индонезии',
-          label: 'Узнать подробнее',
-          url: '#',
-        },
-    ];
     return (
         <div
             className={'h-[100vh] min-h-[100vh]'}>
@@ -82,8 +60,6 @@ export default function Slider({items}) {
                         </div>
 
                         <Image src={e.image.filename}
-                            // width={1920}
-                            // height={960}
                                fill
                                quality={80}
                                sizes="(max-width: 768px) 50vw,
@@ -93,7 +69,6 @@ export default function Slider({items}) {
                                    objectFit: "cover",
                                }}
                                alt={e.image.alt}
-                            //sizes={'(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 25vw'}
                         />
 
                     </SwiperSlide>
