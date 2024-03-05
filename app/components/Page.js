@@ -4,7 +4,7 @@ import {storyblokEditable} from "@storyblok/react";
 
 const Page = ({blok}) => {
     return (
-        <main className="text-center mt-4" {...storyblokEditable(blok)}>
+        <main {...storyblokEditable(blok)}>
             {blok.body.map((nestedBlok) => (
                 <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
             ))}

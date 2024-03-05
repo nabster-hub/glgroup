@@ -11,6 +11,7 @@ import clsx from "clsx";
 import MobileMenu from "@/app/components/MobileMenu/MobileMenu";
 
 const Header = ({links}) => {
+
     const itemLinks = links?.links;
     const socials = links?.socials;
     const mail = links?.label;
@@ -18,7 +19,7 @@ const Header = ({links}) => {
     const whatsappNum = links?.numberWhatsapp;
     const whatsappIcon = links?.imageWhatsapp;
     return (
-        <header className={clsx('py-5 mb-6 text-white', styles.header)}>
+        <div className={clsx('py-5 mb-6 text-white', styles.header)}>
 
             <div className={'container flex justify-between h-full'}>
                 <div className={'flex gap-10 font-gilroy text-base font-normal'}>
@@ -54,7 +55,7 @@ const Header = ({links}) => {
                 </div>
                 {/*<MobileMenu />*/}
             </div>
-        </header>
+        </div>
     );
 };
 

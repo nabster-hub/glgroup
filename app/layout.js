@@ -8,6 +8,9 @@ import clsx from "clsx";
  import slider from '/app/components/Slider/Slider';
  import StoryblokBridgeLoader from "@storyblok/react/bridge-loader";
 import Page from '/app/components/Page';
+ import {fetchData} from "@/lib/api";
+ import Header from "@/app/components/header/header";
+ import Menu from "@/app/components/menu/menu";
  storyblokInit({
    accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    use: [apiPlugin],
@@ -183,10 +186,20 @@ export const metadata = {
   description: "Good Luck Group start your business in Indonesia",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const global = await fetchData('global', {version: 'draft'})
+  const headMenu = global.data.story?.content.linkMenu[0];
+  const menu = global.data.story?.content.linkMenu[1];
   return (
     <html lang="en">
-      <body className={clsx(inter.className)}>{children}</body>
+      <body className={clsx(inter.className)}>
+      <header className={'absolute top-0  w-full z-10'}>
+        <Header links={headMenu}/>
+        <Menu menu={menu}/>
+      </header>
+      {children}
+      <footer></footer>
+      </body>
       <StoryblokBridgeLoader options={{}} />
     </html>
   );

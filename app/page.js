@@ -1,22 +1,12 @@
 import Image from "next/image";
 import {getStoryblokApi, StoryblokComponent} from "@storyblok/react/rsc";
+import {console} from "next/dist/compiled/@edge-runtime/primitives";
+import {fetchData} from "@/lib/api";
 
+export const revalidate = 3600;
 export default async function Home() {
-    const {data} = await fetchData();
-    console.log(data);
-  return (
-    <>
-        <StoryblokComponent blok={data.story.content} />
-    </>
-  );
-}
-export async function fetchData(){
-    let sbParams = {version: "draft"};
-
-    const storyblokApi = getStoryblokApi();
-
-    let {data} = await storyblokApi.get(`cdn/stories/home`, sbParams);
-    let {data: global} = await storyblokApi.get(`cdn/stories/global`);
-
-    return data;
+    const {data} = await fetchData("home", {version: 'draft'});
+    return (
+          <StoryblokComponent blok={data.story.content}  />
+    );
 }
