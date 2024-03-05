@@ -7,6 +7,6 @@ export const revalidate = 3600;
 export default async function Home() {
     const {data} = await fetchData("home", {version: 'draft'});
     return (
-          <StoryblokComponent blok={data.story.content}  />
+          <StoryblokComponent blok={data?.story.content}  />
     );
 }
