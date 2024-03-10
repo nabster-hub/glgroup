@@ -1,16 +1,24 @@
- import { Inter, Roboto } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import clsx from "clsx";
- import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
- import StoryblokProvider from "@/app/components/StoryblokProvider/StoryblokProvider";
- import hero from '/app/components/Hero/Hero';
- import slider from '/app/components/Slider/Slider';
- import StoryblokBridgeLoader from "@storyblok/react/bridge-loader";
+import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
+import StoryblokProvider from "@/app/components/StoryblokProvider/StoryblokProvider";
+
+import hero from '/app/components/Hero/Hero';
+import slider from '/app/components/Slider/Slider';
+import twoBlock from "@/app/components/TwoBlock/TwoBlock";
+import StoryblokBridgeLoader from "@storyblok/react/bridge-loader";
 import Page from '/app/components/Page';
- import {fetchData} from "@/lib/api";
- import Header from "@/app/components/header/header";
- import Menu from "@/app/components/menu/menu";
+import {fetchData} from "@/lib/api";
+import Header from "@/app/components/header/header";
+import Menu from "@/app/components/menu/menu";
+import title from "@/app/components/UI/title";
+import ImageBlock from "@/app/components/UI/image";
+import Text from "@/app/components/UI/text";
+import Button from "@/app/components/UI/button";
+import Grid from "@/app/components/Grid/Grid";
+import GridItem from "@/app/components/Grid/GridItem";
  storyblokInit({
    accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    use: [apiPlugin],
@@ -18,9 +26,15 @@ import Page from '/app/components/Page';
      page: Page,
      hero: hero,
      sliderMain: slider,
+     twoBlock: twoBlock,
+     title: title,
+     imageBlock: ImageBlock,
+     textBlock: Text,
+     buttonBlock: Button,
+     grid: Grid,
+     gridItem: GridItem,
    },
  });
-
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
 
 const Formular = localFont({
