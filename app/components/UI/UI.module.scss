@@ -1,0 +1,74 @@
+@import "app/variables";
+
+.titleBlock{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 25px;
+
+  .subLabel{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.3em;
+    color: $text;
+    text-transform: uppercase;
+  }
+  h2{
+    text-transform: uppercase;
+    color: $text;
+  }
+
+}
+.text{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-family: var(--font-gilroy);
+  font-size: 16px;
+  margin-bottom: 35px;
+  p{
+
+  }
+}
+.buttonBlock{
+  display: flex;
+  justify-content: center;
+  @media (min-width: 1024px) {
+    justify-content: flex-start;
+  }
+  .button{
+    font-family: var(--font-gilroy);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 0em;
+    color:#fff;
+    text-align: left;
+    padding: 18px 44px;
+    border-radius: 85px;
+    gap: 10px;
+    background: #3B604E;
+    box-shadow: 0px 25px 74px 0px #3E7A5D45;
+    display: block;
+    width: fit-content;
+  }
+}
+.image{
+  min-height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  &.topLeft{
+    border-top-left-radius: 180px 180px;
+  }
+  &.topRight{
+    border-top-right-radius: 180px 180px;
+  }
+  &.bottomRight{
+    border-bottom-right-radius: 180px 180px;
+  }
+  &.bottomLeft{
+    border-bottom-left-radius: 180px 180px;
+  }
+}
