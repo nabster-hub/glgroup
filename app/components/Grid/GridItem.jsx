@@ -2,10 +2,11 @@ import React from 'react';
 import styles from "./Grid.module.scss";
 import Image from "next/image";
 import {render} from 'storyblok-rich-text-react-renderer';
+import {storyblokEditable} from "@storyblok/react";
 
 const GridItem = ({blok}) => {
     return (
-        <div className={styles.block}>
+        <div className={styles.block} {...storyblokEditable(blok)}>
             <div className={styles.titleBlock}>
                 <div className={styles.icon}>
                     <i>

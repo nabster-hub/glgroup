@@ -19,6 +19,7 @@ import Text from "@/app/components/UI/text";
 import Button from "@/app/components/UI/button";
 import Grid from "@/app/components/Grid/Grid";
 import GridItem from "@/app/components/Grid/GridItem";
+import SectionNumber from "@/app/components/SectionNumber/SectionNumber";
  storyblokInit({
    accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    use: [apiPlugin],
@@ -33,6 +34,7 @@ import GridItem from "@/app/components/Grid/GridItem";
      buttonBlock: Button,
      grid: Grid,
      gridItem: GridItem,
+     sectionNumber: SectionNumber,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
