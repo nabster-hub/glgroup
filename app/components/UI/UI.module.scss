@@ -18,6 +18,17 @@
     text-transform: uppercase;
     color: $text;
   }
+  &.half{
+    width: 70%;
+
+    h2{
+      text-transform: none;
+      color: inherit;
+    }
+    .subLabel{
+      color: inherit;
+    }
+  }
 
 }
 .text{

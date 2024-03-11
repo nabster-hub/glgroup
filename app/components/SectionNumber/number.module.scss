@@ -1,0 +1,123 @@
+@import "/app/variables";
+
+.grid{
+  display: grid;
+  gap: 100px;
+  grid-template-columns: repeat(12, 1fr);
+  margin-bottom: 60px;
+}
+
+.item{
+  &:nth-child(odd){
+    grid-column: span 3;
+  }
+  &:nth-child(even){
+    grid-column: span 5;
+  }
+  &:nth-child(1){
+    grid-column: span 4;
+  }
+  .number{
+    font-family: var(--font-gilroy);
+    font-weight: 700;
+    font-size: 88px;
+    line-height: 106px;
+    margin-bottom: 2px;
+  }
+  .text{
+    font-family: var(--font-gilroy);
+    font-size: 18px;
+  }
+}
+
+
+.titleBlock{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 43px;
+
+  .subLabel{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.3em;
+    color: $text;
+    text-transform: uppercase;
+  }
+  h2{
+    text-transform: uppercase;
+    color: $text;
+  }
+  &.half{
+    width: 70%;
+
+    h2{
+      text-transform: none;
+      color: inherit;
+    }
+    .subLabel{
+      color: inherit;
+    }
+  }
+
+}
+
+.blocks{
+  padding: 60px 50px 100px 50px;
+  background: #F2F2F2;
+  border-top-right-radius: 100px;
+
+
+  .label{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.3em;
+    color: $text;
+    text-transform: uppercase;
+    margin-bottom: 44px;
+    display: block;
+  }
+
+  .blockBloks{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 42px 10px;
+
+    .blokItem{
+      display: flex;
+      gap:10px;
+      i{
+        position: relative;
+        z-index: 10;
+        &:after{
+          content: ' ';
+          display: block;
+          background: #FFDA2B;
+          border-radius: 100px;
+          width: 44px;
+          height: 44px;
+          position: absolute;
+          right: 15%;
+          top: 15%;
+        }
+        img{
+          width: 44px;
+          height: 44px;
+          z-index: 12;
+          position: relative;
+          min-width: 44px;
+        }
+      }
+      .textItem{
+        color: $text;
+         font-family: var(--font-gilroy);
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
