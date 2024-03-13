@@ -1,0 +1,29 @@
+import React from 'react';
+import styles from './BlockWithArrow.module.scss'
+import Image from "next/image";
+import clsx from "clsx";
+
+const BlockWithArrow = ({blok}) => {
+    console.log(blok)
+    return (
+        <div className={clsx(styles.block, blok.arrow && styles.withArrow)}>
+            <div className={styles.iconBlock}>
+                <i>
+                    <Image src={blok?.icon.filename} width={46} height={46} alt={blok?.icon.filename} />
+                </i>
+                {blok.arrow && (
+                    <div className={styles.arrows}>
+                        <div className={styles.arrow}></div>
+                    </div>
+                )}
+            </div>
+            <h3 className={styles.h3}>{blok.title}</h3>
+            <div className={styles.text}>
+                {blok.text}
+            </div>
+        </div>
+    );
+};
+
+
+export default BlockWithArrow;

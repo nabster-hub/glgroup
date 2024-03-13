@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./Grid.module.scss";
 import {StoryblokComponent} from "@storyblok/react/rsc";
+import clsx from "clsx";
 
 
 const Grid = ({blok}) => {
@@ -10,9 +11,9 @@ const Grid = ({blok}) => {
                 <div className={styles.titleBlock}>
                     <h2 className="h2">{blok.title}</h2>
                 </div>
-                <div className={styles.blocks}>
+                <div className={clsx(styles.blocks, (typeof blok.columns[0].arrow !== 'undefined' && blok.columns[0].arrow !== null) && styles.withArrow)}>
                     {blok.columns && blok.columns.map((e, _uid)=>(
-                        <StoryblokComponent blok={e}  />
+                        <StoryblokComponent blok={e} key={_uid}  />
                     ))}
                 </div>
             </div>

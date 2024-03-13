@@ -32,6 +32,15 @@
     gap: 20px;
   }
 
+  &.withArrow{
+    @media (min-width: 1280px) {
+      grid-template-columns: repeat(11, 1fr);
+      width: 80%;
+      margin: 0 auto;
+      gap: 80px;
+    }
+  }
+
   .block{
     background: #F2F2F2;
     padding: 30px;
