@@ -218,7 +218,7 @@ export default async function RootLayout({ children }) {
       </header>
       {children}
       <footer className={'bg-[#3B604E]'}>
-          <Footer />
+          <Footer links={headMenu} sitename={menu?.siteName} desc={menu?.siteDescription}/>
       </footer>
       </body>
       <StoryblokBridgeLoader options={{}} />
