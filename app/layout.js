@@ -21,6 +21,7 @@ import Grid from "@/app/components/Grid/Grid";
 import GridItem from "@/app/components/Grid/GridItem";
 import SectionNumber from "@/app/components/SectionNumber/SectionNumber";
 import BlockWithArrow from "@/app/components/BlockWithArrow/BlockWithArrow";
+import Footer from "@/app/components/Footer/Footer";
  storyblokInit({
    accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    use: [apiPlugin],
@@ -216,7 +217,9 @@ export default async function RootLayout({ children }) {
         <Menu menu={menu}/>
       </header>
       {children}
-      <footer></footer>
+      <footer className={'bg-[#3B604E]'}>
+          <Footer />
+      </footer>
       </body>
       <StoryblokBridgeLoader options={{}} />
     </html>
