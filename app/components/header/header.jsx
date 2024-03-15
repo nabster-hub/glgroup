@@ -18,6 +18,7 @@ const Header = ({links}) => {
     const mailIcon = links?.icon;
     const whatsappNum = links?.numberWhatsapp;
     const whatsappIcon = links?.imageWhatsapp;
+    const number = links?.whatsappNumber;
     return (
         <div className={clsx('py-5 mb-6 text-white', styles.header)}>
 
@@ -35,14 +36,14 @@ const Header = ({links}) => {
                             </Link>
                         ))}
                     </div>
-                    <div className={'flex gap-3 items-center hover:text-yellow-active '}>
+                    <Link href={'mailto:'+mail} className={'flex gap-3 items-center hover:text-yellow-active '}>
                         <Image src={mailIcon.filename} width={'24'} height={'24'} alt={mailIcon.alt}/>
                         <span className={'font-gilroy font-bold text-sm'}>{mail}</span>
-                    </div>
-                    <div className="flex gap-3 hover:text-yellow-active">
+                    </Link>
+                    <Link href={'https://wa.me/'+number} className="flex gap-3 hover:text-yellow-active">
                         <Image src={whatsappIcon.filename} width={'21'} height={'21'} alt={whatsappIcon.alt}/>
                         <span className={'font-gilroy font-bold text-xl'}>{whatsappNum}</span>
-                    </div>
+                    </Link>
                     <div className="flex gap-3 font-gilroy font-bold text-sm items-center">
                         <Link href={'#'} className={'text-yellow-active hover:text-yellow-active'}>
                             RU
