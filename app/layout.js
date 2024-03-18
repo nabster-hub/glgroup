@@ -22,6 +22,7 @@ import GridItem from "@/app/components/Grid/GridItem";
 import SectionNumber from "@/app/components/SectionNumber/SectionNumber";
 import BlockWithArrow from "@/app/components/BlockWithArrow/BlockWithArrow";
 import Footer from "@/app/components/Footer/Footer";
+import OurPartners from "@/app/components/OurPartners/OurPartners";
  storyblokInit({
    accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    use: [apiPlugin],
@@ -38,6 +39,7 @@ import Footer from "@/app/components/Footer/Footer";
      gridItem: GridItem,
      sectionNumber: SectionNumber,
      blockWithArrow: BlockWithArrow,
+     ourPartners: OurPartners,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });

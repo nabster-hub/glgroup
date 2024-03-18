@@ -1,0 +1,31 @@
+@import "app/variables";
+
+.blockTitle{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 40px;
+  .subTitle{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+}
+.slider{
+  width: 100%;
+  min-height: 120px;
+  .sliders{
+    height: 120px;
+
+    .slideContainer{
+      width: 300px;
+      height: 100px;
+      position: relative;
+      border: 2px solid #65656B;
+      border-radius: 10px;
+    }
+  }
+}
