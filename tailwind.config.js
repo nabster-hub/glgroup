@@ -17,8 +17,8 @@ module.exports = {
         padding: '1rem',
       },
       fontFamily: {
-        formular: ['var(--font-formular)'],
-        gilroy: ['var(--font-gilroy)'],
+        formular: ["var(--font-formular)"],
+        gilroy: ["var(--font-gilroy)"],
       },
       colors: {
         current: 'currentColor',

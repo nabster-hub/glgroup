@@ -23,6 +23,7 @@ import SectionNumber from "@/app/components/SectionNumber/SectionNumber";
 import BlockWithArrow from "@/app/components/BlockWithArrow/BlockWithArrow";
 import Footer from "@/app/components/Footer/Footer";
 import OurPartners from "@/app/components/OurPartners/OurPartners";
+import OurRecomendations from "@/app/components/OurRecomendations/OurRecomendations";
  storyblokInit({
    accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    use: [apiPlugin],
@@ -40,6 +41,7 @@ import OurPartners from "@/app/components/OurPartners/OurPartners";
      sectionNumber: SectionNumber,
      blockWithArrow: BlockWithArrow,
      ourPartners: OurPartners,
+     ourRecomendations: OurRecomendations,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
@@ -213,7 +215,7 @@ export default async function RootLayout({ children }) {
   const menu = global.data.story?.content.linkMenu[1];
   return (
     <html lang="en">
-      <body className={clsx(inter.className)}>
+      <body className={clsx(inter.className, Gilroy.variable, Formular.variable)}>
       <header className={'absolute top-0  w-full z-10'}>
         <Header links={headMenu}/>
         <Menu menu={menu}/>

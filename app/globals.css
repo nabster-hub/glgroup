@@ -87,7 +87,7 @@ body {
   color: white;
 }
 
-.partners .swiper-button-prev, .swiper-button-next{
+.partners  .swiper-button-prev, .partners .swiper-button-next{
   box-sizing: border-box;
   border: 1px solid rgb(0, 0, 0);
   border-radius: 90px;
@@ -95,21 +95,29 @@ body {
   width: 57.33px!important;
   height: 57.33px!important;
 }
-.partners .swiper-button-prev:after, .swiper-button-next:after{
+.partners .swiper-button-prev:after, .partners .swiper-button-next:after{
   font-size: 21px!important;
   #font-weight: 700!important;
   color: black;
 }
-.partners .swiper-wrapper{
-  width:85%;
-  margin-left: auto;
-  margin-right: auto;
+
+.partners{
+  position: unset;
+  width: 84%;
 }
 .partners .swiper-slide{
   width: fit-content!important;
 }
-.partners .swiper-button-prev, .swiper-button-next{
+.partners .swiper-button-prev, .partners .swiper-button-next{
   top: 35%;
+}
+
+.recomends{
+  position: unset;
+  width: 84%;
+}
+.recomends .swiper-wrapper{
+
 }
 .swiper-button-prev.swiper-button-disabled,
 .swiper-button-next.swiper-button-disabled {
