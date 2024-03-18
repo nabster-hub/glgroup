@@ -19,13 +19,14 @@
   min-height: 120px;
   .sliders{
     height: 120px;
-
+    position: relative;
     .slideContainer{
       width: 300px;
       height: 100px;
       position: relative;
       border: 2px solid #65656B;
       border-radius: 10px;
+
     }
   }
 }
