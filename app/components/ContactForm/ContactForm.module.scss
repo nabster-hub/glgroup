@@ -1,0 +1,105 @@
+@import "/app/variables";
+
+.block{
+  background: #121212;
+  color: white;
+  .leftBlock{
+    width: 48%;
+    h2{
+      font-family: var(--font-gilroy);
+      font-size: 40px;
+      line-height: 48px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 40px;
+    }
+    input{
+      width: 100%;
+      border-bottom: 1px solid  #fff;
+      background: unset;
+      padding-bottom: 38px;
+      margin-bottom: 48px;
+      &::placeholder{
+        font-family: var(--font-gilroy);
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        color: white;
+        background: unset;
+      }
+    }
+    button{
+      height: fit-content;
+      width: fit-content;
+      padding: 18px 50px;
+      background: #FFDA2B;
+      border-radius: 85px;
+      box-shadow: 0px 25px 74px 0px #FFDA2B66;
+      font-family: var(--font-gilroy);
+      font-size: 17px;
+      line-height: 22px;
+      font-weight: 700;
+      color: $text;
+    }
+    .text{ 
+      font-family: var(--font-gilroy);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 17px;
+      opacity: 0.6;
+      display: flex;
+      align-items: center;
+      a{
+        font-weight: 700;
+      }
+    }
+  }
+  .rightBlock{
+    width: 47%;
+    display: flex;
+    align-items: center;
+    gap: 75px;
+    .line{
+      height: 89%;
+      opacity: 0.3;
+      border-left: 1px solid  white;
+    }
+    .contacts{
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      .title{
+        font-family: var(--font-gilroy);
+        font-size: 40px;
+        line-height: 48px;
+        font-weight: 700;
+        color: white;
+        display: block;
+        margin-bottom: 33px;
+      }
+      .socials{
+        display: flex;
+        gap: 23px;
+
+        .soc{
+          width: 259px;
+          height: 272px;
+          background: #313131;
+          border-top-right-radius: 130px;
+          display: flex;
+          flex-direction: column;
+          gap: 26px;
+          justify-content: center;
+          align-items: center;
+          span{
+            font-family: var(--font-gilroy);
+            font-size: 20px;
+            line-height: 24px;
+            font-weight: 400;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

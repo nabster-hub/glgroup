@@ -15,7 +15,6 @@ const Slider = ({items}) => {
     const arrowPrev = useRef(null);
     const arrowNext = useRef(null);
 
-    console.log(items)
     return (
         <div className={styles.sliders}>
             <Swiper
