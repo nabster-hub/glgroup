@@ -24,6 +24,7 @@ import BlockWithArrow from "@/app/components/BlockWithArrow/BlockWithArrow";
 import Footer from "@/app/components/Footer/Footer";
 import OurPartners from "@/app/components/OurPartners/OurPartners";
 import OurRecomendations from "@/app/components/OurRecomendations/OurRecomendations";
+import ContactForm from "@/app/components/ContactForm/ContactForm";
  storyblokInit({
    accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    use: [apiPlugin],
@@ -42,6 +43,7 @@ import OurRecomendations from "@/app/components/OurRecomendations/OurRecomendati
      blockWithArrow: BlockWithArrow,
      ourPartners: OurPartners,
      ourRecomendations: OurRecomendations,
+     contactForm: ContactForm,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
