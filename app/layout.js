@@ -25,6 +25,7 @@ import Footer from "@/app/components/Footer/Footer";
 import OurPartners from "@/app/components/OurPartners/OurPartners";
 import OurRecomendations from "@/app/components/OurRecomendations/OurRecomendations";
 import ContactForm from "@/app/components/ContactForm/ContactForm";
+import OurCases from "@/app/components/OurCases/OurCases";
  storyblokInit({
    accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    use: [apiPlugin],
@@ -44,6 +45,7 @@ import ContactForm from "@/app/components/ContactForm/ContactForm";
      ourPartners: OurPartners,
      ourRecomendations: OurRecomendations,
      contactForm: ContactForm,
+     ourCases: OurCases,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });

@@ -1,0 +1,90 @@
+@import "app/variables";
+
+.titleBlock{
+  margin-bottom: 30px;
+  .subTitle{
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.3em;
+    margin-bottom: 25px;
+  }
+}
+.sliders{
+  display: flex;
+  gap: 100px;
+
+  .tabLines{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    .tab{
+      border-radius: 0 65px 65px 0;
+      padding: 17.5px 49px;
+      width: fit-content;
+      min-width: 315px;
+      height: 66px;
+      font-family: var(--font-gilroy);
+      font-size: 26px;
+      line-height: 31px;
+      font-weight: 700;
+      background: #F2F2F2;
+      cursor: pointer;
+      &.active{
+        background: #FFDA2B;
+      }
+    }
+  }
+
+  .slider{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 49px;
+
+    .decsrBlock, .solutionBlock{
+      //height: 446px;
+      padding: 50px 40px;
+      .label{
+        display: block;
+        font-family: var(--font-gilroy);
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 36px;
+        margin-bottom: 19px;
+      }
+      .text{
+        font-family: var(--font-gilroy);
+        font-weight: 500;
+        font-size: 19px;
+        line-height: 29px;
+      }
+    }
+    .decsrBlock{
+      background: #F2F2F2;
+      color: $text;
+    }
+    .solutionBlock{
+      background: #3E7A5D;
+      border-top-right-radius: 120px;
+      color: white;
+    }
+    .buttonBlock{
+      display: flex;
+      justify-content: flex-end;
+      grid-column: span 2;
+      .button{
+        margin-top: 30px;
+        padding: 19px 55px;
+        border: 2px solid #3B604E;
+        border-radius: 50px;
+        font-family: var(--font-gilroy);
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 24px;
+        color: #3B604E;
+      }
+    }
+
+  }
+}
