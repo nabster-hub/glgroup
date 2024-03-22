@@ -61,10 +61,17 @@
   .h3{
     font-family: var(--font-gilroy);
     font-weight: 700;
-    font-size: 14px;
-    line-height: 11px;
+    font-size: 18px;
+    line-height: 15px;
     color: #3B604E;
     margin-bottom: 10px;
     text-transform: uppercase;
+  }
+  .text{
+    font-family: var(--font-gilroy);
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 25px;
+    width: 100%;
   }
 }

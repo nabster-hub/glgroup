@@ -14,7 +14,7 @@ const Menu = ({menu}) => {
                     />
                     <span className={'max-w-[136px] font-extrabold text-xl uppercase'}>{menu.siteName}</span>
                 </Link>
-                <span className={'text-sm lowercase max-w-[139px] leading-4'}>{menu.siteDescription}</span>
+                <span className={'text-base lowercase max-w-[139px] leading-4'}>{menu.siteDescription}</span>
             </div>
             <div className={'flex gap-10 py-2.5 items-center font-gilroy font-bold text-lg'}>
                 {menu?.links && menu.links.map((e, _uid)=>(
