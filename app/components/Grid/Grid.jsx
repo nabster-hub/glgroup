@@ -9,7 +9,7 @@ const Grid = ({blok}) => {
         <section>
             <div className="container pb-24">
                 <div className={styles.titleBlock}>
-                    <h2 className="h2">{blok.title}</h2>
+                    <h2 className="h2 text-center">{blok.title}</h2>
                 </div>
                 <div className={clsx(styles.blocks, (typeof blok.columns[0].arrow !== 'undefined' && blok.columns[0].arrow !== null) && styles.withArrow)}>
                     {blok.columns && blok.columns.map((e, _uid)=>(

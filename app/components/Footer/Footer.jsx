@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Footer.module.scss';
 import Link from "next/link";
 import Image from "next/image";
+import clsx from "clsx";
 
 const  Footer = ({links, sitename, desc}) => {
     const itemLinks = links?.links;
@@ -77,11 +78,11 @@ const  Footer = ({links, sitename, desc}) => {
                                 <Link href={'https://wa.me/'+number} className="flex gap-4 hover:text-yellow-active">
                                     <Image src={whatsappIcon.filename} width={'21'} height={'21'}
                                            alt={whatsappIcon.alt}/>
-                                    <span className={'font-gilroy font-bold text-xl'}>{whatsappNum}</span>
+                                    <span className={clsx('font-gilroy font-bold', styles.wp)}>{whatsappNum}</span>
                                 </Link>
                                 <Link href={'mailto:'+mail} className={'flex gap-4 items-center hover:text-yellow-active mb-6'}>
                                     <Image src={mailIcon.filename} width={'24'} height={'24'} alt={mailIcon.alt}/>
-                                    <span className={'font-gilroy font-bold text-sm'}>{mail}</span>
+                                    <span className={clsx('font-gilroy font-bold', styles.email)}>{mail}</span>
                                 </Link>
                                 <div className={'font-gilroy text-lg font-normal'}>Benoa Square 2nd Floor, Jl Bypass
                                     Ngurah Rai No 21A, Kedonganan, Kuta, Bali 80361,

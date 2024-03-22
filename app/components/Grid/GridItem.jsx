@@ -13,7 +13,7 @@ const GridItem = ({blok}) => {
                         <Image src={blok.icon.filename} alt={blok.icon.alt} width={44} height={44} />
                     </i>
                 </div>
-                <h3>{blok.label}</h3>
+                <h3 className={'flex items-center'}>{blok.label}</h3>
             </div>
             <div className={styles.text}>
                 {render(blok.text)}
