@@ -135,9 +135,14 @@ body {
 .h2, h2{
   font-family: var(--font-gilroy);
   font-weight: 700;
-  font-size: 50px;
-  line-height: 60px;
+  font-size: 28px;
+  line-height: 33px;
   color: var(--color-text);
+  @media (min-width: 1024px) {
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 60px;
+  }
 }
 .h3, h3{
   font-family: var(--font-gilroy);
