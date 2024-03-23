@@ -6,14 +6,14 @@ import Link from "next/link";
 const ContactForm = ({blok}) => {
     return (
         <section className={styles.block}>
-            <div className="container py-24">
-                <div className="flex gap-20">
+            <div className="container py-20 lg:py-24">
+                <div className="flex flex-col lg:flex-row gap-20">
                     <div className={styles.leftBlock}>
                         <h2>{blok.titleLeft}</h2>
                         <form action="#" method={"POST"}>
                             <label htmlFor={"name"}>{blok.nameLabel}</label>
                             <input type="text" name={"name"}/>
-                            <div className="flex gap-5 mb-12">
+                            <div className="flex flex-col lg:flex-row gap-5 mb-8 lg:mb-12">
                                 <div className="">
                                     <label htmlFor={"phone"}>{blok.phoneLabel}</label>
                                     <input type="text" name={"phone"}/>
@@ -24,7 +24,7 @@ const ContactForm = ({blok}) => {
                                 </div>
 
                             </div>
-                            <div className="flex gap-11">
+                            <div className="flex flex-col lg:flex-row gap-11">
                                 <button type={'submit'}>{blok.buttonLabel}</button>
                                 <div className={styles.text}>{render(blok.text)}</div>
                             </div>
