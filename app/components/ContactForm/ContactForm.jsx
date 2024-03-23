@@ -11,10 +11,18 @@ const ContactForm = ({blok}) => {
                     <div className={styles.leftBlock}>
                         <h2>{blok.titleLeft}</h2>
                         <form action="#" method={"POST"}>
-                            <input type="text" name={"name"} placeholder={blok.nameLabel}/>
+                            <label htmlFor={"name"}>{blok.nameLabel}</label>
+                            <input type="text" name={"name"}/>
                             <div className="flex gap-5 mb-12">
-                                <input type="text" name={"phone"} placeholder={blok.phoneLabel}/>
-                                <input type="text" name={"email"} placeholder={blok.emailLabel}/>
+                                <div className="">
+                                    <label htmlFor={"phone"}>{blok.phoneLabel}</label>
+                                    <input type="text" name={"phone"}/>
+                                </div>
+                                <div className="">
+                                    <label htmlFor={"email"}>{blok.emailLabel}</label>
+                                    <input type="text" name={"email"}/>
+                                </div>
+
                             </div>
                             <div className="flex gap-11">
                                 <button type={'submit'}>{blok.buttonLabel}</button>

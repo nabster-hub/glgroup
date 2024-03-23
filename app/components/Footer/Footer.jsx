@@ -13,7 +13,7 @@ const  Footer = ({links, sitename, desc}) => {
     const whatsappIcon = links?.imageWhatsapp;
     const number = links?.whatsappNumber;
     return (
-        <div className={'container pt-24 pb-12'}>
+        <div className={'container pt-16 lg:pt-24 lg:pb-12'}>
             <div className={styles.block}>
                 <div className={styles.firstBlock}>
                     <span className={styles.title}>Контакты</span>

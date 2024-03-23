@@ -2,9 +2,13 @@
 
 .block{
   display: flex;
+  flex-direction: column;
   color: white;
-  //gap: 150px;
-  margin-bottom: 63px;
+  margin-bottom: 40px;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    margin-bottom: 63px;
+  }
   .firstBlock{
       width: fit-content;
     .title{
@@ -35,40 +39,60 @@
         text-transform: uppercase;
       }
       .logoDesc{
+        display: none;
         max-width: 216px;
         font-weight: 400;
         font-size: 17px;
         line-height: 21px;
+        @media (min-width: 1024px) {
+          display: block;
+        }
       }
     }
     .description{
-      max-width: 60%;
+
       font-family: var(--font-gilroy);
       font-size: 16px;
       line-height: 24px;
       font-weight: 500;
       margin-bottom: 54px;
       display: block;
+
+      @media (min-width: 1024px) {
+        max-width: 60%;
+      }
     }
     .contact{
       background: #FFDA2B;
       box-shadow: 0px 25px 74px 0px #FFDA2B66;
-      padding: 18px 44px;
+      padding: 15px 35px;
       border-radius: 85px;
       font-family: var(--font-gilroy);
       font-weight: 700;
       font-size: 21px;
       line-height: 26px;
       color: $text;
-
+      display: block;
+      width: fit-content;
+      @media (min-width: 1024px) {
+        padding: 18px 44px;
+      }
     }
   }
   .secondBlock{
     display: flex;
     width: fit-content;
     gap: 150px;
-    padding-top: 57px;
+    padding-top: 30px;
+    @media (min-width: 1024px) {
+      display: flex;
+      padding-top: 57px;
+    }
     .navigation{
+      display: none;
+      @media (min-width: 1024px) {
+        display: block;
+      }
       .title{
         display: block;
         margin-bottom: 25px;
@@ -91,13 +115,21 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 16px;
+      @media (min-width: 1024px) {
+        gap: unset;
+      }
       .title{
         display: block;
-        margin-bottom: 25px;
+        margin-bottom: 22px;
         font-family: var(--font-gilroy);
         font-weight: 700;
-        font-size: 28px;
+        font-size: 25px;
         line-height: 33px;
+        @media (min-width: 1024px) {
+          font-size: 28px;
+          margin-bottom: 25px;
+        }
       }
       .wp{
         font-size: 28px;
@@ -105,9 +137,13 @@
         font-weight: 700;
       }
       .email{
-        font-size: 20px;
-        line-height: 25px;
+        font-size: 22px;
+        line-height: 27px;
         font-weight: 700;
+        @media (min-width: 1024px) {
+          font-size: 20px;
+          line-height: 25px;
+        }
       }
     }
   }
@@ -115,21 +151,39 @@
 .copyrightBlock{
   display: flex;
   color: white;
-
+  flex-direction: column-reverse;
+  gap: 23px;
+  padding-bottom: 39px;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    padding-bottom: unset;
+  }
   .copyright{
-    width: 54%;
     font-family: var(--font-gilroy);
     font-weight: 500;
-    font-size: 16px;
-    line-height: 21px;
+    font-size: 12px;
+    line-height: 16px;
+    @media (min-width: 1024px) {
+      width: 54%;
+      font-size: 16px;
+      line-height: 21px;
+    }
   }
   .links{
     display: flex;
-    gap: 54px;
+    gap: 10px;
     font-family: var(--font-gilroy);
     font-weight: 500;
-    font-size: 16px;
-    line-height: 21px;
+    font-size: 14px;
+    line-height: 19px;
     text-decoration: underline;
+    flex-direction: column;
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+      line-height: 21px;
+      flex-direction: row;
+      gap: 54px;
+    }
   }
 }
