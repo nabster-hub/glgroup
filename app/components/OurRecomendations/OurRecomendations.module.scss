@@ -16,10 +16,14 @@
     }
     .subTitle{
       font-weight: 700;
-      font-size: 20px;
-      line-height: 24px;
+      font-size: 14px;
+      line-height: 17px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
+      @media (min-width: 1024px) {
+        font-size: 20px;
+        line-height: 24px;
+      }
     }
     h2{
       color: white;
@@ -30,8 +34,11 @@
   width: 100%;
   min-height: 120px;
   .sliders{
-    height: 370px;
+
     position: relative;
+    @media (min-width: 1024px) {
+      height: 370px;
+    }
 
     .slideContainer{
       min-width: 300px;
@@ -70,6 +77,14 @@
         font-size: 16px;
         line-height: 18px;
       }
+    }
+    .arrows{
+      display: flex;
+      gap: 15px;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      height: 57px;
     }
   }
 }

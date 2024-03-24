@@ -13,12 +13,21 @@ import Image from "next/image";
 const Slider = ({items}) => {
     const arrowPrev = useRef(null);
     const arrowNext = useRef(null);
-    //console.log(data)
     return (
         <div className={styles.sliders}>
             <Swiper
-                slidesPerView={3}
+                slidesPerView={2}
                 spaceBetween={10}
+                breakpoints={{
+                    320: {
+                        slidesPerView: 2,
+                        spaceBetween: 10
+                    },
+                    1024: {
+                        slidesPerView:3,
+                        spaceBetween: 10
+                    }
+                }}
                 modules={[Navigation]}
                 navigation={{
                     prevEl: arrowPrev.current,
@@ -51,9 +60,11 @@ const Slider = ({items}) => {
 
                         </SwiperSlide>
                     ))}
+                <div className={styles.arrows}>
+                    <div className="swiper-button-prev" ref={arrowPrev}></div>
+                    <div className="swiper-button-next" ref={arrowNext}></div>
+                </div>
 
-                <div className="swiper-button-prev" ref={arrowPrev}></div>
-                <div className="swiper-button-next" ref={arrowNext}></div>
 
             </Swiper>
         </div>
