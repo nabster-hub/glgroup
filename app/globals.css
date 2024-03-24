@@ -103,21 +103,40 @@ body {
 
 .partners{
   position: unset;
-  width: 84%;
+
+  @media (min-width: 1024px) {
+    width: 84%;
+  }
 }
 .partners .swiper-slide{
   width: fit-content!important;
 }
+.partners .swiper-wrapper{
+  margin-bottom: 39px;
+}
 .partners .swiper-button-prev, .partners .swiper-button-next{
-  top: 35%;
+  position: unset;
+  @media (min-width: 1024px) {
+    position: absolute;
+    top: 35%;
+  }
 }
 
 .recomends{
   position: unset;
-  width: 84%;
+  @media (min-width: 1024px) {
+    width: 84%;
+  }
 }
 .recomends .swiper-wrapper{
-
+  margin-bottom: 39px;
+}
+.recomends .swiper-button-prev, .recomends .swiper-button-next{
+  position: unset;
+  @media (min-width: 1024px) {
+    position: absolute;
+    top: 35%;
+  }
 }
 .swiper-button-prev.swiper-button-disabled,
 .swiper-button-next.swiper-button-disabled {

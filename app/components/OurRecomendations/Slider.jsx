@@ -18,8 +18,18 @@ const Slider = ({items}) => {
     return (
         <div className={styles.sliders}>
             <Swiper
-                slidesPerView={3}
+                slidesPerView={2}
                 spaceBetween={26}
+                breakpoints={{
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 26
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 26
+                    }
+                }}
                 modules={[Navigation]}
                 navigation={{
                     prevEl: arrowPrev.current,
@@ -31,7 +41,7 @@ const Slider = ({items}) => {
                 }}
                 className="recomends"
             >
-                <div className="swiper-button-prev" ref={arrowPrev}></div>
+
                 {items.map((e, _uid) => (
                     <SwiperSlide key={_uid}>
                         <div className={styles.slideContainer}>
@@ -44,11 +54,14 @@ const Slider = ({items}) => {
                         </div>
                     </SwiperSlide>
                 ))}
-                <div className="swiper-button-next" ref={arrowNext}></div>
+                <div className={styles.arrows}>
+                    <div className="swiper-button-prev" ref={arrowPrev}></div>
+                    <div className="swiper-button-next" ref={arrowNext}></div>
+                </div>
 
             </Swiper>
         </div>
-    );
+);
 };
 
 

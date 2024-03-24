@@ -8,7 +8,7 @@ const OurRecomendations = ({blok}) => {
     //console.log(blok);
     return (
         <section {...storyblokEditable(blok)} className={styles.blok}>
-            <div className="container py-24">
+            <div className="container py-20 lg:py-24">
                 <div className={styles.blockTitle}>
                     <i>
                         <svg width="44" height="44" viewBox="0 0 59 58" fill="none" xmlns="http://www.w3.org/2000/svg">
