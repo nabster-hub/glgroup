@@ -2,9 +2,11 @@
 import React, {useRef, useState} from 'react';
 import styles from './OurCases.module.scss';
 import {Swiper, SwiperSlide, useSwiper} from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+import {Pagination, Navigation, EffectFade} from 'swiper/modules';
 import clsx from "clsx";
 import {render} from "storyblok-rich-text-react-renderer";
+//import 'swiper/swiper-bundle';
+import 'swiper/css';
 import Link from "next/link";
 
 const OurCases = ({blok}) => {
@@ -17,7 +19,7 @@ const OurCases = ({blok}) => {
         swiperRef.current.swiper.slideTo(index);
     };
     return (
-        <section className={'py-24'}>
+        <section className={'pb-20 pt-10 lg:py-24'}>
             <div className="container">
                 <div className={styles.titleBlock}>
                     <div className={styles.subTitle}>{blok.subTitle}</div>
@@ -36,10 +38,15 @@ const OurCases = ({blok}) => {
                         ))}
                     </div>
                     <Swiper
+                        modules={[EffectFade]}
                         ref={swiperRef}
                         spaceBetween={50}
                         slidesPerView={1}
+                        speed={1000}
+                        fadeEffect={{crossFade: true}}
+                        virtualTranslate={true}
                         onSlideChange={(swiper) => setActiveTab(swiper.activeIndex)}
+                        effect={'fade'}
                     >
                         {blok.cases.map((slide, index) => (
                             <SwiperSlide key={index}>
