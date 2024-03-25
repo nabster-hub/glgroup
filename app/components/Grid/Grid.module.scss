@@ -33,6 +33,7 @@
   }
 
   &.withArrow{
+    grid-template-columns: repeat(2, 1fr);
     @media (min-width: 1280px) {
       grid-template-columns: repeat(11, 1fr);
       width: 80%;

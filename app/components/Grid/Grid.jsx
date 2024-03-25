@@ -7,7 +7,7 @@ import clsx from "clsx";
 const Grid = ({blok}) => {
     return (
         <section>
-            <div className="container pb-24">
+            <div className="container pb-10 lg:pb-24">
                 <div className={styles.titleBlock}>
                     <h2 className="h2 text-center">{blok.title}</h2>
                 </div>
