@@ -2,10 +2,16 @@
 .block{
   display: flex;
   flex-direction: column;
-  grid-column: span 3;
-
+  grid-column: span 1;
+  gap: 12px 20px;
+  @media (min-width: 1024px) {
+    grid-column: span 3;
+  }
   &.withArrow{
-    grid-column: span 4;
+    grid-column: span 1;
+    @media (min-width: 1024px) {
+      grid-column: span 4;
+    }
   }
 
 
@@ -15,24 +21,42 @@
     width: 100%;
     margin-bottom: 15px;
     i{
-      width: 74px;
-      height: 74px;
+      width: 54px;
+      height: 54px;
       background: #3B604E;
+      padding: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50px;
-      min-width: 74px;
+      min-width: 54px;
+      svg{
+        width: 34px;
+        height: 34px;
+      }
+      @media (min-width: 1024px) {
+        min-width: 74px;
+        width: 74px;
+        height: 74px;
+        svg{
+          width: 46px;
+          height: 46px;
+        }
+      }
     }
     .arrows{
       width: 65.8%;
       display: flex;
       align-items: center;
       .arrow{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
+        display: none;
+        @media (min-width: 1024px) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+        }
+
         &:after{
           content: "";
           width: 10px;
@@ -61,11 +85,15 @@
   .h3{
     font-family: var(--font-gilroy);
     font-weight: 700;
-    font-size: 18px;
-    line-height: 15px;
+    font-size: 16px;
+    line-height: 19px;
     color: #3B604E;
     margin-bottom: 10px;
     text-transform: uppercase;
+    @media (min-width: 1024px) {
+      font-size: 18px;
+      line-height: 15px;
+    }
   }
   .text{
     font-family: var(--font-gilroy);
@@ -73,5 +101,9 @@
     font-size: 17px;
     line-height: 25px;
     width: 100%;
+    display: none;
+    @media (min-width: 1024px) {
+      display: block;
+    }
   }
 }
