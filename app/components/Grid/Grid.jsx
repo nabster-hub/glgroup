@@ -9,9 +9,11 @@ const Grid = ({blok}) => {
         <section>
             <div className="container pb-10 lg:pb-24">
                 <div className={styles.titleBlock}>
-                    <h2 className="h2 text-center">{blok.title}</h2>
+                    <h2 className="h2 lg:text-center">{blok.title}</h2>
                 </div>
-                <div className={clsx(styles.blocks, (typeof blok.columns[0].arrow !== 'undefined' && blok.columns[0].arrow !== null) && styles.withArrow)}>
+                <div className={clsx(styles.blocks,
+                    (typeof blok.columns[0].arrow !== 'undefined' && blok.columns[0].arrow !== null) && styles.withArrow,
+                     blok.mobileScroll && styles.mobileScroll   )}>
                     {blok.columns && blok.columns.map((e, _uid)=>(
                         <StoryblokComponent blok={e} key={_uid}  />
                     ))}

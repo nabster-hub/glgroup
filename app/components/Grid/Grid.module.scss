@@ -2,8 +2,11 @@
 
 .titleBlock{
   display: flex;
-  justify-content: center;
+
   margin-bottom: 30px;
+  @media (min-width: 1024px) {
+    justify-content: center;
+  }
   h2{
     display: flex;
     justify-content: center;
@@ -30,6 +33,23 @@
   @media (min-width: 1280px) {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+  }
+  @media (max-width: 768px) {
+    &.mobileScroll{
+      display: flex;
+      gap:10px;
+      padding-bottom: 20px;
+      overflow: scroll;
+      scroll-behavior: smooth;
+      scrollbar-color: #FFDA2B transparent;
+      .block{
+        min-width: 300px;
+
+        .text{
+          display: none;
+        }
+      }
+    }
   }
 
   &.withArrow{
