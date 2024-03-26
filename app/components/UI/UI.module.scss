@@ -8,11 +8,15 @@
 
   .subLabel{
     font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 17px;
     letter-spacing: 0.3em;
     color: $text;
     text-transform: uppercase;
+    @media (min-width: 1024px) {
+      font-size: 20px;
+      line-height: 24px;
+    }
   }
   h2{
     text-transform: uppercase;
@@ -36,16 +40,19 @@
   flex-direction: column;
   gap: 30px;
   font-family: var(--font-gilroy);
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 500;
   margin-bottom: 35px;
+  @media (min-width: 1024px) {
+    font-size: 18px;
+  }
   p{
 
   }
 }
 .buttonBlock{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   @media (min-width: 1024px) {
     justify-content: flex-start;
   }
