@@ -26,6 +26,7 @@ import OurPartners from "@/app/components/OurPartners/OurPartners";
 import OurRecomendations from "@/app/components/OurRecomendations/OurRecomendations";
 import ContactForm from "@/app/components/ContactForm/ContactForm";
 import OurCases from "@/app/components/OurCases/OurCases";
+import MobileMenu from "@/app/components/MobileMenu/MobileMenu";
  storyblokInit({
    accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    use: [apiPlugin],
@@ -223,6 +224,7 @@ export default async function RootLayout({ children }) {
       <header className={'absolute top-0  w-full z-10'}>
         <Header links={headMenu}/>
         <Menu menu={menu}/>
+        <MobileMenu menu={headMenu} />
       </header>
       {children}
       <footer className={'bg-[#3B604E]'}>

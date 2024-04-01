@@ -48,7 +48,7 @@ export default function Slider({items}) {
                                         {e.title}
                                     </div>
                                     {e?.description && (
-                                        <span className={'text-white text-xl font-medium block md:w-[80%]'}>{e.description}</span>
+                                        <span className={'text-white text-sm md:text-xl font-medium text-center md:text-left  block md:w-[80%]'}>{e.description}</span>
                                     )}
                                     <Link href={e?.link.linktype === "story" ? "/"+e.link.cached_url : e.link.cached_url} className={styles.button}>
                                         {e.button}
@@ -73,10 +73,13 @@ export default function Slider({items}) {
 
                     </SwiperSlide>
                 ))}
-                <div className="absolute top-0 w-full h-full">
-                    <div className="container relative w-full h-full">
-                        <div className="swiper-button-prev" ref={arrowPrev}></div>
-                        <div className="swiper-button-next" ref={arrowNext}></div>
+                <div className="absolute bottom-0 md:top-0 h-1/5 w-full md:h-full">
+                    <div className="container flex flex-col flex-1 gap-y-24 gap-x-3 md:block md:relative w-full h-full ">
+                        <div className={"heroArrow"}>
+                            <div className="swiper-button-prev" ref={arrowPrev}></div>
+                            <div className="swiper-button-next" ref={arrowNext}></div>
+                        </div>
+
                         <div ref={paginationRef} className={"pagginations-swiper"}></div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
     background: #FFDA2B;
     width: 48px;
     height: 3px;
-    margin-bottom: 66px;
+    margin-bottom: 56px;
     @media (min-width: 768px) {
       width: 95px;
       margin-left: 90px;
@@ -26,7 +26,7 @@
     @media (min-width: 768px) {
       justify-content: flex-start;
       margin-left: 90px;
-      width: 65%;
+      width: 70%;
     }
   }
   .groupName{
@@ -63,6 +63,8 @@
     margin-top: 32px;
     width: fit-content;
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -72,9 +74,15 @@
     background: rgb(255, 218, 43);
     color: #121212;
     font-family: var(--font-gilroys);
-    font-size: 21px;
-    line-height: 25px;
+    font-size: 16px;
+    line-height: 20px;
     font-weight: 700;
+    @media (min-width: 768px) {
+      margin-left: unset;
+      margin-right: unset;
+      font-size: 21px;
+      line-height: 25px;
+    }
   }
 
 }
