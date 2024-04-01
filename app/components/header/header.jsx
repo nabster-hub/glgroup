@@ -8,7 +8,6 @@ import letter from '/public/img/icons/letter.svg';
 import whatsapp from '/public/img/icons/whatsapp.svg';
 import Image from "next/image";
 import clsx from "clsx";
-import MobileMenu from "@/app/components/MobileMenu/MobileMenu";
 
 const Header = ({links}) => {
 
@@ -54,7 +53,6 @@ const Header = ({links}) => {
                         </Link>
                     </div>
                 </div>
-                {/*<MobileMenu />*/}
             </div>
         </div>
     );
