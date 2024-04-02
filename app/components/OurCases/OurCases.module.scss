@@ -31,10 +31,12 @@
     display: flex;
     gap:10px;
     overflow: scroll;
+    padding-bottom: 10px;
    // scroll-behavior: auto;
     @media (min-width: 1024px) {
       flex-direction: column;
       overflow: unset;
+      padding-bottom: unset;
     }
     .tab{
       border-radius: 50px;
