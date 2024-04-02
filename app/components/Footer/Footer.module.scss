@@ -30,6 +30,18 @@
           width: 91px;
           height: 91px;
         }
+        @media (min-width: 1024px) {
+          svg{
+            width: 80px;
+            height: 80px;
+          }
+        }
+        @media (min-width: 1280px) {
+          svg{
+            width: 91px;
+            height: 91px;
+          }
+        }
       }
       .logoLable{
         font-size: 28px;
@@ -87,6 +99,10 @@
     @media (min-width: 1024px) {
       display: flex;
       padding-top: 57px;
+      gap: 50px;
+    }
+    @media (min-width: 1280px) {
+      gap: 150px;
     }
     .navigation{
       display: none;
@@ -154,7 +170,7 @@
   flex-direction: column-reverse;
   gap: 23px;
   padding-bottom: 39px;
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     flex-direction: row;
     padding-bottom: unset;
   }
@@ -164,9 +180,12 @@
     font-size: 12px;
     line-height: 16px;
     @media (min-width: 1024px) {
-      width: 54%;
+      width: 48.5%;
       font-size: 16px;
       line-height: 21px;
+    }
+    @media (min-width: 1280px) {
+      width: 52%;
     }
   }
   .links{
@@ -182,6 +201,10 @@
     @media (min-width: 1024px) {
       font-size: 16px;
       line-height: 21px;
+      flex-direction: column;
+      gap: 10px;
+    }
+    @media (min-width: 1280px) {
       flex-direction: row;
       gap: 54px;
     }

@@ -7,7 +7,7 @@ const ContactForm = ({blok}) => {
     return (
         <section className={styles.block}>
             <div className="container py-20 lg:py-24">
-                <div className="flex flex-col lg:flex-row gap-20 lg:gap-12 xl:gap-20">
+                <div className="flex flex-col lg:flex-row gap-20 lg:gap-12 xl:gap-16">
                     <div className={styles.leftBlock}>
                         <h2>{blok.titleLeft}</h2>
                         <form action="#" method={"POST"}>
