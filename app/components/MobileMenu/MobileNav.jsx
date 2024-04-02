@@ -1,32 +1,14 @@
-"use client";
-import React, {useState} from 'react';
-import styles from "./MobileMenu.module.scss";
+import React from 'react';
+import styles from './MobileMenu.module.scss';
 import Link from "next/link";
 import clsx from "clsx";
-import MobileNav from "@/app/components/MobileMenu/MobileNav";
-const MobileMenu = ({menu, link}) => {
-    const [showNav, setShowNav] = useState(false);
+import Image from "next/image";
 
-    const condition = obj => obj.contact === true;
-
-    const filteredData = Object.entries(link.links)
-        .filter(([key, value]) => condition(value))
-        .reduce((acc, [key, value]) => {
-            acc = value;
-            return acc;
-        }, {});
-
-    // const filteredData = Object.fromEntries(
-    //     Object.entries(link.links).filter(([key, value]) => condition(value))
-    // );
-    console.log(filteredData)
-    function handelNav(){
-        setShowNav(true)
-        console.log('test');
-    }
-    const number = menu?.whatsappNumber;
+const MobileNav = ({datas, setShowNav, contactUs}) => {
+    const number = datas?.whatsappNumber;
     return (
-            <div className={clsx('flex lg:hidden items-center justify-between w-full px-5', styles.content)}>
+        <section className={'fixed h-full w-full top-0 left-0 bg-[#141414]'}>
+            <div className={clsx('flex lg:hidden items-center justify-between w-full px-5 mb-20', styles.content)}>
 
                 <div className={styles.logoBlock}>
                     <Link href={'#'} className={'flex gap-3 items-center'}>
@@ -65,7 +47,7 @@ const MobileMenu = ({menu, link}) => {
                     </Link>
                 </div>
                 <div className={'flex h-full'}>
-                    <Link href={'https://wa.me/'+number} className={styles.phoneBlock}>
+                    <Link href={'https://wa.me/' + number} className={styles.phoneBlock}>
                         <i>
                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -77,28 +59,64 @@ const MobileMenu = ({menu, link}) => {
                         </i>
                     </Link>
                     <div className={styles.menuBlock}>
-                        <i onClick={handelNav}>
-                            <svg width="22" height="20" viewBox="0 0 22 20" fill="none"
+                        <i onClick={()=>(setShowNav(false))}>
+                            <svg width="22" height="20" viewBox="0 0 24 24" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="2" cy="2" r="2" fill="white"/>
-                                <circle cx="2" cy="10" r="2" fill="white"/>
-                                <circle cx="2" cy="18" r="2" fill="white"/>
-                                <circle cx="11" cy="2" r="2" fill="white"/>
-                                <circle cx="11" cy="10" r="2" fill="white"/>
-                                <circle cx="11" cy="18" r="2" fill="white"/>
-                                <circle cx="20" cy="2" r="2" fill="white"/>
-                                <circle cx="20" cy="10" r="2" fill="white"/>
-                                <circle cx="20" cy="18" r="2" fill="white"/>
+                                <path
+                                    d="M18.36 19.78L12 13.41L5.63997 19.78L4.21997 18.36L10.59 12L4.21997 5.63997L5.63997 4.21997L12 10.59L18.36 4.22997L19.77 5.63997L13.41 12L19.77 18.36L18.36 19.78Z"
+                                    fill="white"/>
                             </svg>
                         </i>
                     </div>
                 </div>
-                {showNav ? (
-                    <MobileNav datas={menu} setShowNav={setShowNav} contactUs={filteredData} />
-                ): ""}
             </div>
+            <div className={clsx("container", styles.mobile)}>
+                <div className={styles.block}>
+                    {datas.links && datas.links.map((e, _uid) => (
+                        <Link key={_uid}
+                              href={e.link.linktype === "story" ? "/" + e.link.cached_url : e.link.cached_url}>{e.label}</Link>
+                    ))}
+                </div>
+                <div className={styles.socials}>
+                    {datas?.socials && datas.socials.map((e, _uid) => (
+                        <Link href={e.link.linktype === "story" ? "/" + e.link.cached_url : e.link.cached_url}
+                              key={_uid}>
+                            <Image src={e.image.filename} width={'34'} height={'34'} alt={e.image.alt}></Image>
+                        </Link>
+                    ))}
+                </div>
+                <div className={styles.contact}>
+                    <Link href={'mailto:' + datas.label}
+                          className={'flex gap-3 items-center hover:text-yellow-active '}>
+                        <Image src={datas.icon.filename} width={'24'} height={'24'} alt={datas.icon.alt}/>
+                        <span className={'font-gilroy font-bold text-sm'}>{datas.label}</span>
+                    </Link>
+                    <Link href={'https://wa.me/' + number} className="flex gap-3 hover:text-yellow-active">
+                        <Image src={datas.imageWhatsapp.filename} width={'24'} height={'24'}
+                               alt={datas.imageWhatsapp.alt}/>
+                        <span className={'font-gilroy font-bold text-xl'}>{datas.numberWhatsapp}</span>
+                    </Link>
+                </div>
+                <div className={styles.contactUs}>
+                    <Link
+                        href={contactUs.link.linktype === "story" ? "/" + contactUs.link.cached_url : contactUs.link.cached_url}
+                        className={styles.button}>
+                        {contactUs.label}
+                    </Link>
+                </div>
+                <div className="flex justify-center gap-3 font-gilroy text-sm items-center">
+                    <Link href={'#'} className={'text-yellow-active font-bold  hover:text-yellow-active'}>
+                        RU
+                    </Link>
+                    <span className={styles.vertLine}></span>
+                    <Link href={'#'} className={'hover:text-yellow-active text-white'}>
+                        EN
+                    </Link>
+                </div>
+            </div>
+        </section>
     );
 };
 
 
-export default MobileMenu;
+export default MobileNav;

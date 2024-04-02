@@ -35,3 +35,53 @@
     padding: 15px 0 15px 21px;
   }
 }
+.mobile{
+
+  .block{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    color: white;
+    font-family: var(--font-gilroy);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 21px;
+    text-align: center;
+    margin-bottom: 69px;
+  }
+  .socials{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+  .contact{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color: white;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .contactUs{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 88px;
+    .button{
+      font-family: var(--font-gilroy);
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 700;
+      color: #FFDA2B;
+      border: solid 1px #FFDA2B;
+      padding: 11.5px 21px;
+      border-radius: 25px;
+    }
+  }
+  .vertLine{
+    width: 1px;
+    background: #fff;
+    min-height: 14px;
+  }
+}
