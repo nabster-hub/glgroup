@@ -186,6 +186,10 @@ body {
   font-size: 28px;
   line-height: 33px;
   color: var(--color-text);
+  @media (min-width: 768px) {
+    font-size: 38px;
+    line-height: 53px;
+  }
   @media (min-width: 1024px) {
     font-weight: 700;
     font-size: 50px;
