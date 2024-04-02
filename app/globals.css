@@ -74,7 +74,7 @@ body {
 }
 .mySwiper  .swiper-button-prev, .mySwiper  .swiper-button-next{
     position: relative!important;
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     position: absolute!important;
   }
 }
@@ -83,16 +83,18 @@ body {
   display: flex;
   justify-content: center;
   padding-bottom: 40px;
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     position: absolute!important;
     justify-content: flex-end;
+    padding-bottom: unset;
+    padding-right: 2rem;
   }
 }
 .heroArrow{
   display: flex;
   gap: 32px;
   justify-content: center;
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     justify-content: space-between;
   }
 }
@@ -173,7 +175,7 @@ body {
   display: flex;
   justify-content: flex-end;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     bottom: 10%!important;
     padding-right : 1rem;
   }
