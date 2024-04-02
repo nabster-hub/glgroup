@@ -4,7 +4,6 @@ import Slider from './Slider';
 
 
 const OurPartners = ({blok}) => {
-    //console.log(blok)
     return (
         <section>
             <div className="container py-20 lg:py-32">
