@@ -16,13 +16,8 @@ const MobileMenu = ({menu, link}) => {
             return acc;
         }, {});
 
-    // const filteredData = Object.fromEntries(
-    //     Object.entries(link.links).filter(([key, value]) => condition(value))
-    // );
-    console.log(filteredData)
     function handelNav(){
         setShowNav(true)
-        console.log('test');
     }
     const number = menu?.whatsappNumber;
     return (

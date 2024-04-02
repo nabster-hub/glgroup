@@ -7,7 +7,6 @@ import {storyblokEditable} from "@storyblok/react";
 
 
 const TwoBlock = ({blok}) => {
-    // console.log(blok);
     return (
         <section {...storyblokEditable(blok)}>
             <div className={'container flex flex-col-reverse lg:flex-row py-14 lg:py-24 gap-4 lg:gap-12 justify-between'}>

@@ -5,7 +5,6 @@ import Slider from "./Slider";
 
 
 const OurRecomendations = ({blok}) => {
-    //console.log(blok);
     return (
         <section {...storyblokEditable(blok)} className={styles.blok}>
             <div className="container py-20 lg:py-24">
