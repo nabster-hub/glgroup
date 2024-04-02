@@ -19,7 +19,7 @@ export default function Slider({items}) {
 
     return (
         <div
-            className={'h-[100vh] min-h-[100vh]'}>
+            className={'h-[100vh] min-h-[100vh] lg:min-h-[120vh] xl:min-h-[100vh]'}>
             <Swiper
                 pagination={{
                     type: 'fraction',

@@ -7,7 +7,7 @@ const ContactForm = ({blok}) => {
     return (
         <section className={styles.block}>
             <div className="container py-20 lg:py-24">
-                <div className="flex flex-col lg:flex-row gap-20">
+                <div className="flex flex-col lg:flex-row gap-20 lg:gap-12 xl:gap-20">
                     <div className={styles.leftBlock}>
                         <h2>{blok.titleLeft}</h2>
                         <form action="#" method={"POST"}>
@@ -24,7 +24,7 @@ const ContactForm = ({blok}) => {
                                 </div>
 
                             </div>
-                            <div className="flex flex-col lg:flex-row gap-11">
+                            <div className="flex flex-col lg:flex-row gap-7 xl:gap-11">
                                 <button type={'submit'}>{blok.buttonLabel}</button>
                                 <div className={styles.text}>{render(blok.text)}</div>
                             </div>

@@ -6,6 +6,9 @@
   .leftBlock{
     width: 100%;
     @media (min-width: 1024px) {
+      width: 43%;
+    }
+    @media (min-width: 1280px) {
       width: 48%;
     }
     h2{
@@ -79,7 +82,12 @@
     align-items: center;
     gap: 75px;
     @media (min-width: 1024px) {
+      width: fit-content;
+      gap: 45px;
+    }
+    @media (min-width: 1280px) {
       width: 47%;
+      gap: 75px;
     }
     .line{
       display: none;
@@ -125,6 +133,12 @@
           justify-content: center;
           align-items: center;
           @media (min-width: 1024px) {
+            width: 219px;
+            height: 232px;
+            padding-top: unset;
+            padding-bottom: unset;
+          }
+          @media (min-width: 1280px) {
             width: 259px;
             height: 272px;
             border-top-right-radius: 130px;
@@ -138,6 +152,10 @@
             font-weight: 400;
             display: block;
             @media (min-width: 1024px) {
+              font-size: 16px;
+              line-height: 20px;
+            }
+            @media (min-width: 1280px) {
               font-size: 20px;
               line-height: 24px;
             }
@@ -148,6 +166,12 @@
               height: 51px;
             }
             @media (min-width: 1024px) {
+              svg{
+                width: 61px;
+                height: 61px;
+              }
+            }
+            @media (min-width: 1280px) {
               svg{
                 width: 85px;
                 height: 85px;
