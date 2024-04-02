@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 const Menu = ({menu}) => {
     return (
-        <div className={'container hidden md:flex justify-between text-white'}>
+        <div className={'container hidden lg:flex justify-between text-white'}>
             <div className={'flex gap-2.5 items-center'}>
                 <Link href={'#'} className="flex gap-4">
                     <Image src={'/img/logo.png'} alt={"Logo"}

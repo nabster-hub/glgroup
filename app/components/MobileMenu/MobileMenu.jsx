@@ -1,12 +1,14 @@
-import React from 'react';
+"use client";
+import React, {useState} from 'react';
 import styles from "./MobileMenu.module.scss";
 import Link from "next/link";
 import clsx from "clsx";
 const MobileMenu = ({menu}) => {
+    const [open, setOpen] = useState(0);
     console.log(menu)
     const number = menu?.whatsappNumber;
     return (
-            <div className={clsx('flex md:hidden items-center justify-between w-full px-5', styles.content)}>
+            <div className={clsx('flex lg:hidden items-center justify-between w-full px-5', styles.content)}>
 
                 <div className={styles.logoBlock}>
                     <Link href={'#'} className={'flex gap-3 items-center'}>
