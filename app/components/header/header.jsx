@@ -22,28 +22,28 @@ const Header = ({links}) => {
         <div className={clsx('py-5 mb-6 text-white', styles.header)}>
 
             <div className={'container flex justify-between h-full'}>
-                <div className={'flex gap-10 font-gilroy text-base font-normal'}>
+                <div className={'flex gap-4 xl:gap-10 font-gilroy text-base font-normal'}>
                     {itemLinks && itemLinks.map((e, _uid)=>(
                          <Link href={e.link.linktype === "story" ? "/"+e.link.cached_url : e.link.cached_url} key={_uid} className={'hover:text-yellow-active'}>{e.label}</Link>
                     ))}
                 </div>
-                <div className={'flex gap-10'}>
-                    <div className={'flex items-center gap-4'}>
+                <div className={'flex gap-5 xl:gap-10'}>
+                    <div className={'flex items-center gap-3 xl:gap-4'}>
                         {socials && socials.map((e, _uid)=>(
                             <Link href={e.link.linktype === "story" ? "/"+e.link.cached_url : e.link.cached_url } key={_uid}>
                                 <Image src={e.image.filename} width={'20'} height={'20'} alt={e.image.alt}></Image>
                             </Link>
                         ))}
                     </div>
-                    <Link href={'mailto:'+mail} className={'flex gap-3 items-center hover:text-yellow-active '}>
+                    <Link href={'mailto:'+mail} className={'flex lg:gap-2 xl:gap-3 items-center hover:text-yellow-active '}>
                         <Image src={mailIcon.filename} width={'24'} height={'24'} alt={mailIcon.alt}/>
                         <span className={'font-gilroy font-bold text-sm'}>{mail}</span>
                     </Link>
-                    <Link href={'https://wa.me/'+number} className="flex gap-3 hover:text-yellow-active">
+                    <Link href={'https://wa.me/'+number} className="flex lg:gap-2 xl:gap-3 hover:text-yellow-active">
                         <Image src={whatsappIcon.filename} width={'21'} height={'21'} alt={whatsappIcon.alt}/>
                         <span className={'font-gilroy font-bold text-xl'}>{whatsappNum}</span>
                     </Link>
-                    <div className="flex gap-3 font-gilroy font-bold text-sm items-center">
+                    <div className="flex lg:gap-2 xl:gap-3 font-gilroy font-bold text-sm items-center">
                         <Link href={'#'} className={'text-yellow-active hover:text-yellow-active'}>
                             RU
                         </Link>
