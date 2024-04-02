@@ -224,7 +224,7 @@ export default async function RootLayout({ children }) {
       <header className={'absolute top-0  w-full z-10'}>
         <Header links={headMenu}/>
         <Menu menu={menu}/>
-        <MobileMenu menu={headMenu} />
+        <MobileMenu menu={headMenu} link={menu} />
       </header>
       {children}
       <footer className={'bg-[#3B604E]'}>

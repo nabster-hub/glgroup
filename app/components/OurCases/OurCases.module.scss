@@ -9,7 +9,10 @@
     line-height: 17px;
     letter-spacing: 0.3em;
     margin-bottom: 10px;
-
+    @media (min-width: 768px) {
+      font-size: 16px;
+      line-height: 19px;
+    }
     @media (min-width: 1024px) {
       font-size: 20px;
       line-height: 24px;
@@ -55,7 +58,11 @@
       &.active{
         background: #FFDA2B;
       }
-
+      @media (min-width: 768px) {
+        min-width: 200px;
+        font-size: 18px;
+        line-height: 21px;
+      }
       @media (min-width: 1024px) {
         min-width: 315px;
         min-height: 66px;
@@ -72,7 +79,7 @@
     display: flex;
    // grid-template-columns: repeat(2, 1fr);
     flex-direction: column;
-    @media (min-width: 1025px) {
+    @media (min-width: 1024px) {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       margin-bottom: 49px;
@@ -89,6 +96,10 @@
         font-size: 18px;
         line-height: 25px;
         margin-bottom: 19px;
+        @media (min-width: 768px) {
+          font-size: 20px;
+          line-height: 27px;
+        }
         @media (min-width: 1024px) {
           font-size: 24px;
           line-height: 34px;
@@ -99,6 +110,10 @@
           svg{
             width: 22px;
             height: 22px;
+            @media (min-width: 768px) {
+              width: 24px;
+              height: 24px;
+            }
             @media (min-width: 1024px) {
               width: 28px;
               height: 28px;
@@ -111,6 +126,10 @@
         font-weight: 500;
         font-size: 14px;
         line-height: 21px;
+        @media (min-width: 768px) {
+          font-size: 17px;
+          line-height: 24px;
+        }
         @media (min-width: 1024px) {
           font-size: 19px;
           line-height: 29px;
@@ -151,6 +170,10 @@
         font-weight: 700;
         line-height: 22px;
         color: #3B604E;
+        @media (min-width: 768px) {
+          font-size: 18px;
+          line-height: 23px;
+        }
         @media (min-width: 1024px) {
           padding: 19px 55px;
           font-size: 19px;
