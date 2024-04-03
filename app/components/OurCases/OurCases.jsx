@@ -5,7 +5,6 @@ import {Swiper, SwiperSlide, useSwiper} from 'swiper/react';
 import {Pagination, Navigation, EffectFade} from 'swiper/modules';
 import clsx from "clsx";
 import {render} from "storyblok-rich-text-react-renderer";
-//import 'swiper/swiper-bundle';
 import 'swiper/css';
 import Link from "next/link";
 
@@ -47,6 +46,7 @@ const OurCases = ({blok}) => {
                         virtualTranslate={true}
                         onSlideChange={(swiper) => setActiveTab(swiper.activeIndex)}
                         effect={'fade'}
+                        className="Cases"
                     >
                         {blok.cases.map((slide, index) => (
                             <SwiperSlide key={index}>

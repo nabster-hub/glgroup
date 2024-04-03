@@ -167,6 +167,9 @@ body {
 .swiper-button-next.swiper-button-disabled {
   opacity: 0.35!important;
 }
+.Cases > .swiper-wrapper > .swiper-slide-active{
+  z-index: 10!important;
+}
 .pagginations-swiper{
   z-index: 10;
   bottom: 20% !important;
