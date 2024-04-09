@@ -24,6 +24,7 @@ module.exports = {
         current: 'currentColor',
         transparent: 'transparent',
         'yellow-active': '#FFDA2B',
+        'green-active': '#3B604E',
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

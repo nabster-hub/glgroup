@@ -27,8 +27,13 @@ import OurRecomendations from "@/app/components/OurRecomendations/OurRecomendati
 import ContactForm from "@/app/components/ContactForm/ContactForm";
 import OurCases from "@/app/components/OurCases/OurCases";
 import MobileMenu from "@/app/components/MobileMenu/MobileMenu";
- storyblokInit({
-   accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
+import {getPathname} from "@nimpl/getters/get-pathname";
+import Section from "@/app/components/Section/Section";
+
+
+storyblokInit({
+   //accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
+   accessToken: "ZqkBIdpCfAPhrN7glDs1Swtt",
    use: [apiPlugin],
    components:{
      page: Page,
@@ -47,6 +52,7 @@ import MobileMenu from "@/app/components/MobileMenu/MobileMenu";
      ourRecomendations: OurRecomendations,
      contactForm: ContactForm,
      ourCases: OurCases,
+     section: Section,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
@@ -215,16 +221,17 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+  const pathname = getPathname();
   const global = await fetchData('global', {version: 'draft'})
   const headMenu = global.data.story?.content.linkMenu[0];
   const menu = global.data.story?.content.linkMenu[1];
   return (
     <html lang="en">
       <body className={clsx(inter.className, Gilroy.variable, Formular.variable)}>
-      <header className={'absolute top-0  w-full z-10'}>
-        <Header links={headMenu}/>
-        <Menu menu={menu}/>
-        <MobileMenu menu={headMenu} link={menu} />
+      <header className={clsx(pathname === '/' ? 'absolute top-0  w-full z-10':"w-full mb-5 lg:mb-12" )}>
+        <Header links={headMenu} type={pathname === '/' ? 0 : 1}/>
+        <Menu menu={menu} type={pathname === '/' ? 0 : 1}/>
+        <MobileMenu menu={headMenu} link={menu} type={pathname === '/' ? 0 : 1} />
       </header>
       {children}
       <footer className={'bg-[#3B604E]'}>

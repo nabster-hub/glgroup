@@ -7,7 +7,7 @@ import BlockItem from "@/app/components/SectionNumber/blockItem";
 
 
 const SectionNumber = ({blok}) => {
-    const bgcolor = blok?.backgoundColor.color;
+    const bgcolor = blok?.backgroundColor.color;
     const color = blok?.textColor.color;
     const numberColor = blok?.numberColor.color;
     return (

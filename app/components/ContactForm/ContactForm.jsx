@@ -59,7 +59,7 @@ const ContactForm = ({blok}) => {
                                                   fill="#FFFFFF" fillOpacity="1.000000" fillRule="nonzero"/>
                                         </svg>
                                     </i>
-                                    <span>{blok.whatsappLable}</span>
+                                    <span>{blok.whatsappLabel}</span>
                                 </Link>
                             </div>
                         </div>

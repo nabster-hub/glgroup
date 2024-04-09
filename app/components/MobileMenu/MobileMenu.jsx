@@ -4,7 +4,7 @@ import styles from "./MobileMenu.module.scss";
 import Link from "next/link";
 import clsx from "clsx";
 import MobileNav from "@/app/components/MobileMenu/MobileNav";
-const MobileMenu = ({menu, link}) => {
+const MobileMenu = ({menu, link, type}) => {
     const [showNav, setShowNav] = useState(false);
 
     const condition = obj => obj.contact === true;
@@ -21,12 +21,12 @@ const MobileMenu = ({menu, link}) => {
     }
     const number = menu?.whatsappNumber;
     return (
-            <div className={clsx('flex lg:hidden items-center justify-between w-full px-5', styles.content)}>
+            <div className={clsx('flex lg:hidden items-center justify-between w-full px-5', styles.content, type && styles.black)}>
 
                 <div className={styles.logoBlock}>
                     <Link href={'#'} className={'flex gap-3 items-center'}>
                         <i className={styles.logo}>
-                            <svg width="59" height="58" viewBox="0 0 59 58" fill="none"
+                            < svg width="59" height="58" viewBox="0 0 59 58" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M25.6467 8.32758C25.3114 7.06224 24.3792 6.01466 23.2294 5.17721C19.9458 2.78561 17.9053 0.889873 21.9128 0.225235C23.2076 0.0104789 24.9342 -0.41798 29.2505 1.0824C33.4762 2.55128 34.0658 4.2168 34.8617 5.79754C35.4011 6.86891 35.5092 11.1553 35.5091 11.5841C35.5091 12.8878 34.711 16.4717 31.9054 16.686C29.0997 16.9003 27.7398 15.442 27.1574 14.1142C26.6118 12.8702 26.7258 12.3996 25.6467 8.32758Z"
@@ -54,13 +54,13 @@ const MobileMenu = ({menu, link}) => {
                                     fill="#FDE14E"/>
                             </svg>
                         </i>
-                        <span className={styles.name}>
+                        <span className={clsx(styles.name, type && styles.black)}>
                         Good Luck Group
                     </span>
                     </Link>
                 </div>
                 <div className={'flex h-full'}>
-                    <Link href={'https://wa.me/'+number} className={styles.phoneBlock}>
+                    <Link href={'https://wa.me/'+number} className={clsx(styles.phoneBlock, type && styles.black)}>
                         <i>
                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +71,7 @@ const MobileMenu = ({menu, link}) => {
 
                         </i>
                     </Link>
-                    <div className={styles.menuBlock}>
+                    <div className={clsx(styles.menuBlock, type && styles.black)}>
                         <i onClick={handelNav}>
                             <svg width="22" height="20" viewBox="0 0 22 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
