@@ -108,10 +108,10 @@ const  Footer = ({links, sitename, desc}) => {
                     © 2023 «GL group consulting» все права защищены
                 </div>
                 <div className={styles.links}>
-                    <Link href={'#'} className={styles.confident}>
+                    <Link href={'/rules/privacy-policy'} className={styles.confident}>
                         Политика конфиденциальности
                     </Link>
-                    <Link href={'#'} className={styles.publicOffer}>
+                    <Link href={'/rules/public-offer-agreement'} className={styles.publicOffer}>
                         Публичная оферта
                     </Link>
                 </div>

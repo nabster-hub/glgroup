@@ -222,16 +222,28 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const pathname = getPathname();
+  const paths = [
+      'rules',
+  ]
+  console.log(pathname)
+  const type = (path) => {
+      const  parts = path.split('/');
+      if(paths.includes(parts[1])){
+        return true;
+      }else{
+        return false;
+      }
+  }
   const global = await fetchData('global', {version: 'draft'})
   const headMenu = global.data.story?.content.linkMenu[0];
   const menu = global.data.story?.content.linkMenu[1];
   return (
     <html lang="en">
       <body className={clsx(inter.className, Gilroy.variable, Formular.variable)}>
-      <header className={clsx(pathname === '/' ? 'absolute top-0  w-full z-10':"w-full mb-5 lg:mb-12" )}>
-        <Header links={headMenu} type={pathname === '/' ? 0 : 1}/>
-        <Menu menu={menu} type={pathname === '/' ? 0 : 1}/>
-        <MobileMenu menu={headMenu} link={menu} type={pathname === '/' ? 0 : 1} />
+      <header className={clsx(!type(pathname) ? 'absolute top-0  w-full z-10':"w-full mb-5 lg:mb-12" )}>
+        <Header links={headMenu} type={type(pathname)}/>
+        <Menu menu={menu} type={type(pathname)}/>
+        <MobileMenu menu={headMenu} link={menu} type={type(pathname)} />
       </header>
       {children}
       <footer className={'bg-[#3B604E]'}>
