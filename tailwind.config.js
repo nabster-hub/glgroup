@@ -20,6 +20,9 @@ module.exports = {
         formular: ["var(--font-formular)"],
         gilroy: ["var(--font-gilroy)"],
       },
+      fontSize:{
+          '12xl': '12.25rem',
+      },
       colors: {
         current: 'currentColor',
         transparent: 'transparent',
