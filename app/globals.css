@@ -128,7 +128,7 @@ body {
 }
 
 .partners{
-  position: unset;
+  position: unset!important;
 
   @media (min-width: 1024px) {
     width: 84%;
@@ -149,7 +149,7 @@ body {
 }
 
 .recomends{
-  position: unset;
+  position: unset!important;
   @media (min-width: 1024px) {
     width: 84%;
   }
@@ -161,7 +161,7 @@ body {
   position: unset;
   @media (min-width: 1024px) {
     position: absolute;
-    top: 35%;
+    top: 45%;
   }
 }
 .swiper-button-prev.swiper-button-disabled,
