@@ -89,7 +89,7 @@ const MobileMenu = ({menu, link, type}) => {
                     </div>
                 </div>
                 {showNav ? (
-                    <MobileNav datas={menu} setShowNav={setShowNav} contactUs={filteredData} />
+                    <MobileNav datas={menu} setShowNav={setShowNav} contactUs={filteredData} type={type} />
                 ): ""}
             </div>
     );
