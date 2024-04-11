@@ -2,8 +2,8 @@ import React from 'react';
 import {storyblokEditable} from "@storyblok/react";
 import styles from "./number.module.scss";
 import clsx from "clsx";
-import NumberBlock from "@/app/components/SectionNumber/NumberBlock";
-import BlockItem from "@/app/components/SectionNumber/blockItem";
+import NumberBlock from "/components/SectionNumber/NumberBlock";
+import BlockItem from "/components/SectionNumber/blockItem";
 
 
 const SectionNumber = ({blok}) => {
