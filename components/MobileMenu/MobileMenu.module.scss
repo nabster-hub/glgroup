@@ -3,6 +3,12 @@
   border-bottom: 0.5px solid #FFFFFF80;
   &.black{
     border-bottom: 0.5px solid rgba(18, 18, 18, 0.5);
+    background: white;
+    .logoBlock{
+      .name{
+        color: #121212;
+      }
+    }
   }
   .logoBlock{
     align-items: center;
@@ -53,12 +59,31 @@
         circle{
           fill: #121212;
         }
+        path{
+          fill: #121212;
+        }
       }
     }
   }
 }
 .mobile{
-
+  &.black{
+    .block{
+      color: #121212;
+    }
+    .contact{
+      color: #121212;
+    }
+    .contactUs{
+      .button{
+        color: #3B604E;
+        border: solid 1px #3B604E;
+      }
+    }
+    .vertLine{
+      background: #121212;
+    }
+  }
   .block{
     display: flex;
     flex-direction: column;
