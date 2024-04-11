@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import styles from "./MobileMenu.module.scss";
 import Link from "next/link";
 import clsx from "clsx";
-import MobileNav from "@/app/components/MobileMenu/MobileNav";
+import MobileNav from "/components/MobileMenu/MobileNav";
 const MobileMenu = ({menu, link, type}) => {
     const [showNav, setShowNav] = useState(false);
 

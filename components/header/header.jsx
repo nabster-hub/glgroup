@@ -1,11 +1,6 @@
 import React from 'react';
 import styles from './header.module.scss';
 import Link from "next/link";
-import telegram from "/public/img/icons/telegram.svg";
-import vk from "/public/img/icons/vk.svg";
-import fb from "/public/img/icons/facebook.svg";
-import letter from '/public/img/icons/letter.svg';
-import whatsapp from '/public/img/icons/whatsapp.svg';
 import Image from "next/image";
 import clsx from "clsx";
 

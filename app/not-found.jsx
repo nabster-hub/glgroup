@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import styles from "/app/components/Slider/slider.module.scss"
+import styles from "/components/Slider/slider.module.scss"
 import clsx from "clsx";
 
 const NotFound = ({}) => {
