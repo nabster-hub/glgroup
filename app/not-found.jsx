@@ -4,6 +4,11 @@ import Image from "next/image";
 import styles from "/components/Slider/slider.module.scss"
 import clsx from "clsx";
 
+export const metadata = {
+    title: '404 page not found',
+    description: '404 page not found',
+}
+
 const NotFound = ({}) => {
     return (
         <section>

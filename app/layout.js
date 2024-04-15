@@ -222,19 +222,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const pathname = getPathname();
-  const paths = [
-      'rules',
-  ]
-  console.log(pathname)
-  const type = (path) => {
-      const  parts = path.split('/');
-      if(paths.includes(parts[1])){
-        return true;
-      }else{
-        return false;
-      }
-  }
   const global = await fetchData('global', {version: 'draft'})
   const headMenu = global.data.story?.content.linkMenu[0];
   const menu = global.data.story?.content.linkMenu[1];
