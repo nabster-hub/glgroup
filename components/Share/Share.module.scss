@@ -1,0 +1,50 @@
+@import "app/variables";
+
+
+.share{
+  display: flex;
+  flex-direction: column;
+  gap:30px;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 40px;
+  transition: all ease-in;
+  @media (min-width: 680px) {
+    flex-direction: row;
+  }
+  .button{
+    background: white;
+    padding: 38px;
+    box-shadow: 0 11px 35.7px 0 #0000001F;
+    width: fit-content;
+    border-radius: 70px;
+    cursor: pointer;
+  }
+
+  .text{
+    font-family: var(--font-gilroy);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 33px;
+  }
+  .closeButton{
+    background: white;
+    padding: 30.5px;
+    box-shadow: 0 11px 35.7px 0 #0000001F;
+    width: fit-content;
+    border-radius: 70px;
+    cursor: pointer;
+  }
+  .shareBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: white;
+    box-shadow: 0 11px 35.7px 0 #0000001F;
+    border-radius: 70px;
+    padding: 32.5px 44px;
+    @media (min-width: 680px) {
+      flex-direction: row;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import "app/variables";
+
+.date{
+  font-family: var(--font-gilroy);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #858585;
+}
+.author{
+  font-family: var(--font-gilroy);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #858585;
+  text-decoration: underline;
+}
+.img{
+  width: 100%;
+  position: relative;
+  height: 170px;
+  border-top-left-radius: 60px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  @media (min-width: 450px) {
+    height: 200px;
+  }
+  @media (min-width: 545px) {
+    height: 250px;
+  }
+  @media (min-width: 768px) {
+    height: 300px;
+  }
+  @media (min-width: 1024px) {
+    height: 350px;
+    border-top-left-radius: 100px;
+  }
+  @media (min-width: 1280px) {
+    height: 440px;
+    border-top-left-radius: 150px;
+    margin-bottom: 40px ;
+  }
+}
