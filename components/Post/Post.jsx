@@ -44,6 +44,7 @@ export default async function Post ({blok}) {
                 <Share />
             </div>
             <ContactForm blok={contactForm.data.story.content.body[0]}/>
+
         </section>
     );
 };
