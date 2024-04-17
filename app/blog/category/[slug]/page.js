@@ -9,25 +9,27 @@ import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 
 
 
-export async function getPosts(){
+export async function getPosts(params){
     let sbParams = {
         version: "published",
         starts_with: 'blog/',
-        page: 1,
-        per_page: 9
+        filter_query: {
+            Category: {
+                in: params,
+            }
+        }
     }
 
     const storyblokApi = getStoryblokApi();
     let fetch = await storyblokApi.get('cdn/stories/', sbParams);
-
     return  fetch;
 }
 
 export default async function Page ({params}){
-    const fetch = await getPosts();
+    const fetch = await getPosts(params.slug);
     const posts = fetch.data.stories;
     const category = await getCategory();
-    console.log(category.data);
+
     const breadcrumbs = [
         {
             link: {
@@ -51,7 +53,7 @@ export default async function Page ({params}){
             <section>
                 <div className="container pb-24">
                     <h1 className={'mb-5'}>Блог</h1>
-                    <AllCategroyes blok={category.data.datasource_entries} />
+                    <AllCategroyes blok={category.data.datasource_entries} active={params.slug}/>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-8">
                         {posts && posts.map((e, _uid)=>(
                             <PosePreview blok={e} key={_uid} />
@@ -65,4 +67,3 @@ export default async function Page ({params}){
 
     );
 };
-

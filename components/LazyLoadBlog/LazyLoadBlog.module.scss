@@ -1,0 +1,20 @@
+@import "app/variables";
+
+.button{
+  font-family: var(--font-gilroy);
+  font-size: 21px;
+  line-height: 26px;
+  font-weight: 700;
+  padding: 22px 72px;
+  color: #121212;
+  border: 1px solid #121212;
+  border-radius: 85px;
+  cursor: pointer;
+}
+.all{
+  font-family: var(--font-gilroy);
+  font-size: 12px;
+  line-height: 25px;
+  font-weight: 400;
+  color:#65656B;
+}

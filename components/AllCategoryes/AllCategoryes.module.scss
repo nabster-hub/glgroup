@@ -1,0 +1,53 @@
+@import 'app/variables';
+
+.allCategory{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+
+  &::-webkit-scrollbar {
+    width: 1px;
+    height: 8px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    width: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgb(129, 129, 123);
+    width: 10px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #3B604E;
+  }
+
+  .item{
+    font-family: var(--font-gilroy);
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 700;
+    padding: 9.5px 22px;
+    border: 2px solid #121212;
+    color:#121212;
+    border-radius: 85px;
+    opacity: 0.3;
+    @media (min-width: 1024px) {
+      padding: 14.5px 54px;
+    }
+
+    &:hover, &.active{
+      color: #3B604E;
+      border: 2px solid #3B604E;
+      opacity: 1;
+    }
+
+  }
+}
