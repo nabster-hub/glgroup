@@ -33,7 +33,6 @@ import NavMenu from "@/components/NavMenu/NavMenu";
 
 
 storyblokInit({
-   //accessToken: "QCEnT1MvvTAhJdyMDjYiXgtt",
    accessToken: "ZqkBIdpCfAPhrN7glDs1Swtt",
    use: [apiPlugin],
    components:{
