@@ -11,7 +11,7 @@ const SectionNumber = ({blok}) => {
     const color = blok?.textColor.color;
     const numberColor = blok?.numberColor.color;
     return (
-        <section {...storyblokEditable(blok)} style={{background: bgcolor, color:color}}>
+        <section {...storyblokEditable(blok)} style={{background: bgcolor, color:color}} id={blok.id}>
             <div className={'container pt-24 mb-24'} >
                 <div className={clsx(styles.titleBlock, styles.half)}>
                     {blok.subTitle && (

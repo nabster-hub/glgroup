@@ -8,8 +8,8 @@ import {storyblokEditable} from "@storyblok/react";
 
 const TwoBlock = ({blok}) => {
     return (
-        <section {...storyblokEditable(blok)}>
-            <div className={'container flex flex-col-reverse lg:flex-row py-14 lg:py-24 gap-4 lg:gap-12 justify-between'}>
+        <section {...storyblokEditable(blok)} id={blok.id} className={"py-14 lg:py-24"}>
+            <div className={'container flex flex-col-reverse lg:flex-row  gap-4 lg:gap-12 justify-between'}>
                 <div className={styles.firstBlock}>
                     {blok?.leftBlock && blok.leftBlock.map((e, _uid)=>(
                         <StoryblokComponent blok={e} key={_uid}  />
