@@ -23,6 +23,9 @@
       height: 206px;
       border-top-left-radius: 130px;
     }
+    &.other{
+      min-width: 270px;
+    }
   }
   .contentBlock{
     display: flex;

@@ -2,13 +2,14 @@ import React from 'react';
 import styles from './PostPreview.module.scss';
 import Image from "next/image";
 import Link from "next/link";
+import clsx from "clsx";
 
-const PosePreview = ({blok}) => {
+const PosePreview = ({blok, other}) => {
     const date = new Date(blok.published_at);
     const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
     return (
         <div className={styles.postPreview}>
-            <div className={styles.imgBlock}>
+            <div className={clsx(styles.imgBlock, other && styles.other)}>
                 <Image
                     src={blok.content.img.filename}
                     alt={blok.content.img.alt}

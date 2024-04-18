@@ -261,3 +261,31 @@ body {
     line-height: 35px;
   }
 }
+.otherArticles{
+  position: unset!important;
+}
+.otherArticles > .swiper-wrapper{
+  position: unset!important;
+}
+.otherArrows{
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+.otherArrows > .swiper-button-prev, .otherArrows > .swiper-button-next{
+  box-sizing: border-box;
+  border: 1px solid rgb(3, 3, 3);
+  border-radius: 90px;
+  opacity: 1!important;
+  width: 57.33px!important;
+  height: 57.33px!important;
+}
+.otherArrows > .swiper-button-prev:after, .otherArrows > .swiper-button-next:after{
+  font-size: 21px!important;
+  #font-weight: 700!important;
+  color: #090909;
+}
+.otherArrows > .swiper-button-disabled{
+  opacity: 0.35!important;
+}
