@@ -18,7 +18,7 @@ const OurCases = ({blok}) => {
         swiperRef.current.swiper.slideTo(index);
     };
     return (
-        <section className={'pb-20 pt-10 lg:py-24'}>
+        <section className={'pb-20 pt-10 lg:py-24'} id={'case'}>
             <div className="container">
                 <div className={styles.titleBlock}>
                     <div className={styles.subTitle}>{blok.subTitle}</div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const ContactForm = ({blok}) => {
     return (
-        <section className={styles.block}>
+        <section className={styles.block} id={'form'}>
             <div className="container py-20 lg:py-24">
                 <div className="flex flex-col lg:flex-row gap-20 lg:gap-12 xl:gap-16">
                     <div className={styles.leftBlock}>
