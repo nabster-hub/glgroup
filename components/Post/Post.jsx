@@ -1,16 +1,39 @@
 import React from 'react';
 import styles from './Post.module.scss';
 import Link from "next/link";
-import {StoryblokComponent} from "@storyblok/react/rsc";
+import {getStoryblokApi, StoryblokComponent} from "@storyblok/react/rsc";
 import Image from "next/image";
 import Share from "@/components/Share/Share";
 import ContactForm from "@/components/ContactForm/ContactForm";
 import {fetchData} from "@/lib/api";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import OtherArticles from "@/components/OtherArticles/OtherArticles";
+
+
+export async function getData(title){
+    let sbParams = {
+        version: "published",
+        starts_with: 'blog/',
+        page: 1,
+        per_page: 6,
+        filter_query:{
+            title:{
+                not_in: title
+            }
+        }
+
+    }
+
+    const storyblokApi = getStoryblokApi();
+    let fetch = await storyblokApi.get('cdn/stories/', sbParams);
+
+    return  fetch;
+}
 
 export default async function Post ({blok}) {
     const date = new Date(blok.published_at);
     const contactForm = await fetchData('blog-contact', {version: 'draft'})
+    const posts = await getData(blok.content.title);
     const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
     // console.log(blok)
     return (
@@ -44,7 +67,7 @@ export default async function Post ({blok}) {
                 <Share />
             </div>
             <ContactForm blok={contactForm.data.story.content.body[0]}/>
-
+            <OtherArticles posts={posts.data.stories} />
         </section>
     );
 };

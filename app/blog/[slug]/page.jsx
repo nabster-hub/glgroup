@@ -17,7 +17,7 @@ export default async function Page({params}){
     return (
         <>
             <Breadcrumbs links={data?.story.content.breadcrumbs}/>
-                <Post blok={data.story} />
+                <Post blok={data.story} slug={params.slug} />
 
         </>
     );

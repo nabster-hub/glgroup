@@ -1,0 +1,13 @@
+@import "app/variables";
+
+
+.block{
+  position: relative;
+
+  .title{
+    margin-bottom: 20px;
+    @media (min-width: 768px) {
+      margin-bottom: 76px;
+    }
+  }
+}
