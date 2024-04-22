@@ -24,6 +24,7 @@ export default function Slider({items}) {
                 pagination={{
                     type: 'fraction',
                 }}
+                loop={true}
                 onBeforeInit={(swiper) => {
                     swiper.params.navigation.prevEl = arrowPrev.current;
                     swiper.params.navigation.nextEl = arrowNext.current;

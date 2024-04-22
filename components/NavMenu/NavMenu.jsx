@@ -39,7 +39,7 @@ export default function NavMenu ({headMenu, menu}) {
     }, [pathname, offset]);
 
     return (
-        <header className={clsx(!white ? `w-full z-10 ${styles.blackMenu}` : `w-full mb-5 lg:mb-12 ${styles.whiteMenu}`, fixed ? styles.fixed : '')}>
+        <header className={clsx(!white ? `w-full z-20 ${styles.blackMenu}` : `w-full mb-5 lg:mb-12 ${styles.whiteMenu}`, fixed ? styles.fixed : '')}>
             <Header links={headMenu} type={white}/>
             <Menu menu={menu} type={white}/>
             <MobileMenu menu={headMenu} link={menu} type={white}/>
