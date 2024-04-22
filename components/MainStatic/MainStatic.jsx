@@ -10,7 +10,7 @@ const MainStatic = ({blok, breadcrumbs}) => {
     console.log(blok)
     return (
         <div className={"w-full"}>
-            <div className={"relative w-full h-[100vh]"}>
+            <div className={"relative w-full min-h-[770px] max-h-[100vh]"}>
                 <div className={clsx("container text-white", styles.mainStatic)}>
                     <Image src={blok.img.filename}
                            fill
