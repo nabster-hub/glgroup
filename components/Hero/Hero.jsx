@@ -9,12 +9,11 @@ import {fetchData} from "@/lib/api";
 import MainStatic from "@/components/MainStatic/MainStatic";
 
 const  Hero = ({blok}) => {
-    console.log(blok);
     const heroBlock = blok.heroBlock[0];
     return (
         <div className={clsx(styles.hero, '')}>
             {heroBlock.component === 'staticMain' && (
-                <MainStatic blok={heroBlock} />
+                <MainStatic blok={heroBlock} breadcrumbs={blok.heroBlock[1]}/>
             )}
             {heroBlock.component === 'sliderMain' && (
                 <Slider items={blok?.heroBlock}/>

@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   gap: 9px;
+  overflow: hidden;
   @media (min-width: 1024px) {
     margin-bottom: 30px;
   }
@@ -19,6 +20,7 @@
       line-height: 14px;
       color: rgb(157, 157, 157);
       display: flex;
+      text-wrap: nowrap;
     }
     .line{
       display: flex;
