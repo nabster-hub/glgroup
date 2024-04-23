@@ -1,0 +1,88 @@
+@import "app/variables";
+
+.twoGrids{
+  padding-top: 100px;
+  padding-bottom: 100px;
+  @media (min-width: 1024px) {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .titleBlock{
+    margin-bottom: 20px;
+    @media (min-width: 1024px) {
+      width: 80%;
+      margin-bottom: 30px;
+    }
+    .label{
+      margin-top: 20px;
+      display: block;
+      text-transform: uppercase;
+      font-size: 14px;
+      line-height: 17px;
+      letter-spacing: 0.3em;
+      font-weight: 700;
+      @media (min-width: 1024px) {
+        margin-top: 40px;
+        font-size: 20px;
+        line-height: 24px;
+      }
+    }
+  }
+  .firstBlocks{
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+    margin-bottom: 50px;
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .flex{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+    }
+    .imageBlock{
+      display: none;
+      @media (min-width: 1024px) {
+        display: block;
+        position: relative;
+        border-top-left-radius: 150px;
+        overflow: hidden;
+      }
+
+    }
+  }
+  .secondBlocks{
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
+    gap: 31px;
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (min-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+        width: 52%;
+        flex: 1 0 0;
+        gap: 10px;
+      }
+    }
+    .leftBlock{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      @media (min-width: 1024px) {
+        width: 45.5%;
+      }
+    }
+  }
+}

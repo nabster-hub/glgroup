@@ -7,7 +7,6 @@ import Breadcrumbs from "@/components/MainStatic/Breadcrumbs";
 import {getPathname} from "@nimpl/getters/get-pathname";
 
 const MainStatic = ({blok, breadcrumbs}) => {
-    console.log(blok)
     return (
         <div className={"w-full"}>
             <div className={"relative w-full min-h-[770px] max-h-[100vh]"}>

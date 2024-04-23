@@ -1,0 +1,31 @@
+@import "app/variables";
+
+.block{
+  padding: 29px 29px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  background: #F2F2F2 ;
+  border-top-left-radius: 50px;
+  @media (min-width: 768px) {
+    padding: 19px 48px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 50px;
+  }
+
+  .number{
+    font-family: var(--font-gilroy);
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 23px;
+    text-align: center;
+    color: #3B604E;
+  }
+  .text{
+    font-family: var(--font-gilroy);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+    text-align: center;
+  }
+}

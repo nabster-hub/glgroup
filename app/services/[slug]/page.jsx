@@ -14,7 +14,6 @@ export async function generateMetadata({params},parent){
 
 export default async function Page({params}) {
     const {data} = await fetchData(`/services/${params.slug}`, {version: 'draft'});
-    console.log(data);
     return (
         <StoryblokComponent blok={data?.story.content} />
     );

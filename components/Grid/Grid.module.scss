@@ -119,3 +119,44 @@
     }
   }
 }
+.blockItem{
+  background: #F2F2F2;
+  padding: 25px;
+  border-top-left-radius: 50px;
+  .icon{
+    min-width: 54px;
+    height: 53px;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+
+    i{
+      z-index: 10;
+    }
+
+    &:after{
+      content: ' ';
+      display: block;
+      background: #FFDA2B;
+      border-radius: 100px;
+      width: 44px;
+      height: 44px;
+      position: absolute;
+      right: 23%;
+      top: 17%;
+    }
+  }
+
+  .titleBlock{
+    margin-bottom: 15px;
+    display: flex;
+    gap: 9px;
+  }
+
+  .text{
+    font-family: var(--font-gilroy);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
