@@ -30,6 +30,7 @@ import MobileMenu from "/components/MobileMenu/MobileMenu";
 import {getPathname} from "@nimpl/getters/get-pathname";
 import Section from "/components/Section/Section";
 import NavMenu from "@/components/NavMenu/NavMenu";
+import TwoGrids from "@/components/TwoGrids/twoGrids";
 
 
 storyblokInit({
@@ -53,6 +54,7 @@ storyblokInit({
      contactForm: ContactForm,
      ourCases: OurCases,
      section: Section,
+     twoGrids: TwoGrids,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });

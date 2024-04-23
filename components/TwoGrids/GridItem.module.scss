@@ -1,0 +1,77 @@
+@import "app/variables";
+
+.block{
+  padding: 5px 14px 11px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background: #F2F2F2;
+  border-top-left-radius: 50px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 19px;
+    padding: 35px 30px;
+  }
+
+  .icon{
+    min-width: 54px;
+    height: 53px;
+    display: flex;
+    position: relative;
+    @media (min-width: 768px) {
+      justify-content: flex-end;
+    }
+
+    i{
+      z-index: 10;
+    }
+
+    &:after{
+      content: ' ';
+      display: block;
+      background: #FFDA2B;
+      border-radius: 100px;
+      width: 44px;
+      height: 44px;
+      position: absolute;
+      left: -10px;
+      top:10px;
+      @media (min-width: 768px) {
+        left: unset;
+        right: 23%;
+        top: 17%;
+      }
+    }
+  }
+  .textBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    @media (min-width: 768px) {
+      gap: 14px;
+    }
+
+    .label{
+      font-family: var(--font-gilroy);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 21px;
+      color: #121212;
+      @media (min-width: 768px) {
+        font-size: 19px;
+        line-height: 23px;
+      }
+    }
+    .text{
+      font-family: var(--font-gilroy);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      color: #121212;
+      @media (min-width: 768px) {
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+  }
+}

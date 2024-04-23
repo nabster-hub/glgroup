@@ -3,6 +3,7 @@ import styles from "./Grid.module.scss";
 import Image from "next/image";
 import {render} from 'storyblok-rich-text-react-renderer';
 import {storyblokEditable} from "@storyblok/react";
+import clsx from "clsx";
 
 const GridItem = ({blok}) => {
     return (
