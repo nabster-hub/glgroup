@@ -5,7 +5,6 @@ import clsx from "clsx";
 
 
 const Button = ({blok}) => {
-    console.log(blok)
     return (
         <div className={clsx(styles.buttonBlock, blok.mobileCenter && styles.mobileCenter)}>
             <Link href={blok.link.linktype === 'story' ? '/'+blok.link.cached_url : blok.link.cached_url}
