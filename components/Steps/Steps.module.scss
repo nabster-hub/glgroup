@@ -1,0 +1,135 @@
+@import "app/variables";
+
+.steps{
+  background: $backgroun-second;
+  padding-bottom: 80px;
+  padding-top: 80px;
+  @media (min-width: 1024px) {
+    padding-bottom:100px;
+    padding-top: 100px;
+  }
+
+  .titleBlock{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 20px;
+    @media (min-width: 1024px) {
+      width: 60%;
+      text-align: left;
+      margin-right: unset;
+      margin-left: unset;
+      margin-bottom: 30px;
+    }
+    h2{
+      color: #ffffff;
+    }
+  }
+  .grid{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
+    }
+    @media (min-width: 1280px) {
+      gap: 60px;
+    }
+
+    .item{
+      display: flex;
+      gap: 15px;
+      @media (min-width: 1024px) {
+        flex-direction: column;
+      }
+      .first{
+        @media (min-width: 1024px) {
+          display: flex;
+          gap: 30px;
+        }
+          i{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 54px;
+            height: 54px;
+            background: $primary;
+            padding: 9px;
+            border-radius: 85px;
+            @media (min-width: 1024px) {
+              min-width: 64px;
+              min-height: 64px;
+            }
+            @media (min-width: 1280px) {
+              min-width: 74px;
+              min-height: 74px;
+            }
+          }
+        .arrows{
+          width: 65.8%;
+          display: flex;
+          align-items: center;
+          .arrow{
+            display: none;
+            @media (min-width: 1024px) {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+            }
+
+            &:after{
+              content: "";
+              width: 10px;
+              height: 10px;
+              border-top: 2px solid $primary;
+              border-left: 2px solid $primary;
+              transform: rotate(135deg);
+              margin-left: -6px;
+            }
+
+            &:before{
+              content: "";
+              display: flex;
+              width: 100%;
+              height: 1px;
+              margin-top: -0.5px;
+              border-bottom: $primary dashed 2px;
+              //transform: rotate(45deg);
+              left: 0;
+              top: 0;
+            }
+          }
+        }
+      }
+      .textBlock{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        color: white;
+        font-family: var(--font-gilroy);
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 700;
+        @media (min-width: 1024px) {
+          align-items: flex-start;
+          font-size: 16px;
+          line-height: 20px;
+        }
+        span{
+          min-height: 40px;
+          @media (min-width: 768px) {
+            min-height: fit-content;
+          }
+          @media (min-width: 1024px) {
+            min-height: unset;
+          }
+        }
+      }
+    }
+  }
+}
