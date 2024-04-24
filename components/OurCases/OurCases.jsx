@@ -21,7 +21,9 @@ const OurCases = ({blok}) => {
         <section className={'pb-20 pt-10 lg:py-24'} id={'case'}>
             <div className="container">
                 <div className={styles.titleBlock}>
-                    <div className={styles.subTitle}>{blok.subTitle}</div>
+                    {blok?.subTitle && (
+                        <div className={styles.subTitle}>{blok.subTitle}</div>
+                    )}
                     <h2 className={"h2"}>{blok.title}</h2>
                 </div>
                 <div className={styles.sliders}>
@@ -50,12 +52,14 @@ const OurCases = ({blok}) => {
                     >
                         {blok.cases.map((slide, index) => (
                             <SwiperSlide key={index}>
-                                <div className={styles.slider}>
+                                <div className={clsx(styles.slider, slide.onlyDesc && styles.onlyDesc)}>
                                     <div className={styles.decsrBlock}>
                                         <span className={styles.label}>{slide.descriptLabel}</span>
                                         <div className={styles.text}>{render(slide.description)}</div>
                                     </div>
-                                    <div className={styles.solutionBlock}>
+                                    {!slide.onlyDesc && (
+                                        <>
+                                            <div className={styles.solutionBlock}>
                                         <span className={styles.label}>
                                             <i>
                                                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
@@ -67,15 +71,18 @@ const OurCases = ({blok}) => {
 
                                             </i>
                                             {slide.solutionLabel}</span>
-                                        <div className={styles.text}>{render(slide.solution)}</div>
-                                    </div>
-                                    <div className={styles.buttonBlock}>
-                                        <Link
-                                            href={slide?.link.linktype === "story" ? "/" + slide.link.cached_url : slide.link.cached_url}
-                                            className={styles.button}>{slide.linkLabel}</Link>
-                                    </div>
+                                                <div className={styles.text}>{render(slide.solution)}</div>
+                                            </div>
+                                            <div className={styles.buttonBlock}>
+                                                <Link
+                                                    href={slide?.link.linktype === "story" ? "/" + slide.link.cached_url : slide.link.cached_url}
+                                                    className={styles.button}>{slide.linkLabel}</Link>
+                                            </div>
+                                        </>
+                                    )}
 
                                 </div>
+
 
                             </SwiperSlide>
                         ))}

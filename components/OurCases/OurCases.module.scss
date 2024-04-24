@@ -74,6 +74,8 @@
         font-size: 24px;
         line-height: 29px;
         text-align: left;
+        text-wrap: nowrap;
+        width: 100%;
       }
     }
   }
@@ -87,7 +89,15 @@
       grid-template-columns: repeat(2, 1fr);
       margin-bottom: 49px;
     }
-
+    &.onlyDesc{
+      display: flex;
+      .decsrBlock{
+        border-top-right-radius: 60px;
+        @media (min-width: 1024px) {
+          border-top-right-radius: 120px;
+        }
+      }
+    }
     .decsrBlock, .solutionBlock{
       //height: 446px;
       padding: 50px 40px;
