@@ -33,6 +33,8 @@ import NavMenu from "@/components/NavMenu/NavMenu";
 import TwoGrids from "@/components/TwoGrids/twoGrids";
 import Steps from "@/components/Steps/Steps";
 import ContactMap from "@/components/ContactMap/ContactMap";
+import GridWithImage from "@/components/GridWithImage/GridWithImage";
+import GridImg from "@/components/GridWithImage/GridImg";
 
 
 storyblokInit({
@@ -59,6 +61,8 @@ storyblokInit({
      twoGrids: TwoGrids,
      steps: Steps,
      contactMap: ContactMap,
+     gridWithImage: GridWithImage,
+     gridImg: GridImg,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
