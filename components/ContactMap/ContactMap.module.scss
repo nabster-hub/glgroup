@@ -1,0 +1,74 @@
+@import "app/variables";
+.contactMap{
+  padding-top: 20px;
+  position: relative;
+  min-height: 732px;
+  height: 100%;
+  @media (min-width: 1024px) {
+    padding-top: 170px;
+    padding-bottom: 170px;
+  }
+  .contact{
+    background: white;
+    padding: 29px 24px;
+    border-top-right-radius: 60px;
+    overflow: hidden;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    @media (min-width: 1024px) {
+      padding: 55px 64px;
+      width: 50%;
+      gap: 30px;
+    }
+    .address{
+      font-family: var(--font-gilroy);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      display: block;
+      @media (min-width: 768px) {
+        font-size: 16px;
+        line-height: 26px;
+        width: 60%;
+      }
+      @media (min-width: 1024px) {
+        width: 65%;
+      }
+    }
+    h2{
+      @media (min-width: 1280px) {
+        font-size: 88px;
+        line-height: 105px;
+      }
+    }
+    .wp{
+      font-family: var(--font-gilroy);
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 35px;
+      display: block;
+    }
+    .email{
+      font-family: var(--font-gilroy);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      display: block;
+      @media (min-width: 768px) {
+        font-size: 16px;
+        line-height: 23px;
+      }
+    }
+    .socials{
+      display: flex;
+      align-items: center;
+      gap: 17px;
+    }
+  }
+}
+.maps{
+  div{
+    height: 737px;
+  }
+}
