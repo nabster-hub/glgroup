@@ -32,6 +32,7 @@ import Section from "/components/Section/Section";
 import NavMenu from "@/components/NavMenu/NavMenu";
 import TwoGrids from "@/components/TwoGrids/twoGrids";
 import Steps from "@/components/Steps/Steps";
+import ContactMap from "@/components/ContactMap/ContactMap";
 
 
 storyblokInit({
@@ -57,6 +58,7 @@ storyblokInit({
      section: Section,
      twoGrids: TwoGrids,
      steps: Steps,
+     contactMap: ContactMap,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
