@@ -12,7 +12,7 @@ const OurCases = ({blok}) => {
     const [activeTab, setActiveTab] = useState(0);
 
     const swiperRef = useRef(null);
-
+    console.log()
     const handleClick = (index) => {
         setActiveTab(index);
         swiperRef.current.swiper.slideTo(index);
@@ -27,7 +27,7 @@ const OurCases = ({blok}) => {
                     <h2 className={"h2"}>{blok.title}</h2>
                 </div>
                 <div className={styles.sliders}>
-                    <div className={styles.tabLines}>
+                    <div className={clsx(styles.tabLines, blok.cases[0].onlyDesc && styles.big)}>
                         {blok.cases.map((slide, index) => (
                             <div
                                 key={index}
