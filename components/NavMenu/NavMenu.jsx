@@ -17,6 +17,7 @@ export default function NavMenu ({headMenu, menu}) {
     const paths = [
         'rules',
         'blog',
+        'contacts'
     ]
     const checkType = (path) => {
         const  parts = path.split('/');

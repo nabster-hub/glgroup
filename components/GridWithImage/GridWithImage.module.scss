@@ -7,6 +7,13 @@
     padding-top: 100px;
     padding-bottom: 100px;
   }
+  h2{
+    margin-bottom: 20px;
+    @media (min-width: 1024px) {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+  }
   .grid{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
