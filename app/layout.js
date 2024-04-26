@@ -35,6 +35,8 @@ import Steps from "@/components/Steps/Steps";
 import ContactMap from "@/components/ContactMap/ContactMap";
 import GridWithImage from "@/components/GridWithImage/GridWithImage";
 import GridImg from "@/components/GridWithImage/GridImg";
+import Contact from "@/components/Contact/Contact";
+import FormContact from "@/components/FormContact/FormContact";
 
 
 storyblokInit({
@@ -63,6 +65,8 @@ storyblokInit({
      contactMap: ContactMap,
      gridWithImage: GridWithImage,
      gridImg: GridImg,
+     contact: Contact,
+     fromContact: FormContact,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });

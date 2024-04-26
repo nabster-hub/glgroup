@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { GoogleMapsEmbed } from '@next/third-parties/google'
-import styles from './ContactMap.module.scss'
+import styles from './Contact.module.scss'
 
 export default function GoogleMap() {
     return (

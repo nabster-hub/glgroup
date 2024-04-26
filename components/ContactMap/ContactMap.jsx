@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './ContactMap.module.scss';
-import GoogleMap from "@/components/ContactMap/GoogleMap";
 import Image from "next/image";
 import Link from "next/link";
 
