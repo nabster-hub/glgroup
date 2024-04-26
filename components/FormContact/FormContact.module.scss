@@ -1,0 +1,95 @@
+@import "app/variables";
+
+.formContact{
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  .contactBlock{
+    width: 100%;
+    @media (min-width: 1024px) {
+      width: 60%;
+    }
+    @media (min-width: 1280px) {
+      width: 55%;
+    }
+    color: #121212;
+    h2{
+      color: #121212;
+      margin-bottom: 44px;
+      @media (min-width: 1024px) {
+        font-size: 40px;
+        line-height: 48px;
+        font-weight: 700;
+        margin-bottom: 40px;
+      }
+    }
+    .parts{
+      display: flex;
+      flex-direction: column;
+      @media (min-width: 1024px) {
+        flex-direction: row;
+        gap: 20px;
+        div{
+          @media (min-width: 1024px) {
+            width: 49%;
+          }
+        }
+      }
+    }
+    label{
+      font-family: var(--font-gilroy);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      color: #121212;
+      background: unset;
+      margin-bottom: 13px;
+      display: block;
+    }
+    input{
+      width: 100%;
+      border-bottom: 1px solid  #121212;
+      background: unset;
+      //padding-bottom: 38px;
+      margin-bottom: 20px;
+      @media (min-width: 1024px) {
+        margin-bottom: 48px;
+      }
+    }
+    button{
+      height: fit-content;
+      width: 100%;
+      padding: 22px;
+      background: #FFDA2B;
+      border-radius: 85px;
+      box-shadow: 0px 25px 74px 0px #FFDA2B66;
+      font-family: var(--font-gilroy);
+      font-size: 17px;
+      line-height: 22px;
+      font-weight: 700;
+      color: $text;
+      @media (min-width: 1024px) {
+        height: fit-content;
+        width: fit-content;
+        padding: 18px 50px;
+      }
+    }
+    .text{
+      font-family: var(--font-gilroy);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 17px;
+      opacity: 0.6;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      @media (min-width: 1024px) {
+        text-align: left;
+      }
+      a{
+        font-weight: 700;
+      }
+    }
+  }
+
+}
