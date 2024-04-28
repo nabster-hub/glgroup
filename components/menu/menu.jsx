@@ -7,7 +7,7 @@ const Menu = ({menu, type}) => {
     return (
         <div className={clsx('container hidden lg:flex justify-between', type ? 'text-black' : 'text-white')}>
             <div className={'flex gap-2 xl:gap-2.5 items-center'}>
-                <Link href={'#'} className="flex items-center lg:gap-2 xl:gap-4">
+                <Link href={'/'} className="flex items-center lg:gap-2 xl:gap-4">
                     <Image src={'/img/logo.svg'} alt={"Logo"}
                            width={59}
                            height={59}
