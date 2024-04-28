@@ -5,7 +5,7 @@ import Post from "@/components/Post/Post";
 import AuthorPage from "@/components/AutohorPage/AuthorPage";
 
 export async function generateMetadata({params}, parent){
-    const {data} = await fetchData("author/"+params.slug, {version: 'draft'});
+    const {data} = await fetchData("authors/"+params.slug, {version: 'draft'});
     return{
         title: data.story.content.metaTitle,
         description: data.story.content.metaDescription,
@@ -13,7 +13,7 @@ export async function generateMetadata({params}, parent){
 }
 export default async function Page({params}){
 
-    const {data} = await fetchData("author/"+params.slug, {version: 'draft'}, {cache: 'no-store'});
+    const {data} = await fetchData("authors/"+params.slug, {version: 'draft'}, {cache: 'no-store'});
 
     return (
         <>

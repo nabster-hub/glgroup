@@ -1,0 +1,49 @@
+@import "app/variables";
+
+.cookies{
+  display: block;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 10px;
+
+  .block{
+    width: 100%;
+    background: white;
+    border-radius: 40px;
+    border: 1px $backgroun-second solid;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 28px;
+    font-family: var(--font-gilroy);
+    @media (min-width: 768px) {
+      flex-direction: row;
+      gap: 60px;
+    }
+    @media (min-width: 1024px) {
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (min-width: 1280px) {
+      width: 48%;
+    }
+    .text{
+      font-size: 14px;
+      line-height: 22px;
+    }
+    .button{
+      padding: 12px 39px;
+      font-size: 17px;
+      line-height: 22px;
+      font-weight: 700;
+      color: white;
+      background: $backgroun-second;
+      width: fit-content;
+      border-radius: 20px;
+      cursor: pointer;
+      display: block;
+    }
+  }
+}

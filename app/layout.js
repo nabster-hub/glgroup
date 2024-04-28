@@ -37,6 +37,7 @@ import GridWithImage from "@/components/GridWithImage/GridWithImage";
 import GridImg from "@/components/GridWithImage/GridImg";
 import Contact from "@/components/Contact/Contact";
 import FormContact from "@/components/FormContact/FormContact";
+import CookieAlert from "@/components/CookieAlert/CookieAlert";
 
 
 storyblokInit({
@@ -246,6 +247,7 @@ export default async function RootLayout({ children }) {
       <footer className={'bg-[#3B604E]'}>
           <Footer links={headMenu} sitename={menu?.siteName} desc={menu?.siteDescription}/>
       </footer>
+      <CookieAlert data={global.data.story.content.CookieMessage} />
       </body>
       <StoryblokBridgeLoader options={{}} />
     </html>
