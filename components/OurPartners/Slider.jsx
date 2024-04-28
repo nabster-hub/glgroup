@@ -19,6 +19,8 @@ const Slider = ({items}) => {
                 slidesPerView={2}
                 spaceBetween={10}
                 loop={true}
+                centeredSlides={true}
+                loopAdditionalSlides={5}
                 breakpoints={{
                     320: {
                         slidesPerView: 2,
@@ -61,6 +63,26 @@ const Slider = ({items}) => {
 
                         </SwiperSlide>
                     ))}
+                {items.map((e, _uid)=>(
+                    <SwiperSlide key={_uid}>
+                        <div className={styles.slideContainer}>
+                            <Image src={e.image.filename}
+                                   fill
+                                   quality={80}
+
+                                   sizes="(max-width: 768px) 50vw,
+                             (max-width: 1200px) 25vw,
+                             25vw"
+                                   style={{
+                                       objectFit: "contain",
+                                   }}
+                                   alt={e.image.alt}
+                            />
+                        </div>
+
+
+                    </SwiperSlide>
+                ))}
                 <div className={styles.arrows}>
                     <div className="swiper-button-prev" ref={arrowPrev}></div>
                     <div className="swiper-button-next" ref={arrowNext}></div>
