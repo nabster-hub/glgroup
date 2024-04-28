@@ -1,0 +1,132 @@
+@import "app/variables";
+
+
+.authorPage{
+  padding-bottom: 80px;
+  @media (min-width: 1024px) {
+    padding-bottom: 104px;
+  }
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    @media (min-width: 1024px) {
+      flex-direction: row;
+      align-items: unset;
+      gap: 100px;
+    }
+    .profile{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      @media (min-width: 1024px) {
+        flex-direction: row;
+        gap: 55px;
+      }
+      .imgBlock{
+        width: 253px;
+        height: 253px;
+        position: relative;
+        border-radius: 160px;
+        overflow: hidden;
+        min-width: 253px;
+        min-height: 253px;
+      }
+      .aboutBlock{
+        display: flex;
+        flex-direction: column;
+        h1{
+          text-align: center;
+          display: block;
+          margin-bottom: 20px;
+          @media (min-width: 1024px) {
+            text-align: left;
+          }
+        }
+        .information{
+          margin-bottom: 40px;
+          font-family: var(--font-gilroy);
+
+          .label{
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 32px;
+            opacity: 50%;
+            display: block;
+            color: #121212;
+            text-align: center;
+            @media (min-width: 1024px) {
+              text-align: left;
+              font-size: 21px;
+              margin-bottom: 10px;
+            }
+          }
+          .text{
+            font-size: 14px;
+            line-height: 32px;
+            color: #121212;
+            text-align: center;
+            @media (min-width: 1024px) {
+              text-align: left;
+              font-size: 18px;
+            }
+          }
+        }
+        .socials{
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+          @media (min-width: 1024px) {
+            justify-content: flex-start;
+          }
+          .item{
+            display: block;
+            @media (min-width: 1024px) {
+              img{
+                width: 45px;
+                height: 45px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .posts{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap:17px;
+      @media (min-width: 768px) {
+        align-items: center;
+      }
+      @media (min-width: 1024px) {
+        width: 30%;
+        padding-top: 75px;
+      }
+      .label{
+        font-family: var(--font-gilroy);
+        font-weight: 700;
+        font-size: 21px;
+        line-height: 32px;
+        opacity: 50%;
+        display: block;
+        color: #121212;
+      }
+      .postLinks{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .link{
+          font-family: var(--font-gilroy);
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 26px;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+}

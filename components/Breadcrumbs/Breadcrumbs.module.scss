@@ -9,6 +9,11 @@
   @media (min-width: 1024px) {
     margin-bottom: 30px;
   }
+  &.author{
+    @media (min-width: 1024px) {
+      margin-bottom: 50px;
+    }
+  }
   .block{
     display: flex;
     align-items: center;
