@@ -63,7 +63,7 @@ const Slider = ({items}) => {
 
                         </SwiperSlide>
                     ))}
-                {items.map((e, _uid)=>(
+                    {items.map((e, _uid)=>(
                     <SwiperSlide key={_uid}>
                         <div className={styles.slideContainer}>
                             <Image src={e.image.filename}

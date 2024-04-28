@@ -24,7 +24,7 @@ const MobileMenu = ({menu, link, type}) => {
             <div className={clsx('flex lg:hidden items-center justify-between w-full px-5', styles.content, type && styles.black)}>
 
                 <div className={styles.logoBlock}>
-                    <Link href={'#'} className={'flex gap-3 items-center'}>
+                    <Link href={'/'} className={'flex gap-3 items-center'}>
                         <i className={styles.logo}>
                             < svg width="59" height="58" viewBox="0 0 59 58" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">

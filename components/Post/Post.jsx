@@ -43,7 +43,7 @@ export default async function Post ({blok}) {
                 <div className="flex gap-8 items-center mb-5 xl:mb-10 ">
                     <span className={styles.date}>{formattedDate}</span>
                     {blok.content.showAuthor && (
-                        <Link href={'#'} className={styles.author}>Иван Петров</Link>
+                        <Link href={blok.content.Author.linktype === 'story' ? '/'+blok.content.Author.cached_url : blok.content.Author.cached_url} className={styles.author}>{blok.content.authorLabel}</Link>
                     )}
 
                 </div>
