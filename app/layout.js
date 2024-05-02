@@ -38,6 +38,7 @@ import GridImg from "@/components/GridWithImage/GridImg";
 import Contact from "@/components/Contact/Contact";
 import FormContact from "@/components/FormContact/FormContact";
 import CookieAlert from "@/components/CookieAlert/CookieAlert";
+import HeroAboutUs from "@/components/HeroAboutUs/HeroAboutUs";
 
 
 storyblokInit({
@@ -68,6 +69,7 @@ storyblokInit({
      gridImg: GridImg,
      contact: Contact,
      fromContact: FormContact,
+     HeroAboutUs: HeroAboutUs,
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
