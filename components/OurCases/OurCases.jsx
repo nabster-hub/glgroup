@@ -12,7 +12,6 @@ const OurCases = ({blok}) => {
     const [activeTab, setActiveTab] = useState(0);
 
     const swiperRef = useRef(null);
-    console.log()
     const handleClick = (index) => {
         setActiveTab(index);
         swiperRef.current.swiper.slideTo(index);

@@ -6,6 +6,8 @@ import PosePreview from "@/components/PostPreview/PosePreview";
 import LazyLoadBlog from "@/components/LazyLoadBlog/LazyLoadBlog";
 import {getCategory} from "@/lib/category";
 import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
+import {fetchBlog} from "@/lib/blog";
+import {console} from "next/dist/compiled/@edge-runtime/primitives";
 
 
 
@@ -25,9 +27,11 @@ export async function getPosts(){
 
 export default async function Page ({params}){
     const fetch = await getPosts();
+//    const datas = await fetchBlog(1);
+  //  console.log(datas);
     const posts = fetch.data.stories;
     const category = await getCategory();
-    console.log(category.data);
+   // console.log(category.data);
     const breadcrumbs = [
         {
             link: {

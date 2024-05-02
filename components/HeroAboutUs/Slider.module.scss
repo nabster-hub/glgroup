@@ -1,0 +1,85 @@
+@import "app/variables";
+.sliders{
+
+
+  .tabLines{
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    cursor: unset;
+    position: relative;
+    margin-bottom: 9px;
+    .lineScroll{
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #ffffff70;
+      .drag{
+        width: 150px;
+        height: 3px;
+        background: white;
+        @media (min-width: 1024px) {
+          width: 215px;
+        }
+        @media (min-width: 1280px) {
+          width: 270px;
+        }
+      }
+    }
+    .tab{
+      font-family: var(--font-gilroy);
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+      display: block;
+      min-width: 83px;
+      margin-right: 330px;
+      margin-top: 17px;
+      @media (min-width: 435px) {
+        margin-right: 600px;
+      }
+      @media (min-width: 768px) {
+        margin-right: 900px;
+      }
+      @media (min-width: 1024px) {
+        margin-right: 100px;
+        line-height: 48px;
+      }
+      @media (min-width: 1280px) {
+        margin-right: 140px;
+
+      }
+      &.active{
+        font-weight: 700;
+        font-size: 37px;
+        line-height: 37px;
+        @media (min-width: 1024px) {
+          font-size: 78px;
+          line-height: 78px;
+        }
+        @media (min-width: 1280px) {
+          min-width: 179px;
+        }
+      }
+    }
+  }
+  .slider{
+    @media (min-width: 768px) {
+      display: flex;
+    }
+    .arrows{
+      position: relative;
+      width: 148px;
+      height: 78px;
+      margin-left: auto;
+      margin-right: auto;
+      @media (min-width: 768px) {
+        height: 30px;
+        margin-left: unset;
+        margin-right: unset;
+      }
+    }
+  }
+
+}

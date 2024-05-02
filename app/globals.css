@@ -289,3 +289,26 @@ body {
 .otherArrows > .swiper-button-disabled{
   opacity: 0.35!important;
 }
+.heroAboutUs{
+  height: 100px;
+  @media (min-width: 768px) {
+    height: 54px;
+    width: 438px;
+    margin-left: unset!important;
+  }
+  @media (min-width: 1024px) {
+    height: 54px;
+    width: 438px;
+    margin-left: unset!important;
+  }
+}
+.heroAboutUs .swiper-wrapper .swiper-slide{
+  font-family: var(--font-gilroy);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  @media (min-width: 768px) {
+    font-size: 16px;
+    line-height: 23px;
+  }
+}
