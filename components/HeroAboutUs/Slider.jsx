@@ -28,7 +28,6 @@ const Slider = ({sliders}) => {
 
             if (!activeElement) return; // Handle if element not found
             if(containerRef.current.clientWidth < 992){
-                console.log(containerRef.current.clientWidth)
                 if(containerRef.current.clientWidth <= 680 ){
                     numPlus = 0;
                 }
@@ -41,7 +40,6 @@ const Slider = ({sliders}) => {
 
             if(containerRef.current.clientWidth >200){
                 let left = (activeTab)*413;
-                console.log(containerRef.current.clientWidth);
                 if(containerRef.current.clientWidth >= 403 && containerRef.current.clientWidth <736){
                     left = (activeTab)*682;
                 }else if(containerRef.current.clientWidth >=736 && containerRef.current.clientWidth < 992){
@@ -88,7 +86,6 @@ const Slider = ({sliders}) => {
 
     }, [activeTab]);
     useEffect(()=>{
-        console.log(containerRef.current.clientWidth)
         if(containerRef.current.clientWidth < 992){
             if(containerRef.current.clientWidth < 403){
                 document.getElementById("line").style.width = '2065px';
@@ -112,7 +109,6 @@ const Slider = ({sliders}) => {
                         id={`tab-${index}`}
                         key={index}
                         className={clsx(styles.tab, activeTab === index && styles.active)}
-                        //onClick={() => handleClick(index)}
                     >
                         {slide.lineLabel}
                     </div>

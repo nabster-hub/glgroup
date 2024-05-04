@@ -1,0 +1,233 @@
+@import "/app/variables";
+.ourAdvantages{
+  background: #264034FA;
+}
+.grid{
+  display: grid;
+  gap: 23px;
+  grid-template-columns: repeat(1, 1fr);
+  margin-bottom: 30px;
+  @media (min-width: 1024px) {
+    gap: 50px;
+    grid-template-columns: repeat(12, 1fr);
+    margin-bottom: 60px;
+  }
+  @media (min-width: 1280px) {
+    gap: 100px;
+  }
+}
+
+.item{
+  display: flex;
+  gap: 17px;
+  @media (min-width: 1024px) {
+    flex-direction: column;
+    gap: unset;
+    &:nth-child(odd){
+      grid-column: span 3;
+    }
+    &:nth-child(even){
+      grid-column: span 5;
+    }
+    &:nth-child(1){
+      grid-column: span 4;
+    }
+  }
+
+  .number{
+    font-family: var(--font-gilroy);
+    font-weight: 700;
+    font-size: 58px;
+    line-height: 70px;
+    margin-bottom: 2px;
+    min-width: 105px;
+    color: $primary;
+    @media (min-width: 768px) {
+      font-size: 80px;
+      line-height: 92px;
+      min-width: 145px;
+    }
+    @media (min-width: 1024px) {
+      font-size: 92px;
+      line-height: 110px;
+    }
+  }
+  .text{
+    font-family: var(--font-gilroy);
+    font-size: 14px;
+    font-weight: 700;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    color: white;
+    @media (min-width: 768px) {
+      width: unset;
+      font-size: 18px;
+    }
+    @media (min-width: 1024px) {
+      width: 100%;
+      font-size: 20px;
+    }
+  }
+}
+
+
+.titleBlock{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 43px;
+
+  .subLabel{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.3em;
+    color: white;
+    text-transform: uppercase;
+    @media (min-width: 768px) {
+      font-size: 16px;
+      line-height: 19px;
+    }
+    @media (min-width: 1024px) {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+  h2{
+    color: white;
+  }
+  &.half{
+    width: 100%;
+    @media (min-width: 768px) {
+      width: 90%;
+    }
+    @media (min-width: 1024px) {
+      width: 70%;
+    }
+
+  }
+
+}
+
+.blocks{
+
+  @media (min-width: 768px) {
+    background: #F2F2F2;
+    border-top-right-radius: 80px;
+    padding: 45px 30px;
+  }
+  @media (min-width: 1024px) {
+    border-top-right-radius: 100px;
+    padding: 69px 50px 100px 50px;
+  }
+
+
+  .label{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+    letter-spacing: 0.3em;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 44px;
+    display: block;
+    @media (min-width: 768px) {
+      font-size: 16px;
+      line-height: 19px;
+      color: $text;
+      text-align: left;
+    }
+    @media (min-width: 1024px) {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+
+  .blockBloks{
+    display: flex;
+    gap: 15px;
+    overflow-x: scroll;
+    @media (min-width: 768px) {
+      overflow-x: unset;
+      display: grid;
+      gap: 50px 40px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 1024px) {
+      gap: 40px 30px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: 1280px) {
+      gap: 35px 48px;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .blokItem{
+      background: #F2F2F2;
+      padding: 30px 15px 25px 34px;
+      border-top-left-radius: 50px;
+      display: flex;
+      flex-direction: column;
+      gap:18px;
+      min-width: 304px;
+      @media (min-width: 768px) {
+        background: unset;
+        padding: unset;
+        border-top-left-radius: unset;
+        min-width: 281px;
+        width: 281px;
+      }
+      @media (min-width: 1024px) {
+        min-width: 250px;
+        width: 250px;
+      }
+
+      .first{
+        display: flex;
+        gap: 15px;
+        padding-left: 6px;
+        i{
+          position: relative;
+          z-index: 10;
+          &:after{
+            content: ' ';
+            display: block;
+            background: #FFDA2B;
+            border-radius: 100px;
+            width: 44px;
+            height: 44px;
+            position: absolute;
+            right: 15%;
+            top: 15%;
+          }
+          img{
+            width: 44px;
+            height: 44px;
+            z-index: 12;
+            position: relative;
+            min-width: 44px;
+          }
+        }
+        .labelItem{
+          font-family: var(--font-gilroy);
+          font-size: 18px;
+          line-height:22px;
+          color: $text;
+          font-weight: 700;
+
+        }
+      }
+
+      .textItem{
+        color: $text;
+         font-family: var(--font-gilroy);
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
