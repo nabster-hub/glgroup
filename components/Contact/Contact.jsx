@@ -3,7 +3,6 @@ import styles from './Contact.module.scss'
 import Link from "next/link";
 import GoogleMap from "@/components/Contact/GoogleMap";
 const Contact = ({blok}) => {
-    console.log(blok)
     return (
         <section className={styles.block}>
             <div className="container">
