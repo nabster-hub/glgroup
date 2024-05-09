@@ -61,12 +61,10 @@
       grid-template-columns: repeat(3, 1fr);
     }
     @media (min-width: 1024px) {
-      grid-template-columns: repeat(11, 1fr);
       gap: 50px;
     }
     @media (min-width: 1280px) {
-      grid-template-columns: repeat(11, 1fr);
-      width: 80%;
+      width: 95%;
       margin: 0 auto;
       gap: 80px;
     }

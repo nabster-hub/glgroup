@@ -95,6 +95,7 @@ const Slider = ({sliders}) => {
                 document.getElementById("line").style.width = '4915px';
             }
         }
+        console.log(arrowPrev.current);
     }, [])
 
     return (

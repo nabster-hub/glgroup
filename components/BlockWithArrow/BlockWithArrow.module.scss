@@ -4,14 +4,10 @@
   flex-direction: column;
   grid-column: span 1;
   gap: 12px 20px;
-  @media (min-width: 1024px) {
-    grid-column: span 3;
-  }
+
   &.withArrow{
     grid-column: span 1;
-    @media (min-width: 1024px) {
-      grid-column: span 4;
-    }
+
   }
 
 

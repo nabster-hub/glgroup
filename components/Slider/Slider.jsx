@@ -1,6 +1,6 @@
 "use client";
 import {Swiper, SwiperSlide, useSwiper} from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+import {Pagination, Navigation, Autoplay} from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -25,12 +25,16 @@ export default function Slider({items}) {
                     type: 'fraction',
                 }}
                 loop={true}
+                autoplay={{
+                    delay: 5000,
+                    pauseOnMouseEnter: true,
+                }}
                 onBeforeInit={(swiper) => {
                     swiper.params.navigation.prevEl = arrowPrev.current;
                     swiper.params.navigation.nextEl = arrowNext.current;
                     swiper.params.pagination.el = paginationRef.current;
                 }}
-                modules={[Pagination, Navigation]}
+                modules={[Autoplay, Pagination, Navigation]}
                 navigation={{
                     prevEl: arrowPrev.current,
                     nextEl: arrowNext.current,
