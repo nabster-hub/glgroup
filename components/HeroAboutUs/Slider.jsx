@@ -97,7 +97,13 @@ const Slider = ({sliders}) => {
         }
         console.log(arrowPrev.current);
     }, [])
-
+    const handleSwiperInit = (swiper) => {
+        swiper.navigation.update(); // Обновление навигации
+        swiper.params.navigation.prevEl = arrowPrev.current;
+        swiper.params.navigation.nextEl = arrowNext.current;
+        swiper.navigation.init();
+        swiper.navigation.update(); // Обновление навигации после инициализации
+    };
     return (
         <div className={styles.sliders} ref={containerRef}>
 
@@ -128,6 +134,8 @@ const Slider = ({sliders}) => {
                     }}
                     modules={[Navigation]}
                     className={'heroAboutUs'}
+                    ref={swiperRef}
+                    onSwiper={handleSwiperInit}
                 >
 
                     {sliders.map((e, _uid) => (
