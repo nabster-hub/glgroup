@@ -19,6 +19,14 @@
   }
 }
 
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 153px;
+  @media (min-width: 1280px) {
+    scroll-padding-top: 160px;
+  }
+}
+
 body {
   background: white;
   color: var(--color-text);

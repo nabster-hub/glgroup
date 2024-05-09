@@ -1,6 +1,6 @@
 "use client";
 import {Swiper, SwiperSlide, useSwiper} from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+import {Pagination, Navigation, Autoplay} from 'swiper/modules';
 import styles from './OurRecomendations.module.scss'
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -21,6 +21,10 @@ const Slider = ({items}) => {
                 slidesPerView={2}
                 spaceBetween={26}
                 loop={true}
+                autoplay={{
+                    delay: 1500,
+                    pauseOnMouseEnter: true,
+                }}
                 breakpoints={{
                     320: {
                         slidesPerView: 1,
@@ -47,7 +51,7 @@ const Slider = ({items}) => {
                         spaceBetween: 26
                     }
                 }}
-                modules={[Navigation]}
+                modules={[Autoplay, Navigation]}
                 navigation={{
                     prevEl: arrowPrev.current,
                     nextEl: arrowNext.current,

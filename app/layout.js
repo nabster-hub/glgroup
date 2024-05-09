@@ -238,9 +238,25 @@ export const metadata = {
   title: "GLGroup - start your business in Indonesia",
   description: "Good Luck Group start your business in Indonesia",
 };
-
+export const revalidate = 3600;
 export default async function RootLayout({ children }) {
   const global = await fetchData('global', {version: 'draft'})
+
+  const footer = {
+    title: global.data.story?.content?.title,
+    description: global.data.story?.content?.description,
+    contactLabel: global.data.story?.content?.contactLabel,
+    contactLink: global.data.story?.content?.contactLink,
+    navigationLabel: global.data.story?.content?.navigationLabel,
+    homeLinkLabel: global.data.story?.content?.homeLinkLabel,
+    copyright: global.data.story?.content?.copyright,
+    privacyLabel: global.data.story?.content?.privacyLabel,
+    privacyLink: global.data.story?.content?.privacyLink,
+    offerLabel: global.data.story?.content?.offerLabel,
+    offerLink: global.data.story?.content?.offerLink,
+    contactUsLabel: global.data.story?.content?.contactUsLabel,
+    address: global.data.story?.content?.address,
+  };
   const headMenu = global.data.story?.content.linkMenu[0];
   const menu = global.data.story?.content.linkMenu[1];
   return (
@@ -249,7 +265,7 @@ export default async function RootLayout({ children }) {
       <NavMenu headMenu={headMenu} menu={menu}/>
       {children}
       <footer className={'bg-[#3B604E]'}>
-          <Footer links={headMenu} sitename={menu?.siteName} desc={menu?.siteDescription}/>
+          <Footer links={headMenu} sitename={menu?.siteName} footer={footer}/>
       </footer>
       <CookieAlert data={global.data.story.content.CookieMessage} />
       </body>

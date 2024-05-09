@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
 
-const  Footer = ({links, sitename, desc}) => {
+const  Footer = ({links, sitename, footer}) => {
     const itemLinks = links?.links;
     const socials = links?.socials;
     const mail = links?.label;
@@ -16,7 +16,7 @@ const  Footer = ({links, sitename, desc}) => {
         <div className={'container pt-16 lg:pt-24 lg:pb-12'}>
             <div className={styles.block}>
                 <div className={styles.firstBlock}>
-                    <span className={styles.title}>Контакты</span>
+                    <span className={styles.title}>{footer.title}</span>
                     <div className={styles.logoBlock}>
                         <i>
                             <svg width="59" height="58" viewBox="0 0 59 58" fill="none"
@@ -48,23 +48,21 @@ const  Footer = ({links, sitename, desc}) => {
                             </svg>
                         </i>
                         <span className={styles.logoLable}>{sitename}</span>
-                        <span className={styles.logoDesc}>{desc}</span>
                     </div>
                     <div className={styles.description}>
-                        Good Luck Group — это международное консалтинговое агентство, предлагающее своим клиентам полный
-                        комплекс корпоративных услуг, необходимых для создания успешного бизнеса.
+                        {footer.description}
                     </div>
-                    <Link href={'#'} className={styles.contact}>
-                        Связаться с нами
+                    <Link href={footer.contactLink.linktype === "story" ? "/"+footer.contactLink.cached_url : footer.contactLink.cached_url} className={styles.contact}>
+                        {footer.contactLabel}
                     </Link>
                 </div>
                 <div className={styles.secondBlock}>
                     <div className={styles.navigation}>
                        <span className={styles.title}>
-                        Навигация
+                        {footer.navigationLabel}
                     </span>
                         <ul>
-                            <li><Link href={'/'} className={'hover:text-yellow-active'}>Главная</Link></li>
+                            <li><Link href={'/'} className={'hover:text-yellow-active'}>{footer.homeLinkLabel}</Link></li>
                             {itemLinks && itemLinks.map((e, _uid)=>(
                                 <li key={_uid}><Link href={e.link.linktype === "story" ? "/"+e.link.cached_url : e.link.cached_url} key={_uid} className={'hover:text-yellow-active'}>{e.label}</Link></li>
                             ))}
@@ -73,7 +71,7 @@ const  Footer = ({links, sitename, desc}) => {
                     <div className={styles.contactUs}>
                         <div className="flex flex-col">
                             <span className={styles.title}>
-                            Связь с нами </span>
+                            {footer.contactUsLabel}</span>
                             <div className={'flex flex-col gap-3'}>
                                 <Link href={'https://wa.me/'+number} className="flex gap-4 hover:text-yellow-active">
                                     <Image src={whatsappIcon.filename} width={'21'} height={'21'}
@@ -84,9 +82,7 @@ const  Footer = ({links, sitename, desc}) => {
                                     <Image src={mailIcon.filename} width={'24'} height={'24'} alt={mailIcon.alt}/>
                                     <span className={clsx('font-gilroy font-bold', styles.email)}>{mail}</span>
                                 </Link>
-                                <div className={'font-gilroy text-lg font-normal'}>Benoa Square 2nd Floor, Jl Bypass
-                                    Ngurah Rai No 21A, Kedonganan, Kuta, Bali 80361,
-                                    Indonesia
+                                <div className={'font-gilroy text-lg font-normal'}>{footer.address}
                                 </div>
                             </div>
                         </div>
@@ -105,14 +101,14 @@ const  Footer = ({links, sitename, desc}) => {
             </div>
             <div className={styles.copyrightBlock}>
                 <div className={styles.copyright}>
-                    © 2023 «GL group consulting» все права защищены
+                    {footer.copyright}
                 </div>
                 <div className={styles.links}>
-                    <Link href={'/rules/privacy-policy'} className={styles.confident}>
-                        Политика конфиденциальности
+                    <Link href={footer.privacyLink.linktype === "story" ? "/"+footer.privacyLink.cached_url : footer.privacyLink.cached_url} className={styles.confident}>
+                        {footer.privacyLabel}
                     </Link>
-                    <Link href={'/rules/public-offer-agreement'} className={styles.publicOffer}>
-                        Публичная оферта
+                    <Link href={footer.offerLink.linktype === "story" ? "/"+footer.offerLink.cached_url : footer.offerLink.cached_url} className={styles.publicOffer}>
+                        {footer.offerLabel}
                     </Link>
                 </div>
             </div>
