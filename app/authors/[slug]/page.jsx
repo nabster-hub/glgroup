@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import Post from "@/components/Post/Post";
 import AuthorPage from "@/components/AutohorPage/AuthorPage";
 
+export const revalidate = 3600;
 export async function generateMetadata({params}, parent){
     const {data} = await fetchData("authors/"+params.slug, {version: 'draft'});
     return{

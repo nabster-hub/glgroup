@@ -15,7 +15,7 @@ const Menu = ({menu, type}) => {
                     />
                     <span className={'h-fit max-w-[100px] xl:max-w-[136px] font-extrabold text-base xl:text-xl uppercase'}>{menu.siteName}</span>
                 </Link>
-                <span className={'w-fit text-sm xl:text-base lowercase lg:max-w-[119px] xl:max-w-[139px] leading-4'}>{menu.siteDescription}</span>
+                <span className={'w-fit font-gilroy text-sm lg:text-desc lowercase lg:max-w-[119px] xl:max-w-[139px] leading-4 lg:leading-3.5'}>{menu.siteDescription}</span>
             </div>
             <div className={'flex lg:gap-5 xl:gap-10 py-2.5 items-center font-gilroy font-bold text-base xl:text-lg'}>
                 {menu?.links && menu.links.map((e, _uid)=>(

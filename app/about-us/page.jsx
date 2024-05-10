@@ -4,7 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import AuthorPage from "@/components/AutohorPage/AuthorPage";
 import {StoryblokComponent} from "@storyblok/react/rsc";
 
-
+export const revalidate = 3600;
 export async function generateMetadata(parent){
     const {data} = await fetchData("about-us", {version: 'draft'});
     return{
