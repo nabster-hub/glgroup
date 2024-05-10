@@ -29,7 +29,7 @@ const ContactMap = ({blok}) => {
                     <div className={styles.socials}>
                         {blok?.socials && blok.socials.map((e, _uid)=>(
                             <Link href={e.link.cached_url} className={styles.item} key={_uid}>
-                                <Image src={e.blackImg.filename} alt={e.blackImg.alt} width={32} height={32}/>
+                                <Image src={e.image.filename} alt={e.image.alt} width={32} height={32}/>
                             </Link>
                         ))}
                     </div>
