@@ -9,7 +9,7 @@
   margin-bottom: 30px;
   @media (min-width: 1024px) {
     gap: 50px;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     margin-bottom: 60px;
   }
   @media (min-width: 1280px) {
@@ -23,15 +23,9 @@
   @media (min-width: 1024px) {
     flex-direction: column;
     gap: unset;
-    &:nth-child(odd){
-      grid-column: span 3;
-    }
-    &:nth-child(even){
-      grid-column: span 5;
-    }
-    &:nth-child(1){
-      grid-column: span 4;
-    }
+
+    grid-column: span 1;
+
   }
 
   .number{
