@@ -10,7 +10,7 @@ import styles from "./Slider.module.scss";
 const Slider = ({sliders}) => {
     const arrowPrev = useRef(null);
     const arrowNext = useRef(null);
-    const [activeTab, setActiveTab] = useState(0);
+    const [activeTab, setActiveTab] = useState(2);
     const swiperRef = useRef(null);
     const containerRef = useRef(null);
     const dragRef = useRef(null);
@@ -97,13 +97,7 @@ const Slider = ({sliders}) => {
         }
         console.log(arrowPrev.current);
     }, [])
-    const handleSwiperInit = (swiper) => {
-        swiper.navigation.update(); // Обновление навигации
-        swiper.params.navigation.prevEl = arrowPrev.current;
-        swiper.params.navigation.nextEl = arrowNext.current;
-        swiper.navigation.init();
-        swiper.navigation.update(); // Обновление навигации после инициализации
-    };
+
     return (
         <div className={styles.sliders} ref={containerRef}>
 
@@ -122,20 +116,31 @@ const Slider = ({sliders}) => {
                 ))}
             </div>
             <div className={styles.slider}>
+                <div className={styles.arrows}>
+                    <div ref={arrowPrev} className="swiper-button-prev"></div>
+                    <div ref={arrowNext} className="swiper-button-next"></div>
+                </div>
                 <Swiper
-                    onBeforeInit={(swiper) => {
-                        swiper.params.navigation.prevEl = arrowPrev.current;
-                        swiper.params.navigation.nextEl = arrowNext.current;
-                    }}
-                    onSlideChange={(swiper) => setActiveTab(swiper.activeIndex)}
+                    // onBeforeInit={(swiper) => {
+                    //     swiper.params.navigation.prevEl = arrowPrev.current;
+                    //     swiper.params.navigation.nextEl = arrowNext.current;
+                    // }}
                     navigation={{
                         prevEl: arrowPrev.current,
                         nextEl: arrowNext.current,
                     }}
+                    onInit={(swiper) => {
+                        swiper.params.navigation.prevEl = arrowPrev.current;
+                        swiper.params.navigation.nextEl = arrowNext.current;
+                        swiper.navigation.init();
+                        swiper.navigation.update();
+                    }}
+                    onSlideChange={(swiper) => setActiveTab(swiper.activeIndex)}
+                    initialSlide={2}
+
                     modules={[Navigation]}
                     className={'heroAboutUs'}
                     ref={swiperRef}
-                    onSwiper={handleSwiperInit}
                 >
 
                     {sliders.map((e, _uid) => (
@@ -146,10 +151,6 @@ const Slider = ({sliders}) => {
 
                 </Swiper>
 
-                <div className={styles.arrows}>
-                    <div ref={arrowPrev} className="swiper-button-prev"></div>
-                    <div ref={arrowNext} className="swiper-button-next"></div>
-                </div>
             </div>
         </div>
 
