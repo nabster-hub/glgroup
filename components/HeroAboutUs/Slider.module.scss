@@ -65,8 +65,11 @@
     }
   }
   .slider{
+    display: flex;
+    flex-direction: column-reverse;
     @media (min-width: 768px) {
       display: flex;
+      flex-direction: row-reverse;
     }
     .arrows{
       position: relative;
