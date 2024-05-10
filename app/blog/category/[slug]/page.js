@@ -8,7 +8,7 @@ import {getCategory} from "@/lib/category";
 import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 
 
-
+export const revalidate = 3600;
 export async function getPosts(params){
     let sbParams = {
         version: "published",

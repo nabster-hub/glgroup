@@ -9,7 +9,7 @@ import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 import {fetchBlog} from "@/lib/blog";
 import {console} from "next/dist/compiled/@edge-runtime/primitives";
 
-
+export const revalidate = 3600;
 
 export async function getPosts(){
     let sbParams = {

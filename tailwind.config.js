@@ -22,6 +22,10 @@ module.exports = {
       },
       fontSize:{
           '12xl': '12.25rem',
+          'desc': '0.8em',
+      },
+      lineHeight: {
+        '3.5': '1.2'
       },
       colors: {
         current: 'currentColor',

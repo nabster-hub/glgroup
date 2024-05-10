@@ -6,15 +6,15 @@ import Breadcrumbs from "/components/Breadcrumbs/Breadcrumbs";
 export const revalidate = 3600;
 
 
-export async function generateMetadata(parent){
-    const {data} = await fetchData("rules/cookie-policy", {version: 'draft'});
+export async function generateMetadata({params},parent){
+    const {data} = await fetchData(`rules/${params.slug}`, {version: 'draft'});
     return{
         title: data.story.content.metaTitle,
         description: data.story.content.metaDescription,
     }
 }
-export default async function Page() {
-    const {data} = await fetchData("rules/cookie-policy", {version: 'draft'});
+export default async function Page({params}) {
+    const {data} = await fetchData(`rules/${params.slug}`, {version: 'draft'});
     return (
         <>
             <Breadcrumbs links={data?.story.content.breadcrumbs}/>
