@@ -14,7 +14,7 @@ export async function generateMetadata(parent){
 }
 export default async function Page(){
 
-    const {data} = await fetchData("about-us", {version: 'draft'}, {cache: 'no-store'});
+    const {data} = await fetchData("about-us", {version: 'draft'});
 
     return (
         <>

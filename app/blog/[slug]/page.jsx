@@ -12,7 +12,7 @@ export async function generateMetadata({params}, parent){
 }
 export default async function Page({params}){
 
-    const {data} = await fetchData("blog/"+params.slug, {version: 'draft'}, {cache: 'no-store'});
+    const {data} = await fetchData("blog/"+params.slug, {version: 'draft'});
 
     return (
         <>
