@@ -1,17 +1,20 @@
-import React from 'react';
+'use client';
+import React, {useEffect} from 'react';
 import styles from './MobileMenu.module.scss';
 import Link from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 
 const MobileNav = ({datas, setShowNav, contactUs, type}) => {
     const number = datas?.whatsappNumber;
+
     return (
-        <section className={clsx('fixed h-full w-full top-0 left-0', type ? 'bg-white' : 'bg-[#141414]')}>
+        <section className={clsx('fixed h-full w-full top-0 left-0', type ? 'bg-white' : 'bg-[#141414]')} id={'menu'}>
             <div className={clsx('flex lg:hidden items-center justify-between w-full px-5 mb-20', styles.content, type && styles.black)}>
 
                 <div className={styles.logoBlock}>
-                    <Link href={'#'} className={'flex gap-3 items-center'}>
+                    <Link href={'/'} className={'flex gap-3 items-center'} onClick={()=>(setShowNav(false))}>
                         <i className={styles.logo}>
                             <svg width="59" height="58" viewBox="0 0 59 58" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +50,7 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
                     </Link>
                 </div>
                 <div className={'flex h-full'}>
-                    <Link href={'https://wa.me/' + number} className={clsx(styles.phoneBlock, type && styles.black)}>
+                    <Link href={'https://wa.me/' + number} className={clsx(styles.phoneBlock, type && styles.black)} onClick={()=>(setShowNav(false))}>
                         <i>
                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -74,13 +77,13 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
                 <div className={styles.block}>
                     {datas.links && datas.links.map((e, _uid) => (
                         <Link key={_uid}
-                              href={e.link.linktype === "story" ? "/" + e.link.cached_url : e.link.cached_url}>{e.label}</Link>
+                              href={e.link.linktype === "story" ? "/" + e.link.cached_url : e.link.cached_url} onClick={()=>(setShowNav(false))}>{e.label}</Link>
                     ))}
                 </div>
                 <div className={styles.socials}>
                     {datas?.socials && datas.socials.map((e, _uid) => (
                         <Link href={e.link.linktype === "story" ? "/" + e.link.cached_url : e.link.cached_url}
-                              key={_uid}>
+                              key={_uid} onClick={()=>(setShowNav(false))}>
                             {type ? (<Image src={e.blackImg.filename} width={'34'} height={'34'} alt={e.blackImg.alt}></Image>):(
                             <Image src={e.image.filename} width={'34'} height={'34'} alt={e.image.alt}></Image>
                                 )}
@@ -89,7 +92,7 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
                 </div>
                 <div className={styles.contact}>
                     <Link href={'mailto:' + datas.label}
-                          className={'flex gap-3 items-center hover:text-yellow-active '}>
+                          className={'flex gap-3 items-center hover:text-yellow-active '} onClick={()=>(setShowNav(false))}>
                         {type ? (
                             <Image src={datas.iconBlack.filename} width={'24'} height={'24'} alt={datas.iconBlack.alt}/>
                         ) : (
@@ -98,7 +101,7 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
 
                         <span className={'font-gilroy font-bold text-sm'}>{datas.label}</span>
                     </Link>
-                    <Link href={'https://wa.me/' + number} className="flex gap-3 hover:text-yellow-active">
+                    <Link href={'https://wa.me/' + number} className="flex gap-3 hover:text-yellow-active" onClick={()=>(setShowNav(false))}>
                         {type ? (
                             <Image src={datas.ImageWpBlock.filename} width={'24'} height={'24'}
                                    alt={datas.ImageWpBlock.alt}/>
@@ -113,16 +116,16 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
                 <div className={styles.contactUs}>
                     <Link
                         href={contactUs.link.linktype === "story" ? "/" + contactUs.link.cached_url : contactUs.link.cached_url}
-                        className={styles.button}>
+                        className={styles.button} onClick={()=>(setShowNav(false))}>
                         {contactUs.label}
                     </Link>
                 </div>
                 <div className="flex justify-center gap-3 font-gilroy text-sm items-center">
-                    <Link href={'#'} className={clsx('font-bold', type ? "text-green-active hover:text-green-active" : 'text-yellow-active hover:text-yellow-active')}>
+                    <Link href={'#'} className={clsx('font-bold', type ? "text-green-active hover:text-green-active" : 'text-yellow-active hover:text-yellow-active')} onClick={()=>(setShowNav(false))}>
                         RU
                     </Link>
                     <span className={styles.vertLine}></span>
-                    <Link href={'#'} className={clsx(type ? 'hover:text-green-active text-black' :'hover:text-yellow-active text-white')}>
+                    <Link href={'#'} className={clsx(type ? 'hover:text-green-active text-black' :'hover:text-yellow-active text-white')} onClick={()=>(setShowNav(false))}>
                         EN
                     </Link>
                 </div>
