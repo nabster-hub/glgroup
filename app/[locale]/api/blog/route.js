@@ -30,12 +30,14 @@ export const getStoryblokApi = () => {
 export async function GET(request){
     const searchParams = request.nextUrl.searchParams;
     const page = searchParams.get('page');
+    const lang = searchParams.get('lang');
 
     let sbParams = {
         version: "published",
         starts_with: 'blog/',
         page: page,
         per_page: 9,
+        language: lang,
         cv:Date.now(),
     }
 

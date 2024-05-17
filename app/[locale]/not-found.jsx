@@ -9,7 +9,7 @@ export const metadata = {
     description: '404 page not found',
 }
 
-const NotFound = ({}) => {
+const NotFoundPage = ({}) => {
     return (
         <section>
             <div className="relative w-full h-[100vh] not-found z-0">
@@ -44,4 +44,4 @@ const NotFound = ({}) => {
     );
 };
 
-export default NotFound;
+export default NotFoundPage;
