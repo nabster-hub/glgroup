@@ -40,7 +40,7 @@ import CookieAlert from "@/components/CookieAlert/CookieAlert";
 import HeroAboutUs from "@/components/HeroAboutUs/HeroAboutUs";
 import OurAdvantages from "@/components/OurAdvantages/OurAdvantages";
 import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from 'next-intl/server';
+import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
 
 storyblokInit({
    accessToken: "ZqkBIdpCfAPhrN7glDs1Swtt",
@@ -75,6 +75,11 @@ storyblokInit({
    },
  });
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
+const locales = ['ru', 'en'];
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({locale}));
+}
 
 const Formular = localFont({
   src: [
@@ -242,9 +247,11 @@ export const metadata = {
   },
 };
 export const revalidate = 3600;
-export default async function RootLayout({ children, params: {locale}}) {
-    const global = await fetchData('global', {version: 'draft', language: locale})
-   // console.log(locale)
+export default async function LocalLayout({ children, params}) {
+ // console.log();
+  unstable_setRequestLocale(params.locale);
+  const global = await fetchData('global', {version: 'draft', language: params.locale})
+
   const footer = {
     title: global.data.story?.content?.title,
     description: global.data.story?.content?.description,
@@ -265,9 +272,9 @@ export default async function RootLayout({ children, params: {locale}}) {
 
   return (
       <StoryblokProvider>
-        <html lang={locale}>
+        <html lang={params.locale}>
           <body className={clsx(inter.className, Gilroy.variable, Formular.variable)}>
-          <NextIntlClientProvider locale={locale}>
+          <NextIntlClientProvider locale={params.locale}>
             <NavMenu headMenu={headMenu} menu={menu}/>
             {children}
             <footer className={'bg-[#3B604E]'}>

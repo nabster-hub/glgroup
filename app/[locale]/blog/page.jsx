@@ -8,14 +8,16 @@ import {getCategory} from "@/lib/category";
 import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 import {fetchBlog} from "@/lib/blog";
 import {console} from "next/dist/compiled/@edge-runtime/primitives";
+import {unstable_setRequestLocale} from "next-intl/server";
 
 export const revalidate = 3600;
 
-export async function getPosts(){
+export async function getPosts({locale}){
     let sbParams = {
         version: "published",
         starts_with: 'blog/',
         page: 1,
+        language: locale,
         per_page: 9
     }
 
@@ -25,8 +27,9 @@ export async function getPosts(){
     return  fetch;
 }
 
-export default async function Page ({params}){
-    const fetch = await getPosts();
+export default async function Page ({params: {locale}}){
+    unstable_setRequestLocale(locale);
+    const fetch = await getPosts(locale);
 //    const datas = await fetchBlog(1);
   //  console.log(datas);
     const posts = fetch.data.stories;

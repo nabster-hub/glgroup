@@ -6,10 +6,11 @@ import PosePreview from "@/components/PostPreview/PosePreview";
 import LazyLoadBlog from "@/components/LazyLoadBlog/LazyLoadBlog";
 import {getCategory} from "@/lib/category";
 import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
+import {unstable_setRequestLocale} from "next-intl/server";
 
 
 export const revalidate = 3600;
-export async function getPosts(params){
+export async function getPosts(params, locale){
     let sbParams = {
         version: "published",
         starts_with: 'blog/',
@@ -17,7 +18,8 @@ export async function getPosts(params){
             Category: {
                 in: params,
             }
-        }
+        },
+        language: locale,
     }
 
     const storyblokApi = getStoryblokApi();
@@ -25,8 +27,9 @@ export async function getPosts(params){
     return  fetch;
 }
 
-export default async function Page ({params}){
-    const fetch = await getPosts(params.slug);
+export default async function Page ({params, params: {locale}}){
+    unstable_setRequestLocale(locale);
+    const fetch = await getPosts(params.slug, locale);
     const posts = fetch.data.stories;
     const category = await getCategory();
 
