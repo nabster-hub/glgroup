@@ -1,4 +1,4 @@
-@import "app/variables";
+@import "../../app/[locale]/variables";
 
 .titleBlock{
   margin-bottom: 30px;
@@ -65,7 +65,9 @@
       background: #F2F2F2;
       cursor: pointer;
       text-align: center;
-
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &.active{
         background: #FFDA2B;
       }
@@ -73,8 +75,11 @@
         min-width: 200px;
         font-size: 18px;
         line-height: 21px;
+
       }
       @media (min-width: 1024px) {
+        align-items: unset;
+        justify-content: unset;
         min-width: 315px;
         min-height: 66px;
         padding: 17.5px 49px;
