@@ -3,6 +3,7 @@ import styles from './Footer.module.scss';
 import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
+import {useLocale} from "next-intl";
 
 const  Footer = ({links, sitename, footer}) => {
     const itemLinks = links?.links;
@@ -12,6 +13,7 @@ const  Footer = ({links, sitename, footer}) => {
     const whatsappNum = links?.numberWhatsapp;
     const whatsappIcon = links?.imageWhatsapp;
     const number = links?.whatsappNumber;
+    const locale = useLocale();
     return (
         <div className={'container pt-16 lg:pt-24 lg:pb-12'}>
             <div className={styles.block}>
@@ -52,7 +54,7 @@ const  Footer = ({links, sitename, footer}) => {
                     <div className={styles.description}>
                         {footer.description}
                     </div>
-                    <Link href={footer.contactLink.linktype === "story" ? "/"+footer.contactLink.cached_url : footer.contactLink.cached_url} className={styles.contact}>
+                    <Link href={footer.contactLink.cached_url} className={styles.contact}>
                         {footer.contactLabel}
                     </Link>
                 </div>
@@ -64,7 +66,7 @@ const  Footer = ({links, sitename, footer}) => {
                         <ul>
                             <li><Link href={'/'} className={'hover:text-yellow-active'}>{footer.homeLinkLabel}</Link></li>
                             {itemLinks && itemLinks.map((e, _uid)=>(
-                                <li key={_uid}><Link href={e.link.linktype === "story" ? "/"+e.link.cached_url : e.link.cached_url} key={_uid} className={'hover:text-yellow-active'}>{e.label}</Link></li>
+                                <li key={_uid}><Link href={e.link.cached_url} key={_uid} className={'hover:text-yellow-active'}>{e.label}</Link></li>
                             ))}
                         </ul>
                     </div>
@@ -89,7 +91,7 @@ const  Footer = ({links, sitename, footer}) => {
 
                         <div className={'flex items-center gap-4'}>
                             {socials && socials.map((e, _uid) => (
-                                <Link href={e.link.linktype === "story" ? "/" + e.link.cached_url : e.link.cached_url}
+                                <Link href={e.link.cached_url}
                                       key={_uid}>
                                     <Image src={e.image.filename} width={'20'} height={'20'} alt={e.image.alt}></Image>
                                 </Link>
@@ -104,10 +106,10 @@ const  Footer = ({links, sitename, footer}) => {
                     {footer.copyright}
                 </div>
                 <div className={styles.links}>
-                    <Link href={footer.privacyLink.linktype === "story" ? "/"+footer.privacyLink.cached_url : footer.privacyLink.cached_url} className={styles.confident}>
+                    <Link href={footer.privacyLink.cached_url} className={styles.confident}>
                         {footer.privacyLabel}
                     </Link>
-                    <Link href={footer.offerLink.linktype === "story" ? "/"+footer.offerLink.cached_url : footer.offerLink.cached_url} className={styles.publicOffer}>
+                    <Link href={footer.offerLink.cached_url} className={styles.publicOffer}>
                         {footer.offerLabel}
                     </Link>
                 </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './OurCases.module.scss';
 import {Swiper, SwiperSlide, useSwiper} from 'swiper/react';
 import {Pagination, Navigation, EffectFade} from 'swiper/modules';
@@ -10,25 +10,70 @@ import Link from "next/link";
 
 const OurCases = ({blok}) => {
     const [activeTab, setActiveTab] = useState(0);
+    const containerRef = useRef(null);
 
     const swiperRef = useRef(null);
     const handleClick = (index) => {
         setActiveTab(index);
         swiperRef.current.swiper.slideTo(index);
     };
+    useEffect(() => {
+        const scrollToActiveTab = () => {
+            const activeElement = document.getElementById(`tab-${activeTab}`);
+            if (activeElement && window.innerWidth < 992) {
+                activeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        };
+
+        scrollToActiveTab();
+    }, [activeTab]);
+    useEffect(() => {
+        const containerElement = document.getElementById('ourCases');
+
+        const scrollElement = (element) => {
+            const currentScroll = element.scrollLeft;
+            element.scrollTo({
+                left: currentScroll+200,
+                behavior: "smooth",
+            })
+            setTimeout(() => {
+                element.scrollTo({
+                    left: currentScroll,
+                    behavior: "smooth",
+                })
+                    // handleClick(0);
+            }, 500); // Вернуть обратно через 0.5 секунд
+        };
+
+        const handleIntersection = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    scrollElement(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+        observer.observe(containerElement);
+
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
     return (
         <section className={'pb-20 pt-10 lg:py-24'} id={'case'}>
-            <div className="container">
+            <div className="container" ref={containerRef} id={'container'}>
                 <div className={styles.titleBlock}>
                     {blok?.subTitle && (
                         <div className={styles.subTitle}>{blok.subTitle}</div>
                     )}
                     <h2 className={"h2"}>{blok.title}</h2>
                 </div>
-                <div className={styles.sliders}>
-                    <div className={clsx(styles.tabLines, blok.cases[0].onlyDesc && styles.big)}>
+                <div className={styles.sliders} >
+                    <div className={clsx(styles.tabLines, blok.cases[0].onlyDesc && styles.big)} id={'ourCases'}>
                         {blok.cases.map((slide, index) => (
                             <div
+                                id={`tab-${index}`}
                                 key={index}
                                 className={clsx(styles.tab, activeTab === index && styles.active)}
                                 onClick={() => handleClick(index)}

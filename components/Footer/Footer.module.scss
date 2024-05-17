@@ -1,4 +1,4 @@
-@import "/app/variables";
+@import "/app/[locale]/variables";
 
 .block{
   display: flex;
@@ -130,11 +130,7 @@
     .contactUs{
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       gap: 16px;
-      @media (min-width: 1024px) {
-        gap: unset;
-      }
       .title{
         display: block;
         margin-bottom: 22px;

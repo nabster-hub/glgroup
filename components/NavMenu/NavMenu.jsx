@@ -12,6 +12,7 @@ export default function NavMenu ({headMenu, menu}) {
     const pathname = usePathname();
     const [white, setWhite] = useState(false);
     const [fixed, setFixed] = useState(false);
+    const [Home, setHome] = useState(false);
     const offset = useScrollOffset();
 
     const paths = [
@@ -22,7 +23,15 @@ export default function NavMenu ({headMenu, menu}) {
     ]
     const checkType = (path) => {
         const  parts = path.split('/');
-        if(paths.includes(parts[1])){
+        if(paths.includes(parts[2])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    const isHome = (path) =>{
+        if(path.length === 3){
             return true;
         }else{
             return false;
@@ -37,13 +46,18 @@ export default function NavMenu ({headMenu, menu}) {
     }
     useEffect(() => {
         setWhite(checkType(pathname))
+        setHome(isHome(pathname));
+    }, [pathname]);
+    useEffect(()=>{
         setFixed(fix)
-    }, [pathname, offset]);
+    }, [offset])
 
     return (
         <header className={clsx(!white ? `w-full z-20 ${styles.blackMenu}` : `w-full mb-5 lg:mb-12 ${styles.whiteMenu}`, fixed ? styles.fixed : '')}>
-            <Header links={headMenu} type={white}/>
-            <Menu menu={menu} type={white}/>
+            <Header links={headMenu} type={white} menu={menu}/>
+            {Home && (
+                <Menu menu={menu} type={white}/>
+            )}
             <MobileMenu menu={headMenu} link={menu} type={white}/>
         </header>
     );
