@@ -108,6 +108,11 @@ body {
     justify-content: space-between;
   }
 }
+@media (min-width: 768px) {
+  .mySwiper  .swiper-button-prev, .mySwiper  .swiper-button-next{
+    position: absolute!important;
+  }
+}
 .swiper-button-prev, .swiper-button-next{
   box-sizing: border-box;
   border: 1px solid rgb(255, 255, 255);

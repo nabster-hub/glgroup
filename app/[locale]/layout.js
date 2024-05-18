@@ -283,7 +283,7 @@ export default async function LocalLayout({ children, params}) {
             <CookieAlert data={global.data.story.content.CookieMessage} />
           </NextIntlClientProvider>
           </body>
-          <StoryblokBridgeLoader options={{}} />
+          <StoryblokBridgeLoader options={{resolveRelations: ["article.author"] }} />
         </html>
       </StoryblokProvider>
   );
