@@ -23,9 +23,6 @@ html{
   scroll-behavior: smooth;
   -webkit-scroll-behavior: smooth;
   scroll-padding-top: 153px;
-  @media (min-width: 1280px) {
-    scroll-padding-top: 160px;
-  }
 }
 
 body {
@@ -42,14 +39,6 @@ body {
 .logo{
   width: 50px;
   height: 50px;
-  @media (min-width: 1024px) {
-    width: 60px;
-    height: 60px;
-  }
-  @media (min-width: 1280px) {
-    width: 80px;
-    height: 80px;
-  }
 }
 
 .swiper {
@@ -84,35 +73,19 @@ body {
 }
 .mySwiper  .swiper-button-prev, .mySwiper  .swiper-button-next{
     position: relative!important;
-  @media (min-width: 768px) {
-    position: absolute!important;
-  }
 }
 .mySwiper .pagginations-swiper{
   position: relative!important;
   display: flex;
   justify-content: center;
   padding-bottom: 40px;
-  @media (min-width: 768px) {
-    position: absolute!important;
-    justify-content: flex-end;
-    padding-bottom: unset;
-    padding-right: 2rem;
-  }
 }
 .heroArrow{
   display: flex;
   gap: 32px;
   justify-content: center;
-  @media (min-width: 768px) {
-    justify-content: space-between;
-  }
 }
-@media (min-width: 768px) {
-  .mySwiper  .swiper-button-prev, .mySwiper  .swiper-button-next{
-    position: absolute!important;
-  }
-}
+
 .swiper-button-prev, .swiper-button-next{
   box-sizing: border-box;
   border: 1px solid rgb(255, 255, 255);
@@ -143,10 +116,6 @@ body {
 
 .partners{
   position: unset!important;
-
-  @media (min-width: 1024px) {
-    width: 84%;
-  }
 }
 .partners .swiper-slide{
   width: fit-content!important;
@@ -156,27 +125,16 @@ body {
 }
 .partners .swiper-button-prev, .partners .swiper-button-next{
   position: unset;
-  @media (min-width: 1024px) {
-    position: absolute;
-    top: 35%;
-  }
 }
 
 .recomends{
   position: unset!important;
-  @media (min-width: 1024px) {
-    width: 84%;
-  }
 }
 .recomends .swiper-wrapper{
   margin-bottom: 39px;
 }
 .recomends .swiper-button-prev, .recomends .swiper-button-next{
   position: unset;
-  @media (min-width: 1024px) {
-    position: absolute;
-    top: 45%;
-  }
 }
 .swiper-button-prev.swiper-button-disabled,
 .swiper-button-next.swiper-button-disabled {
@@ -192,29 +150,12 @@ body {
   left: auto;
   display: flex;
   justify-content: flex-end;
-
-  @media (min-width: 768px) {
-    bottom: 10%!important;
-    padding-right : 1rem;
-  }
 }
 .h1, h1{
   font-family: var(--font-gilroy);
   font-weight: 700;
   font-size: 42px;
   line-height: 37px;
-  @media (min-width: 768px) {
-    font-size: 52px;
-    line-height: 47px;
-  }
-  @media (min-width: 1024px) {
-    font-size: 70px;
-    line-height: normal;
-  }
-  @media (min-width: 1280px) {
-    font-size: 88px;
-    line-height: 105px;
-  }
 }
 .h2, h2{
   font-family: var(--font-gilroy);
@@ -222,20 +163,6 @@ body {
   font-size: 28px;
   line-height: 33px;
   color: var(--color-text);
-  @media (min-width: 768px) {
-    font-size: 38px;
-    line-height: 53px;
-  }
-  @media (min-width: 1024px) {
-    font-weight: 700;
-    font-size: 45px;
-    line-height: 55px;
-  }
-  @media (min-width: 1280px) {
-    font-weight: 700;
-    font-size: 50px;
-    line-height: 60px;
-  }
 }
 .h3, h3{
   font-family: var(--font-gilroy);
@@ -270,10 +197,6 @@ body {
   display: flex;
   width: fit-content;
   margin: 0 auto;
-  @media (min-width: 1024px) {
-    font-size: 28px;
-    line-height: 35px;
-  }
 }
 .otherArticles{
   position: unset!important;
@@ -283,9 +206,6 @@ body {
 }
 .otherArrows{
   display: none;
-  @media (min-width: 768px) {
-    display: block;
-  }
 }
 .otherArrows > .swiper-button-prev, .otherArrows > .swiper-button-next{
   box-sizing: border-box;
@@ -305,24 +225,104 @@ body {
 }
 .heroAboutUs{
   height: 100px;
-  @media (min-width: 768px) {
-    height: 54px;
-    width: 438px;
-    margin-left: unset!important;
-  }
-  @media (min-width: 1024px) {
-    height: 54px;
-    width: 438px;
-    margin-left: unset!important;
-  }
+
 }
 .heroAboutUs .swiper-wrapper .swiper-slide{
   font-family: var(--font-gilroy);
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
-  @media (min-width: 768px) {
+}
+
+@media (min-width: 768px) {
+  .mySwiper  .swiper-button-prev, .mySwiper  .swiper-button-next{
+    position: absolute!important;
+  }
+  .mySwiper .pagginations-swiper{
+    position: absolute!important;
+    justify-content: flex-end;
+    padding-bottom: unset;
+    padding-right: 2rem;
+  }
+  .heroArrow{
+    justify-content: space-between;
+  }
+  .pagginations-swiper{
+    bottom: 10%!important;
+    padding-right : 1rem;
+  }
+  .h1, h1{
+    font-size: 52px;
+    line-height: 47px;
+  }
+  .h2, h2{
+    font-size: 38px;
+    line-height: 53px;
+  }
+  .otherArrows{
+    display: block;
+  }
+  .heroAboutUs{
+    height: 54px;
+    width: 438px;
+    margin-left: unset!important;
+  }
+  .heroAboutUs .swiper-wrapper .swiper-slide{
     font-size: 16px;
     line-height: 23px;
+  }
+}
+@media (min-width: 1024px) {
+  .logo{
+    width: 60px;
+    height: 60px;
+  }
+  .partners{
+    width: 84%;
+  }
+  .partners .swiper-button-prev, .partners .swiper-button-next{
+    position: absolute;
+    top: 35%;
+  }
+  .recomends{
+    width: 84%;
+  }
+  .recomends .swiper-button-prev, .recomends .swiper-button-next{
+    position: absolute;
+    top: 45%;
+  }
+  .h1, h1{
+    font-size: 70px;
+    line-height: normal;
+  }
+  .h2, h2{
+    font-size: 45px;
+    line-height: 55px;
+  }
+  .link-not-found{
+    font-size: 28px;
+    line-height: 35px;
+  }
+  .heroAboutUs{
+    height: 54px;
+    width: 438px;
+    margin-left: unset!important;
+  }
+}
+@media (min-width: 1280px) {
+  html{
+    scroll-padding-top: 160px;
+  }
+  .logo{
+    width: 80px;
+    height: 80px;
+  }
+  .h1, h1{
+    font-size: 88px;
+    line-height: 105px;
+  }
+  .h2, h2{
+    font-size: 50px;
+    line-height: 60px;
   }
 }
