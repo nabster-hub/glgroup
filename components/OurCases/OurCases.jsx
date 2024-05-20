@@ -45,9 +45,10 @@ const OurCases = ({blok}) => {
             }, 500); // Вернуть обратно через 0.5 секунд
         };
 
+        let isInitialLoad = true;
         const handleIntersection = (entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && !isInitialLoad) {
                     scrollElement(entry.target);
                 }
             });
@@ -55,6 +56,10 @@ const OurCases = ({blok}) => {
 
         const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
         observer.observe(containerElement);
+
+        setTimeout(() => {
+            isInitialLoad = false;
+        }, 1000);
 
         return () => {
             observer.disconnect();
