@@ -23,7 +23,7 @@ const Header = ({links, type, menu}) => {
 
             <div className={'container flex justify-between h-full'}>
                 <div className={'flex gap-2 xl:gap-2.5 items-center'}>
-                    <Link href={'/'} className="flex items-center lg:gap-2 xl:gap-4">
+                    <Link href={`/${locale}`} className="flex items-center lg:gap-2 xl:gap-4">
                         <Image src={'/img/logo.svg'} alt={"Logo"}
                                width={59}
                                height={59}
