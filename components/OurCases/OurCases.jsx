@@ -17,16 +17,26 @@ const OurCases = ({blok}) => {
         setActiveTab(index);
         swiperRef.current.swiper.slideTo(index);
     };
-    // useEffect(() => {
-    //     const scrollToActiveTab = () => {
-    //         const activeElement = document.getElementById(`tab-${activeTab}`);
-    //         if (activeElement && window.innerWidth < 992) {
-    //             activeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    //         }
-    //     };
-    //
-    //     scrollToActiveTab();
-    // }, [activeTab]);
+    useEffect(() => {
+        const scrollToActiveTab = () => {
+            const activeElement = document.getElementById(`tab-${activeTab}`);
+            const containerElement = document.getElementById('ourCases');
+
+            if (activeElement && containerElement && window.innerWidth < 992) {
+                const activeRect = activeElement.getBoundingClientRect();
+                const containerRect = containerElement.getBoundingClientRect();
+
+                const offset = activeRect.left - containerRect.left + containerElement.scrollLeft - (containerRect.width / 2) + (activeRect.width / 2);
+
+                containerElement.scrollTo({
+                    left: offset,
+                    behavior: "smooth",
+                })
+            }
+        };
+
+        scrollToActiveTab();
+    }, [activeTab]);
     useEffect(() => {
         const containerElement = document.getElementById('ourCases');
 
