@@ -64,7 +64,7 @@ const  Footer = ({links, sitename, footer}) => {
                         {footer.navigationLabel}
                     </span>
                         <ul>
-                            <li><Link href={'/'} className={'hover:text-yellow-active'}>{footer.homeLinkLabel}</Link></li>
+                            <li><Link href={`/${locale}`} className={'hover:text-yellow-active'}>{footer.homeLinkLabel}</Link></li>
                             {itemLinks && itemLinks.map((e, _uid)=>(
                                 <li key={_uid}><Link href={e.link.cached_url} key={_uid} className={'hover:text-yellow-active'}>{e.label}</Link></li>
                             ))}

@@ -9,8 +9,16 @@ import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 import {fetchBlog} from "@/lib/blog";
 import {console} from "next/dist/compiled/@edge-runtime/primitives";
 import {unstable_setRequestLocale} from "next-intl/server";
+import {fetchData} from "@/lib/api";
 
 export const revalidate = 3600;
+
+export async function generateMetadata({params: {locale}},parent){
+    return{
+        title: "Блог",
+        description: "",
+    }
+}
 
 export async function getPosts({locale}){
     let sbParams = {
