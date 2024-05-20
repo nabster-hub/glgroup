@@ -1,7 +1,7 @@
-@import "../../app/[locale]/variables";
+@import "app/variables";
 .sliders{
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 50px;
 
   .tabLines{

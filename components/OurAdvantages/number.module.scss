@@ -1,4 +1,4 @@
-@import "/app/[locale]/variables";
+@import "app/variables";
 .ourAdvantages{
   background: #264034FA;
 }
@@ -143,6 +143,9 @@
     display: flex;
     gap: 15px;
     overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-color: #FFDA2B transparent;
+    padding-bottom: 20px;
     @media (min-width: 768px) {
       overflow-x: unset;
       display: grid;

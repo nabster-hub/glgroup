@@ -2,10 +2,11 @@ import React from 'react';
 import styles from './BlockWithArrow.module.scss'
 import Image from "next/image";
 import clsx from "clsx";
+import {storyblokEditable} from "@storyblok/react";
 
 const BlockWithArrow = ({blok}) => {
     return (
-        <div className={clsx(styles.block, blok.arrow && styles.withArrow)}>
+        <div className={clsx(styles.block, blok.arrow && styles.withArrow)} {...storyblokEditable(blok)}>
             <div className={styles.iconBlock}>
                 <i>
                     <Image src={blok?.icon.filename} width={46} height={46} alt={blok?.icon.filename} />

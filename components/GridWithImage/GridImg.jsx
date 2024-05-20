@@ -2,21 +2,22 @@ import React from 'react';
 import styles from './GridWithImage.module.scss'
 import Link from "next/link";
 import Image from "next/image";
+import {storyblokEditable} from "@storyblok/react";
 
 const GridImg = ({blok}) => {
     return (
-        <div className={styles.item}>
+        <Link href={blok.link.cached_url} className={styles.item} {...storyblokEditable(blok)}>
             <div className={styles.textBlock}>
                 <div className={styles.titleBlock}>
-                    <span className={styles.number}>{blok.number}</span>
+                    {/*<span className={styles.number}>{blok.number}</span>*/}
                     <h3>{blok.label}</h3>
                 </div>
                 <div className={styles.text}>
                     {blok.text}
                 </div>
-                <Link className={styles.button} href={blok.link.cached_url}>
+                <div className={styles.button} >
                     {blok.linkLabel}
-                </Link>
+                </div>
             </div>
             <div className={styles.img}>
                 <Image src={blok.img.filename} alt={blok.img.alt}
@@ -30,7 +31,7 @@ const GridImg = ({blok}) => {
                        }}
                 />
             </div>
-        </div>
+        </Link>
     );
 };
 

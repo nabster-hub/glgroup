@@ -2,10 +2,11 @@ import React from 'react';
 import styles from './ContactForm.module.scss'
 import {render} from 'storyblok-rich-text-react-renderer';
 import Link from "next/link";
+import {storyblokEditable} from "@storyblok/react";
 
 const ContactForm = ({blok}) => {
     return (
-        <section className={styles.block} id={'form'}>
+        <section className={styles.block} id={'form'} {...storyblokEditable(blok)}>
             <div className="container py-20 lg:py-24">
                 <div className="flex flex-col lg:flex-row gap-20 lg:gap-12 xl:gap-16">
                     <div className={styles.leftBlock}>

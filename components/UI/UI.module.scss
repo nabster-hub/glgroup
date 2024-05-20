@@ -1,4 +1,4 @@
-@import "../../app/[locale]/variables";
+@import "app/variables";
 
 .titleBlock{
   display: flex;
@@ -87,14 +87,22 @@
     display: block;
     width: fit-content;
     &.green{
-      background: #3B604E;
-      box-shadow: 0px 25px 74px 0px #3E7A5D45;
-      color:#fff;
+      border: 1px solid $backgroun-second;
+      color:$text;
+      &:hover{
+        color: white;
+        background: #3B604E;
+        box-shadow: 0px 25px 74px 0px #3E7A5D45;
+      }
     }
     &.yellow{
-      background: #FFDA2B;
-      box-shadow: 0px 25px 74px 0px #FFDA2B66;
-      color:#121212;
+      border: 1px solid $primary;
+      color: $text;
+      &:hover{
+        background: $primary;
+        box-shadow: 0px 25px 74px 0px #FFDA2B66;
+        color:#121212;
+      }
     }
     @media (min-width: 768px) {
       font-size: 18px;

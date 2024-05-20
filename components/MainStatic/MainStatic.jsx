@@ -5,10 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Breadcrumbs from "@/components/MainStatic/Breadcrumbs";
 import {getPathname} from "@nimpl/getters/get-pathname";
+import {storyblokEditable} from "@storyblok/react";
 
 const MainStatic = ({blok, breadcrumbs}) => {
     return (
-        <div className={"w-full"}>
+        <div className={"w-full"} {...storyblokEditable(blok)}>
             <div className={"relative w-full min-h-[770px] max-h-[100vh]"}>
                 <div className={clsx("container text-white", styles.mainStatic)}>
                     <Image src={blok.img.filename}

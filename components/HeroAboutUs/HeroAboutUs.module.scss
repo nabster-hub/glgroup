@@ -1,4 +1,4 @@
-@import "../../app/[locale]/variables";
+@import "app/variables";
 
 .heroAboutUs{
   min-height: 100vh;
@@ -28,7 +28,7 @@
     z-index: 10;
     position: relative;
     @media (min-width: 1024px) {
-      padding-top: 242px;
+      padding-top: 190px;
     }
     .contentBlock{
       display: flex;

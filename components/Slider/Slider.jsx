@@ -55,7 +55,7 @@ export default function Slider({items}) {
                                     {e?.description && (
                                         <span className={'text-white text-sm md:text-xl font-medium text-center md:text-left  block md:w-[80%]'}>{e.description}</span>
                                     )}
-                                    <Link href={e?.link.linktype === "story" ? "/"+e.link.cached_url : e.link.cached_url} className={styles.button}>
+                                    <Link href={e.link.cached_url} className={styles.button}>
                                         {e.button}
                                     </Link>
 
@@ -68,8 +68,8 @@ export default function Slider({items}) {
                                fill
                                quality={80}
                                sizes="(max-width: 768px) 50vw,
-                                 (max-width: 1200px) 25vw,
-                                 25vw"
+                                 (max-width: 1200px) 50vw,
+                                 39vw"
                                style={{
                                    objectFit: "cover",
                                }}

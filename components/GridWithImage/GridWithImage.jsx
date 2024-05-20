@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './GridWithImage.module.scss'
 import {StoryblokComponent} from "@storyblok/react/rsc";
+import {storyblokEditable} from "@storyblok/react";
 const GridWithImage = ({blok}) => {
     return (
-        <section className={styles.gridWithImage}>
+        <section className={styles.gridWithImage} {...storyblokEditable(blok)}>
             <div className="container">
                 <h2>{blok.title}</h2>
                 <div className={styles.grid}>

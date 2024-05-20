@@ -2,10 +2,11 @@ import React from 'react';
 import styles from './ContactMap.module.scss';
 import Image from "next/image";
 import Link from "next/link";
+import {storyblokEditable} from "@storyblok/react";
 
 const ContactMap = ({blok}) => {
     return (
-        <section className={styles.contactMap}>
+        <section className={styles.contactMap} {...storyblokEditable(blok)}>
             <Image src={blok.background.filename} alt={"maps"}
                    fill
                    quality={100}

@@ -8,6 +8,7 @@ import ContactForm from "@/components/ContactForm/ContactForm";
 import {fetchData} from "@/lib/api";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import OtherArticles from "@/components/OtherArticles/OtherArticles";
+import {storyblokEditable} from "@storyblok/react";
 
 
 export async function getData(title){
@@ -37,7 +38,7 @@ export default async function Post ({blok}) {
     const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
     // console.log(blok)
     return (
-        <section>
+        <section {...storyblokEditable(blok)}>
             <div className="container pb-24">
                 <h1 className={'h1 mb-5 xl:mb-4'}>{blok.content.title}</h1>
                 <div className="flex gap-8 items-center mb-5 xl:mb-10 ">
