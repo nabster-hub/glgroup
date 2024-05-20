@@ -75,6 +75,18 @@ const Slider = ({items}) => {
                         </div>
                     </SwiperSlide>
                 ))}
+                {items.map((e, _uid) => (
+                    <SwiperSlide key={_uid}>
+                        <div className={styles.slideContainer}>
+                            <span className={styles.quotes}>“</span>
+                            <h3>{e.name}</h3>
+                            <span className={styles.job}>{e.jobTitle}</span>
+                            <p>
+                                {e.text}
+                            </p>
+                        </div>
+                    </SwiperSlide>
+                ))}
                 <div className={styles.arrows}>
                     <div className="swiper-button-prev" ref={arrowPrev}></div>
                     <div className="swiper-button-next" ref={arrowNext}></div>
