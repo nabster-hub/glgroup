@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './FormContact.module.scss';
 import {render} from "storyblok-rich-text-react-renderer";
+import {storyblokEditable} from "@storyblok/react";
 
 const FormContact = ({blok}) => {
     return (
-        <section className={styles.formContact}>
+        <section className={styles.formContact} {...storyblokEditable(blok)}>
             <div className="container">
                 <div className={styles.contactBlock}>
                     <h2>{blok.title}</h2>

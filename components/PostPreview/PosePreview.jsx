@@ -3,12 +3,13 @@ import styles from './PostPreview.module.scss';
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
+import {storyblokEditable} from "@storyblok/react";
 
 const PosePreview = ({blok, other}) => {
     const date = new Date(blok.published_at);
     const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
     return (
-        <div className={styles.postPreview}>
+        <div {...storyblokEditable(blok)} className={styles.postPreview}>
             <div className={clsx(styles.imgBlock, other && styles.other)}>
                 <Image
                     src={blok.content.img.filename}

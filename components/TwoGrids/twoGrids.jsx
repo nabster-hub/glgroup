@@ -4,10 +4,11 @@ import {StoryblokComponent} from "@storyblok/react/rsc";
 import GridItem from "./GridItem";
 import Image from "next/image";
 import Item from "@/components/TwoGrids/Item";
+import {storyblokEditable} from "@storyblok/react";
 
 const TwoGrids = ({blok}) => {
     return (
-        <section className={styles.twoGrids}>
+        <section {...storyblokEditable(blok)} className={styles.twoGrids}>
             <div className="container">
                 <div className={styles.titleBlock}>
                     <h2>{blok.Title}</h2>

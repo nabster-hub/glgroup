@@ -7,11 +7,12 @@ import clsx from "clsx";
 import {Swiper} from "swiper";
 import {fetchData} from "@/lib/api";
 import MainStatic from "@/components/MainStatic/MainStatic";
+import {storyblokEditable} from "@storyblok/react";
 
 const  Hero = ({blok}) => {
     const heroBlock = blok.heroBlock[0];
     return (
-        <div className={clsx(styles.hero, '')}>
+        <div className={clsx(styles.hero, '')} {...storyblokEditable(blok)}>
             {heroBlock.component === 'staticMain' && (
                 <MainStatic blok={heroBlock} breadcrumbs={blok.heroBlock[1]}/>
             )}

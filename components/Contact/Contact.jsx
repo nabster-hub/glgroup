@@ -2,9 +2,10 @@ import React from 'react';
 import styles from './Contact.module.scss'
 import Link from "next/link";
 import GoogleMap from "@/components/Contact/GoogleMap";
+import {storyblokEditable} from "@storyblok/react";
 const Contact = ({blok}) => {
     return (
-        <section className={styles.block}>
+        <section className={styles.block} {...storyblokEditable(blok)}>
             <div className="container">
                 <h1>{blok.title}</h1>
                 <div className={styles.contact}>

@@ -1,17 +1,18 @@
 import React from 'react';
 import styles from './Steps.module.scss'
 import Image from "next/image";
+import {storyblokEditable} from "@storyblok/react";
 
 const Steps = ({blok}) => {
     return (
-        <section className={styles.steps}>
+        <section {...storyblokEditable(blok)} className={styles.steps}>
             <div className="container">
                 <div className={styles.titleBlock}>
                     <h2>{blok.title}</h2>
                 </div>
                 <div className={styles.grid}>
                     {blok?.grid && blok.grid.map((e, index, _uid)=>(
-                        <div className={styles.item} key={_uid}>
+                        <div className={styles.item} key={index}>
                             <div className={styles.first}>
                                 <i>
                                     <Image src={e.icon.filename} width={34} height={34} alt={e.icon.alt}/>
@@ -26,8 +27,6 @@ const Steps = ({blok}) => {
                                 <span className={styles.number}>{index+1}.</span>
                                 <span className={styles.text}>{e.label}</span>
                             </div>
-
-
                         </div>
                     ))}
                 </div>

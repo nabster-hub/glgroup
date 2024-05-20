@@ -3,10 +3,11 @@ import styles from './AuthorPage.module.scss'
 import {render} from "storyblok-rich-text-react-renderer";
 import Link from "next/link";
 import Image from "next/image";
+import {storyblokEditable} from "@storyblok/react";
 
 const AuthorPage = ({blok}) => {
     return (
-        <section className={styles.authorPage}>
+        <section className={styles.authorPage} {...storyblokEditable(blok)}>
             <div className="container">
                 <div className={styles.container}>
                     <div className={styles.profile}>

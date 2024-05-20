@@ -11,7 +11,7 @@ import {storyblokEditable} from "@storyblok/react";
 
 const HeroAboutUs = ({blok}) => {
     return (
-        <section className={styles.heroAboutUs}>
+        <section className={styles.heroAboutUs} {...storyblokEditable(blok)}>
             <div className={styles.img}>
                 <Image src={blok.img.filename}
                        fill

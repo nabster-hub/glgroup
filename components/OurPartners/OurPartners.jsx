@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from './OurPartners.module.scss';
 import Slider from './Slider';
+import {storyblokEditable} from "@storyblok/react";
 
 
 const OurPartners = ({blok}) => {
     return (
-        <section>
+        <section {...storyblokEditable(blok)}>
             <div className="container py-20 lg:py-32">
                 <div className={styles.blockTitle}>
                     <span className={styles.subTitle}>{blok.subTitle}</span>

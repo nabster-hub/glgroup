@@ -8,6 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import PosePreview from "@/components/PostPreview/PosePreview";
 import styles from "./OtherArticles.module.scss";
+import {storyblokEditable} from "@storyblok/react";
 
 
 
@@ -16,7 +17,7 @@ export default async function OtherArticles ({posts}) {
     const arrowNext = useRef(null);
 
     return (
-        <section>
+        <section {...storyblokEditable(blok)}>
             <div className="container py-24">
                 <div className={styles.block}>
                     <h2 className={styles.title}>

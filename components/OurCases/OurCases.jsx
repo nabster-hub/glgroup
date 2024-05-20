@@ -7,6 +7,7 @@ import clsx from "clsx";
 import {render} from "storyblok-rich-text-react-renderer";
 import 'swiper/css';
 import Link from "next/link";
+import {storyblokEditable} from "@storyblok/react";
 
 const OurCases = ({blok}) => {
     const [activeTab, setActiveTab] = useState(0);
@@ -70,7 +71,7 @@ const OurCases = ({blok}) => {
         };
     }, []);
     return (
-        <section className={'pb-20 pt-10 lg:py-24'} id={'case'}>
+        <section className={'pb-20 pt-10 lg:py-24'} id={'case'} {...storyblokEditable(blok)}>
             <div className="container" ref={containerRef} id={'container'}>
                 <div className={styles.titleBlock}>
                     {blok?.subTitle && (

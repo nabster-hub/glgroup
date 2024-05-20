@@ -1,4 +1,4 @@
-@import "../../app/[locale]/variables";
+@import "app/variables";
 
 .gridWithImage{
   padding-top: 80px;
@@ -97,7 +97,11 @@
       border: 1px solid $backgroun-second;
       width: fit-content;
       border-radius: 85px;
-      box-shadow: 0px 25px 74px 0px #3E7A5D45;
+      &:hover{
+        box-shadow: 0px 25px 74px 0px #3E7A5D45;
+        color: white;
+        background: $backgroun-second;
+      }
       @media (min-width: 1024px) {
         font-size: 16px;
         line-height: 19px;
