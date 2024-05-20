@@ -16,7 +16,7 @@ const MainStatic = ({blok, breadcrumbs}) => {
                            quality={100}
                            sizes="(max-width: 768px) 50vw,
                                  (max-width: 1200px) 25vw,
-                                 25vw"
+                                 50vw"
                            style={{
                                objectFit: "cover",
                            }}

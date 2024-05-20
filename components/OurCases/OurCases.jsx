@@ -17,65 +17,48 @@ const OurCases = ({blok}) => {
         setActiveTab(index);
         swiperRef.current.swiper.slideTo(index);
     };
+    // useEffect(() => {
+    //     const scrollToActiveTab = () => {
+    //         const activeElement = document.getElementById(`tab-${activeTab}`);
+    //         if (activeElement && window.innerWidth < 992) {
+    //             activeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    //         }
+    //     };
+    //
+    //     scrollToActiveTab();
+    // }, [activeTab]);
     useEffect(() => {
-        const scrollToActiveTab = () => {
-            const activeElement = document.getElementById(`tab-${activeTab}`);
-            if (activeElement && window.innerWidth < 992) {
-                activeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
+        const containerElement = document.getElementById('ourCases');
+
+        const scrollElement = (element) => {
+            const currentScroll = element.scrollLeft;
+            element.scrollTo({
+                left: currentScroll+200,
+                behavior: "smooth",
+            })
+            setTimeout(() => {
+                element.scrollTo({
+                    left: currentScroll,
+                    behavior: "smooth",
+                })
+                    // handleClick(0);
+            }, 500); // Вернуть обратно через 0.5 секунд
         };
 
-        scrollToActiveTab();
-    }, [activeTab]);
-    // useEffect(() => {
-    //     const containerElement = document.getElementById('ourCases');
-    //
-    //     const scrollElement = (element) => {
-    //         const currentScroll = element.scrollLeft;
-    //         element.scrollTo({
-    //             left: currentScroll+200,
-    //             behavior: "smooth",
-    //         })
-    //         setTimeout(() => {
-    //             element.scrollTo({
-    //                 left: currentScroll,
-    //                 behavior: "smooth",
-    //             })
-    //                 // handleClick(0);
-    //         }, 500); // Вернуть обратно через 0.5 секунд
-    //     };
-    //
-    //     const handleIntersection = (entries) => {
-    //         entries.forEach(entry => {
-    //             if (entry.isIntersecting) {
-    //                 scrollElement(entry.target);
-    //             }
-    //         });
-    //     };
-    //     const isElementInViewport = (element) => {
-    //         const rect = element.getBoundingClientRect();
-    //         console.log("rect.top "+ rect.top);
-    //         console.log("rect.left "+  rect.left);
-    //         console.log("rect.bottom by window "+  window.innerHeight);
-    //         console.log("rect.bottom by document "+  document.documentElement.clientHeight);
-    //         console.log("rect.right by window "+  window.innerWidth);
-    //         console.log("rect.right by document "+  document.documentElement.clientWidth);
-    //
-    //         // return (
-    //         //     rect.top >= 0 &&
-    //         //     rect.left >= 0 &&
-    //         //     rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    //         //     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    //         // );
-    //     };
-    //
-    //     const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
-    //     observer.observe(containerElement);
-    //     isElementInViewport(containerElement);
-    //     return () => {
-    //         observer.disconnect();
-    //     };
-    // }, []);
+        const handleIntersection = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    scrollElement(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+        observer.observe(containerElement);
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
     return (
         <section className={'pb-20 pt-10 lg:py-24'} id={'case'}>
             <div className="container" ref={containerRef} id={'container'}>

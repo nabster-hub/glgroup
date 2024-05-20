@@ -14,7 +14,7 @@ const GridImg = ({blok}) => {
                 <div className={styles.text}>
                     {blok.text}
                 </div>
-                <Link className={styles.button} href={blok.link.linktype === "story" ? "/"+blok.link.cached_url : blok.link.cached_url}>
+                <Link className={styles.button} href={blok.link.cached_url}>
                     {blok.linkLabel}
                 </Link>
             </div>
