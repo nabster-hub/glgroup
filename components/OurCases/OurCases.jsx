@@ -129,7 +129,7 @@ const OurCases = ({blok}) => {
                                             </div>
                                             <div className={styles.buttonBlock}>
                                                 <Link
-                                                    href={slide?.link.linktype === "story" ? "/" + slide.link.cached_url : slide.link.cached_url}
+                                                    href={slide.link.cached_url}
                                                     className={styles.button}>{slide.linkLabel}</Link>
                                             </div>
                                         </>

@@ -77,6 +77,7 @@
     .contact{
       background: #FFDA2B;
       box-shadow: 0px 25px 74px 0px #FFDA2B66;
+      border: 1px solid #FFDA2B;
       padding: 15px 35px;
       border-radius: 85px;
       font-family: var(--font-gilroy);
@@ -88,6 +89,14 @@
       width: fit-content;
       @media (min-width: 1024px) {
         padding: 18px 44px;
+        box-shadow: unset;
+        background: unset;
+        color: white;
+        &:hover{
+          color: $text;
+          background: #FFDA2B;
+          box-shadow: 0px 25px 74px 0px #FFDA2B66;
+        }
       }
     }
   }
