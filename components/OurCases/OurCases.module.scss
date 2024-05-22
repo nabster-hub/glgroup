@@ -160,6 +160,9 @@
           font-size: 19px;
           line-height: 29px;
         }
+        p{
+          margin-bottom: 23px;
+        }
       }
     }
     .decsrBlock{
@@ -196,6 +199,10 @@
         font-weight: 700;
         line-height: 22px;
         color: #3B604E;
+        &:hover{
+          color: white;
+          background: $backgroun-second;
+        }
         @media (min-width: 768px) {
           font-size: 18px;
           line-height: 23px;

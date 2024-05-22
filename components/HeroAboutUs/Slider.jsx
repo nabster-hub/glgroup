@@ -14,8 +14,6 @@ const Slider = ({sliders}) => {
     const swiperRef = useRef(null);
     const containerRef = useRef(null);
     const dragRef = useRef(null);
-    const allContainer = useRef(null);
-    const [totalContentWidth, setTotalContentWidth] = useState(0);
 
 
 
@@ -100,7 +98,7 @@ const Slider = ({sliders}) => {
     return (
         <div className={styles.sliders} ref={containerRef}>
 
-            <div id={'container'} ref={allContainer} className={clsx(styles.tabLines)}>
+            <div id={'container'} className={clsx(styles.tabLines)}>
                 <div className={styles.lineScroll} id={'line'}>
                     <div className={styles.drag} ref={dragRef}></div>
                 </div>

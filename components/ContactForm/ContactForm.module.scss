@@ -53,10 +53,20 @@
       line-height: 22px;
       font-weight: 700;
       color: $text;
+
       @media (min-width: 1024px) {
         height: fit-content;
         width: fit-content;
         padding: 18px 50px;
+        color: white;
+        border: 1px solid #FFDA2B;
+        box-shadow: unset;
+        background: unset;
+        &:hover{
+          color: $text;
+          background: #FFDA2B;
+          box-shadow: 0px 25px 74px 0px #FFDA2B66;
+        }
       }
     }
     .text{ 
