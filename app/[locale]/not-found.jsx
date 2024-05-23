@@ -3,13 +3,18 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "/components/Slider/slider.module.scss"
 import clsx from "clsx";
+import {unstable_setRequestLocale} from "next-intl/server";
+import {useLocale, useTranslations} from "next-intl";
 
 export const metadata = {
     title: '404 page not found',
     description: '404 page not found',
 }
 
-const NotFoundPage = ({}) => {
+const NotFoundPage = () => {
+    const local = useLocale();
+
+    const t = useTranslations('NotFound');
     return (
         <section>
             <div className="relative w-full h-[100vh] not-found z-0">
@@ -32,9 +37,9 @@ const NotFoundPage = ({}) => {
                                 404
                             </div>
                             <span
-                                className={'font-medium text-sm md:text-2xl text-center  block '}>Страница не найдена</span>
+                                className={'font-medium text-sm md:text-2xl text-center  block '}>{t('title')}</span>
                         </div>
-                        <Link href={'/'} className={'link-not-found'}>На главную</Link>
+                        <Link href={`/${local}`} className={'link-not-found'}>{t('link')}</Link>
 
                     </div>
                 </div>
