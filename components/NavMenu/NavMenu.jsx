@@ -25,7 +25,7 @@ export default function NavMenu ({headMenu, menu}) {
     ]
     const checkType = (path) => {
         const  parts = path.split('/');
-        if(locale === "ru") {
+        if(locale === "eu") {
             if (paths.includes(parts[1])) {
                 return true;
             } else {
@@ -42,7 +42,7 @@ export default function NavMenu ({headMenu, menu}) {
     }
 
     const isHome = (path) =>{
-        if(locale === "ru"){
+        if(locale === "eu"){
             const  parts = path.split('/');
             if(paths.includes(parts[1])){
                 return false;
@@ -65,8 +65,6 @@ export default function NavMenu ({headMenu, menu}) {
             return false;
         }
     }
-    console.log(pathname)
-    console.log(locale)
     useEffect(() => {
         setWhite(checkType(pathname))
         setHome(isHome(pathname));
