@@ -17,7 +17,7 @@ export default async function OtherArticles ({posts}) {
     const arrowNext = useRef(null);
 
     return (
-        <section {...storyblokEditable(blok)}>
+        <section>
             <div className="container py-24">
                 <div className={styles.block}>
                     <h2 className={styles.title}>
