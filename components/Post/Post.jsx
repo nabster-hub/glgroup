@@ -36,7 +36,6 @@ export default async function Post ({blok}) {
     const contactForm = await fetchData('blog-contact', {version: 'draft'})
     const posts = await getData(blok.content.title);
     const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
-    // console.log(blok)
     return (
         <section {...storyblokEditable(blok)}>
             <div className="container pb-24">
@@ -44,7 +43,7 @@ export default async function Post ({blok}) {
                 <div className="flex gap-8 items-center mb-5 xl:mb-10 ">
                     <span className={styles.date}>{formattedDate}</span>
                     {blok.content.showAuthor && (
-                        <Link href={blok.content.Author.linktype === 'story' ? '/'+blok.content.Author.cached_url : blok.content.Author.cached_url} className={styles.author}>{blok.content.authorLabel}</Link>
+                        <Link href={blok.content.Author.cached_url} className={styles.author}>{blok.content.authorLabel}</Link>
                     )}
 
                 </div>

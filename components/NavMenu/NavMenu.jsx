@@ -7,6 +7,7 @@ import MobileMenu from "@/components/MobileMenu/MobileMenu";
 import {usePathname} from "next/navigation";
 import useScrollOffset from "@/lib/offset";
 import styles from "./NavMenu.module.scss"
+import {useLocale} from "next-intl";
 
 export default function NavMenu ({headMenu, menu}) {
     const pathname = usePathname();
@@ -14,6 +15,7 @@ export default function NavMenu ({headMenu, menu}) {
     const [fixed, setFixed] = useState(false);
     const [Home, setHome] = useState(false);
     const offset = useScrollOffset();
+    const locale = useLocale();
 
     const paths = [
         'rules',
@@ -23,19 +25,38 @@ export default function NavMenu ({headMenu, menu}) {
     ]
     const checkType = (path) => {
         const  parts = path.split('/');
-        if(paths.includes(parts[2])){
-            return true;
+        if(locale === "ru") {
+            if (paths.includes(parts[1])) {
+                return true;
+            } else {
+                return false;
+            }
         }else{
-            return false;
+            if(paths.includes(parts[2])){
+                return true;
+            }else{
+                return false;
+            }
         }
+
     }
 
     const isHome = (path) =>{
-        if(path.length === 3){
-            return true;
+        if(locale === "ru"){
+            const  parts = path.split('/');
+            if(paths.includes(parts[1])){
+                return false;
+            }else{
+                return true;
+            }
         }else{
-            return false;
+            if(path.length === 3){
+                return true;
+            }else{
+                return false;
+            }
         }
+
     }
     const fix = ()=>{
         if(offset > 50){
@@ -44,6 +65,8 @@ export default function NavMenu ({headMenu, menu}) {
             return false;
         }
     }
+    console.log(pathname)
+    console.log(locale)
     useEffect(() => {
         setWhite(checkType(pathname))
         setHome(isHome(pathname));

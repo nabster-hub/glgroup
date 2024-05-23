@@ -2,15 +2,24 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Share.module.scss';
 import Link from "next/link";
+import {usePathname} from "next/navigation";
+import {useLocale} from "next-intl";
+
 
 const Share = () => {
     const [open, SetOpen] = useState(false);
+    const pathname = usePathname();
+    const locale = useLocale();
 
-    useEffect(() => {
-        const link = () =>{
-            return windows.location.href;
+    const link = ()=>{
+        if(locale === "ru"){
+            return "https://www.glgconsult.com/"+locale+ pathname;
+        }else{
+            return "https://www.glgconsult.com"+pathname;
         }
-    }, []);
+
+    }
+
     return (
         <div className={styles.share}>
             {!open && (
@@ -39,7 +48,7 @@ const Share = () => {
                         </svg>
                     </div>
                    <div className={styles.shareBlock}>
-                       <Link className={styles.item} href={"https://vk.com/share.php?url="}>
+                       <Link className={styles.item} href={`https://vk.com/share.php?url=${link()}`}>
                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                <g opacity="0.4">
@@ -49,7 +58,7 @@ const Share = () => {
                                </g>
                            </svg>
                        </Link>
-                       <Link href={'https://t.me/share/url?url='} className={styles.item}>
+                       <Link href={`https://t.me/share/url?url=${link()}`} className={styles.item}>
                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                <g opacity="0.4">
@@ -59,7 +68,7 @@ const Share = () => {
                                </g>
                            </svg>
                        </Link>
-                       <Link href={'viber://forward?text='} className={styles.item}>
+                       <Link href={`viber://forward?text=${link()}`} className={styles.item}>
                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                <g opacity="0.4">
@@ -78,7 +87,7 @@ const Share = () => {
                                </g>
                            </svg>
                        </Link>
-                       <Link href={'https://api.whatsapp.com/send?text='} className={styles.item}>
+                       <Link href={`https://api.whatsapp.com/send?text=${link()}`} className={styles.item}>
 
                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
