@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from "clsx";
 import styles from "@/components/header/header.module.scss";
-import Link from "next/link";
+import {Link} from "@/navigation";
 
 const Langs = ({type, locale}) => {
     return (
