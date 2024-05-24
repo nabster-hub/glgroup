@@ -106,10 +106,10 @@ const  Footer = ({links, sitename, footer}) => {
                     {footer.copyright}
                 </div>
                 <div className={styles.links}>
-                    <Link href={footer.privacyLink.cached_url} className={styles.confident}>
+                    <Link href={footer.privacyLink.linktype === "story" && !footer.privacyLink.prep ?  "/"+footer.privacyLink.cached_url : footer.privacyLink.cached_url} className={styles.confident}>
                         {footer.privacyLabel}
                     </Link>
-                    <Link href={footer.offerLink.cached_url} className={styles.publicOffer}>
+                    <Link href={footer.offerLink.linktype === "story" && !footer.offerLink.prep ?  "/"+footer.offerLink.cached_url : footer.offerLink.cached_url} className={styles.publicOffer}>
                         {footer.offerLabel}
                     </Link>
                 </div>

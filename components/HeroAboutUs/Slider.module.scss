@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
+  @media (min-width: 1024px) {
+    flex-direction: column-reverse;
+  }
 
   .tabLines{
     display: flex;
