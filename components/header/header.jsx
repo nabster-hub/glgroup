@@ -17,6 +17,14 @@ const Header = ({links, type, menu}) => {
     const number = links?.whatsappNumber;
     const locale = useLocale();
 
+    const createLink = (link) => {
+      if(locale === 'ru' && link.linktype === 'story'){
+        return '/ru/'+link.cached_url;
+      }else{
+          return link.cached_url;
+      }
+    }
+
     return (
         <div className={clsx('py-5', styles.header, type && (styles.black), type ? 'text-black' : 'text-white')}>
 
@@ -37,8 +45,10 @@ const Header = ({links, type, menu}) => {
                 </div>
                 <div className={'flex gap-4 xl:gap-10 font-gilroy text-base font-normal items-center'}>
                     {itemLinks && itemLinks.map((e, _uid) => (
-                        <Link href={e.link.cached_url} key={_uid}
-                              className={'hover:text-yellow-active'}>{e.label}</Link>
+                        <Link href={createLink(e.link)} key={_uid}
+                              className={'hover:text-yellow-active'}>
+
+                            {e.label}</Link>
                     ))}
                 </div>
                 <div className={'flex gap-5 xl:gap-10'}>
