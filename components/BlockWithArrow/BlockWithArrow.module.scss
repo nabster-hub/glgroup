@@ -16,6 +16,10 @@
     gap: 15px 80px;
     width: 100%;
     margin-bottom: 15px;
+    justify-content: center;
+    @media (min-width: 768px) {
+      justify-content: unset;
+    }
     i{
       width: 54px;
       height: 54px;
@@ -42,8 +46,11 @@
     }
     .arrows{
       width: 65.8%;
-      display: flex;
+      display: none;
       align-items: center;
+      @media (min-width: 768px) {
+        display: flex;
+      }
       .arrow{
         display: none;
         @media (min-width: 1024px) {
@@ -86,6 +93,10 @@
     color: #3B604E;
     margin-bottom: 10px;
     text-transform: uppercase;
+    text-align: center;
+    @media (min-width: 768px) {
+      text-align: left;
+    }
     @media (min-width: 1024px) {
       font-size: 18px;
       line-height: 15px;
