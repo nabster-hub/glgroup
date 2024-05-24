@@ -4,9 +4,10 @@ import styles from "./MobileMenu.module.scss";
 import Link from "next/link";
 import clsx from "clsx";
 import MobileNav from "/components/MobileMenu/MobileNav";
+import {useLocale} from "next-intl";
 const MobileMenu = ({menu, link, type}) => {
     const [showNav, setShowNav] = useState(false);
-
+    const locale = useLocale();
     const condition = obj => obj.contact === true;
 
     const filteredData = Object.entries(link.links)
@@ -24,7 +25,7 @@ const MobileMenu = ({menu, link, type}) => {
             <div className={clsx('flex lg:hidden items-center justify-between w-full px-5', styles.content, type && styles.black)}>
 
                 <div className={styles.logoBlock}>
-                    <Link href={'/'} className={'flex gap-3 items-center'}>
+                    <Link href={`/${locale}`} className={'flex gap-3 items-center'}>
                         <i className={styles.logo}>
                             < svg width="59" height="58" viewBox="0 0 59 58" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">

@@ -19,12 +19,30 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
 
         }
     }
+
+    const createForm = (link) => {
+        if(locale === 'ru'){
+            return '/ru/'+link.cached_url;
+        }else if(locale === 'en' && link.linktype !== 'story'){
+            return '/en/'+link.cached_url;
+        }else{
+            return link.cached_url;
+        }
+    }
+
+    const createLink = (link) => {
+        if(locale === 'ru' && link.linktype === 'story'){
+            return '/ru/'+link.cached_url;
+        }else{
+            return link.cached_url;
+        }
+    }
     return (
         <section className={clsx('fixed h-full w-full top-0 left-0', type ? 'bg-white' : 'bg-[#141414]')} id={'menu'}>
             <div className={clsx('flex lg:hidden items-center justify-between w-full px-5 mb-20', styles.content, type && styles.black)}>
 
                 <div className={styles.logoBlock}>
-                    <Link href={'/'} className={'flex gap-3 items-center'} onClick={()=>(setShowNav(false))}>
+                    <Link href={`/${locale}`} className={'flex gap-3 items-center'} onClick={()=>(setShowNav(false))}>
                         <i className={styles.logo}>
                             <svg width="59" height="58" viewBox="0 0 59 58" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +105,7 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
                 <div className={styles.block}>
                     {datas.links && datas.links.map((e, _uid) => (
                         <Link key={_uid}
-                              href={e.link.cached_url} onClick={()=>(setShowNav(false))}>{e.label}</Link>
+                              href={createLink(e.link)} onClick={()=>(setShowNav(false))}>{e.label}</Link>
                     ))}
                 </div>
                 <div className={styles.socials}>
@@ -125,7 +143,7 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
                 </div>
                 <div className={styles.contactUs}>
                     <Link
-                        href={contactUs.link.cached_url}
+                        href={createForm(contactUs.link)}
                         className={styles.button} onClick={()=>(setShowNav(false))}>
                         {contactUs.label}
                     </Link>
