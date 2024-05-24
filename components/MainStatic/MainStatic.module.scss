@@ -36,13 +36,20 @@
       display: block;
       width: fit-content;
       padding: 22px 59px;
-      color: $primary;
       border: 1px solid $primary;
+      box-shadow: 0px 25px 74px 0px #FFDA2B66;
+      background: #FFDA2B;
+      color: $text;
       font-weight: 700;
       font-family: var(--font-gilroy);
       font-size: 21px;
       line-height: 26px;
       border-radius: 85px;
+      @media (min-width: 1024px) {
+        color: $primary;
+        box-shadow:unset;
+        background: unset;
+      }
       &:hover{
         box-shadow: 0px 25px 74px 0px #FFDA2B66;
         background: #FFDA2B;

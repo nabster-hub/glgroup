@@ -91,7 +91,9 @@
     padding: 18px 44px 18px 44px;
     border-radius: 85px;
     border: 1px solid $primary;
-    color: $primary;
+    box-shadow: 0px 25px 74px 0px rgba(255, 218, 43, 0.4);
+    background: rgb(255, 218, 43);
+    color: $text;
     font-family: var(--font-gilroys);
     font-size: 16px;
     line-height: 20px;
@@ -101,6 +103,11 @@
       margin-right: unset;
       font-size: 21px;
       line-height: 25px;
+    }
+    @media (min-width: 1024px) {
+      color: $primary;
+      background: unset;
+      box-shadow:unset;
     }
     &:hover{
       box-shadow: 0px 25px 74px 0px rgba(255, 218, 43, 0.4);

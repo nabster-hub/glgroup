@@ -88,7 +88,14 @@
     width: fit-content;
     &.green{
       border: 1px solid $backgroun-second;
-      color:$text;
+      color: white;
+      background: #3B604E;
+      box-shadow: 0px 25px 74px 0px #3E7A5D45;
+      @media (min-width: 1024px) {
+        color: $text;
+        background: unset;
+        box-shadow: unset;
+      }
       &:hover{
         color: white;
         background: #3B604E;
@@ -96,8 +103,15 @@
       }
     }
     &.yellow{
+      background: $primary;
       border: 1px solid $primary;
-      color: $text;
+      box-shadow: 0px 25px 74px 0px #FFDA2B66;
+      color:#121212;
+      @media (min-width: 1024px) {
+        color: $text;
+        background: unset;
+        box-shadow: unset;
+      }
       &:hover{
         background: $primary;
         box-shadow: 0px 25px 74px 0px #FFDA2B66;

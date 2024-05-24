@@ -61,6 +61,7 @@
       width: 100%;
       padding: 22px;
       background: #FFDA2B;
+      border: 1px solid $primary;
       border-radius: 85px;
       box-shadow: 0px 25px 74px 0px #FFDA2B66;
       font-family: var(--font-gilroy);
@@ -72,6 +73,14 @@
         height: fit-content;
         width: fit-content;
         padding: 22px 70px;
+        color: $text;
+        background: unset;
+        box-shadow: unset;
+      }
+      &:hover{
+        color: $text;
+        box-shadow: 0px 25px 74px 0px #FFDA2B66;
+        background: #FFDA2B;
       }
     }
     .text{
