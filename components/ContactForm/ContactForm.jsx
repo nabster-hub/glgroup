@@ -1,36 +1,129 @@
-import React from 'react';
+'use client'
+import React, {useState} from 'react';
 import styles from './ContactForm.module.scss'
 import {render} from 'storyblok-rich-text-react-renderer';
 import Link from "next/link";
 import {storyblokEditable} from "@storyblok/react";
 
 const ContactForm = ({blok}) => {
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [sended, setSended] = useState('');
+    const [disable, setDisable] = useState(false);
+    const sendMail = async (e) => {
+        e.preventDefault();
+        setDisable(true)
+        const response = await fetch('/api/contactForm', {
+            method: "POST",
+            headers: {
+                'conten-type': 'application/json'
+            },
+            body: JSON.stringify({
+                    name,
+                    phone,
+                    email
+            })
+        })
+        const res = await response.json();
+
+        if(res.status === 500){
+            setSended(false);
+        }else{
+            setSended(true)
+        }
+        setDisable(false)
+        console.log(sended)
+
+        // await setSended(response.json());
+        // return await response.json();
+    }
+
     return (
         <section className={styles.block} id={'form'} {...storyblokEditable(blok)}>
             <div className="container py-20 lg:py-24">
                 <div className="flex flex-col lg:flex-row gap-20 lg:gap-12 xl:gap-16">
                     <div className={styles.leftBlock}>
                         <h2>{blok.titleLeft}</h2>
-                        <form action="#" method={"POST"}>
-                            <label htmlFor={"name"}>{blok.nameLabel}</label>
-                            <input type="text" name={"name"}/>
-                            <div className="flex flex-col lg:flex-row gap-5 mb-8 lg:mb-12">
-                                <div className="">
-                                    <label htmlFor={"phone"}>{blok.phoneLabel}</label>
-                                    <input type="text" name={"phone"}/>
+                        {sended === '' ? (
+                            <form onSubmit={sendMail}>
+                                <label htmlFor={"name"}>{blok.nameLabel}</label>
+                                <input type="text" name={"name"}
+                                       value={name}
+                                       onChange={(e) => {
+                                           setName(e.target.value)
+                                       }}
+                                />
+                                <div className="flex flex-col lg:flex-row gap-5 mb-8 lg:mb-12">
+                                    <div className="">
+                                        <label htmlFor={"phone"}>{blok.phoneLabel}</label>
+                                        <input type="text" name={"phone"}
+                                               value={phone}
+                                               onChange={(e) => {
+                                                   setPhone(e.target.value)
+                                               }}
+                                        />
+                                    </div>
+                                    <div className="">
+                                        <label htmlFor={"email"}>{blok.emailLabel}</label>
+                                        <input type="text" name={"email"}
+                                               value={email}
+                                               onChange={(e) => {
+                                                   setEmail(e.target.value)
+                                               }}
+                                        />
+                                    </div>
+
                                 </div>
-                                <div className="">
-                                    <label htmlFor={"email"}>{blok.emailLabel}</label>
-                                    <input type="text" name={"email"}/>
+                                <div className="flex flex-col lg:flex-row gap-7 xl:gap-11">
+                                    <button type={'submit'} disabled={disable}>{blok.buttonLabel}</button>
+                                    <div className={styles.text}>{render(blok.text)}</div>
                                 </div>
 
-                            </div>
-                            <div className="flex flex-col lg:flex-row gap-7 xl:gap-11">
-                                <button type={'submit'}>{blok.buttonLabel}</button>
-                                <div className={styles.text}>{render(blok.text)}</div>
+                            </form>
+                        ) : sended === true ? (
+                            <div className={styles.success}>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"
+                                     width="100px" height="100px">
+                                    <path d="M 25 2 C 12.317 2 2 12.317 2 25 C 2 37.683 12.317 48 25 48 C 37.683 48 48
+                                37.683 48 25 C 48 20.44 46.660281 16.189328 44.363281 12.611328 L 42.994141 14.228516
+                                C 44.889141 17.382516 46 21.06 46 25 C 46 36.579 36.579 46 25 46 C 13.421 46 4 36.579
+                                4 25 C 4 13.421 13.421 4 25 4 C 30.443 4 35.393906 6.0997656 39.128906 9.5097656 L
+                                40.4375 7.9648438 C 36.3525 4.2598437 30.935 2 25 2 z M 43.236328 7.7539062 L 23.914062
+                                30.554688 L 15.78125 22.96875 L 14.417969 24.431641 L 24.083984 33.447266 L 44.763672
+                                9.046875 L 43.236328 7.7539062 z" fill="#FFDA2B"/>
+                                </svg>
+                                <div className={styles.successText}>
+                                    Заявка успешно отправленна с Вами свяжются в ближайшее время
+                                </div>
                             </div>
 
-                        </form>
+                        ) : (
+                            <div className={styles.error}>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="100px"
+                                     height="100px">
+                                    <path d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C
+                                37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534
+                                4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25
+                                C 4 13.390466 13.390466 4 25 4 z M 32.990234 15.986328 A 1.0001 1.0001 0 0 0 32.292969
+                                16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234
+                                15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969
+                                32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969
+                                33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031
+                                17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z" fill="#FFDA2B"/>
+                                </svg>
+                                <div className={styles.errorText}>
+                                    Не удалось отправить заявку пожалуйста попробуйте позже
+                                </div>
+                                <button onClick={()=>{
+                                    setSended('');
+                                }}>
+                                    Попробывать еще раз
+                                </button>
+                            </div>
+
+                        )}
+
                     </div>
                     <div className={styles.rightBlock}>
                         <div className={styles.line}></div>
@@ -42,7 +135,7 @@ const ContactForm = ({blok}) => {
                                         <svg width="70" height="60" viewBox="0 0 20.0156 16.7865"
                                              fill="none"
                                              xmlns="http://www.w3.org/2000/svg"
-                                             >
+                                        >
                                             <path id="Vector"
                                                   d="M18.6646 0.110352L0.934601 6.94739C-0.275391 7.43335 -0.268402 8.1084 0.712616 8.40942L5.26462 9.82935L15.7966 3.18433C16.2946 2.88135 16.7496 3.04443 16.3756 3.37634L7.84262 11.0774L7.84061 11.0774L7.84262 11.0784L7.52859 15.7704C7.98862 15.7704 8.19162 15.5593 8.44962 15.3104L10.6606 13.1604L15.2596 16.5574C16.1076 17.0244 16.7166 16.7844 16.9276 15.7723L19.9466 1.54443C20.2556 0.30542 19.4736 -0.255615 18.6646 0.110352Z"
                                                   fill="#FFFFFF" fillOpacity="1.000000" fillRule="nonzero"/>
