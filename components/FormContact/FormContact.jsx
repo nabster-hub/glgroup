@@ -38,8 +38,6 @@ const FormContact = ({blok}) => {
         setDisable(false)
         console.log(sended)
 
-        // await setSended(response.json());
-        // return await response.json();
     }
     return (
         <section className={styles.formContact} {...storyblokEditable(blok)}>
