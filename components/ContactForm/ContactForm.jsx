@@ -35,8 +35,6 @@ const ContactForm = ({blok}) => {
         setDisable(false)
         console.log(sended)
 
-        // await setSended(response.json());
-        // return await response.json();
     }
 
     return (
