@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import clsx from "clsx";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokProvider from "@/components/StoryblokProvider/StoryblokProvider";
+import {GoogleTagManager}  from '@next/third-parties/google'
 
 import hero from '/components/Hero/Hero';
 import slider from '/components/Slider/Slider';
@@ -41,6 +42,7 @@ import HeroAboutUs from "@/components/HeroAboutUs/HeroAboutUs";
 import OurAdvantages from "@/components/OurAdvantages/OurAdvantages";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
+import Script from "next/script";
 
 storyblokInit({
    accessToken: "ZqkBIdpCfAPhrN7glDs1Swtt",
@@ -274,6 +276,7 @@ export default async function LocalLayout({ children, params}) {
       <StoryblokProvider>
         <html lang={params.locale}>
           <body className={clsx(inter.className, Gilroy.variable, Formular.variable)}>
+          <GoogleTagManager gtmId={"GTM-W94Q2T3S"}/>
           <NextIntlClientProvider locale={params.locale}>
             <NavMenu headMenu={headMenu} menu={menu}/>
             {children}
@@ -282,6 +285,15 @@ export default async function LocalLayout({ children, params}) {
             </footer>
             <CookieAlert data={global.data.story.content.CookieMessage} />
           </NextIntlClientProvider>
+          <Script id={'clarity-script'} strategy={'afterInteractive'}  dangerouslySetInnerHTML={{
+            __html: `        
+              (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "mjo1zuxhv7");
+            `
+          }} />
           </body>
           <StoryblokBridgeLoader options={{resolveRelations: ["article.author"] }} />
         </html>
