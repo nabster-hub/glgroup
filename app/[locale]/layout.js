@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import clsx from "clsx";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokProvider from "@/components/StoryblokProvider/StoryblokProvider";
-import {GoogleTagManager}  from '@next/third-parties/google'
+import {GoogleTagManager, GoogleAnalytics}  from '@next/third-parties/google'
 
 import hero from '/components/Hero/Hero';
 import slider from '/components/Slider/Slider';
@@ -277,6 +277,7 @@ export default async function LocalLayout({ children, params}) {
         <html lang={params.locale}>
           <body className={clsx(inter.className, Gilroy.variable, Formular.variable)}>
           <GoogleTagManager gtmId={"GTM-W94Q2T3S"}/>
+          <GoogleAnalytics gaId="G-F5H6Q18BRV" />
           <NextIntlClientProvider locale={params.locale}>
             <NavMenu headMenu={headMenu} menu={menu}/>
             {children}
