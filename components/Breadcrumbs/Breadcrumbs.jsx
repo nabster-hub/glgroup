@@ -13,24 +13,33 @@ const Breadcrumbs = ({links, author}) => {
             }
         }
     }
+    const createLink = (link) => {
+        if(locale === 'ru' && link.linktype === 'story'){
+            return '/ru/'+link.cached_url;
+        }else{
+            return link.cached_url;
+        }
+    }
+
     let last = lastSearch(links)
     return (
         <section >
             <div className="container">
-                <div className={clsx(styles.container, author && styles.author)}>
-                    {links.map((e, _uid)=>(
-                        <div className={styles.block} key={_uid}>
-                            <Link className={styles.link} href={e.link.cached_url}>
-                                {e.label}
+                <ul itemScope itemType={'https://schema.org/BreadcrumbList'}
+                    className={clsx(styles.container, author && styles.author)}>
+                    {links.map((e, index, _uid) => (
+                        <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem"
+                            className={styles.block} key={_uid}>
+                            <Link className={styles.link} href={createLink(e.link)}>
+                                <span itemProp="name">{e.label}</span>
+                                <meta itemProp={'position'} content={index}/>
                             </Link>
                             {e.label !== last && (
                                 <span className={styles.line}> </span>
                             )}
-
-                        </div>
-
+                        </li>
                     ))}
-                </div>
+                </ul>
             </div>
         </section>
     );
