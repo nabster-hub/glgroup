@@ -9,6 +9,7 @@ import {fetchData} from "@/lib/api";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import OtherArticles from "@/components/OtherArticles/OtherArticles";
 import {storyblokEditable} from "@storyblok/react";
+import {useLocale} from "next-intl";
 
 
 export async function getData(title){
@@ -36,6 +37,14 @@ export default async function Post ({blok}) {
     const contactForm = await fetchData('blog-contact', {version: 'draft'})
     const posts = await getData(blok.content.title);
     const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
+    const locale = useLocale();
+    const createLink = (link) => {
+        if(locale === 'ru' && link.linktype === 'story'){
+            return '/ru/'+link.cached_url;
+        }else{
+            return link.cached_url;
+        }
+    }
     return (
         <section {...storyblokEditable(blok)}>
             <div className="container pb-24">
@@ -43,7 +52,7 @@ export default async function Post ({blok}) {
                 <div className="flex gap-8 items-center mb-5 xl:mb-10 ">
                     <span className={styles.date}>{formattedDate}</span>
                     {blok.content.showAuthor && (
-                        <Link href={blok.content.Author.cached_url} className={styles.author}>{blok.content.authorLabel}</Link>
+                        <Link href={createLink(blok.content.Author)} className={styles.author}>{blok.content.authorLabel}</Link>
                     )}
 
                 </div>
