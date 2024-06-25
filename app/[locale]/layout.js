@@ -1,7 +1,6 @@
 import { Inter, Roboto } from "next/font/google";
 import localFont from "next/font/local";
 import clsx from "clsx";
-import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokProvider from "@/components/StoryblokProvider/StoryblokProvider";
 import {GoogleTagManager, GoogleAnalytics}  from '@next/third-parties/google'
 
@@ -44,38 +43,65 @@ import {NextIntlClientProvider} from "next-intl";
 import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
 import Script from "next/script";
 
-storyblokInit({
-   accessToken: "ZqkBIdpCfAPhrN7glDs1Swtt",
-   use: [apiPlugin],
-   components:{
-     page: Page,
-     hero: hero,
-     sliderMain: slider,
-     twoBlock: twoBlock,
-     title: title,
-     imageBlock: ImageBlock,
-     textBlock: Text,
-     buttonBlock: Button,
-     grid: Grid,
-     gridItem: GridItem,
-     sectionNumber: SectionNumber,
-     blockWithArrow: BlockWithArrow,
-     ourPartners: OurPartners,
-     ourRecomendations: OurRecomendations,
-     contactForm: ContactForm,
-     ourCases: OurCases,
-     section: Section,
-     twoGrids: TwoGrids,
-     steps: Steps,
-     contactMap: ContactMap,
-     gridWithImage: GridWithImage,
-     gridImg: GridImg,
-     contact: Contact,
-     fromContact: FormContact,
-     HeroAboutUs: HeroAboutUs,
-     ourAdvantages: OurAdvantages,
-   },
- });
+
+// storyblokInit({
+//    accessToken: "ZqkBIdpCfAPhrN7glDs1Swtt",
+//    use: [apiPlugin],
+//
+//  });
+
+
+
+const {
+  StoryblokClient,
+  apiPlugin,
+  getStoryblokApi: getStoryblokApiDefault,
+  storyblokInit
+} = require("@storyblok/react/rsc");
+
+let storyblokApi;
+
+const AppStoryblokInit = () => {
+  storyblokInit({
+    accessToken: "ZqkBIdpCfAPhrN7glDs1Swtt",
+    use: [apiPlugin],
+    components:{
+      page: Page,
+      hero: hero,
+      sliderMain: slider,
+      twoBlock: twoBlock,
+      title: title,
+      imageBlock: ImageBlock,
+      textBlock: Text,
+      buttonBlock: Button,
+      grid: Grid,
+      gridItem: GridItem,
+      sectionNumber: SectionNumber,
+      blockWithArrow: BlockWithArrow,
+      ourPartners: OurPartners,
+      ourRecomendations: OurRecomendations,
+      contactForm: ContactForm,
+      ourCases: OurCases,
+      section: Section,
+      twoGrids: TwoGrids,
+      steps: Steps,
+      contactMap: ContactMap,
+      gridWithImage: GridWithImage,
+      gridImg: GridImg,
+      contact: Contact,
+      fromContact: FormContact,
+      HeroAboutUs: HeroAboutUs,
+      ourAdvantages: OurAdvantages,
+    },
+  });
+
+  return getStoryblokApiDefault();
+};
+export const getStoryblokApi = () => {
+  if (storyblokApi !== undefined) return storyblokApi;
+  return AppStoryblokInit();
+};
+
 const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
 const locales = ['ru', 'en'];
 
