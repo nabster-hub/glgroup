@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.glgconsult.com/
+
+# Sitemaps
+Sitemap: https://www.glgconsult.com/sitemap.xml
