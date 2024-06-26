@@ -6,13 +6,15 @@ import {StoryblokComponent} from "@storyblok/react/rsc";
 import {unstable_setRequestLocale} from "next-intl/server";
 
 export const revalidate = 3600;
-// export async function generateMetadata({params: {locale}},parent){
-//      const {data} = await fetchData("about-us", {version: 'draft', language: locale});
-//     return{
-//         title: data.story.content.metaTitle,
-//         description: data.story.content.metaDescription,
-//     }
-// }
+export async function generateMetadata({params},parent){
+    const locale = params.locale;
+    unstable_setRequestLocale(locale);
+    const {data} = await fetchData("about-us", {version: 'draft', language: locale});
+    return{
+        title: data.story.content.metaTitle,
+        description: data.story.content.metaDescription,
+    }
+}
 export default async function Page({params: {locale}}){
     unstable_setRequestLocale(locale);
     const {data} = await fetchData("about-us", {version: 'draft', language: locale});
