@@ -5,7 +5,7 @@ import styles from "./LazyLoadBlog.module.scss";
 import {fetchBlog} from "@/lib/blog";
 import PosePreview from "@/components/PostPreview/PosePreview";
 
-const LazyLoadBlog = ({count}) => {
+const LazyLoadBlog = ({count, locale}) => {
     const [load, setLoad] = useState(false);
     const [page, setPage] = useState(1);
     const [post, setPost] = useState(9);
@@ -15,7 +15,7 @@ const LazyLoadBlog = ({count}) => {
        if(page > 1){
            const getData =async () => {
                try{
-                   const response = await fetch(`/api/blog?page=${page}`);
+                   const response = await fetch(`/api/blog?page=${page}&lang=${locale}`);
                    if(!response.ok){
                        throw new Error("Ошибка HTTP " + response.status);
                    }
