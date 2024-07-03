@@ -5,9 +5,18 @@ import Link from "next/link";
 import clsx from "clsx";
 import {storyblokEditable} from "@storyblok/react";
 
-const PosePreview = ({blok, other}) => {
+const PosePreview = ({blok, other, locale}) => {
     const date = new Date(blok.published_at);
-    const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
+    const formattedDate = date.toLocaleDateString(locale, {day: 'numeric', month: 'long', year: 'numeric'});
+    const createLink = (link) => {
+        if(locale === 'ru'){
+            return '/ru/'+link.cached_url;
+        }else if(locale === 'en' && link.linktype !== 'story'){
+            return '/en/'+link.cached_url;
+        }else{
+            return link.cached_url;
+        }
+    }
     return (
         <div {...storyblokEditable(blok)} className={styles.postPreview}>
             <div className={clsx(styles.imgBlock, other && styles.other)}>
@@ -27,7 +36,10 @@ const PosePreview = ({blok, other}) => {
             <div className={styles.contentBlock}>
                 <div className="flex flex-1 justify-between mb-4">
                     <span className={styles.date}>{formattedDate}</span>
-                    <Link href={'#'} className={styles.author}>Иван Петров</Link>
+                    {(blok.content?.showAuthor && blok.content.Author?.id) && (
+                        <Link href={createLink(blok.content.Author)} className={styles.author}>{blok.content.authorLabel}</Link>
+                    )}
+
                 </div>
                 <div className={styles.textBlock}>
                     <h2 className={styles.h2}>
@@ -37,7 +49,7 @@ const PosePreview = ({blok, other}) => {
                         {blok.content.description}
                     </div>
                 </div>
-                <Link href={'/'+blok.full_slug} className={styles.read}>Читать</Link>
+                <Link href={'/'+blok.full_slug} className={styles.read}>{locale === 'ru' ? "Читать" : "Read"}</Link>
             </div>
         </div>
     );

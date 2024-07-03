@@ -95,6 +95,16 @@
         line-height: 22px;
         padding: 12px 67px;
       }
+      @media (min-width: 1024px) {
+        color: $text;
+        background: unset;
+        box-shadow: unset;
+      }
+      &:hover{
+        color: white;
+        background: #3B604E;
+        box-shadow: 0px 25px 74px 0px #3E7A5D45;
+      }
     }
   }
 
