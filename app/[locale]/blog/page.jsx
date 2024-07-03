@@ -50,6 +50,7 @@ export default async function Page ({params: {locale}}){
                 cached_url: '/ru/',
             },
             label: 'Главная',
+            _uid: '1'
         },
         {
             link: {
@@ -57,6 +58,7 @@ export default async function Page ({params: {locale}}){
                 cached_url: '/en/blog/',
             },
             label: 'Блог',
+            _uid: '2'
         }
     ]
 
@@ -67,6 +69,7 @@ export default async function Page ({params: {locale}}){
                 cached_url: '/en/',
             },
             label: 'Home',
+            _uid: '1'
         },
         {
             link: {
@@ -74,6 +77,7 @@ export default async function Page ({params: {locale}}){
                 cached_url: '/en/blog/',
             },
             label: 'Blog',
+            _uid: '2'
         }
     ]
     return (
