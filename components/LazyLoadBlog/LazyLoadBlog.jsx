@@ -45,12 +45,12 @@ const LazyLoadBlog = ({count, locale}) => {
                         setLoad(true);
                         setPage(page + 1);
                     }
-                    }>Показать еще</span>
-                    <span className={styles.all}>Вы смотрели {post} из {count} статей</span>
+                    }>{locale === 'ru' ? "Показать еще" : 'Show more'}</span>
+                    <span className={styles.all}>{locale === 'ru' ? `Вы смотрели ${post} из ${count} статей` : ` You’ve scrolled ${post} articles out of ${count} `}</span>
                 </div>
             ) : (
                 <div className="flex flex-col items-center justify-center mt-14">
-                     <span className={styles.all}>Вы смотрели {post} из {count} статей</span>
+                     <span className={styles.all}>{locale === 'ru' ? `Вы смотрели ${post} из ${count} статей` : ` You’ve scrolled ${post} articles out of ${count} `}</span>
                 </div>
             )}
 
