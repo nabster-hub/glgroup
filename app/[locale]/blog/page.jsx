@@ -41,31 +41,48 @@ export default async function Page ({params: {locale}}){
 //    const datas = await fetchBlog(1);
   //  console.log(datas);
     const posts = fetch.data.stories;
-    const category = await getCategory();
-   // console.log(category.data);
+    const category = await getCategory(locale);
+    console.log(category.data);
     const breadcrumbs = [
         {
             link: {
                 linktype: '',
-                cached_url: '/',
+                cached_url: '/ru/',
             },
             label: 'Главная',
         },
         {
             link: {
                 linktype: '',
-                cached_url: '/blog/',
+                cached_url: '/en/blog/',
             },
             label: 'Блог',
         }
     ]
+
+    const breadcrumbsEn = [
+        {
+            link: {
+                linktype: '',
+                cached_url: '/en/',
+            },
+            label: 'Home',
+        },
+        {
+            link: {
+                linktype: '',
+                cached_url: '/en/blog/',
+            },
+            label: 'Blog',
+        }
+    ]
     return (
         <>
-            <Breadcrumbs links={breadcrumbs}/>
+            <Breadcrumbs links={locale === 'ru' ? breadcrumbs : breadcrumbsEn}/>
 
             <section>
                 <div className="container pb-24">
-                    <h1 className={'mb-5'}>Блог</h1>
+                    <h1 className={'mb-5'}>{locale === 'ru' ? 'Блог' : 'Blog'}</h1>
                     <AllCategroyes blok={category.data.datasource_entries} />
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-8">
                         {posts && posts.map((e, _uid)=>(
