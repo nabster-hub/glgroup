@@ -101,7 +101,7 @@ export default async function Page ({params: {locale}}){
                             <PosePreview blok={e} key={_uid} locale={locale} />
                         ))}
                     </div>
-                    <LazyLoadBlog count={fetch.total} />
+                    <LazyLoadBlog count={fetch.total} locale={locale} />
                 </div>
             </section>
         </>
