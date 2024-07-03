@@ -31,38 +31,59 @@ export default async function Page ({params, params: {locale}}){
     unstable_setRequestLocale(locale);
     const fetch = await getPosts(params.slug, locale);
     const posts = fetch.data.stories;
-    const category = await getCategory();
+    const category = await getCategory(locale);
 
     const breadcrumbs = [
         {
             link: {
                 linktype: '',
-                cached_url: '/',
+                cached_url: '/ru/',
             },
             label: 'Главная',
+            _uid: '1'
         },
         {
             link: {
                 linktype: '',
-                cached_url: '/blog/',
+                cached_url: '/en/blog/',
             },
             label: 'Блог',
+            _uid: '2'
+        }
+    ]
+
+    const breadcrumbsEn = [
+        {
+            link: {
+                linktype: '',
+                cached_url: '/en/',
+            },
+            label: 'Home',
+            _uid: '1'
+        },
+        {
+            link: {
+                linktype: '',
+                cached_url: '/en/blog/',
+            },
+            label: 'Blog',
+            _uid: '2'
         }
     ]
     return (
         <>
-            <Breadcrumbs links={breadcrumbs}/>
+            <Breadcrumbs links={locale === 'ru' ? breadcrumbs : breadcrumbsEn}/>
 
             <section>
                 <div className="container pb-24">
-                    <h1 className={'mb-5'}>Блог</h1>
+                    <h1 className={'mb-5'}>{locale === 'ru' ? 'Блог' : 'Blog'}</h1>
                     <AllCategroyes blok={category.data.datasource_entries} active={params.slug}/>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-8">
                         {posts && posts.map((e, _uid)=>(
-                            <PosePreview blok={e} key={_uid} />
+                            <PosePreview blok={e} key={_uid} locale={locale}/>
                         ))}
                     </div>
-                    <LazyLoadBlog count={fetch.total} />
+                    <LazyLoadBlog count={fetch.total} locale={locale} />
                 </div>
             </section>
         </>
