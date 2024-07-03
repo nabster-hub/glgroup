@@ -42,7 +42,7 @@ export default async function Page ({params: {locale}}){
   //  console.log(datas);
     const posts = fetch.data.stories;
     const category = await getCategory(locale);
-    console.log(category.data);
+
     const breadcrumbs = [
         {
             link: {
@@ -86,7 +86,7 @@ export default async function Page ({params: {locale}}){
                     <AllCategroyes blok={category.data.datasource_entries} />
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-8">
                         {posts && posts.map((e, _uid)=>(
-                            <PosePreview blok={e} key={_uid} />
+                            <PosePreview blok={e} key={_uid} locale={locale} />
                         ))}
                     </div>
                     <LazyLoadBlog count={fetch.total} />
