@@ -14,7 +14,7 @@ const Langs = ({type, locale}) => {
         let pathname = window.location.pathname.replace(/^\/[a-z]{2}/, '');
         setUrl(pathname);
         setLoc(locale)
-    }, [locale])
+    }, [])
     return (
         <div className="flex lg:gap-2 xl:gap-3 font-gilroy font-bold text-sm items-center">
             <Link href={'/ru'+url}
