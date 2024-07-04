@@ -81,7 +81,7 @@ const Header = ({links, type, menu}) => {
                             <Image src={whatsappIcon.filename} width={'21'} height={'21'} alt={whatsappIcon.alt}/>
                         )}
                     </Link>
-                    <Langs />
+                    <Langs locale={locale} type={type} />
                     {/*<div className="flex lg:gap-2 xl:gap-3 font-gilroy font-bold text-sm items-center">*/}
                     {/*    <Link href={'/ru'} className={clsx(locale === 'ru' ? (type ? "text-green-active" : "text-yellow-active") : (type ? "hover:text-green-active" : "hover:text-yellow-active"))}>*/}
                     {/*        RU*/}

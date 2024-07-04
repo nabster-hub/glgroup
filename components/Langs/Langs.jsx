@@ -9,6 +9,8 @@ import Link from "next/link";
 const Langs = ({type, locale}) => {
     const [url, setUrl] = useState('')
     const [loc, setLoc] = useState(locale)
+    console.log(type)
+    console.log(locale)
     useEffect(()=>{
         let pathname = window.location.pathname.replace(/^\/[a-z]{2}/, '');
         setUrl(pathname);
