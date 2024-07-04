@@ -16,6 +16,9 @@ export async function generateMetadata({params},parent){
     return{
         title: data.story.content.metaTitle,
         description: data.story.content.metaDescription,
+        alternates: {
+            canonical: './'
+        }
     }
 }
 export default async function Home({params}) {

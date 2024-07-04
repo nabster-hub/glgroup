@@ -18,11 +18,17 @@ export async function generateMetadata({params: {locale}},parent){
         return{
             title: "Блог",
             description: "",
+            alternates: {
+                canonical: './'
+            }
         }
     }else{
         return{
             title: "Blog",
             description: "",
+            alternates: {
+                canonical: './'
+            }
         }
     }
 
