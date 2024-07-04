@@ -27,9 +27,9 @@ const Breadcrumbs = ({links, author}) => {
             <div className="container">
                 <ul itemScope itemType={'https://schema.org/BreadcrumbList'}
                     className={clsx(styles.container, author && styles.author)}>
-                    {links.map((e, index, _uid) => (
+                    {links.map((e, index) => (
                         <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem"
-                            className={styles.block} key={_uid}>
+                            className={styles.block} key={e._uid}>
                             <Link className={styles.link} href={createLink(e.link)}>
                                 <span itemProp="name">{e.label}</span>
                                 <meta itemProp={'position'} content={index}/>
