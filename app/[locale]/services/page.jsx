@@ -12,6 +12,9 @@ export async function generateMetadata({params: {locale}},parent){
     return{
         title: data.story.content.metaTitle,
         description: data.story.content.metaDescription,
+        alternates: {
+            canonical: './'
+        }
     }
 }
 

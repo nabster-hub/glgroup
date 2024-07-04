@@ -10,6 +10,7 @@ import {unstable_setRequestLocale} from "next-intl/server";
 
 
 export const revalidate = 3600;
+
 export async function getPosts(params, locale){
     let sbParams = {
         version: "published",

@@ -273,6 +273,7 @@ export const metadata = {
   icons: {
     icon: '/img/logo.svg',
   },
+  metadataBase: new URL(process.env.SITE_URL),
 };
 export const revalidate = 3600;
 export default async function LocalLayout({ children, params}) {
