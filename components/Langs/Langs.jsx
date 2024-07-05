@@ -3,18 +3,19 @@ import React, {useEffect, useState} from 'react';
 import clsx from "clsx";
 import styles from "@/components/header/header.module.scss";
 
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import Link from "next/link";
 
 const Langs = ({type, locale}) => {
     const [url, setUrl] = useState('')
     const [loc, setLoc] = useState(locale)
+    const pathname = usePathname();
 
     useEffect(()=>{
-        let pathname = window.location.pathname.replace(/^\/[a-z]{2}/, '');
-        setUrl(pathname);
+        let href = window.location.pathname.replace(/^\/[a-z]{2}/, '');
+        setUrl(href);
         setLoc(locale)
-    }, [])
+    }, [pathname])
     return (
         <div className="flex lg:gap-2 xl:gap-3 font-gilroy font-bold text-sm items-center">
             <Link href={'/ru'+url}
