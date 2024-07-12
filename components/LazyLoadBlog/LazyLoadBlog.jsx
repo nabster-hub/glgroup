@@ -10,6 +10,9 @@ const LazyLoadBlog = ({count, locale}) => {
     const [page, setPage] = useState(1);
     const [post, setPost] = useState(9);
     const [data, setData] = useState([]);
+    if(count < post){
+        setPost(count)
+    }
 
     useEffect(() => {
        if(page > 1){
@@ -30,6 +33,7 @@ const LazyLoadBlog = ({count, locale}) => {
        }
 
     }, [page]);
+
     return (
         <>
             {data?.length > 0 && (
