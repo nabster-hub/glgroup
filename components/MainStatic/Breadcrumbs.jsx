@@ -2,9 +2,11 @@ import React from 'react';
 import styles from '@/components/Breadcrumbs/Breadcrumbs.module.scss'
 import Link from "next/link";
 import clsx from "clsx";
+import {useLocale} from "next-intl";
 
 
 const Breadcrumbs = ({links, onHero}) => {
+    const locale = useLocale();
     const lastSearch = (arr) =>{
         for(let i =0; i<arr.length; i++){
             if(i === arr.length-1){
