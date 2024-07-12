@@ -25,21 +25,21 @@ const Breadcrumbs = ({links, author}) => {
     return (
         <section >
             <div className="container">
-                <ul itemScope itemType={'https://schema.org/BreadcrumbList'}
+                <ol itemScope itemType={'https://schema.org/BreadcrumbList'}
                     className={clsx(styles.container, author && styles.author)}>
                     {links.map((e, index) => (
                         <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem"
                             className={styles.block} key={e._uid}>
-                            <Link className={styles.link} href={createLink(e.link)}>
+                            <Link className={styles.link} href={createLink(e.link)} itemProp={"item"}>
                                 <span itemProp="name">{e.label}</span>
-                                <meta itemProp={'position'} content={index}/>
                             </Link>
+                            <meta itemProp={'position'} content={index+1}/>
                             {e.label !== last && (
                                 <span className={styles.line}> </span>
                             )}
                         </li>
                     ))}
-                </ul>
+                </ol>
             </div>
         </section>
     );
