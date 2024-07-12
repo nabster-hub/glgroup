@@ -7,6 +7,7 @@ import LazyLoadBlog from "@/components/LazyLoadBlog/LazyLoadBlog";
 import {getCategory} from "@/lib/category";
 import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 import {unstable_setRequestLocale} from "next-intl/server";
+import {notFound} from "next/navigation";
 
 
 export const revalidate = 3600;
@@ -24,13 +25,21 @@ export async function getPosts(params, locale){
     }
 
     const storyblokApi = getStoryblokApi();
-    let fetch = await storyblokApi.get('cdn/stories/', sbParams);
+    let fetch = await storyblokApi.get('cdn/stories/', sbParams).then(success => {
+        return success
+    }).catch((error)=>{
+        return null
+    });
     return  fetch;
 }
 
 export default async function Page ({params, params: {locale}}){
     unstable_setRequestLocale(locale);
     const fetch = await getPosts(params.slug, locale);
+    console.log(fetch.data.stories.length)
+    if(fetch.data.stories.length === 0){
+        notFound();
+    }
     const posts = fetch.data.stories;
     const category = await getCategory(locale);
 

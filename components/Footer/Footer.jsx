@@ -13,6 +13,13 @@ const  Footer = ({links, sitename, footer}) => {
     const whatsappNum = links?.numberWhatsapp;
     const whatsappIcon = links?.imageWhatsapp;
     const number = links?.whatsappNumber;
+    const createLink = (link) => {
+        if(locale === 'ru' && link.linktype === 'story'){
+            return '/ru/'+link.cached_url;
+        }else{
+            return link.cached_url;
+        }
+    }
     const locale = useLocale();
     return (
         <div className={'container pt-16 lg:pt-24 lg:pb-12'}>
@@ -66,7 +73,7 @@ const  Footer = ({links, sitename, footer}) => {
                         <ul>
                             <li><Link href={`/${locale}`} className={'hover:text-yellow-active'}>{footer.homeLinkLabel}</Link></li>
                             {itemLinks && itemLinks.map((e, _uid)=>(
-                                <li key={_uid}><Link href={e.link.cached_url} key={_uid} className={'hover:text-yellow-active'}>{e.label}</Link></li>
+                                <li key={_uid}><Link href={createLink(e.link)} key={_uid} className={'hover:text-yellow-active'}>{e.label}</Link></li>
                             ))}
                         </ul>
                     </div>
