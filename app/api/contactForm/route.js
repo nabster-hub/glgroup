@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request) {
-    const { name, phone, email, utm_source, utm_medium, utm_campaign, utm_term, utm_content } = await request.json();
+    const { name, phone, email, id, utm_source, utm_medium, utm_campaign, utm_term, utm_content } = await request.json();
     // return NextResponse.json({name, phone, email});
     const body = {
         fields:{
@@ -15,8 +15,7 @@ export async function POST(request) {
                 "TYPE_ID": "EMAIL"
             }],
             "SOURCE_ID": "WEB",
-            "UF_CRM_1723206843835": "CONTACTFORM",
-           // "UF_CRM_1723206895928": "test message",
+            "UF_CRM_1723206843835": id,
             "UTM_SOURCE": utm_source,
             "UTM_MEDIUM": utm_medium,
             "UTM_CAMPAIGN": utm_campaign,
@@ -36,13 +35,6 @@ export async function POST(request) {
     // });
     //
     // const responseData = await response.json();
-
-    //return NextResponse.json({ success: true, data: JSON.stringify(responseData) });
-    return NextResponse.json({ success: true, data: JSON.stringify(body) });
-    // try {
     //
-    // } catch (e) {
-    //     console.error(e);
-    //     return NextResponse.json({ message: "Failed to send mail", status: 500 }, { status: 500 });
-    // }
+    // return NextResponse.json({ success: true, data: JSON.stringify(responseData) });
 }
