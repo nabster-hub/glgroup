@@ -1,11 +1,12 @@
 'use client'
-import React, {useEffect, useState} from 'react';
+import React, {Suspense, useEffect, useState} from 'react';
 import styles from './ContactForm.module.scss'
 import {render} from 'storyblok-rich-text-react-renderer';
 import Link from "next/link";
 import {storyblokEditable} from "@storyblok/react";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useLocale} from "next-intl";
+import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
 
 const ContactForm = ({blok}) => {
     const local = useLocale();
@@ -20,29 +21,9 @@ const ContactForm = ({blok}) => {
     const pathname = usePathname()
 
 
-    function Search(){
-        const params = useSearchParams();
-        const lowerCaseParams = {};
-        for(const [key, value] of params){
-            lowerCaseParams[key.toLowerCase()] = value
-        }
-        return lowerCaseParams;
-    }
-
-    const lowerCaseParams = Search()
-
 
     useEffect(()=>{
         setId(blok.id)
-
-        const utmParams = {};
-        if (lowerCaseParams['utm_source']) utmParams.utm_source = lowerCaseParams['utm_source'];
-        if (lowerCaseParams['utm_medium']) utmParams.utm_medium = lowerCaseParams['utm_medium'];
-        if (lowerCaseParams['utm_campaign']) utmParams.utm_campaign = lowerCaseParams['utm_campaign'];
-        if (lowerCaseParams['utm_term']) utmParams.utm_term = lowerCaseParams['utm_term'];
-        if (lowerCaseParams['utm_content']) utmParams.utm_content = lowerCaseParams['utm_content'];
-        console.log(utmParams)
-        setUTM(utmParams);
     }, [pathname])
 
     const validateFields = () => {
@@ -83,14 +64,6 @@ const ContactForm = ({blok}) => {
         }
 
         setDisable(true)
-        console.log(utm)
-        console.log(JSON.stringify({
-            name,
-            phone,
-            email,
-            id,
-            ...utm
-        }))
         const response = await fetch('/api/contactForm', {
             method: "POST",
             headers: {
@@ -105,7 +78,6 @@ const ContactForm = ({blok}) => {
             })
         })
         const res = await response.json();
-        console.log(res)
 
         if(res.status === 500){
             setSended(false);
@@ -119,6 +91,9 @@ const ContactForm = ({blok}) => {
 
     return (
         <section className={styles.block} id={'form'} {...storyblokEditable(blok)}>
+            <Suspense fallback={<div>Loading...</div>}>
+                <UTMParamsProvider onUTMParams={setUTM} />
+            </Suspense>
             <div className="container py-20 lg:py-24">
                 <div className="flex flex-col lg:flex-row gap-20 lg:gap-12 xl:gap-16">
                     <div className={styles.leftBlock}>

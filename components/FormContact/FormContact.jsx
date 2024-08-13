@@ -1,9 +1,11 @@
 'use client'
-import React, {useState} from 'react';
+import React, {Suspense, useEffect, useState} from 'react';
 import styles from './FormContact.module.scss';
 import {render} from "storyblok-rich-text-react-renderer";
 import {storyblokEditable} from "@storyblok/react";
-import {useTranslations} from "next-intl";
+import {usePathname} from "next/navigation";
+import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
+
 
 const FormContact = ({blok}) => {
     const [name, setName] = useState('');
@@ -12,24 +14,69 @@ const FormContact = ({blok}) => {
     const [message, setMessage] = useState('');
     const [sended, setSended] = useState('');
     const [disable, setDisable] = useState(false);
-    const t = useTranslations('Contact')
+    const [errors, setErrors] = useState({});
+    const [utm, setUTM] = useState({});
+    const [id, setId] = useState('');
+    const pathname = usePathname()
+
+    useEffect(()=>{
+        setId(blok.id)
+    }, [pathname])
+
+    const validateFields = () => {
+        const newErrors = {};
+
+        if (!name.trim() && local==='ru') {
+            newErrors.name = 'Введите ваше имя';
+        }else if(!name.trim() && local==='en'){
+            newErrors.name = 'Enter your name';
+        }
+        if (!phone.trim() && local==='ru') {
+            newErrors.phone = 'Введите ваш номер телефона';
+        } else if(!phone.trim() && local==='en'){
+            newErrors.phone = 'Enter your phone number';
+        }else if (!/^\+?\d{10,15}$/.test(phone) && local==='ru') {
+            newErrors.phone = 'Введите корректный номер телефона';
+        }else if (!/^\+?\d{10,15}$/.test(phone) && local==='en') {
+            newErrors.phone = 'Please enter a valid phone number';
+        }
+        if (!email.trim() && local==='ru') {
+            newErrors.email = 'Введите ваш email';
+        } else if (!email.trim() && local==='en') {
+            newErrors.email = 'Enter your email';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && local==='ru') {
+            newErrors.email = 'Введите корректный email';
+        }else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && local==='en') {
+            newErrors.email = 'Please enter a valid email';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
     const sendMail = async (e) => {
         e.preventDefault();
+
+        if (!validateFields()) {
+            return;
+        }
+
         setDisable(true)
         const response = await fetch('/api/formContact', {
             method: "POST",
             headers: {
-                'conten-type': 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify({
                 name,
                 phone,
                 email,
-                message
+                id,
+                message,
+                ...utm
             })
         })
         const res = await response.json();
-
+        console.log(res)
         if(res.status === 500){
             setSended(false);
         }else{
@@ -41,6 +88,9 @@ const FormContact = ({blok}) => {
     }
     return (
         <section className={styles.formContact} {...storyblokEditable(blok)}>
+            <Suspense fallback={<div>Loading...</div>}>
+                <UTMParamsProvider onUTMParams={setUTM} />
+            </Suspense>
             <div className="container">
                 <div className={styles.contactBlock}>
                     <h2>{blok.title}</h2>
