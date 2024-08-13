@@ -1,31 +1,111 @@
 'use client'
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './ContactForm.module.scss'
 import {render} from 'storyblok-rich-text-react-renderer';
 import Link from "next/link";
 import {storyblokEditable} from "@storyblok/react";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {useLocale} from "next-intl";
 
 const ContactForm = ({blok}) => {
+    const local = useLocale();
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [sended, setSended] = useState('');
     const [disable, setDisable] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [utm, setUTM] = useState({});
+    const [id, setId] = useState('');
+    const pathname = usePathname()
+
+
+    function Search(){
+        const params = useSearchParams();
+        const lowerCaseParams = {};
+        for(const [key, value] of params){
+            lowerCaseParams[key.toLowerCase()] = value
+        }
+        return lowerCaseParams;
+    }
+
+    const lowerCaseParams = Search()
+
+
+    useEffect(()=>{
+        setId(blok.id)
+
+        const utmParams = {};
+        if (lowerCaseParams['utm_source']) utmParams.utm_source = lowerCaseParams['utm_source'];
+        if (lowerCaseParams['utm_medium']) utmParams.utm_medium = lowerCaseParams['utm_medium'];
+        if (lowerCaseParams['utm_campaign']) utmParams.utm_campaign = lowerCaseParams['utm_campaign'];
+        if (lowerCaseParams['utm_term']) utmParams.utm_term = lowerCaseParams['utm_term'];
+        if (lowerCaseParams['utm_content']) utmParams.utm_content = lowerCaseParams['utm_content'];
+        console.log(utmParams)
+        setUTM(utmParams);
+    }, [pathname])
+
+    const validateFields = () => {
+        const newErrors = {};
+
+        if (!name.trim() && local==='ru') {
+            newErrors.name = 'Введите ваше имя';
+        }else if(!name.trim() && local==='en'){
+            newErrors.name = 'Enter your name';
+        }
+        if (!phone.trim() && local==='ru') {
+            newErrors.phone = 'Введите ваш номер телефона';
+        } else if(!phone.trim() && local==='en'){
+            newErrors.phone = 'Enter your phone number';
+        }else if (!/^\+?\d{10,15}$/.test(phone) && local==='ru') {
+            newErrors.phone = 'Введите корректный номер телефона';
+        }else if (!/^\+?\d{10,15}$/.test(phone) && local==='en') {
+            newErrors.phone = 'Please enter a valid phone number';
+        }
+        if (!email.trim() && local==='ru') {
+            newErrors.email = 'Введите ваш email';
+        } else if (!email.trim() && local==='en') {
+            newErrors.email = 'Enter your email';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && local==='ru') {
+            newErrors.email = 'Введите корректный email';
+        }else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && local==='en') {
+            newErrors.email = 'Please enter a valid email';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
     const sendMail = async (e) => {
         e.preventDefault();
+
+        if (!validateFields()) {
+            return;
+        }
+
         setDisable(true)
+        console.log(utm)
+        console.log(JSON.stringify({
+            name,
+            phone,
+            email,
+            id,
+            ...utm
+        }))
         const response = await fetch('/api/contactForm', {
             method: "POST",
             headers: {
-                'conten-type': 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify({
                     name,
                     phone,
-                    email
+                    email,
+                    id,
+                    ...utm
             })
         })
         const res = await response.json();
+        console.log(res)
 
         if(res.status === 500){
             setSended(false);
@@ -52,6 +132,7 @@ const ContactForm = ({blok}) => {
                                            setName(e.target.value)
                                        }}
                                 />
+                                {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
                                 <div className="flex flex-col lg:flex-row gap-5 mb-8 lg:mb-12">
                                     <div className="">
                                         <label htmlFor={"phone"}>{blok.phoneLabel}</label>
@@ -61,6 +142,7 @@ const ContactForm = ({blok}) => {
                                                    setPhone(e.target.value)
                                                }}
                                         />
+                                        {errors.phone && <p className={styles.errorMessage}>{errors.phone}</p>}
                                     </div>
                                     <div className="">
                                         <label htmlFor={"email"}>{blok.emailLabel}</label>
@@ -70,6 +152,7 @@ const ContactForm = ({blok}) => {
                                                    setEmail(e.target.value)
                                                }}
                                         />
+                                        {errors.email && <p className={styles.errorMessage}>{errors.email}</p>}
                                     </div>
 
                                 </div>
@@ -83,7 +166,7 @@ const ContactForm = ({blok}) => {
                             <div className={styles.success}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"
                                      width="100px" height="100px">
-                                    <path d="M 25 2 C 12.317 2 2 12.317 2 25 C 2 37.683 12.317 48 25 48 C 37.683 48 48
+                                <path d="M 25 2 C 12.317 2 2 12.317 2 25 C 2 37.683 12.317 48 25 48 C 37.683 48 48
                                 37.683 48 25 C 48 20.44 46.660281 16.189328 44.363281 12.611328 L 42.994141 14.228516
                                 C 44.889141 17.382516 46 21.06 46 25 C 46 36.579 36.579 46 25 46 C 13.421 46 4 36.579
                                 4 25 C 4 13.421 13.421 4 25 4 C 30.443 4 35.393906 6.0997656 39.128906 9.5097656 L
@@ -92,7 +175,8 @@ const ContactForm = ({blok}) => {
                                 9.046875 L 43.236328 7.7539062 z" fill="#FFDA2B"/>
                                 </svg>
                                 <div className={styles.successText}>
-                                    Заявка успешно отправленна с Вами свяжются в ближайшее время
+                                    {local === 'ru' ? 'Заявка успешно отправленна с Вами свяжются в ближайшее время'
+                                        : "The application has been successfully sent. You will be contacted shortly."}
                                 </div>
                             </div>
 
@@ -111,12 +195,16 @@ const ContactForm = ({blok}) => {
                                 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z" fill="#FFDA2B"/>
                                 </svg>
                                 <div className={styles.errorText}>
-                                    Не удалось отправить заявку пожалуйста попробуйте позже
+                                    {local === "ru" ? "Не удалось отправить заявку пожалуйста попробуйте позже"
+                                        : "Failed to submit request please try again later"}
+
                                 </div>
                                 <button onClick={()=>{
                                     setSended('');
                                 }}>
-                                    Попробывать еще раз
+                                    {local === 'ru' ? "Попробывать еще раз"
+                                        : "Try again"}
+
                                 </button>
                             </div>
 
