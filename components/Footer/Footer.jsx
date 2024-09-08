@@ -91,8 +91,8 @@ const  Footer = ({links, sitename, footer}) => {
                                     <Image src={mailIcon.filename} width={'24'} height={'24'} alt={mailIcon.alt}/>
                                     <span className={clsx('font-gilroy font-bold', styles.email)}>{mail}</span>
                                 </Link>
-                                <div className={'font-gilroy text-lg font-normal'}>{footer.address}
-                                </div>
+                                <Link href={`/${locale}/contacts`} className={'font-gilroy text-lg font-normal hover:text-yellow-active'}>{footer.address}
+                                </Link>
                             </div>
                         </div>
 
