@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, {useEffect} from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import styles from "/components/Slider/slider.module.scss"
@@ -6,15 +7,42 @@ import clsx from "clsx";
 import {unstable_setRequestLocale} from "next-intl/server";
 import {useLocale, useTranslations} from "next-intl";
 
-export const metadata = {
-    title: '404 page not found',
-    description: '404 page not found',
-}
+export async function generateMetadata({params}, parent){
+    const locale = params.locale || 'en';
+    const titles = {
+        ru: "404 Страница не найдена - glgconsult",
+        en: '404 page not found - glgconsult',
+    }
+    const descriptions = {
+        ru: "Что-то пошло не так, данная страница не найдена 404",
+        en: '404 page not found',
+    }
 
+    return  {
+        title: titles[locale] || titles['en'],
+        description: descriptions[locale] || descriptions['en'],
+    };
+
+}
 const NotFoundPage = () => {
     const local = useLocale();
 
     const t = useTranslations('NotFound');
+
+    useEffect(() => {
+        const titles = {
+            ru: "404 Страница не найдена - glgconsult",
+            en: "404 page not found - glgconsult",
+        };
+
+        const descriptions = {
+            ru: "Что-то пошло не так, данная страница не найдена 404",
+            en: "404 page not found",
+        };
+
+        document.title = titles[local] || titles['en'];
+        document.querySelector('meta[name="description"]').setAttribute('content', descriptions[local] || descriptions['en']);
+    }, [local]);
     return (
         <section>
             <div className="relative w-full h-[100vh] not-found z-0">
