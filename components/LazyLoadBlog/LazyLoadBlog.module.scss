@@ -10,6 +10,11 @@
   border: 1px solid #121212;
   border-radius: 85px;
   cursor: pointer;
+  &:hover{
+    color: white;
+    background: #3B604E;
+    box-shadow: 0px 25px 74px 0px #3E7A5D45;
+  }
 }
 .all{
   font-family: var(--font-gilroy);
