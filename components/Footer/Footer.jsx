@@ -61,7 +61,7 @@ const  Footer = ({links, sitename, footer}) => {
                     <div className={styles.description}>
                         {footer.description}
                     </div>
-                    <Link href={footer.contactLink.cached_url} className={styles.contact}>
+                    <Link href={createLink(footer.contactLink)} className={styles.contact}>
                         {footer.contactLabel}
                     </Link>
                 </div>
