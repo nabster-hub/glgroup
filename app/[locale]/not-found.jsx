@@ -27,8 +27,6 @@ export async function generateMetadata({params}, parent){
 const NotFoundPage = () => {
     const local = useLocale();
 
-    const t = useTranslations('NotFound');
-
     useEffect(() => {
         const titles = {
             ru: "404 Страница не найдена - glgconsult",
@@ -43,6 +41,15 @@ const NotFoundPage = () => {
         document.title = titles[local] || titles['en'];
         document.querySelector('meta[name="description"]').setAttribute('content', descriptions[local] || descriptions['en']);
     }, [local]);
+
+    const en = {
+        title : "Page not found",
+        link: "Home"
+    }
+    const ru = {
+        title : "Страница не найдена",
+        link: "На главную"
+    }
     return (
         <section>
             <div className="relative w-full h-[100vh] not-found z-0">
@@ -65,9 +72,9 @@ const NotFoundPage = () => {
                                 404
                             </div>
                             <span
-                                className={'font-medium text-sm md:text-2xl text-center  block '}>{t('title')}</span>
+                                className={'font-medium text-sm md:text-2xl text-center  block '}>{local === 'ru' ? ru['title'] : en['title']}</span>
                         </div>
-                        <Link href={`/${local}`} className={'link-not-found'}>{t('link')}</Link>
+                        <Link href={`/${local}`} className={'link-not-found'}>{local === 'ru' ? ru['link'] : en['link']}</Link>
 
                     </div>
                 </div>
