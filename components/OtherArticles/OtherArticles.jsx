@@ -9,19 +9,21 @@ import 'swiper/css/navigation';
 import PosePreview from "@/components/PostPreview/PosePreview";
 import styles from "./OtherArticles.module.scss";
 import {storyblokEditable} from "@storyblok/react";
+import {useLocale} from "next-intl";
 
 
 
-export default async function OtherArticles ({posts}) {
+export default function OtherArticles ({posts}) {
     const arrowPrev = useRef(null);
     const arrowNext = useRef(null);
+    const local = useLocale();
 
     return (
         <section>
             <div className="container py-24">
                 <div className={styles.block}>
                     <h2 className={styles.title}>
-                        Другие статьи
+                        {local === 'ru' ? 'Другие статьи' : 'Other articles'}
                     </h2>
                     <Swiper
                         pagination={{
@@ -61,7 +63,7 @@ export default async function OtherArticles ({posts}) {
                     >
                         {posts.map((e, _uid) => (
                             <SwiperSlide key={_uid}>
-                                <PosePreview blok={e} key={_uid} other={true}/>
+                                <PosePreview blok={e} key={_uid} other={true} locale={local}/>
                             </SwiperSlide>
                         ))}
 

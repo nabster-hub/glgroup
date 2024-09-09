@@ -59,10 +59,10 @@ export default async function Post ({blok}) {
                 <div className={styles.img}>
                     <Image src={blok.content.img.filename} alt={blok.content.img.alt}
                         fill
-                           quality={80}
+                           quality={90}
                            sizes="(max-width: 768px) 50vw,
-                                 (max-width: 1200px) 25vw,
-                                 25vw"
+                                 (max-width: 1200px) 75vw,
+                                 50vw"
                            style={{
                                objectFit: "cover",
                            }}
