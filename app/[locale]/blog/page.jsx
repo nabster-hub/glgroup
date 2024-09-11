@@ -34,7 +34,7 @@ export async function generateMetadata({params: {locale}},parent){
 
 }
 
-export async function getPosts({locale}){
+export async function getPosts(locale){
     let sbParams = {
         version: "published",
         starts_with: 'blog/',
@@ -42,9 +42,7 @@ export async function getPosts({locale}){
         language: locale,
         per_page: 9
     }
-
-    const storyblokApi = getStoryblokApi();
-    let fetch = await storyblokApi.get('cdn/stories/', sbParams);
+    let fetch = await fetchData('', sbParams);
 
     return  fetch;
 }
@@ -52,10 +50,9 @@ export async function getPosts({locale}){
 export default async function Page ({params: {locale}}){
     unstable_setRequestLocale(locale);
     const fetch = await getPosts(locale);
-//    const datas = await fetchBlog(1);
-  //  console.log(datas);
     const posts = fetch.data.stories;
     const category = await getCategory(locale);
+
 
     const breadcrumbs = [
         {
