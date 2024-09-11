@@ -8,6 +8,7 @@ import {getCategory} from "@/lib/category";
 import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 import {unstable_setRequestLocale} from "next-intl/server";
 import {notFound} from "next/navigation";
+import {fetchData} from "@/lib/api";
 
 
 export const revalidate = 3600;
@@ -24,8 +25,7 @@ export async function getPosts(params, locale){
         language: locale,
     }
 
-    const storyblokApi = getStoryblokApi();
-    let fetch = await storyblokApi.get('cdn/stories/', sbParams).then(success => {
+    let fetch = await fetchData('', sbParams).then(success => {
         return success
     }).catch((error)=>{
         return null
