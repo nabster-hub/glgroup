@@ -27,7 +27,9 @@ const AllCategroyes = ({blok, active, locale}) => {
     return (
         <div className={styles.allCategory} {...storyblokEditable(blok)} ref={scrollContainerRef}>
             {blok.map((e, index)=>(
-                <Link href={createLink('blog/category/'+e.value, locale)}
+                <Link href={ e.value === active ? createLink('blog/', locale) :
+                    createLink('blog/category/'+e.value, locale)
+                }
                       className={clsx(styles.item, e.value === active && styles.active)}
                       key={index}
                       ref={e.value === active ? activeItemRef : null}
