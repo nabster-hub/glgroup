@@ -281,6 +281,7 @@ export default async function LocalLayout({ children, params}) {
  // console.log();
   unstable_setRequestLocale(params.locale);
   const global = await fetchData('global', {version: 'draft', language: params.locale})
+  const contactForm = await fetchData('blog-contact', {version: 'draft', language: params.locale})
 
   const footer = {
     title: global.data.story?.content?.title,
@@ -307,7 +308,7 @@ export default async function LocalLayout({ children, params}) {
           <GoogleTagManager gtmId={"GTM-W94Q2T3S"}/>
           <GoogleAnalytics gaId="G-F5H6Q18BRV" />
           <NextIntlClientProvider locale={params.locale}>
-            <NavMenu headMenu={headMenu} menu={menu}/>
+            <NavMenu headMenu={headMenu} menu={menu} contact={contactForm}/>
             {children}
             <footer className={'bg-[#3B604E]'}>
               <Footer links={headMenu} sitename={menu?.siteName} footer={footer}/>

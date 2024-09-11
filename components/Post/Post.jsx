@@ -33,11 +33,12 @@ export async function getData(title){
 }
 
 export default async function Post ({blok}) {
+    const locale = useLocale();
     const date = new Date(blok.published_at);
-    const contactForm = await fetchData('blog-contact', {version: 'draft'})
+    const contactForm = await fetchData('blog-contact', {version: 'draft', language: locale})
     const posts = await getData(blok.content.title);
     const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
-    const locale = useLocale();
+
     const createLink = (link) => {
         if(locale === 'ru' && link.linktype === 'story'){
             return '/ru/'+link.cached_url;
