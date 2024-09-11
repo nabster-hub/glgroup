@@ -15,7 +15,6 @@ const AllCategroyes = ({blok, active, locale}) => {
     }
 
     useEffect(() => {
-        console.log(activeItemRef.current)
         if(activeItemRef.current && scrollContainerRef.current){
             activeItemRef.current.scrollIntoView({
                 behavior: 'smooth',
