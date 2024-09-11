@@ -42,6 +42,7 @@ import OurAdvantages from "@/components/OurAdvantages/OurAdvantages";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
 import Script from "next/script";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 
 
 // storyblokInit({
@@ -311,6 +312,7 @@ export default async function LocalLayout({ children, params}) {
             <footer className={'bg-[#3B604E]'}>
               <Footer links={headMenu} sitename={menu?.siteName} footer={footer}/>
             </footer>
+            <ScrollToTop />
             <CookieAlert data={global.data.story.content.CookieMessage} />
           </NextIntlClientProvider>
           <Script id={'clarity-script'} strategy={'afterInteractive'}  dangerouslySetInnerHTML={{
