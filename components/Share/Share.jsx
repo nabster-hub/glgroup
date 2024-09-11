@@ -12,12 +12,21 @@ const Share = () => {
     const locale = useLocale();
 
     const link = ()=>{
-        if(locale === "ru"){
-            return "https://www.glgconsult.com/"+locale+ pathname;
-        }else{
-            return "https://www.glgconsult.com"+pathname;
-        }
+        return "https://www.glgconsult.com"+pathname;
+    }
 
+    const copyLink = (e) => {
+        e.preventDefault();
+        const linkToCopy = link()
+
+        navigator.clipboard.writeText(linkToCopy)
+            .then(()=>{
+                SetOpen(false)
+                console.log("Copied!");
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     return (
@@ -33,7 +42,7 @@ const Share = () => {
                                 stroke="#343434" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                     </div>
-                    <span className={styles.text}>Поделиться</span>
+                    <span className={styles.text}>{locale === 'ru' ? "Поделиться" : "Share"}</span>
                 </>
             )
             }
@@ -99,7 +108,7 @@ const Share = () => {
                            </svg>
 
                        </Link>
-                       <Link href={'#'} aria-value={''} className={styles.item}>
+                       <Link href={'#'} onClick={copyLink} aria-value={''} className={styles.item}>
 
 
                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
