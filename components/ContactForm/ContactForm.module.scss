@@ -161,16 +161,31 @@
           gap: 26px;
           justify-content: center;
           align-items: center;
+          &:hover{
+            background: $primary;
+            color: $text;
+            span{
+              font-weight: 500;
+            }
+            i{
+              svg{
+                path{
+                  fill: $text;
+                }
+              }
+            }
+            transition: 200ms ease-in-out;
+          }
           @media (min-width: 1024px) {
-            width: 219px;
-            height: 232px;
+            width: 197px;
+            height: 175px;
             padding-top: unset;
             padding-bottom: unset;
           }
           @media (min-width: 1280px) {
-            width: 249px;
-            height: 262px;
-            border-top-right-radius: 130px;
+            width: 196px;
+            height: 174px;
+            border-top-right-radius: 90px;
             padding-top: unset;
             padding-bottom: unset;
           }
@@ -180,12 +195,13 @@
             line-height: 14px;
             font-weight: 400;
             display: block;
+            text-align: center;
             @media (min-width: 1024px) {
               font-size: 16px;
               line-height: 20px;
             }
             @media (min-width: 1280px) {
-              font-size: 20px;
+              font-size: 18px;
               line-height: 24px;
             }
           }
@@ -202,8 +218,8 @@
             }
             @media (min-width: 1280px) {
               svg{
-                width: 85px;
-                height: 85px;
+                width: 58px;
+                height: 58px;
               }
             }
           }
