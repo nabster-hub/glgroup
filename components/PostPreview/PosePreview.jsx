@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, {useEffect, useState} from 'react';
 import styles from './PostPreview.module.scss';
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +18,23 @@ const PosePreview = ({blok, other, locale}) => {
             return link.cached_url;
         }
     }
-    return (
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <=768);
+        };
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () =>{
+            window.removeEventListener('resize', handleResize);
+        }
+    }, []);
+
+    const postContent = (
         <div {...storyblokEditable(blok)} className={styles.postPreview}>
             <div className={clsx(styles.imgBlock, other && styles.other)}>
                 <Image
@@ -37,7 +54,8 @@ const PosePreview = ({blok, other, locale}) => {
                 <div className="flex flex-1 justify-between mb-4">
                     <span className={styles.date}>{formattedDate}</span>
                     {(blok.content?.showAuthor && blok.content.Author?.id) && (
-                        <Link href={createLink(blok.content.Author)} className={styles.author}>{blok.content.authorLabel}</Link>
+                        <Link href={createLink(blok.content.Author)}
+                              className={styles.author}>{blok.content.authorLabel}</Link>
                     )}
 
                 </div>
@@ -49,10 +67,20 @@ const PosePreview = ({blok, other, locale}) => {
                         {blok.content.description}
                     </div>
                 </div>
-                <Link href={'/'+blok.full_slug} className={styles.read}>{locale === 'ru' ? "Читать" : "Read"}</Link>
+                <Link href={'/' + blok.full_slug} className={styles.read}>{locale === 'ru' ? "Читать" : "Read"}</Link>
             </div>
         </div>
     );
+
+    if(isMobile){
+        return (
+            <Link href={'/'+blok.full_slug}>
+                {postContent}
+            </Link>
+        )
+    }
+
+    return postContent;
 };
 
 
