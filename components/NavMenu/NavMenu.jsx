@@ -9,7 +9,7 @@ import useScrollOffset from "@/lib/offset";
 import styles from "./NavMenu.module.scss"
 import {useLocale} from "next-intl";
 
-export default function NavMenu ({headMenu, menu}) {
+export default function NavMenu ({headMenu, menu, contact}) {
     const pathname = usePathname();
     const [white, setWhite] = useState(false);
     const [fixed, setFixed] = useState(false);
@@ -77,7 +77,7 @@ export default function NavMenu ({headMenu, menu}) {
         <header className={clsx(!white ? `w-full z-20 ${styles.blackMenu}` : `w-full mb-5 lg:mb-12 ${styles.whiteMenu}`, fixed ? styles.fixed : '')}>
             <Header links={headMenu} type={white} menu={menu}/>
             {Home && (
-                <Menu menu={menu} type={white}/>
+                <Menu menu={menu} type={white} contactFrom={contact}/>
             )}
             <MobileMenu menu={headMenu} link={menu} type={white}/>
         </header>
