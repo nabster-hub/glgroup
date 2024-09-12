@@ -48,18 +48,33 @@ export default async function Post ({blok}) {
     }
     return (
         <section {...storyblokEditable(blok)}>
+            <div itemScope itemType="https://schema.org/NewsArticle" className={"hidden"}>
+                <div itemProp="headline">{blok.content.title}</div>
+                <img itemProp="image" src={blok.content.img.filename}/>
+                <div>
+                    <span itemProp="datePublished" content={blok.created_at}>
+                      {formattedDate}
+                    </span>
+                    (last modified
+                    <span itemProp="dateModified" content={blok.published_at}>
+                      {formattedDate}
+                    </span>
+                    )
+                </div>
+            </div>
             <div className="container pb-24">
                 <h1 className={'h1 mb-5 xl:mb-4'}>{blok.content.title}</h1>
                 <div className="flex gap-8 items-center mb-5 xl:mb-10 ">
                     <span className={styles.date}>{formattedDate}</span>
                     {blok.content.showAuthor && (
-                        <Link href={createLink(blok.content.Author)} className={styles.author}>{blok.content.authorLabel}</Link>
+                        <Link href={createLink(blok.content.Author)}
+                              className={styles.author}>{blok.content.authorLabel}</Link>
                     )}
 
                 </div>
                 <div className={styles.img}>
                     <Image src={blok.content.img.filename} alt={blok.content.img.alt}
-                        fill
+                           fill
                            quality={90}
                            sizes="(max-width: 768px) 50vw,
                                  (max-width: 1200px) 75vw,
@@ -70,14 +85,14 @@ export default async function Post ({blok}) {
                     />
                 </div>
                 <div className={"mb-16"}>
-                    {blok.content.textBlocks && blok.content.textBlocks.map((e, _uid)=>(
-                        <StoryblokComponent blok={e} key={_uid} />
+                    {blok.content.textBlocks && blok.content.textBlocks.map((e, _uid) => (
+                        <StoryblokComponent blok={e} key={_uid}/>
                     ))}
                 </div>
-                <Share />
+                <Share/>
             </div>
             <ContactForm blok={contactForm.data.story.content.body[0]}/>
-            <OtherArticles posts={posts.data.stories} />
+            <OtherArticles posts={posts.data.stories}/>
         </section>
     );
 };
