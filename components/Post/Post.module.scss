@@ -41,3 +41,55 @@
     margin-bottom: 40px ;
   }
 }
+.contentArticles{
+  width: 100%;
+  max-width: 768px;
+  position: relative;
+  padding: 10px 0 10px 20px;
+  margin: 80px auto 40px;
+
+
+  @media (min-width: 1024px) {
+    border-left: 4px solid #FFDA2B;
+    &:before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      left: -60px;
+      width: 60px;
+      height: 60px;
+      background: url(/img/icons/content.svg) 50% 50% no-repeat #FFDA2B;
+      background-size: 30px;
+      border-radius: 10px 10px 0 50%;
+    }
+  }
+
+  .listLinks{
+    counter-reset: li;
+    li{
+      margin-bottom: 20px;
+      transition: .3s linear;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &:before {
+        counter-increment: li;
+        content: counters(li, "");
+        margin-right: 10px;
+        font-weight: 700;
+        width: 28px;
+        height: 28px;
+        text-align: center;
+        line-height: 28px;
+        display: inline-block;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        transition: .3s linear;
+      }
+      &:hover:before {
+        border-color: #FFDA2B;
+        color: #FFDA2B;
+      }
+    }
+  }
+}

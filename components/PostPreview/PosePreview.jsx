@@ -67,7 +67,10 @@ const PosePreview = ({blok, other, locale}) => {
                         {blok.content.description}
                     </div>
                 </div>
-                <Link href={'/' + blok.full_slug} className={styles.read}>{locale === 'ru' ? "Читать" : "Read"}</Link>
+                {!isMobile && (
+                    <Link href={'/' + blok.full_slug} className={styles.read}>{locale === 'ru' ? "Читать" : "Read"}</Link>
+                )}
+
             </div>
         </div>
     );
