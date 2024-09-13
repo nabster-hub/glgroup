@@ -1,4 +1,4 @@
-
+@import "app/variables";
 .header{
   display: none;
   box-sizing: border-box;
@@ -15,6 +15,39 @@
   &.black{
     background: rgb(18 18 18 / 10%);
     border-bottom: 1px solid rgba(18, 18, 18, .1);
+  }
+  .blackIcon{
+    display: flex;
+    align-items: center;
+    svg{
+      path{
+        fill: #121212;
+      }
+    }
+    &:hover{
+      svg{
+        path{
+          fill: #3B604E;
+        }
+      }
+    }
+  }
+  .whiteIcon{
+    display: flex;
+    align-items: center;
+    svg{
+      path{
+        fill: #ffffff;
+      }
+    }
+    &:hover{
+      transition: all 0.3s ease;
+      svg{
+        path{
+          fill: $primary;
+        }
+      }
+    }
   }
   .imgBlack{
     svg{

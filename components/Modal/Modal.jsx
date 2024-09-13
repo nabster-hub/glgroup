@@ -5,10 +5,11 @@ import clsx from "clsx";
 import {useLocale} from "next-intl";
 import styles from "./Modal.module.scss";
 import ContactForm from "@/components/ContactForm/ContactForm";
-const Modal = ({object, key, type, contactForm}) => {
+const Modal = ({object, uid, type, contactForm}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const locale = useLocale();
+
 
     const createLink = (link) => {
         if(locale === 'ru'){
@@ -47,7 +48,7 @@ const Modal = ({object, key, type, contactForm}) => {
                       e.preventDefault();
                       openModal();
                   }}
-                  key={key}
+                  key={uid}
                   className={clsx(!object.contact && type ? 'hover:bg-text-green-active' :'hover:bg-text-yellow-active',
                       object.contact && !type && 'border-yellow-active text-yellow-active border rounded-3xl lg:px-2.5 lg:py-2 xl:px-3 xl:py-2.5 hover:bg-yellow-active hover:text-black',
                       object.contact && type && 'border-green-active text-green-active border rounded-3xl lg:px-2.5 lg:py-2 xl:px-3 xl:py-2.5 hover:bg-green-active hover:text-black')}
@@ -55,7 +56,7 @@ const Modal = ({object, key, type, contactForm}) => {
                 {object.label}
             </Link>
             {isModalOpen && (
-                <div className={styles.modalOverlay} onClick={closeModal}>
+                <div className={styles.modalOverlay} onClick={closeModal} key={uid+1}>
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                         <i className={styles.button} onClick={closeModal}>
                             <svg className={styles.customSvg} width="64px" height="64px" viewBox="0 0 24 24" fill="none"

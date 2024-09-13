@@ -40,8 +40,6 @@ export default async function Post ({blok}) {
     const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
     const anchors = findAnchors(blok.content.textBlocks)
 
-    console.log(anchors)
-
     const createLink = (link) => {
         if(locale === 'ru' && link.linktype === 'story'){
             return '/ru/'+link.cached_url;
@@ -93,7 +91,7 @@ export default async function Post ({blok}) {
                             <span className={"h2 mb-6 block"}>{locale === 'ru' ? "Содержание" : "Content"}</span>
                             <ol className={styles.listLinks}>
                                 {anchors.map((anchor, index) => (
-                                    <li><Link href={`#${anchor.marks[0].attrs.id}`} key={index}> {anchor.text}</Link>
+                                    <li key={index}><Link href={`#${anchor.marks[0].attrs.id}`} > {anchor.text}</Link>
                                     </li>
                                 ))}
                             </ol>
