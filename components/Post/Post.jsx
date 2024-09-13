@@ -6,11 +6,11 @@ import Image from "next/image";
 import Share from "@/components/Share/Share";
 import ContactForm from "@/components/ContactForm/ContactForm";
 import {fetchData} from "@/lib/api";
-import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import OtherArticles from "@/components/OtherArticles/OtherArticles";
 import {storyblokEditable} from "@storyblok/react";
 import {useLocale} from "next-intl";
-
+import {findAnchors} from "@/lib/findAnchors";
+import textStyles from '@/components/UI/UI.module.scss';
 
 export async function getData(title){
     let sbParams = {
@@ -38,6 +38,9 @@ export default async function Post ({blok}) {
     const contactForm = await fetchData('blog-contact', {version: 'draft', language: locale})
     const posts = await getData(blok.content.title);
     const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
+    const anchors = findAnchors(blok.content.textBlocks)
+
+    console.log(anchors)
 
     const createLink = (link) => {
         if(locale === 'ru' && link.linktype === 'story'){
@@ -83,6 +86,16 @@ export default async function Post ({blok}) {
                                objectFit: "cover",
                            }}
                     />
+                </div>
+                <div className={"mb-16"}>
+                    <div className={styles.contentArticles}>
+                        <span className={"h2 mb-6 block"}>{locale === 'ru' ? "Содержание": "Content"}</span>
+                        <ol className={styles.listLinks}>
+                            {anchors.map((anchor, index) => (
+                              <li><Link href={`#${anchor.marks[0].attrs.id}`} key={index}> {anchor.text}</Link></li>
+                            ))}
+                        </ol>
+                    </div>
                 </div>
                 <div className={"mb-16"}>
                     {blok.content.textBlocks && blok.content.textBlocks.map((e, _uid) => (
