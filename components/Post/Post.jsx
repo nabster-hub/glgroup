@@ -87,16 +87,20 @@ export default async function Post ({blok}) {
                            }}
                     />
                 </div>
-                <div className={"mb-16"}>
-                    <div className={styles.contentArticles}>
-                        <span className={"h2 mb-6 block"}>{locale === 'ru' ? "Содержание": "Content"}</span>
-                        <ol className={styles.listLinks}>
-                            {anchors.map((anchor, index) => (
-                              <li><Link href={`#${anchor.marks[0].attrs.id}`} key={index}> {anchor.text}</Link></li>
-                            ))}
-                        </ol>
+                {anchors.length !== 0 && (
+                    <div className={"mb-16"}>
+                        <div className={styles.contentArticles}>
+                            <span className={"h2 mb-6 block"}>{locale === 'ru' ? "Содержание" : "Content"}</span>
+                            <ol className={styles.listLinks}>
+                                {anchors.map((anchor, index) => (
+                                    <li><Link href={`#${anchor.marks[0].attrs.id}`} key={index}> {anchor.text}</Link>
+                                    </li>
+                                ))}
+                            </ol>
+                        </div>
                     </div>
-                </div>
+                )}
+
                 <div className={"mb-16"}>
                     {blok.content.textBlocks && blok.content.textBlocks.map((e, _uid) => (
                         <StoryblokComponent blok={e} key={_uid}/>
