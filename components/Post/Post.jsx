@@ -37,7 +37,7 @@ export default async function Post ({blok}) {
     const date = new Date(blok.published_at);
     const contactForm = await fetchData('blog-contact', {version: 'draft', language: locale})
     const posts = await getData(blok.content.title);
-    const formattedDate = date.toLocaleDateString("ru", {day: 'numeric', month: 'long', year: 'numeric'});
+    const formattedDate = date.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
     const anchors = findAnchors(blok.content.textBlocks)
 
     const createLink = (link) => {
