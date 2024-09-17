@@ -12,10 +12,11 @@ import {useLocale} from "next-intl";
 import {findAnchors} from "@/lib/findAnchors";
 import textStyles from '@/components/UI/UI.module.scss';
 
-export async function getData(title){
+export async function getData(title, locale){
     let sbParams = {
         version: "published",
         starts_with: 'blog/',
+        language: locale,
         page: 1,
         per_page: 6,
         filter_query:{
@@ -36,7 +37,7 @@ export default async function Post ({blok}) {
     const locale = useLocale();
     const date = new Date(blok.published_at);
     const contactForm = await fetchData('blog-contact', {version: 'draft', language: locale})
-    const posts = await getData(blok.content.title);
+    const posts = await getData(blok.content.title, locale);
     const formattedDate = date.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
     const anchors = findAnchors(blok.content.textBlocks)
 
