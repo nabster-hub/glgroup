@@ -36,9 +36,11 @@ export async function getData(title, locale){
 export default async function Post ({blok}) {
     const locale = useLocale();
     const date = new Date(blok.published_at);
+    const create  = new Date(blok.created_at);
     const contactForm = await fetchData('blog-contact', {version: 'draft', language: locale})
     const posts = await getData(blok.content.title, locale);
     const formattedDate = date.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
+    const created_at = create.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
     const anchors = findAnchors(blok.content.textBlocks)
 
     const createLink = (link) => {
@@ -55,7 +57,7 @@ export default async function Post ({blok}) {
                 <img itemProp="image" src={blok.content.img.filename}/>
                 <div>
                     <span itemProp="datePublished" content={blok.created_at}>
-                      {formattedDate}
+                      {created_at}
                     </span>
                     (last modified
                     <span itemProp="dateModified" content={blok.published_at}>
@@ -92,7 +94,7 @@ export default async function Post ({blok}) {
                             <span className={"h2 mb-6 block"}>{locale === 'ru' ? "Содержание" : "Content"}</span>
                             <ol className={styles.listLinks}>
                                 {anchors.map((anchor, index) => (
-                                    <li key={index}><Link href={`#${anchor.marks[0].attrs.id}`} > {anchor.text}</Link>
+                                    <li key={index}><Link href={`#${anchor.marks[0].attrs.id}`} >{anchor.text}</Link>
                                     </li>
                                 ))}
                             </ol>

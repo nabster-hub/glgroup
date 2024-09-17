@@ -77,6 +77,12 @@
         border-color: #FFDA2B;
         color: #FFDA2B;
       }
+      a{
+        text-decoration: underline;
+        @media (min-width: 1024px) {
+          text-decoration: none;
+        }
+      }
     }
   }
 }
