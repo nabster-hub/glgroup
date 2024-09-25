@@ -12,6 +12,26 @@ import {fetchData} from "@/lib/api";
 
 
 export const revalidate = 3600;
+export async function generateMetadata({params: {locale}},parent){
+    if(locale === 'ru'){
+        return{
+            title: "Блог",
+            description: "",
+            alternates: {
+                canonical: './'
+            }
+        }
+    }else{
+        return{
+            title: "Blog",
+            description: "",
+            alternates: {
+                canonical: './'
+            }
+        }
+    }
+
+}
 
 export async function getPosts(params, locale){
     let sbParams = {
