@@ -39,7 +39,7 @@ const LazyLoadBlog = ({count, locale}) => {
             {data?.length > 0 && (
                 <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-8'}>
                     {data.map((e, _uid)=>(
-                        <PosePreview blok={e} key={_uid} />
+                        <PosePreview blok={e} key={_uid} locale={locale}/>
                     ))}
                 </div>
             )}
