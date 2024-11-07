@@ -27,7 +27,7 @@ export async function POST(request) {
 
         };
 
-        const response = await fetch("https://goodluckgroup.bitrix24.id/rest/1/3agyk13zlggvmlgu/crm.lead.add.json", {
+        const response = await fetch("https://goodluckgroup.bitrix24.id/rest/1/m4npjv9x5yyqu0l5/crm.lead.add.json", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
