@@ -45,13 +45,6 @@ import Script from "next/script";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 
 
-// storyblokInit({
-//    accessToken: "ZqkBIdpCfAPhrN7glDs1Swtt",
-//    use: [apiPlugin],
-//
-//  });
-
-
 
 const {
   StoryblokClient,
@@ -64,7 +57,7 @@ let storyblokApi;
 
 const AppStoryblokInit = () => {
   storyblokInit({
-    accessToken: "ZqkBIdpCfAPhrN7glDs1Swtt",
+    accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
     use: [apiPlugin],
     components:{
       page: Page,

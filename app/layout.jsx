@@ -28,7 +28,7 @@ import HeroAboutUs from "@/components/HeroAboutUs/HeroAboutUs";
 import OurAdvantages from "@/components/OurAdvantages/OurAdvantages";
 
 storyblokInit({
-    accessToken: "ZqkBIdpCfAPhrN7glDs1Swtt",
+    accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
     use: [apiPlugin],
     components:{
         page: Page,
