@@ -22,7 +22,17 @@ export async function generateMetadata({params, params:{locale}},parent){
             description: data.story.content.metaDescription,
             alternates: {
                 canonical: './'
-            }
+            },
+            openGraph:{
+                title: data.story.content.metaTitle,
+                description: data.story.content.metaDescription,
+                images:[
+                    {
+                        url: data.story.content?.metaImage.filename,
+                        alt: data.story.content?.metaImageAlt,
+                    }
+                ],
+            },
         }
     }
 }

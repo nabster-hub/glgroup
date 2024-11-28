@@ -19,7 +19,17 @@ export async function generateMetadata({params: {locale}},parent){
             description: "",
             alternates: {
                 canonical: './'
-            }
+            },
+            openGraph:{
+                title: data.story.content.metaTitle,
+                description: data.story.content.metaDescription,
+                images:[
+                    {
+                        url: data.story.content?.metaImage.filename,
+                        alt: data.story.content?.metaImageAlt,
+                    }
+                ],
+            },
         }
     }else{
         return{
@@ -27,7 +37,17 @@ export async function generateMetadata({params: {locale}},parent){
             description: "",
             alternates: {
                 canonical: './'
-            }
+            },
+            openGraph:{
+                title: data.story.content.metaTitle,
+                description: data.story.content.metaDescription,
+                images:[
+                    {
+                        url: data.story.content?.metaImage.filename,
+                        alt: data.story.content?.metaImageAlt,
+                    }
+                ],
+            },
         }
     }
 
