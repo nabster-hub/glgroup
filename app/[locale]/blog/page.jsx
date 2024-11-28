@@ -19,17 +19,21 @@ export async function generateMetadata({params: {locale}},parent){
             title: "Блог",
             description: "",
             alternates: {
-                canonical: './'
+                canonical: './',
+                languages: {
+                    'ru_RU': 'https://www.glgconsult.com/ru/blog',
+                    'en_EN': 'https://www.glgconsult.com/en/blog',
+                },
             },
             openGraph:{
-                title: data.story.content.metaTitle,
-                description: data.story.content.metaDescription,
-                images:[
-                    {
-                        url: data.story.content?.metaImage.filename,
-                        alt: data.story.content?.metaImageAlt,
-                    }
-                ],
+                title: "Блог",
+                description: "",
+                // images:[
+                //     {
+                //         url: data.story.content?.metaImage?.filename,
+                //         alt: data.story.content?.metaImageAlt,
+                //     }
+                // ],
             },
         }
     }else{
@@ -37,17 +41,21 @@ export async function generateMetadata({params: {locale}},parent){
             title: "Blog",
             description: "",
             alternates: {
-                canonical: './'
+                canonical: './',
+                languages: {
+                    'ru_RU': 'https://www.glgconsult.com/ru/blog',
+                    'en_EN': 'https://www.glgconsult.com/en/blog',
+                },
             },
             openGraph:{
-                title: data.story.content.metaTitle,
-                description: data.story.content.metaDescription,
-                images:[
-                    {
-                        url: data.story.content?.metaImage.filename,
-                        alt: data.story.content?.metaImageAlt,
-                    }
-                ],
+                title: "Blog",
+                description: "",
+                // images:[
+                //     {
+                //         url: data.story.content?.metaImage.filename,
+                //         alt: data.story.content?.metaImageAlt,
+                //     }
+                // ],
             },
         }
     }

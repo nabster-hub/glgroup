@@ -21,14 +21,18 @@ export async function generateMetadata({params, params:{locale}}, parent){
             title: data.story.content.metaTitle,
             description: data.story.content.metaDescription,
             alternates: {
-                canonical: './'
+                canonical: './',
+                languages: {
+                    'ru_RU': 'https://www.glgconsult.com/ru/authors/'+data.story.slug,
+                    'en_EN': 'https://www.glgconsult.com/en/authors/'+data.story.slug,
+                },
             },
             openGraph:{
                 title: data.story.content.metaTitle,
                 description: data.story.content.metaDescription,
                 images:[
                     {
-                        url: data.story.content?.metaImage.filename,
+                        url: data.story.content?.metaImage?.filename,
                         alt: data.story.content?.metaImageAlt,
                     }
                 ],

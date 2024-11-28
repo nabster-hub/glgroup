@@ -5,12 +5,14 @@ import {storyblokEditable} from "@storyblok/react";
 import Breadcrumbs from "/components/Breadcrumbs/Breadcrumbs";
 import {notFound} from "next/navigation";
 import {unstable_setRequestLocale} from "next-intl/server";
+import {console} from "next/dist/compiled/@edge-runtime/primitives";
 export const revalidate = 3600;
 
 
 export async function generateMetadata({params, params: {locale}},parent){
     unstable_setRequestLocale(locale);
     const res = await fetchData(`rules/${params.slug}`, {version: 'draft', language: locale});
+
     if(!res){
         return {
             title: "Page not found",
@@ -18,18 +20,23 @@ export async function generateMetadata({params, params: {locale}},parent){
         }
     }else{
         const {data} = res
+        console.log(data.story.slug);
         return{
             title: data.story.content.metaTitle,
             description: data.story.content.metaDescription,
             alternates: {
-                canonical: './'
+                canonical: './',
+                languages: {
+                    'ru_RU': 'https://www.glgconsult.com/ru/'+data.story.slug,
+                    'en_EN': 'https://www.glgconsult.com/en/'+data.story.slug,
+                },
             },
             openGraph:{
                 title: data.story.content.metaTitle,
                 description: data.story.content.metaDescription,
                 images:[
                     {
-                        url: data.story.content?.metaImage.filename,
+                        url: data.story.content?.metaImage?.filename,
                         alt: data.story.content?.metaImageAlt,
                     }
                 ],

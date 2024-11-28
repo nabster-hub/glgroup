@@ -21,14 +21,14 @@ export async function generateMetadata({params: {locale}},parent){
                 canonical: './'
             },
             openGraph:{
-                title: data.story.content.metaTitle,
-                description: data.story.content.metaDescription,
-                images:[
-                    {
-                        url: data.story.content?.metaImage.filename,
-                        alt: data.story.content?.metaImageAlt,
-                    }
-                ],
+                title: "Блог",
+                description: "",
+                // images:[
+                //     {
+                //         url: data.story.content?.metaImage.filename,
+                //         alt: data.story.content?.metaImageAlt,
+                //     }
+                // ],
             },
         }
     }else{
@@ -39,14 +39,14 @@ export async function generateMetadata({params: {locale}},parent){
                 canonical: './'
             },
             openGraph:{
-                title: data.story.content.metaTitle,
-                description: data.story.content.metaDescription,
-                images:[
-                    {
-                        url: data.story.content?.metaImage.filename,
-                        alt: data.story.content?.metaImageAlt,
-                    }
-                ],
+                title: "Blog",
+                description: "",
+                // images:[
+                //     {
+                //         url: data.story.content?.metaImage?.filename,
+                //         alt: data.story.content?.metaImageAlt,
+                //     }
+                // ],
             },
         }
     }

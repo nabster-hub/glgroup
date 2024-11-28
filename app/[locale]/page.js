@@ -11,25 +11,23 @@ export async function generateMetadata({params},parent){
     unstable_setRequestLocale(locale);
     // let locale = params.locale;
     // unstable_setRequestLocale(locale);
-    let lang = '';
-    if(locale === 'ru'){
-        lang = 'ru_RU'
-    }else if(locale === 'en'){
-        lang = 'en_US'
-    }
     const {data} = await fetchData("index", {version: 'draft', language: locale});
     return{
         title: data.story.content.metaTitle,
         description: data.story.content.metaDescription,
         alternates: {
-            canonical: './'
+            canonical: './',
+            languages: {
+                'ru_RU': 'https://www.glgconsult.com/ru',
+                'en_EN': 'https://www.glgconsult.com/en',
+            },
         },
         openGraph:{
             title: data.story.content.metaTitle,
             description: data.story.content.metaDescription,
             images:[
                 {
-                    url: data.story.content.metaImage.filename,
+                    url: data.story.content?.metaImage?.filename,
                     alt: data.story.content.metaImageAlt,
                 }
             ],
