@@ -1,0 +1,38 @@
+@import 'app/variables';
+.searchBar{
+  min-width: 300px;
+  height: 51px;
+  padding: 10px 20px;
+  border: 2px solid $text;
+  border-radius: 85px;
+
+  form{
+    display: flex;
+    gap: 10px;
+
+    input{
+      border: unset;
+      &:focus {
+        outline: none;
+      }
+      &::placeholder{
+        color: $text;
+      }
+    }
+    button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:hover{
+        svg{
+          path{
+            fill: #3B604E;
+          }
+        }
+      }
+    }
+  }
+
+
+
+}

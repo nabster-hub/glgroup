@@ -10,6 +10,7 @@ import {fetchBlog} from "@/lib/blog";
 import {console} from "next/dist/compiled/@edge-runtime/primitives";
 import {unstable_setRequestLocale} from "next-intl/server";
 import {fetchData} from "@/lib/api";
+import SearchBar from "@/components/SearchBar/SearchBar";
 
 export const revalidate = 3600;
 
@@ -126,7 +127,11 @@ export default async function Page ({params: {locale}}){
             <section>
                 <div className="container pb-24">
                     <h1 className={'mb-5'}>{locale === 'ru' ? 'Блог' : 'Blog'}</h1>
-                    <AllCategroyes blok={category.data.datasource_entries} locale={locale} />
+                    <div className={'flex gap-4'}>
+                        <AllCategroyes blok={category.data.datasource_entries} locale={locale} />
+                        <SearchBar locale={locale}/>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-8">
                         {posts && posts.map((e, _uid)=>(
                             <PosePreview blok={e} key={_uid} locale={locale} />
