@@ -15,7 +15,7 @@ const Organization = () => {
         ],
         department:[
             {
-                "@context": "https://schemas.org",
+                "@context": "https://schema.org",
                 "@type": "Organization",
                 name: "glgconsult.com",
                 image: "https://www.glgconsult.com/img/logo.svg",
