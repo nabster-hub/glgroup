@@ -4,6 +4,7 @@ import {StoryblokComponent} from "@storyblok/react/rsc";
 import {storyblokEditable} from "@storyblok/react";
 import Breadcrumbs from "/components/Breadcrumbs/Breadcrumbs";
 import {unstable_setRequestLocale} from "next-intl/server";
+import Organization from "@/components/JSON-LD/Organization";
 export const revalidate = 3600;
 
 
@@ -37,6 +38,7 @@ export default async function Page({params: {locale}}) {
     const {data} = await fetchData("contacts", {version: 'draft', language: locale});
     return (
         <>
+            <Organization />
             <Breadcrumbs links={data?.story.content.breadcrumbs}/>
             <StoryblokComponent blok={data?.story.content}  />
         </>

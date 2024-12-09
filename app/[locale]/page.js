@@ -3,6 +3,7 @@ import {getStoryblokApi, StoryblokComponent} from "@storyblok/react/rsc";
 import {fetchData} from "@/lib/api";
 import {unstable_setRequestLocale} from "next-intl/server";
 import {useLocale} from "next-intl";
+import Organization from "@/components/JSON-LD/Organization";
 
 export const revalidate = 3600;
 
@@ -39,6 +40,10 @@ export default async function Home({params}) {
     unstable_setRequestLocale(locale);
     const {data} = await fetchData("index", {version: 'draft', language: locale});
     return (
-          <StoryblokComponent blok={data?.story.content}  />
+        <>
+            <Organization />
+            <StoryblokComponent blok={data?.story.content}  />
+        </>
+
     );
 }

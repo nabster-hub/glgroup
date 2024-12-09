@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import Post from "@/components/Post/Post";
 import {unstable_setRequestLocale} from "next-intl/server";
 import {notFound} from "next/navigation";
+import Article from "@/components/JSON-LD/Article";
 export const revalidate = 3600;
 export async function generateMetadata({params, params: {locale}}, parent){
     unstable_setRequestLocale(locale);
@@ -46,9 +47,10 @@ export default async function Page({params, params: {locale}}){
         notFound()
     }
     const {data} = res
-
+    //console.log(data);
     return (
         <>
+            <Article article={data} />
             <Breadcrumbs links={data?.story.content.breadcrumbs}/>
                 <Post blok={data.story} slug={params.slug} />
 
