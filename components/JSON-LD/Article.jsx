@@ -8,7 +8,7 @@ const Article = ({article}) => {
     const dateModifeid = article.story.updated_at;
     const id = process.env.SITE_URL+article.story.full_slug;
     const jsonLD = {
-        '@context': 'https://schemas.org',
+        '@context': 'https://schema.org',
         '@type': 'Article',
         "@id" : id,
         headline: title,

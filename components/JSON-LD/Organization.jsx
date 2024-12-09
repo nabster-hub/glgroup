@@ -2,7 +2,7 @@ import React from 'react';
 
 const Organization = () => {
     const jsonLD = {
-        '@context': 'https://schemas.org',
+        '@context': 'https://schema.org',
         '@type': 'Organization',
         brand: "GLG Consult",
         logo: "https://www.glgconsult.com/img/logo.svg",
