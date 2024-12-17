@@ -6,7 +6,7 @@ const Organization = () => {
         '@type': 'Organization',
         brand: "GLG Consult",
         logo: "https://www.glgconsult.com/img/logo.svg",
-        name: "glgconsult.com",
+        name: "Good Luck Group",
         alternateName: "GLG Consult",
         url: "https://www.glgconsult.com",
         sameAs: [
@@ -17,7 +17,7 @@ const Organization = () => {
             {
                 "@context": "https://schema.org",
                 "@type": "Organization",
-                name: "glgconsult.com",
+                name: "Good Luck Group",
                 image: "https://www.glgconsult.com/img/logo.svg",
                 address: {
                     "@type": "PostalAddress",
