@@ -3,6 +3,7 @@ import {fetchData} from "@/lib/api";
 import {StoryblokComponent} from "@storyblok/react/rsc";
 import {unstable_setRequestLocale} from "next-intl/server";
 import {notFound} from "next/navigation";
+import Service from "@/components/JSON-LD/Service";
 
 export const revalidate = 3600;
 
@@ -49,6 +50,10 @@ export default async function Page({params, params:{locale}}) {
     }
     const {data} = res
     return (
-        <StoryblokComponent blok={data?.story.content} />
+        <>
+            <Service into={data} lang={locale} />
+            <StoryblokComponent blok={data?.story.content} />
+        </>
+
     );
 }
