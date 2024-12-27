@@ -131,8 +131,7 @@ export default async function Page ({params, params: {locale}}){
                         <SearchBar locale={locale}/>
                     </div>
                     <div className={'flex gap-4'}>
-                        <AllCategroyes blok={category.data.datasource_entries} locale={locale}/>
-
+                        <AllCategroyes blok={category.data.datasource_entries} active={params.slug} locale={locale}/>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-8">
                         {posts && posts.map((e, _uid) => (
