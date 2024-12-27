@@ -130,17 +130,19 @@ export default async function Page ({params, params: {locale}}){
             <section>
                 <div className="container pb-24">
                     <h1 className={'mb-5'}>{locale === 'ru' ? 'Блог' : 'Blog'}</h1>
-                    <div className={'flex gap-4'}>
-                        <AllCategroyes blok={category.data.datasource_entries} locale={locale} />
+                    <div className={'flex justify-end mb-3'}>
                         <SearchBar locale={locale}/>
+                    </div>
+                    <div className={'flex gap-4'}>
+                        <AllCategroyes blok={category.data.datasource_entries} locale={locale}/>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-8">
-                        {posts && posts.map((e, _uid)=>(
-                            <PosePreview blok={e} key={_uid} locale={locale} />
+                        {posts && posts.map((e, _uid) => (
+                            <PosePreview blok={e} key={_uid} locale={locale}/>
                         ))}
                     </div>
-                    <LazyLoadBlog count={fetch.total} locale={locale} type={params.slug} />
+                    <LazyLoadBlog count={fetch.total} locale={locale} type={params.slug}/>
                 </div>
             </section>
         </>
