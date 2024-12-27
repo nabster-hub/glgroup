@@ -1,16 +1,20 @@
 'use client';
 import React, {useEffect, useState} from 'react';
 import styles from './SearchBar.module.scss'
-import {useParams, useRouter} from "next/navigation";
+import {useParams, useRouter, usePathname} from "next/navigation";
 
 
 const SearchBar = ({locale}) => {
     const [search, setSearch] = useState('')
     const router = useRouter();
     const params = useParams();
+    const pathname = usePathname();
+
+
 
     useEffect(() => {
-        if(params.slug){
+        console.log(pathname.split("/category/"))
+        if(params.slug && pathname.split("/category/").length === 1){
             setSearch(decodeURI(params.slug))
         }
     }, [params.slug]);
