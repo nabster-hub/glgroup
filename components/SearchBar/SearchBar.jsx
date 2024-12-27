@@ -13,7 +13,6 @@ const SearchBar = ({locale}) => {
 
 
     useEffect(() => {
-        console.log(pathname.split("/category/"))
         if(params.slug && pathname.split("/category/").length === 1){
             setSearch(decodeURI(params.slug))
         }
