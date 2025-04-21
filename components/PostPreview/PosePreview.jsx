@@ -19,20 +19,20 @@ const PosePreview = ({blok, other, locale}) => {
         }
     }
 
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <=768);
-        };
-        handleResize();
-
-        window.addEventListener('resize', handleResize);
-
-        return () =>{
-            window.removeEventListener('resize', handleResize);
-        }
-    }, []);
+    // const [isMobile, setIsMobile] = useState(false);
+    //
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         setIsMobile(window.innerWidth <=768);
+    //     };
+    //     handleResize();
+    //
+    //     window.addEventListener('resize', handleResize);
+    //
+    //     return () =>{
+    //         window.removeEventListener('resize', handleResize);
+    //     }
+    // }, []);
 
     const postContent = (
         <div {...storyblokEditable(blok)} className={styles.postPreview}>
@@ -67,23 +67,27 @@ const PosePreview = ({blok, other, locale}) => {
                         {blok.content.description}
                     </div>
                 </div>
-                {!isMobile && (
-                    <Link href={'/' + blok.full_slug} className={styles.read}>{locale === 'ru' ? "Читать" : "Read"}</Link>
-                )}
+                {/*{!isMobile && (*/}
+                {/*    <Link href={'/' + blok.full_slug} className={styles.read}>{locale === 'ru' ? "Читать" : "Read"}</Link>*/}
+                {/*)}*/}
 
             </div>
         </div>
     );
 
-    if(isMobile){
-        return (
-            <Link href={'/'+blok.full_slug}>
-                {postContent}
-            </Link>
-        )
-    }
+    // if(isMobile){
+    //     return (
+    //         <Link href={'/'+blok.full_slug}>
+    //             {postContent}
+    //         </Link>
+    //     )
+    // }
 
-    return postContent;
+    return (
+        <Link href={'/'+blok.full_slug} className={"hover:border-2 hover:border-green-800 transition-all duration-100 hover:rounded-[20px]"}>
+            {postContent}
+        </Link>
+    );
 };
 
 

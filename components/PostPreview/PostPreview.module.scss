@@ -4,13 +4,16 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
   .imgBlock{
     width: 100%;
     min-width: 328px;
     height: 172px;
     position: relative;
-    border-top-left-radius: 60px;
-    overflow: hidden;
+   // border-top-left-radius: 60px;
+    //overflow: hidden;
     @media (min-width: 450px) {
       height: 200px;
     }
@@ -32,7 +35,7 @@
     flex-direction: column;
     padding: 20px 35px;
     background: #F7F7F7;
-
+    min-height: 55%;
     .date{
       font-family: var(--font-gilroy);
       font-size: 14px;
