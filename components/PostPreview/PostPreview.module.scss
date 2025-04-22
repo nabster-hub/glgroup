@@ -10,20 +10,20 @@
   .imgBlock{
     width: 100%;
     min-width: 328px;
-    height: 172px;
+    min-height: 172px;
     position: relative;
    // border-top-left-radius: 60px;
     //overflow: hidden;
     @media (min-width: 450px) {
-      height: 200px;
+      min-height: 200px;
     }
     @media (min-width: 550px) {
-      height: 250px;
+      min-height: 250px;
     }
 
     @media (min-width: 1024px) {
       min-width: 300px;
-      height: 206px;
+      min-height: 206px;
       border-top-left-radius: 130px;
     }
     &.other{
@@ -36,6 +36,9 @@
     padding: 20px 35px;
     background: #F7F7F7;
     min-height: 55%;
+    @media (min-width: 768px) {
+      height: 60%;
+    }
     .date{
       font-family: var(--font-gilroy);
       font-size: 14px;

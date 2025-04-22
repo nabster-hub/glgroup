@@ -51,7 +51,7 @@ const PosePreview = ({blok, other, locale}) => {
                 />
             </div>
             <div className={styles.contentBlock}>
-                <div className="flex flex-1 justify-between mb-4">
+                <div className="flex justify-between mb-4">
                     <span className={styles.date}>{formattedDate}</span>
                     {(blok.content?.showAuthor && blok.content.Author?.id) && (
                         <Link href={createLink(blok.content.Author)}
