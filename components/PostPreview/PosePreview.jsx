@@ -50,8 +50,8 @@ const PosePreview = ({blok, other, locale}) => {
                     }}
                 />
             </div>
-            <div className={styles.contentBlock}>
-                <div className="flex justify-between mb-4">
+            <div className={clsx(styles.contentBlock, other && styles.other)}>
+                <div className={clsx("flex justify-between", other ? "mb-2" : 'mb-4')}>
                     <span className={styles.date}>{formattedDate}</span>
                     {(blok.content?.showAuthor && blok.content.Author?.id) && (
                         <Link href={createLink(blok.content.Author)}
@@ -60,7 +60,7 @@ const PosePreview = ({blok, other, locale}) => {
 
                 </div>
                 <div className={styles.textBlock}>
-                    <h2 className={styles.h2}>
+                    <h2 className={clsx(styles.h2, other && styles.other)}>
                         {blok.content.title}
                     </h2>
                     <div className={styles.text}>

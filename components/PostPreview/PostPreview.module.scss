@@ -28,6 +28,7 @@
     }
     &.other{
       min-width: 270px;
+      min-height: 180px;
     }
   }
   .contentBlock{
@@ -38,6 +39,9 @@
     min-height: 55%;
     @media (min-width: 768px) {
       height: 60%;
+    }
+    &.other{
+      padding: 10px 15px;
     }
     .date{
       font-family: var(--font-gilroy);
@@ -73,6 +77,10 @@
         @media (min-width: 1024px) {
           font-size: 18px;
           line-height: 20px;
+        }
+
+        &.other{
+          font-size: 18px;
         }
       }
       .text{

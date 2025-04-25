@@ -10,6 +10,7 @@ import PosePreview from "@/components/PostPreview/PosePreview";
 import styles from "./OtherArticles.module.scss";
 import {storyblokEditable} from "@storyblok/react";
 import {useLocale} from "next-intl";
+import clsx from "clsx";
 
 
 
@@ -20,64 +21,67 @@ export default function OtherArticles ({posts}) {
 
     return (
         <section>
-            <div className="container py-24">
-                <div className={styles.block}>
-                    <h2 className={styles.title}>
-                        {local === 'ru' ? 'Другие статьи' : 'Other articles'}
-                    </h2>
-                    <Swiper
-                        pagination={{
-                            type: 'fraction',
-                        }}
-                        slidesPerView={3}
-                        spaceBetween={45}
-                        onBeforeInit={(swiper) => {
-                            swiper.params.navigation.prevEl = arrowPrev.current;
-                            swiper.params.navigation.nextEl = arrowNext.current;
-                        }}
-                        modules={[Navigation]}
-                        navigation={{
-                            prevEl: arrowPrev.current,
-                            nextEl: arrowNext.current,
-                        }}
-                        breakpoints={{
-                            320: {
-                                slidesPerView: 1.2,
-                                spaceBetween: 20
-                            },
-                            550: {
-                                slidesPerView: 1.7,
-                                spaceBetween: 20
-                            },
-                            768: {
-                                slidesPerView: 2,
-                                spaceBetween: 20
-                            },
-                            1024: {
-                                slidesPerView:3,
-                                spaceBetween: 45
-                            }
-                        }}
+           <div className={styles.block}>
+               <h2 className={clsx(styles.title, "h3")}>
+                   {local === 'ru' ? 'Другие статьи' : 'Other articles'}
+               </h2>
+               <div className="flex overflow-x-scroll md:flex-col gap-4">
+                   {posts.map((e, _uid) => (
+                       <PosePreview blok={e} key={_uid} other={true} locale={local}/>
+                   ))}
+               </div>
 
-                        className="otherArticles"
-                    >
-                        {posts.map((e, _uid) => (
-                            <SwiperSlide key={_uid}>
-                                <PosePreview blok={e} key={_uid} other={true} locale={local}/>
-                            </SwiperSlide>
-                        ))}
+               {/*<Swiper*/}
+               {/*    pagination={{*/}
+               {/*        type: 'fraction',*/}
+               {/*    }}*/}
+               {/*    slidesPerView={1.2}*/}
+               {/*    spaceBetween={45}*/}
+               {/*    onBeforeInit={(swiper) => {*/}
+               {/*        swiper.params.navigation.prevEl = arrowPrev.current;*/}
+               {/*        swiper.params.navigation.nextEl = arrowNext.current;*/}
+               {/*    }}*/}
+               {/*    modules={[Navigation]}*/}
+               {/*    navigation={{*/}
+               {/*        prevEl: arrowPrev.current,*/}
+               {/*        nextEl: arrowNext.current,*/}
+               {/*    }}*/}
+               {/*    breakpoints={{*/}
+               {/*        320: {*/}
+               {/*            slidesPerView: 1.2,*/}
+               {/*            spaceBetween: 20*/}
+               {/*        },*/}
+               {/*        550: {*/}
+               {/*            slidesPerView: 1.7,*/}
+               {/*            spaceBetween: 20*/}
+               {/*        },*/}
+               {/*        768: {*/}
+               {/*            slidesPerView: 2,*/}
+               {/*            spaceBetween: 20*/}
+               {/*        },*/}
+               {/*        1024: {*/}
+               {/*            slidesPerView:3,*/}
+               {/*            spaceBetween: 45*/}
+               {/*        }*/}
+               {/*    }}*/}
 
-                        <div
-                            className="absolute top-0 right-0 min-w-[151px] min-h-[58px]">
-                            <div className={"otherArrows"}>
-                                <div className="swiper-button-prev" ref={arrowPrev}></div>
-                                <div className="swiper-button-next" ref={arrowNext}></div>
-                            </div>
-                        </div>
-                    </Swiper>
-                </div>
+               {/*    className="otherArticles"*/}
+               {/*>*/}
+               {/*    {posts.map((e, _uid) => (*/}
+               {/*        <SwiperSlide key={_uid}>*/}
+               {/*            <PosePreview blok={e} key={_uid} other={true} locale={local}/>*/}
+               {/*        </SwiperSlide>*/}
+               {/*    ))}*/}
 
-            </div>
+               {/*    <div*/}
+               {/*        className="absolute top-0 right-0 min-w-[151px] min-h-[58px]">*/}
+               {/*        <div className={"otherArrows"}>*/}
+               {/*            <div className="swiper-button-prev" ref={arrowPrev}></div>*/}
+               {/*            <div className="swiper-button-next" ref={arrowNext}></div>*/}
+               {/*        </div>*/}
+               {/*    </div>*/}
+               {/*</Swiper>*/}
+           </div>
         </section>
     );
 };
