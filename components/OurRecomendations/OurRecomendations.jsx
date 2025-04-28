@@ -2,12 +2,13 @@ import React from 'react';
 import {storyblokEditable} from "@storyblok/react";
 import styles from "./OurRecomendations.module.scss";
 import Slider from "./Slider";
+import clsx from "clsx";
 
 
 const OurRecomendations = ({blok}) => {
     return (
-        <section {...storyblokEditable(blok)} className={styles.blok}>
-            <div className="container py-20 lg:py-24">
+        <section {...storyblokEditable(blok)} className={clsx(styles.blok, "py-20 lg:py-24")}>
+            <div className="container">
                 <div className={styles.blockTitle}>
                     <i>
                         <svg width="44" height="44" viewBox="0 0 59 58" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,13 +42,13 @@ const OurRecomendations = ({blok}) => {
                     <span className={styles.subTitle}>{blok.subTitle}</span>
                     <h2 className={'h2'}>{blok.title}</h2>
                 </div>
-                <div className={styles.slider}>
-                    {blok?.slider && (
-                        <Slider items={blok?.slider}/>
-                    )}
-                </div>
-            </div>
 
+            </div>
+            <div className={styles.slider}>
+                {blok?.slider && (
+                    <Slider items={blok?.slider}/>
+                )}
+            </div>
         </section>
     );
 };
