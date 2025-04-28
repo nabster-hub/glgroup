@@ -25,7 +25,7 @@
   width: 100%;
   min-height: 120px;
   .sliders{
-
+    margin-right: 20px!important;
     position: relative;
     @media (min-width: 1024px) {
       height: 120px;
@@ -36,6 +36,7 @@
       position: relative;
       border: 2px solid #65656B;
       border-radius: 10px;
+      margin-right: 20px;
       @media (min-width: 1024px) {
         width: 300px;
         height: 100px;
