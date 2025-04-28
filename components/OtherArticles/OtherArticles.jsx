@@ -25,7 +25,7 @@ export default function OtherArticles ({posts}) {
                <h2 className={clsx(styles.title, "h3")}>
                    {local === 'ru' ? 'Другие статьи' : 'Other articles'}
                </h2>
-               <div className="flex overflow-x-scroll md:flex-col gap-4">
+               <div className="flex overflow-x-scroll md:overflow-auto md:flex-col gap-4">
                    {posts.map((e, _uid) => (
                        <PosePreview blok={e} key={_uid} other={true} locale={local}/>
                    ))}

@@ -42,7 +42,7 @@
 .text{
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 5px;
   font-family: var(--font-gilroy);
   font-size: 14px;
   font-weight: 500;
@@ -53,8 +53,18 @@
   @media (min-width: 1024px) {
     font-size: 18px;
   }
+  h2{
+    font-size: 32px;
+    line-height: 32px;
+    margin-bottom: 24px;
+  }
+  h3{
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 24px;
+  }
   p{
-
+    margin-bottom: 16px;
   }
 }
 .buttonBlock{
