@@ -22,7 +22,7 @@ const  Footer = ({links, sitename, footer}) => {
     }
     const locale = useLocale();
     return (
-        <div className={'container pt-16 lg:pt-24 lg:pb-12'}>
+        <div className={'container pt-16 lg:pb-12'}>
             <div className={styles.block}>
                 <div className={styles.firstBlock}>
                     <span className={styles.title}>{footer.title}</span>
@@ -87,7 +87,7 @@ const  Footer = ({links, sitename, footer}) => {
                                            alt={whatsappIcon.alt}/>
                                     <span className={clsx('font-gilroy font-bold', styles.wp)}>{whatsappNum}</span>
                                 </Link>
-                                <Link href={'mailto:'+mail} className={'flex gap-4 items-center hover:text-yellow-active mb-6'}>
+                                <Link href={'mailto:'+mail} className={'flex gap-4 items-center hover:text-yellow-active'}>
                                     <Image src={mailIcon.filename} width={'24'} height={'24'} alt={mailIcon.alt}/>
                                     <span className={clsx('font-gilroy font-bold', styles.email)}>{mail}</span>
                                 </Link>
