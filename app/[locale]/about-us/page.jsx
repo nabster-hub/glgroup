@@ -11,7 +11,7 @@ export async function generateMetadata({params},parent){
     const locale = params.locale;
     unstable_setRequestLocale(locale);
     const {data} = await fetchData("about-us", {version: 'draft', language: locale});
-    console.log(data.story.content);
+    //console.log(data.story.content);
     return{
         title: data.story.content.metaTitle,
         description: data.story.content.metaDescription,

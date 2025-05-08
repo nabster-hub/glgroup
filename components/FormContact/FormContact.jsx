@@ -76,7 +76,6 @@ const FormContact = ({blok}) => {
             })
         })
         const res = await response.json();
-        console.log(res)
         if(res.status === 500){
             setSended(false);
         }else{

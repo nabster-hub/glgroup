@@ -51,7 +51,7 @@ export async function generateMetadata({params: {locale}},parent){
 }
 
 export async function getPosts(slug, locale){
-    console.log(slug);
+    //console.log(slug);
     let sbParams = {
         version: "published",
         starts_with: 'blog/',

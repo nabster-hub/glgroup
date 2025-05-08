@@ -108,8 +108,8 @@ const ContactForm = ({blok}) => {
                                        }}
                                 />
                                 {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
-                                <div className="flex flex-col lg:flex-row gap-5 mb-8 lg:mb-12">
-                                    <div className="">
+                                <div className="flex flex-col lg:flex-row gap-5 mb-8 justify-between lg:mb-12">
+                                    <div className="min-w-[45%]">
                                         <label htmlFor={"phone"}>{blok.phoneLabel}</label>
                                         <input type="text" name={"phone"}
                                                value={phone}
@@ -119,7 +119,7 @@ const ContactForm = ({blok}) => {
                                         />
                                         {errors.phone && <p className={styles.errorMessage}>{errors.phone}</p>}
                                     </div>
-                                    <div className="">
+                                    <div className="min-w-[45%]">
                                         <label htmlFor={"email"}>{blok.emailLabel}</label>
                                         <input type="text" name={"email"}
                                                value={email}

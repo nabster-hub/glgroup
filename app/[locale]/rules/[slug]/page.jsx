@@ -20,7 +20,7 @@ export async function generateMetadata({params, params: {locale}},parent){
         }
     }else{
         const {data} = res
-        console.log(data.story.slug);
+        //console.log(data.story.slug);
         return{
             title: data.story.content.metaTitle,
             description: data.story.content.metaDescription,

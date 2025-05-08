@@ -13,7 +13,7 @@ const AllCategroyes = ({blok, active, locale}) => {
     function createLink(link, locale){
         return locale === 'ru' ? '/ru/' + link : '/en/' + link;
     }
-    console.log(activeItemRef)
+    //console.log(activeItemRef)
 
     useEffect(() => {
         if(activeItemRef.current && scrollContainerRef.current){
