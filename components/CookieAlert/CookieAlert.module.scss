@@ -3,12 +3,16 @@
 .cookies{
   display: block;
   width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 10px;
-  z-index: 10;
+  //position: fixed;
+  //left: 0;
+  //bottom: 10px;
+  //z-index: 10;
 
   .block{
+    //position: fixed;
+    //z-index: 10;
+    //bottom: 10px;
+    //left: 0;
     width: 100%;
     background: white;
     border-radius: 40px;
@@ -26,6 +30,7 @@
       width: 60%;
       margin-left: auto;
       margin-right: auto;
+      left: 25%;
     }
     @media (min-width: 1280px) {
       width: 48%;

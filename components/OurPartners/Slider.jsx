@@ -104,7 +104,7 @@ const Slider = ({items}) => {
 
             {/*</Swiper>*/}
             {items.map((e, _uid)=>(
-                    <div className={styles.slideContainer}>
+                    <div className={styles.slideContainer} key={_uid}>
                         <Image src={e.image.filename}
                                fill
                                quality={80}

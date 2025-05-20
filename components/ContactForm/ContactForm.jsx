@@ -8,11 +8,12 @@ import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useLocale} from "next-intl";
 import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
 
-const ContactForm = ({blok}) => {
+const ContactForm = ({blok, modal}) => {
     const local = useLocale();
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
     const [sended, setSended] = useState('');
     const [disable, setDisable] = useState(false);
     const [errors, setErrors] = useState({});
@@ -74,6 +75,7 @@ const ContactForm = ({blok}) => {
                     phone,
                     email,
                     id,
+                    message,
                     ...utm
             })
         })
@@ -95,7 +97,7 @@ const ContactForm = ({blok}) => {
                 <UTMParamsProvider onUTMParams={setUTM} />
             </Suspense>
             <div className="container py-20 lg:py-24">
-                <div className="flex flex-col lg:flex-row gap-20 lg:gap-12 xl:gap-16">
+                <div className="flex flex-col gap-20 lg:items-center lg:gap-12 xl:gap-16">
                     <div className={styles.leftBlock}>
                         <h2>{blok.titleLeft}</h2>
                         {sended === '' ? (
@@ -106,6 +108,7 @@ const ContactForm = ({blok}) => {
                                        onChange={(e) => {
                                            setName(e.target.value)
                                        }}
+                                       required={true}
                                 />
                                 {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
                                 <div className="flex flex-col lg:flex-row gap-5 mb-8 justify-between lg:mb-12">
@@ -116,6 +119,7 @@ const ContactForm = ({blok}) => {
                                                onChange={(e) => {
                                                    setPhone(e.target.value)
                                                }}
+                                               required={true}
                                         />
                                         {errors.phone && <p className={styles.errorMessage}>{errors.phone}</p>}
                                     </div>
@@ -126,10 +130,21 @@ const ContactForm = ({blok}) => {
                                                onChange={(e) => {
                                                    setEmail(e.target.value)
                                                }}
+                                               required={true}
                                         />
                                         {errors.email && <p className={styles.errorMessage}>{errors.email}</p>}
                                     </div>
 
+                                </div>
+                                <div className="mb-8 lg:mb-12">
+                                    <label htmlFor={"message"}>{blok.messageLabel}</label>
+                                    <input type={'text'} name={"message"}
+                                           value={message}
+                                           onChange={(e) => {
+                                               setMessage(e.target.value)
+                                           }}
+                                           required={true}
+                                    />
                                 </div>
                                 <div className="flex flex-col lg:flex-row gap-7 xl:gap-11">
                                     <button type={'submit'} disabled={disable}>{blok.buttonLabel}</button>
@@ -141,7 +156,7 @@ const ContactForm = ({blok}) => {
                             <div className={styles.success}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"
                                      width="100px" height="100px">
-                                <path d="M 25 2 C 12.317 2 2 12.317 2 25 C 2 37.683 12.317 48 25 48 C 37.683 48 48
+                                    <path d="M 25 2 C 12.317 2 2 12.317 2 25 C 2 37.683 12.317 48 25 48 C 37.683 48 48
                                 37.683 48 25 C 48 20.44 46.660281 16.189328 44.363281 12.611328 L 42.994141 14.228516
                                 C 44.889141 17.382516 46 21.06 46 25 C 46 36.579 36.579 46 25 46 C 13.421 46 4 36.579
                                 4 25 C 4 13.421 13.421 4 25 4 C 30.443 4 35.393906 6.0997656 39.128906 9.5097656 L
@@ -187,7 +202,7 @@ const ContactForm = ({blok}) => {
 
                     </div>
                     <div className={styles.rightBlock}>
-                        <div className={styles.line}></div>
+                        {/*<div className={styles.line}></div>*/}
                         <div className={styles.contacts}>
                             <span className={styles.title}>{blok.titleRight}</span>
                             <div className={styles.socials}>
@@ -202,7 +217,7 @@ const ContactForm = ({blok}) => {
                                                   fill="#FFFFFF" fillOpacity="1.000000" fillRule="nonzero"/>
                                         </svg>
                                     </i>
-                                    <span>{blok.telegramLabel}</span>
+                                    {/*<span>{blok.telegramLabel}</span>*/}
                                 </Link>
                                 <Link href={blok.whatsappLink} className={styles.soc}>
                                     <i>
@@ -214,7 +229,7 @@ const ContactForm = ({blok}) => {
                                                   fill="#FFFFFF" fillOpacity="1.000000" fillRule="nonzero"/>
                                         </svg>
                                     </i>
-                                    <span>{blok.whatsappLabel}</span>
+                                    {/*<span>{blok.whatsappLabel}</span>*/}
                                 </Link>
                             </div>
                         </div>

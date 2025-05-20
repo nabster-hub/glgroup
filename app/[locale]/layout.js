@@ -39,6 +39,7 @@ import FormContact from "@/components/FormContact/FormContact";
 import CookieAlert from "@/components/CookieAlert/CookieAlert";
 import HeroAboutUs from "@/components/HeroAboutUs/HeroAboutUs";
 import OurAdvantages from "@/components/OurAdvantages/OurAdvantages";
+import History from "@/components/History/History";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
 import Script from "next/script";
@@ -86,6 +87,7 @@ const AppStoryblokInit = () => {
       fromContact: FormContact,
       HeroAboutUs: HeroAboutUs,
       ourAdvantages: OurAdvantages,
+      history: History,
     },
   });
 

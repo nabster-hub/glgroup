@@ -37,6 +37,7 @@ export async function generateMetadata({params},parent){
 export default async function Page({params: {locale}}){
     unstable_setRequestLocale(locale);
     const {data} = await fetchData("about-us", {version: 'draft', language: locale});
+    //console.log(data);
 
     return (
         <>

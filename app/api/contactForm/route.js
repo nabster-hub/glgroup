@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request) {
     try{
-        const { name, phone, email, id, utm_source, utm_medium, utm_campaign, utm_term, utm_content } = await request.json();
+        const { name, phone, email, id, message, utm_source, utm_medium, utm_campaign, utm_term, utm_content } = await request.json();
         // return NextResponse.json({name, phone, email});
         const body = {
             fields:{
@@ -17,6 +17,7 @@ export async function POST(request) {
                 }],
                 "SOURCE_ID": "WEB",
                 "UF_CRM_1723206843835": id,
+                "UF_CRM_1723206895928": message,
                 "UTM_SOURCE": utm_source,
                 "UTM_MEDIUM": utm_medium,
                 "UTM_CAMPAIGN": utm_campaign,

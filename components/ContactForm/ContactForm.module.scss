@@ -8,10 +8,10 @@
   .leftBlock{
     width: 100%;
     @media (min-width: 1024px) {
-      width: 43%;
+      width: 60%;
     }
     @media (min-width: 1280px) {
-      width: 47%;
+      width: 60%;
     }
     h2{
       color: white;
@@ -115,11 +115,11 @@
     align-items: center;
     gap: 75px;
     @media (min-width: 1024px) {
-      width: fit-content;
+      width: 60%;
       gap: 45px;
     }
     @media (min-width: 1280px) {
-      width: 47%;
+      width: 60%;
       gap: 65px;
     }
     .line{
@@ -134,31 +134,33 @@
     }
     .contacts{
       display: flex;
-      flex-direction: column;
+      gap: 20px;
       height: 100%;
       width: 100%;
       .title{
-        display: none;
         font-family: var(--font-gilroy);
-        font-size: 40px;
-        line-height: 48px;
+        font-size: 20px;
+        line-height: 33px;
         font-weight: 700;
         color: white;
-        margin-bottom: 33px;
-        @media (min-width: 1024px) {
-          display: block;
+        //margin-bottom: 33px;
+        @media (min-width: 420px) {
+          font-size: 30px;
+          line-height: 38px;
+        }
+        @media (min-width: 760px) {
+          font-size: 40px;
+          line-height: 48px;
         }
       }
       .socials{
         display: flex;
         gap: 23px;
-
-
         .soc{
-          width: 47%;
-          background: #313131;
-          padding-top: 45px;
-          padding-bottom: 38px;
+          //width: 47%;
+          //background: #313131;
+          //padding-top: 45px;
+          //padding-bottom: 38px;
           display: flex;
           flex-direction: column;
           border-top-right-radius: 90px;
@@ -166,66 +168,66 @@
           justify-content: center;
           align-items: center;
           &:hover{
-            background: $primary;
-            color: $text;
+           // background: $primary;
+           // color: $text;
             span{
               font-weight: 500;
             }
             i{
               svg{
                 path{
-                  fill: $text;
+                  fill: $primary;
                 }
               }
             }
             transition: 200ms ease-in-out;
           }
-          @media (min-width: 1024px) {
-            width: 197px;
-            height: 175px;
-            padding-top: unset;
-            padding-bottom: unset;
-          }
-          @media (min-width: 1280px) {
-            width: 196px;
-            height: 174px;
-            border-top-right-radius: 90px;
-            padding-top: unset;
-            padding-bottom: unset;
-          }
-          span{
-            font-family: var(--font-gilroy);
-            font-size: 12px;
-            line-height: 14px;
-            font-weight: 400;
-            display: block;
-            text-align: center;
-            @media (min-width: 1024px) {
-              font-size: 16px;
-              line-height: 20px;
-            }
-            @media (min-width: 1280px) {
-              font-size: 18px;
-              line-height: 24px;
-            }
-          }
+          //@media (min-width: 1024px) {
+          //  width: 197px;
+          //  height: 175px;
+          //  padding-top: unset;
+          //  padding-bottom: unset;
+          //}
+          //@media (min-width: 1280px) {
+          //  width: 196px;
+          //  height: 174px;
+          //  border-top-right-radius: 90px;
+          //  padding-top: unset;
+          //  padding-bottom: unset;
+          //}
+          //span{
+          //  font-family: var(--font-gilroy);
+          //  font-size: 12px;
+          //  line-height: 14px;
+          //  font-weight: 400;
+          //  display: block;
+          //  text-align: center;
+          //  @media (min-width: 1024px) {
+          //    font-size: 16px;
+          //    line-height: 20px;
+          //  }
+          //  @media (min-width: 1280px) {
+          //    font-size: 18px;
+          //    line-height: 24px;
+          //  }
+          //}
           i{
             svg{
-              width: 51px;
-              height: 51px;
+              width: 30px;
+              height: 30px;
             }
-            @media (min-width: 1024px) {
-              svg{
-                width: 61px;
-                height: 61px;
-              }
-            }
-            @media (min-width: 1280px) {
-              svg{
-                width: 58px;
-                height: 58px;
-              }
-            }
+            //@media (min-width: 1024px) {
+            //  svg{
+            //    width: 61px;
+            //    height: 61px;
+            //  }
+            //}
+            //@media (min-width: 1280px) {
+            //  svg{
+            //    width: 30px;
+            //    height: 30px;
+            //  }
+            //}
           }
 
         }
