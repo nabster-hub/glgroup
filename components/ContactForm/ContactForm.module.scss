@@ -5,6 +5,9 @@
 .block{
   background: #121212;
   color: white;
+  .row{
+    flex-direction: row!important;
+  }
   .leftBlock{
     width: 100%;
     @media (min-width: 1024px) {
@@ -121,6 +124,95 @@
     @media (min-width: 1280px) {
       width: 60%;
       gap: 65px;
+    }
+    &.modal{
+
+      .contacts{
+        flex-direction: column;
+        height: 100%;
+        .title{
+          margin-bottom: 33px;
+          display: none;
+          @media (min-width: 1024px) {
+            display: block;
+            font-size: 40px;
+            line-height: 48px;
+          }
+        }
+        .socials{
+          .soc{
+            width: 47%;
+            background: #313131;
+            padding-top: 45px;
+            padding-bottom: 38px;
+
+            &:hover{
+               background: $primary;
+               color: $text;
+              span{
+                font-weight: 500;
+              }
+              i{
+                svg{
+                  path{
+                    fill: $text;
+                  }
+                }
+              }
+              transition: 200ms ease-in-out;
+            }
+            i{
+              svg{
+                width: 51px;
+                height: 51px;
+              }
+              @media (min-width: 1024px) {
+                svg{
+                  width: 61px;
+                  height: 61px;
+                }
+              }
+              @media (min-width: 1280px) {
+                svg{
+                  width: 58px;
+                  height: 58px;
+                }
+              }
+            }
+
+
+            @media (min-width: 1024px) {
+              width: 197px;
+              height: 175px;
+              padding-top: unset;
+              padding-bottom: unset;
+            }
+            @media (min-width: 1280px) {
+              width: 196px;
+              height: 174px;
+              border-top-right-radius: 90px;
+              padding-top: unset;
+              padding-bottom: unset;
+            }
+            span{
+              font-family: var(--font-gilroy);
+              font-size: 12px;
+              line-height: 14px;
+              font-weight: 400;
+              display: block;
+              text-align: center;
+              @media (min-width: 1024px) {
+                font-size: 16px;
+                line-height: 20px;
+              }
+              @media (min-width: 1280px) {
+                font-size: 18px;
+                line-height: 24px;
+              }
+            }
+          }
+        }
+      }
     }
     .line{
       display: none;

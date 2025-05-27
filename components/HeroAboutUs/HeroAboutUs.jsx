@@ -36,10 +36,10 @@ const HeroAboutUs = ({blok}) => {
                          {render(blok.description)}
                      </div>
                  </div>
-                 <div className={styles.slidersBlock}>
-                     <span className={styles.label}>{blok.history}</span>
-                        <Slider sliders={blok.sliders} />
-                 </div>
+                 {/*<div className={styles.slidersBlock}>*/}
+                 {/*    <span className={styles.label}>{blok.history}</span>*/}
+                 {/*       <Slider sliders={blok.sliders} />*/}
+                 {/*</div>*/}
             </div>
         </section>
     );

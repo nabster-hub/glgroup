@@ -72,7 +72,7 @@ const Modal = ({object, uid, type, contactForm}) => {
                             </svg>
 
                         </i>
-                        <ContactForm blok={contactForm.data.story.content.body[0]} modal={""}/>
+                        <ContactForm blok={contactForm.data.story.content.body[0]} modal={true}/>
                     </div>
                 </div>
             )}

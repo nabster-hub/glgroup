@@ -7,6 +7,7 @@ import {storyblokEditable} from "@storyblok/react";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useLocale} from "next-intl";
 import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
+import clsx from "clsx";
 
 const ContactForm = ({blok, modal}) => {
     const local = useLocale();
@@ -90,6 +91,7 @@ const ContactForm = ({blok, modal}) => {
         console.log(sended)
 
     }
+    console.log(modal)
 
     return (
         <section className={styles.block} id={'form'} {...storyblokEditable(blok)}>
@@ -97,7 +99,7 @@ const ContactForm = ({blok, modal}) => {
                 <UTMParamsProvider onUTMParams={setUTM} />
             </Suspense>
             <div className="container py-20 lg:py-24">
-                <div className="flex flex-col gap-20 lg:items-center lg:gap-12 xl:gap-16">
+                <div className={clsx( modal && (styles.row), "flex flex-col gap-20 lg:items-center lg:gap-12 xl:gap-16")}>
                     <div className={styles.leftBlock}>
                         <h2>{blok.titleLeft}</h2>
                         {sended === '' ? (
@@ -201,8 +203,8 @@ const ContactForm = ({blok, modal}) => {
                         )}
 
                     </div>
-                    <div className={styles.rightBlock}>
-                        {/*<div className={styles.line}></div>*/}
+                    <div className={clsx(styles.rightBlock, modal && styles.modal)}>
+                        {modal ? (<div className={styles.line}></div>) : ""}
                         <div className={styles.contacts}>
                             <span className={styles.title}>{blok.titleRight}</span>
                             <div className={styles.socials}>
@@ -217,7 +219,7 @@ const ContactForm = ({blok, modal}) => {
                                                   fill="#FFFFFF" fillOpacity="1.000000" fillRule="nonzero"/>
                                         </svg>
                                     </i>
-                                    {/*<span>{blok.telegramLabel}</span>*/}
+                                    {modal ? (<span>{blok.telegramLabel}</span>) : ""}
                                 </Link>
                                 <Link href={blok.whatsappLink} className={styles.soc}>
                                     <i>
@@ -229,7 +231,7 @@ const ContactForm = ({blok, modal}) => {
                                                   fill="#FFFFFF" fillOpacity="1.000000" fillRule="nonzero"/>
                                         </svg>
                                     </i>
-                                    {/*<span>{blok.whatsappLabel}</span>*/}
+                                    {modal ? (<span>{blok.whatsappLabel}</span>) : ""}
                                 </Link>
                             </div>
                         </div>
