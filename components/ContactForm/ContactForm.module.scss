@@ -140,6 +140,10 @@
           }
         }
         .socials{
+          flex-direction: column;
+          @media (min-width: 1240px) {
+            flex-direction: row;
+          }
           .soc{
             width: 47%;
             background: #313131;

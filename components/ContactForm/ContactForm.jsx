@@ -91,7 +91,6 @@ const ContactForm = ({blok, modal}) => {
         console.log(sended)
 
     }
-    console.log(modal)
 
     return (
         <section className={styles.block} id={'form'} {...storyblokEditable(blok)}>
@@ -99,7 +98,7 @@ const ContactForm = ({blok, modal}) => {
                 <UTMParamsProvider onUTMParams={setUTM} />
             </Suspense>
             <div className="container py-20 lg:py-24">
-                <div className={clsx( modal && (styles.row), "flex flex-col gap-20 lg:items-center lg:gap-12 xl:gap-16")}>
+                <div className={clsx( modal ? "lg:flex-row" : "flex-col lg:items-center", "flex gap-20 lg:gap-12 xl:gap-16")}>
                     <div className={styles.leftBlock}>
                         <h2>{blok.titleLeft}</h2>
                         {sended === '' ? (
