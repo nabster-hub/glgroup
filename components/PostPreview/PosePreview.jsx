@@ -84,7 +84,7 @@ const PosePreview = ({blok, other, locale}) => {
     // }
 
     return (
-        <Link href={'/'+blok.full_slug} className={"hover:border-2 hover:border-green-800 transition-all duration-100 hover:rounded-[20px]"}>
+        <Link href={'/'+blok.full_slug} className={"border-2 border-white hover:border-green-800 transition-all duration-100 rounded-[20px]"}>
             {postContent}
         </Link>
     );

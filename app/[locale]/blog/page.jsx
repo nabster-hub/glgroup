@@ -97,7 +97,7 @@ export default async function Page ({params: {locale}}){
         {
             link: {
                 linktype: '',
-                cached_url: '/en/blog/',
+                cached_url: '/ru/blog/',
             },
             label: 'Блог',
             _uid: '2'
