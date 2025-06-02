@@ -2,11 +2,12 @@
 
 .allCategory{
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 30px;
-  overflow-x: auto;
+  //overflow-x: auto;
   padding-bottom: 5px;
-  white-space: nowrap;
+  //white-space: nowrap;
 
   &::-webkit-scrollbar {
     width: 1px;
@@ -40,7 +41,6 @@
     color:#121212;
     border-radius: 85px;
     opacity: 0.3;
-    flex-grow: 1;
     @media (min-width: 1024px) {
       padding: 14.5px 54px;
     }

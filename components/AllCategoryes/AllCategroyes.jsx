@@ -8,24 +8,24 @@ import {storyblokEditable} from "@storyblok/react";
 
 const AllCategroyes = ({blok, active, locale}) => {
     const activeItemRef = useRef(null);
-    const scrollContainerRef = useRef(null);
+    // const scrollContainerRef = useRef(null);
 
     function createLink(link, locale){
         return locale === 'ru' ? '/ru/' + link : '/en/' + link;
     }
     //console.log(activeItemRef)
 
-    useEffect(() => {
-        if(activeItemRef.current && scrollContainerRef.current){
-            activeItemRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest',
-                inline: 'center',
-            })
-        }
-    }, [active]);
+    // useEffect(() => {
+    //     if(activeItemRef.current && scrollContainerRef.current){
+    //         activeItemRef.current.scrollIntoView({
+    //             behavior: 'smooth',
+    //             block: 'nearest',
+    //             inline: 'center',
+    //         })
+    //     }
+    // }, [active]);
     return (
-        <div className={styles.allCategory} {...storyblokEditable(blok)} ref={scrollContainerRef}>
+        <div className={styles.allCategory} {...storyblokEditable(blok)}>
             {blok.map((e, index)=>(
                 <Link href={ e.value === active ? createLink('blog/', locale) :
                     createLink('blog/category/'+e.value, locale)

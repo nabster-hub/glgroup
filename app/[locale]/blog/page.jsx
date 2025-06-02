@@ -129,11 +129,12 @@ export default async function Page ({params: {locale}}){
             <section>
                 <div className="container pb-24">
                     <h1 className={'mb-5'}>{locale === 'ru' ? 'Блог' : 'Blog'}</h1>
-                    <div className={'flex justify-end mb-3'}>
-                        <SearchBar locale={locale}/>
-                    </div>
-                    <div className={'flex gap-4'}>
+                    <div className={'flex flex-col-reverse gap-4 md:flex-row md:gap-0 md:justify-start mb-3'}>
+
+                    {/*</div>*/}
+                    {/*<div className={'flex gap-4'}>*/}
                         <AllCategroyes blok={category.data.datasource_entries} locale={locale}/>
+                        <SearchBar locale={locale}/>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-8 mb-8">
