@@ -19,7 +19,7 @@ const CookieAlert = ({data}) => {
         <>
             {alertCookie ? (
                 <section className={styles.cookies}>
-                    <div className="container fixed">
+                    <div className="container">
                         <div className={styles.block}>
                             <div className={styles.text}>
                                 {render(data)}
