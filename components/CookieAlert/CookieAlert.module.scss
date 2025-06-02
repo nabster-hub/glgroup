@@ -7,12 +7,14 @@
   left: 0;
   bottom: 10px;
   z-index: 10;
+  pointer-events: none;
 
   .block{
     //position: fixed;
     //z-index: 10;
     //bottom: 10px;
     //left: 0;
+    pointer-events: auto;
     width: 100%;
     background: white;
     border-radius: 40px;
