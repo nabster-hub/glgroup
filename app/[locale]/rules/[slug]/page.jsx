@@ -34,6 +34,7 @@ export async function generateMetadata({params, params: {locale}},parent){
             openGraph:{
                 title: data.story.content.metaTitle,
                 description: data.story.content.metaDescription,
+                siteName: "GLG Consult",
                 images:[
                     {
                         url: data.story.content?.metaImage?.filename,

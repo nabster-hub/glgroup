@@ -22,6 +22,7 @@ export async function generateMetadata({params: {locale}},parent){
                 canonical: './'
             },
             openGraph:{
+                siteName: "GLG Consult",
                 title: "Блог",
                 description: "",
                 // images:[
@@ -40,6 +41,7 @@ export async function generateMetadata({params: {locale}},parent){
                 canonical: './'
             },
             openGraph:{
+                siteName: "GLG Consult",
                 title: "Blog",
                 description: "",
                 // images:[
