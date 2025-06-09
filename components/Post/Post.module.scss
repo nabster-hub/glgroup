@@ -9,11 +9,32 @@
 }
 .author{
   font-family: var(--font-gilroy);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
-  color: #858585;
-  text-decoration: underline;
+
+  background: #F7F7F7;
+  display: flex;
+  padding: 10px 5px;
+  width: 100%;
+  border-radius: 20px;
+  min-height: 100px;
+  justify-content: center;
+  flex-direction: column;
+  gap:10px;
+
+  .labelAuthor{
+    color: black;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+  }
+  .imgBlock{
+    width: 53px;
+    height: 53px;
+    position: relative;
+    border-radius: 160px;
+    overflow: hidden;
+    min-width: 53px;
+    min-height: 53px;
+  }
 }
 .img{
   width: 100%;

@@ -11,6 +11,7 @@ import {storyblokEditable} from "@storyblok/react";
 import {useLocale} from "next-intl";
 import {findAnchors} from "@/lib/findAnchors";
 import textStyles from '@/components/UI/UI.module.scss';
+import clsx from "clsx";
 
 export async function getData(title, locale, category){
     let sbParams = {
@@ -45,7 +46,16 @@ export default async function Post ({blok}) {
     const formattedDate = date.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
     const created_at = create.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
     const anchors = findAnchors(blok.content.textBlocks)
+    let author = "empty"
+    if(locale === 'en'){
+        author = await fetchData(blok.content.Author?.cached_url.replace("/en/", ""), {version: 'draft', language: locale})
+    }else{
+        author = await fetchData(blok.content.Author?.cached_url, {version: 'draft', language: locale})
+    }
 
+
+    // console.log(locale);
+    // console.log(blok.content);
 
     const createLink = (link) => {
         if(locale === 'ru' && link.linktype === 'story'){
@@ -116,23 +126,46 @@ export default async function Post ({blok}) {
                 </div>
                 <div className={"relative"}>
                     <div className="sticky top-20 pt-3">
+
+                        {blok.content.showAuthor &&  (
+                            <Link href={createLink(blok.content.Author)}
+                                  className={styles.author}>
+                                <div className={clsx("text-black text-lg text-center")}>{locale === 'ru' ? "Автор" : "Author"}</div>
+                                <div className={"flex gap-5 justify-center items-center"}>
+                                    <div className={styles.imgBlock}>
+                                        <Image src={author?.data.story.content.photo.filename}
+                                               alt={author?.data.story.content.photo.alt}
+                                               fill
+                                               sizes="(max-width: 768px) 50vw,
+                                 (max-width: 1200px) 25vw,
+                                 25vw"
+                                               style={{
+                                                   objectFit: "cover",
+                                               }}
+                                               quality={100}
+                                        />
+                                    </div>
+                                    <div className={styles.labelAuthor}>{author?.data.story.content.fullname}</div>
+                                </div>
+                            </Link>
+                        )}
+
                         {anchors.length !== 0 && (
                             <div className={"hidden md:block mb-8"}>
                                 <div className={styles.contentArticles}>
-                                    <span className={"h3 mb-6 block"}>{locale === 'ru' ? "Содержание" : "Content"}</span>
+                                    <span
+                                        className={"h3 mb-6 block"}>{locale === 'ru' ? "Содержание" : "Content"}</span>
                                     <ol className={styles.listLinks}>
                                         {anchors.map((anchor, index) => (
-                                            <li key={index}><Link href={`#${anchor.marks[0].attrs.id}`}>{anchor.text}</Link>
+                                            <li key={index}><Link
+                                                href={`#${anchor.marks[0].attrs.id}`}>{anchor.text}</Link>
                                             </li>
                                         ))}
                                     </ol>
                                 </div>
                             </div>
                         )}
-                        {blok.content.showAuthor && (
-                            <Link href={createLink(blok.content.Author)}
-                                  className={styles.author}>{blok.content.authorLabel}</Link>
-                        )}
+
                         <OtherArticles posts={posts.data.stories}/>
                     </div>
                 </div>
