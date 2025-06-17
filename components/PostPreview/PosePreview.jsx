@@ -38,8 +38,8 @@ const PosePreview = ({blok, other, locale}) => {
         <div {...storyblokEditable(blok)} className={styles.postPreview}>
             <div className={clsx(styles.imgBlock, other && styles.other)}>
                 <Image
-                    src={blok.content.img.filename}
-                    alt={blok.content.img.alt}
+                    src={blok.content.img?.filename}
+                    alt={blok.content.img?.alt}
                     fill
                     quality={80}
                     sizes="(max-width: 768px) 50vw,

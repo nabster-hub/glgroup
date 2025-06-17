@@ -14,7 +14,7 @@ import clsx from "clsx";
 
 
 
-export default function OtherArticles ({posts}) {
+export default function OtherArticles ({posts, showcase}) {
     const arrowPrev = useRef(null);
     const arrowNext = useRef(null);
     const local = useLocale();
@@ -23,7 +23,8 @@ export default function OtherArticles ({posts}) {
         <section>
            <div className={styles.block}>
                <h2 className={clsx(styles.title, "h3")}>
-                   {local === 'ru' ? 'Другие статьи' : 'Other articles'}
+                   {!showcase && (local === 'ru' ? 'Другие статьи' : 'Other articles')}
+                   {showcase && (local === 'ru' ? 'Другие бизнесы' : 'Other businesses')}
                </h2>
                <div className="flex overflow-x-scroll md:overflow-auto md:flex-col gap-4">
                    {posts.map((e, _uid) => (

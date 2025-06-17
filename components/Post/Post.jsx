@@ -13,8 +13,8 @@ import {findAnchors} from "@/lib/findAnchors";
 import textStyles from '@/components/UI/UI.module.scss';
 import clsx from "clsx";
 
-export async function getData(title, locale, category){
-    let sbParams = {
+export async function getData(title, locale, category, showcase) {
+    let sbParams = !showcase ? {
         version: "published",
         starts_with: 'blog/',
         language: locale,
@@ -28,7 +28,18 @@ export async function getData(title, locale, category){
                 in: '1'
             }
         }
+    } : {
+        version: "draft",
+        starts_with: 'showcase/',
+        language: locale,
+        page: 1,
+        per_page: 3,
+        filter_query:{
+            title:{
+                not_in: title,
+            },
 
+        }
     }
 
     const storyblokApi = getStoryblokApi();
@@ -37,12 +48,12 @@ export async function getData(title, locale, category){
     return  fetch;
 }
 
-export default async function Post ({blok}) {
+export default async function Post ({blok, showcase}) {
     const locale = useLocale();
     const date = new Date(blok.published_at);
     const create  = new Date(blok.created_at);
     const contactForm = await fetchData('blog-contact', {version: 'draft', language: locale})
-    const posts = await getData(blok.content.title, locale, blok.content.Category);
+    const posts = await getData(blok.content.title, locale, blok.content.Category, showcase);
     const formattedDate = date.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
     const created_at = create.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
     const anchors = findAnchors(blok.content.textBlocks)
@@ -55,7 +66,7 @@ export default async function Post ({blok}) {
 
 
     // console.log(locale);
-    // console.log(blok.content);
+    //console.log(showcase);
 
     const createLink = (link) => {
         if(locale === 'ru' && link.linktype === 'story'){
@@ -127,7 +138,7 @@ export default async function Post ({blok}) {
                 <div className={"relative"}>
                     <div className="sticky top-20 pt-3">
 
-                        {blok.content.showAuthor &&  (
+                        {blok.content.showAuthor && !showcase && (
                             <Link href={createLink(blok.content.Author)}
                                   className={styles.author}>
                                 <div className={clsx("text-black text-lg text-center")}>{locale === 'ru' ? "Автор" : "Author"}</div>
@@ -150,7 +161,7 @@ export default async function Post ({blok}) {
                             </Link>
                         )}
 
-                        {anchors.length !== 0 && (
+                        {anchors.length !== 0 && showcase && (
                             <div className={"hidden md:block mb-8"}>
                                 <div className={styles.contentArticles}>
                                     <span
@@ -166,7 +177,7 @@ export default async function Post ({blok}) {
                             </div>
                         )}
 
-                        <OtherArticles posts={posts.data.stories}/>
+                        <OtherArticles posts={posts.data.stories} showcase={showcase} />
                     </div>
                 </div>
             </div>

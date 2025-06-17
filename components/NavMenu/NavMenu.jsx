@@ -22,6 +22,7 @@ export default function NavMenu ({headMenu, menu, contact}) {
         'blog',
         'contacts',
         "authors",
+        "showcase",
     ]
     const checkType = (path) => {
         const  parts = path.split('/');
