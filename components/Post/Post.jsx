@@ -48,7 +48,7 @@ export async function getData(title, locale, category, showcase) {
     return  fetch;
 }
 
-export default async function Post ({blok, showcase}) {
+export default async function Post ({blok, showcase, active}) {
     const locale = useLocale();
     const date = new Date(blok.published_at);
     const create  = new Date(blok.created_at);
@@ -103,6 +103,11 @@ export default async function Post ({blok, showcase}) {
 
                     </div>
                     <div className={styles.img}>
+                        {showcase && !active && (
+                            <div className={"absolute top-0 left-0 backdrop-blur flex items-center justify-center z-10 w-full h-full text-white text-xl lg:text-5xl font-bold"}>
+                                {locale ==='en' ? "SOLD" : "ПРОДАНО"}
+                            </div>
+                        )}
                         <Image src={blok.content.img.filename} alt={blok.content.img.alt}
                                fill
                                quality={90}
@@ -128,7 +133,11 @@ export default async function Post ({blok, showcase}) {
                     {/*    </div>*/}
                     {/*)}*/}
 
-                    <div className={"mb-16"}>
+                    <div className={"mb-16 relative"}>
+                        {showcase && !active && (
+                            <div className={"absolute top-0 left-0 backdrop-blur flex items-center justify-center z-10 w-full h-full"}>
+                            </div>
+                        )}
                         {blok.content.textBlocks && blok.content.textBlocks.map((e, _uid) => (
                             <StoryblokComponent blok={e} key={_uid}/>
                         ))}

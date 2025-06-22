@@ -74,7 +74,15 @@ export async function getPosts(locale){
         starts_with: 'showcase/',
         page: 1,
         language: locale,
-        per_page: 8
+        per_page: 8,
+        filter_query:{
+            // title:{
+            //     not_in: title,
+            // },
+            active:{
+                is: true,
+            }
+        }
     }
     let fetch = await fetchData('', sbParams);
 
