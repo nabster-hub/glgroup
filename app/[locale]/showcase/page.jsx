@@ -69,8 +69,8 @@ export async function generateMetadata({params: {locale}},parent){
 
 export async function getPosts(locale){
     let sbParams = {
-        //version: "published",
-        version: 'draft',
+        version: "published",
+        //version: 'draft',
         starts_with: 'showcase/',
         page: 1,
         language: locale,

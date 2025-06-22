@@ -29,7 +29,7 @@ export async function getData(title, locale, category, showcase) {
             }
         }
     } : {
-        version: "draft",
+        version: "published",
         starts_with: 'showcase/',
         language: locale,
         page: 1,
