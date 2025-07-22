@@ -153,8 +153,8 @@ export default async function Post ({blok, showcase, active}) {
                                 <div className={clsx("text-black text-lg text-center")}>{locale === 'ru' ? "Автор" : "Author"}</div>
                                 <div className={"flex gap-5 justify-center items-center"}>
                                     <div className={styles.imgBlock}>
-                                        <Image src={author?.data.story.content.photo.filename}
-                                               alt={author?.data.story.content.photo.alt}
+                                        <Image src={author?.data.story?.content.photo.filename}
+                                               alt={author?.data.story?.content.photo.alt}
                                                fill
                                                sizes="(max-width: 768px) 50vw,
                                  (max-width: 1200px) 25vw,
@@ -165,7 +165,7 @@ export default async function Post ({blok, showcase, active}) {
                                                quality={100}
                                         />
                                     </div>
-                                    <div className={styles.labelAuthor}>{author?.data.story.content.fullname}</div>
+                                    <div className={styles.labelAuthor}>{author?.data.story?.content.fullname}</div>
                                 </div>
                             </Link>
                         )}

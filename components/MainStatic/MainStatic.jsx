@@ -10,7 +10,7 @@ import {storyblokEditable} from "@storyblok/react";
 const MainStatic = ({blok, breadcrumbs}) => {
     return (
         <div className={"w-full"} {...storyblokEditable(blok)}>
-            <div className={"relative w-full min-h-[770px] max-h-[100vh]"}>
+            <div className={"relative w-full min-h-fit h-[770px] max-h-[100vh]"}>
                 <div className={clsx("container text-white", styles.mainStatic)}>
                     <Image src={blok.img.filename}
                            fill
