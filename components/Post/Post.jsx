@@ -170,7 +170,7 @@ export default async function Post ({blok, showcase, active}) {
                             </Link>
                         )}
 
-                        {anchors.length !== 0 && showcase && (
+                        {anchors.length !== 0 && !showcase && (
                             <div className={"hidden md:block mb-8"}>
                                 <div className={styles.contentArticles}>
                                     <span
