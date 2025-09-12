@@ -66,7 +66,7 @@ export default async function Post ({blok, showcase}) {
     }
 
 
-     console.log(active);
+    // console.log(active);
     //console.log(showcase);
 
     const createLink = (link) => {
