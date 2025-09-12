@@ -53,7 +53,7 @@ export default async function Page({params, params: {locale}}){
         <>
             <Article article={data} />
             <Breadcrumbs links={data?.story.content.breadcrumbs}/>
-            <Post blok={data.story} slug={params.slug} showcase={true}  />
+            <Post blok={data.story} slug={params.slug} showcase={true} />
 
         </>
     );

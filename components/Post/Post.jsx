@@ -48,12 +48,13 @@ export async function getData(title, locale, category, showcase) {
     return  fetch;
 }
 
-export default async function Post ({blok, showcase, active}) {
+export default async function Post ({blok, showcase}) {
     const locale = useLocale();
     const date = new Date(blok.published_at);
     const create  = new Date(blok.created_at);
     const contactForm = await fetchData('blog-contact', {version: 'draft', language: locale})
     const posts = await getData(blok.content.title, locale, blok.content.Category, showcase);
+    const active = blok.content.active;
     const formattedDate = date.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
     const created_at = create.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
     const anchors = findAnchors(blok.content.textBlocks)
@@ -65,7 +66,7 @@ export default async function Post ({blok, showcase, active}) {
     }
 
 
-    // console.log(locale);
+     console.log(active);
     //console.log(showcase);
 
     const createLink = (link) => {
