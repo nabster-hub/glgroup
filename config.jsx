@@ -5,8 +5,8 @@ export const host = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : `http://localhost:${port}`;
 
-export const defaultLocale = 'ru';
-export const locales = ['ru', 'en'];
+export const defaultLocale = 'en';
+export const locales = ['ru', 'en', 'id'];
 
 export const pathnames = {
     '/': '/',
