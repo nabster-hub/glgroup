@@ -144,7 +144,6 @@ const ContactForm = ({blok, modal}) => {
                                            onChange={(e) => {
                                                setMessage(e.target.value)
                                            }}
-                                           required={true}
                                     />
                                 </div>
                                 <div className="flex flex-col lg:flex-row gap-7 xl:gap-11">
