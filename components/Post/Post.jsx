@@ -12,6 +12,7 @@ import {useLocale} from "next-intl";
 import {findAnchors} from "@/lib/findAnchors";
 import textStyles from '@/components/UI/UI.module.scss';
 import clsx from "clsx";
+import OurRecomendations from "@/components/OurRecomendations/OurRecomendations";
 
 export async function getData(title, locale, category, showcase) {
     let sbParams = !showcase ? {
@@ -57,6 +58,7 @@ export default async function Post ({blok, showcase}) {
     const active = blok.content.active;
     const formattedDate = date.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
     const created_at = create.toLocaleDateString(`${locale}`, {day: 'numeric', month: 'long', year: 'numeric'});
+    const recom = await fetchData('showcase/index', {version: 'draft', language: locale})
     const anchors = findAnchors(blok.content.textBlocks)
     let author = "empty"
     if(locale === 'en'){
@@ -191,6 +193,7 @@ export default async function Post ({blok, showcase}) {
                     </div>
                 </div>
             </div>
+            <OurRecomendations blok={recom.data.story.content.body[0]} />
             <ContactForm blok={contactForm.data.story.content.body[0]}/>
             {/*<OtherArticles posts={posts.data.stories}/>*/}
         </section>

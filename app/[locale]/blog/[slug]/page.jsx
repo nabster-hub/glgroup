@@ -44,7 +44,7 @@ export default async function Page({params, params: {locale}}){
     unstable_setRequestLocale(locale);
     const res = await fetchData("blog/"+params.slug, {version: 'draft', language: locale});
 
-    if(!res){
+    if(!res || params.slug === 'index'){
         notFound()
     }
     const {data} = res

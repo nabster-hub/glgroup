@@ -1,7 +1,7 @@
 import React from 'react';
 import {storyblokEditable} from "@storyblok/react";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
-import {getStoryblokApi} from "@storyblok/react/rsc";
+import {getStoryblokApi, StoryblokComponent} from "@storyblok/react/rsc";
 import PosePreview from "@/components/PostPreview/PosePreview";
 import LazyLoadBlog from "@/components/LazyLoadBlog/LazyLoadBlog";
 import {getCategory} from "@/lib/category";
@@ -14,11 +14,11 @@ import SearchBar from "@/components/SearchBar/SearchBar";
 
 export const revalidate = 3600;
 
-export async function generateMetadata({params: {locale}},parent){
+export async function generateMetadata({params: {locale}}, parent) {
 
     const data = fetchData('showcase/index', {version: 'draft', language: locale})
-    if(locale === 'ru'){
-        return{
+    if (locale === 'ru') {
+        return {
             title: "Готовые бизнесы",
             description: "",
             alternates: {
@@ -28,7 +28,7 @@ export async function generateMetadata({params: {locale}},parent){
                     'en_EN': 'https://www.glgconsult.com/en/showcase',
                 },
             },
-            openGraph:{
+            openGraph: {
                 siteName: "GLG Consult",
                 title: "Готовые бизнесы",
                 description: "",
@@ -40,8 +40,8 @@ export async function generateMetadata({params: {locale}},parent){
                 // ],
             },
         }
-    }else{
-        return{
+    } else {
+        return {
             title: "Ready-made businesses",
             description: "",
             alternates: {
@@ -51,7 +51,7 @@ export async function generateMetadata({params: {locale}},parent){
                     'en_EN': 'https://www.glgconsult.com/en/showcase',
                 },
             },
-            openGraph:{
+            openGraph: {
                 siteName: "GLG Consult",
                 title: "Ready-made businesses",
                 description: "",
@@ -67,7 +67,7 @@ export async function generateMetadata({params: {locale}},parent){
 
 }
 
-export async function getPosts(locale){
+export async function getPosts(locale) {
     let sbParams = {
         version: "published",
         //version: 'draft',
@@ -75,28 +75,27 @@ export async function getPosts(locale){
         page: 1,
         language: locale,
         per_page: 8,
-        filter_query:{
+        filter_query: {
             // title:{
             //     not_in: title,
             // },
-            active:{
+            active: {
                 is: true,
             }
         }
     }
     let fetch = await fetchData('', sbParams);
 
-    return  fetch;
+    return fetch;
 }
 
-export default async function Page ({params: {locale}}){
+export default async function Page({params: {locale}}) {
     unstable_setRequestLocale(locale);
-    const data = await fetchData('showcase/index', {version: 'draft', language: locale})
+    const {data} = await fetchData('showcase/index', {version: 'draft', language: locale})
     const fetch = await getPosts(locale);
     const posts = fetch.data.stories;
     const category = await getCategory(locale);
 
-   // console.log(posts);
 
     const breadcrumbs = [
         {
@@ -158,6 +157,7 @@ export default async function Page ({params: {locale}}){
                     {/*<LazyLoadBlog count={fetch.total} locale={locale}/>*/}
                 </div>
             </section>
+            <StoryblokComponent blok={data?.story.content}/>
         </>
 
 

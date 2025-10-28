@@ -1,7 +1,7 @@
 import React from 'react';
 import {storyblokEditable} from "@storyblok/react";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
-import {getStoryblokApi} from "@storyblok/react/rsc";
+import {getStoryblokApi, StoryblokComponent} from "@storyblok/react/rsc";
 import PosePreview from "@/components/PostPreview/PosePreview";
 import LazyLoadBlog from "@/components/LazyLoadBlog/LazyLoadBlog";
 import {getCategory} from "@/lib/category";
@@ -83,6 +83,7 @@ export default async function Page ({params: {locale}}){
     const fetch = await getPosts(locale);
     const posts = fetch.data.stories;
     const category = await getCategory(locale);
+    const {data} = await fetchData('blog/index', {version: 'draft', language: locale})
 
 
     const breadcrumbs = [
@@ -145,6 +146,7 @@ export default async function Page ({params: {locale}}){
                     <LazyLoadBlog count={fetch.total} locale={locale}/>
                 </div>
             </section>
+            <StoryblokComponent blok={data?.story.content} />
         </>
 
 

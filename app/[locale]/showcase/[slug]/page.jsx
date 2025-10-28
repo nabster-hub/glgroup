@@ -5,6 +5,9 @@ import Post from "@/components/Post/Post";
 import {unstable_setRequestLocale} from "next-intl/server";
 import {notFound} from "next/navigation";
 import Article from "@/components/JSON-LD/Article";
+import {StoryblokComponent} from "@storyblok/react/rsc";
+import OtherArticles from "@/components/OtherArticles/OtherArticles";
+import OurRecomendations from "@/components/OurRecomendations/OurRecomendations";
 export const revalidate = 3600;
 export async function generateMetadata({params, params: {locale}}, parent){
     unstable_setRequestLocale(locale);
@@ -44,17 +47,17 @@ export default async function Page({params, params: {locale}}){
     unstable_setRequestLocale(locale);
     const res = await fetchData("showcase/"+params.slug, {version: 'draft', language: locale});
 
-    if(!res){
+    if(!res || params.slug === 'index'){
         notFound()
     }
     const {data} = res
-    //console.log(data);
+
+   // console.log(recom.data.story.content.body);
     return (
         <>
             <Article article={data} />
             <Breadcrumbs links={data?.story.content.breadcrumbs}/>
             <Post blok={data.story} slug={params.slug} showcase={true} />
-
         </>
     );
 };
