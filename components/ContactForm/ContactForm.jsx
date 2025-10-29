@@ -8,8 +8,11 @@ import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useLocale} from "next-intl";
 import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
 import clsx from "clsx";
+import Turnstile from "react-turnstile";
+
 
 const ContactForm = ({blok, modal}) => {
+    const [captchaToken, setCaptchaToken] = useState("");
     const local = useLocale();
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
@@ -77,18 +80,19 @@ const ContactForm = ({blok, modal}) => {
                     email,
                     id,
                     message,
+                    token: captchaToken,
                     ...utm
             })
         })
         const res = await response.json();
 
-        if(res.status === 500){
+        if(res.status === 500 || res.status === 400) {
             setSended(false);
         }else{
             setSended(true)
         }
         setDisable(false)
-        console.log(sended)
+        // console.log(res)
 
     }
 
@@ -144,6 +148,12 @@ const ContactForm = ({blok, modal}) => {
                                            onChange={(e) => {
                                                setMessage(e.target.value)
                                            }}
+                                    />
+                                </div>
+                                <div className={"flex mb-2"}>
+                                    <Turnstile
+                                        sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                                        onSuccess={(token) => setCaptchaToken(token)}
                                     />
                                 </div>
                                 <div className="flex flex-col lg:flex-row gap-7 xl:gap-11">

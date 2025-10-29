@@ -5,9 +5,11 @@ import {render} from "storyblok-rich-text-react-renderer";
 import {storyblokEditable} from "@storyblok/react";
 import {usePathname} from "next/navigation";
 import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
+import Turnstile from "react-turnstile";
 
 
 const FormContact = ({blok}) => {
+    const [captchaToken, setCaptchaToken] = useState("");
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
@@ -72,11 +74,12 @@ const FormContact = ({blok}) => {
                 email,
                 id,
                 message,
+                token: captchaToken,
                 ...utm
             })
         })
         const res = await response.json();
-        if(res.status === 500){
+        if(res.status === 500 || res.status === 400){
             setSended(false);
         }else{
             setSended(true)
@@ -131,6 +134,12 @@ const FormContact = ({blok}) => {
                                        onChange={(e) => {
                                            setMessage(e.target.value)
                                        }}
+                                />
+                            </div>
+                            <div className={"flex mb-2"}>
+                                <Turnstile
+                                    sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                                    onSuccess={(token) => setCaptchaToken(token)}
                                 />
                             </div>
                             <div className="flex flex-col lg:flex-row gap-7 xl:gap-11">

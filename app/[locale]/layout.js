@@ -300,6 +300,11 @@ export default async function LocalLayout({ children, params}) {
       <StoryblokProvider>
         <html lang={params.locale}>
           <body className={clsx(inter.className, Gilroy.variable, Formular.variable)}>
+          <script
+              src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+              async
+              defer
+          ></script>
           <GoogleTagManager gtmId={"GTM-W94Q2T3S"}/>
           <GoogleAnalytics gaId="G-F5H6Q18BRV" />
           <NextIntlClientProvider locale={params.locale}>

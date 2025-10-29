@@ -23,6 +23,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-fast-marquee": "^1.6.5",
+    "react-turnstile": "^1.1.4",
     "sass": "^1.71.1",
     "storyblok-rich-text-react-renderer": "^2.9.2",
     "swiper": "^11.0.7"

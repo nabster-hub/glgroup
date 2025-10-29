@@ -1,11 +1,51 @@
-import { NextRequest, NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
+
+async function verifyTurnstile(token, ip) {
+    const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+    const res = await fetch(url, {
+        method: "POST",
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify({
+            secret: process.env.TURNSTILE_SECRET_KEY,
+            response: token,
+            remoteip: ip,
+        }),
+    });
+
+    return await res.json();
+}
 
 export async function POST(request) {
-    try{
-        const { name, phone, email, id, message, utm_source, utm_medium, utm_campaign, utm_term, utm_content } = await request.json();
+    try {
+        const {
+            name,
+            phone,
+            email,
+            id,
+            message,
+            token,
+            utm_source,
+            utm_medium,
+            utm_campaign,
+            utm_term,
+            utm_content
+        } = await request.json();
         // return NextResponse.json({name, phone, email});
+
+        if(!token){
+            return NextResponse.json({success: false, error: "Captcha token missing"}, {status: 400});
+        }
+
+        const ip = request.headers.get("x-forwarded-for");
+        const captcha = await verifyTurnstile(token, ip);
+
+        if (!captcha.success) {
+            return NextResponse.json({ success: false, error: "Captcha validation failed" }, { status: 400 });
+        }
+
         const body = {
-            fields:{
+            fields: {
                 "NAME": name,
                 "PHONE": [{
                     "VALUE": phone,
@@ -24,7 +64,7 @@ export async function POST(request) {
                 "UTM_CONTENT": utm_content,
                 "UTM_TERM": utm_term
             },
-            params: { "REGISTER_SONET_EVENT": "Y" }
+            params: {"REGISTER_SONET_EVENT": "Y"}
 
         };
 
@@ -38,9 +78,9 @@ export async function POST(request) {
 
         const responseData = await response.json();
 
-        return NextResponse.json({ success: true, data: JSON.stringify(responseData) });
+        return NextResponse.json({success: true, data: JSON.stringify(responseData)});
     } catch (e) {
-        return NextResponse.json({success: false, error: e});
+        return NextResponse.json({success: false, error: e}, {status:500});
     }
 
 }
