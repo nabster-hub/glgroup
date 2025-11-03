@@ -29,7 +29,14 @@ export async function POST(request) {
             utm_medium,
             utm_campaign,
             utm_term,
-            utm_content
+            utm_content,
+            session_id,
+            version,
+            form_page,
+            from_modal,
+            acceptLang,
+            referrer,
+            isReturning
         } = await request.json();
         // return NextResponse.json({name, phone, email});
 
@@ -56,8 +63,13 @@ export async function POST(request) {
                     "TYPE_ID": "EMAIL"
                 }],
                 "SOURCE_ID": "WEB",
-                "UF_CRM_1723206843835": id,
+                "UF_CRM_1723206843835": form_page,
                 "UF_CRM_1723206895928": message,
+                "UF_CRM_1762153313": acceptLang,
+                "UF_CRM_1762153355": version,
+                "UF_CRM_1762153789": from_modal,
+                "UF_CRM_1762154056": referrer,
+                "UF_CRM_1762154114": isReturning,
                 "UTM_SOURCE": utm_source,
                 "UTM_MEDIUM": utm_medium,
                 "UTM_CAMPAIGN": utm_campaign,
@@ -67,6 +79,8 @@ export async function POST(request) {
             params: {"REGISTER_SONET_EVENT": "Y"}
 
         };
+
+        //console.log(body);
 
         const response = await fetch(process.env.API_URL, {
             method: 'POST',

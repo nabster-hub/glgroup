@@ -9,6 +9,7 @@ import {useLocale} from "next-intl";
 import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
 import clsx from "clsx";
 import Turnstile from "react-turnstile";
+import {useUserStore} from "@/src/store/userStore";
 
 
 const ContactForm = ({blok, modal}) => {
@@ -21,7 +22,13 @@ const ContactForm = ({blok, modal}) => {
     const [sended, setSended] = useState('');
     const [disable, setDisable] = useState(false);
     const [errors, setErrors] = useState({});
-    const [utm, setUTM] = useState({});
+    const [utm, setUtm] = useState({});
+    const [sessionId, setSessionId] = useState('');
+    const [acceptLang, setAcceptLang] = useState('');
+    const [localeVersion, setLocaleVersion] = useState('');
+    const [referrer, setReferrer] = useState('');
+    const [isReturning, setIsReturning] = useState('');
+    const setFormContext = useUserStore(state => state.setFormContext);
     const [id, setId] = useState('');
     const pathname = usePathname()
 
@@ -30,6 +37,16 @@ const ContactForm = ({blok, modal}) => {
     useEffect(()=>{
         setId(blok.id)
     }, [pathname])
+
+    useEffect(() => {
+        const state = useUserStore.getState();
+        setUtm(state.utm);
+        setSessionId(state.sessionId);
+        setLocaleVersion(state.locale);
+        setAcceptLang(state.acceptLang);
+        setReferrer(state.referrer);
+        setIsReturning(state.isReturning);
+    }, []);
 
     const validateFields = () => {
         const newErrors = {};
@@ -64,6 +81,11 @@ const ContactForm = ({blok, modal}) => {
     const sendMail = async (e) => {
         e.preventDefault();
 
+        setFormContext({
+            formPage: typeof window !== 'undefined' ? window.location.href : pathname,
+            fromModal: Boolean(modal),
+        });
+
         if (!validateFields()) {
             return;
         }
@@ -81,10 +103,17 @@ const ContactForm = ({blok, modal}) => {
                     id,
                     message,
                     token: captchaToken,
+                    session_id: sessionId,
+                    version: localeVersion,
+                    form_page: typeof window !== 'undefined' ? window.location.href : pathname,
+                    from_modal: Boolean(modal),
+                    acceptLang: acceptLang,
+                    referrer: referrer,
+                    isReturning: isReturning,
                     ...utm
             })
         })
-        const res = await response.json();
+       const res = await response.json();
 
         if(res.status === 500 || res.status === 400) {
             setSended(false);
@@ -92,15 +121,12 @@ const ContactForm = ({blok, modal}) => {
             setSended(true)
         }
         setDisable(false)
-        // console.log(res)
+        //console.log(res)
 
     }
 
     return (
         <section className={styles.block} id={'form'} {...storyblokEditable(blok)}>
-            <Suspense fallback={<div>Loading...</div>}>
-                <UTMParamsProvider onUTMParams={setUTM} />
-            </Suspense>
             <div className="container py-20 lg:py-24">
                 <div className={clsx( modal ? "lg:flex-row" : "flex-col lg:items-center", "flex gap-20 lg:gap-12 xl:gap-16")}>
                     <div className={styles.leftBlock}>

@@ -4,11 +4,12 @@ import styles from './FormContact.module.scss';
 import {render} from "storyblok-rich-text-react-renderer";
 import {storyblokEditable} from "@storyblok/react";
 import {usePathname} from "next/navigation";
+import { useUserStore } from '@/src/store/userStore';
 import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
 import Turnstile from "react-turnstile";
 
 
-const FormContact = ({blok}) => {
+const FormContact = ({blok, modal=false}) => {
     const [captchaToken, setCaptchaToken] = useState("");
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
@@ -17,13 +18,30 @@ const FormContact = ({blok}) => {
     const [sended, setSended] = useState('');
     const [disable, setDisable] = useState(false);
     const [errors, setErrors] = useState({});
-    const [utm, setUTM] = useState({});
+    const [utm, setUtm] = useState({});
+    const [sessionId, setSessionId] = useState('');
+    const [acceptLang, setAcceptLang] = useState('');
+    const [localeVersion, setLocaleVersion] = useState('');
+    const [referrer, setReferrer] = useState('');
+    const [isReturning, setIsReturning] = useState('');
+    const setFormContext = useUserStore(state => state.setFormContext);
     const [id, setId] = useState('');
     const pathname = usePathname()
+
 
     useEffect(()=>{
         setId(blok.id)
     }, [pathname])
+
+    useEffect(() => {
+        const state = useUserStore.getState();
+        setUtm(state.utm);
+        setSessionId(state.sessionId);
+        setLocaleVersion(state.locale);
+        setAcceptLang(state.acceptLang);
+        setReferrer(state.referrer);
+        setIsReturning(state.isReturning);
+    }, []);
 
     const validateFields = () => {
         const newErrors = {};
@@ -58,12 +76,17 @@ const FormContact = ({blok}) => {
     const sendMail = async (e) => {
         e.preventDefault();
 
+        setFormContext({
+            formPage: typeof window !== 'undefined' ? window.location.href : pathname,
+            fromModal: Boolean(modal),
+        });
+
         if (!validateFields()) {
             return;
         }
 
         setDisable(true)
-        const response = await fetch('/api/formContact', {
+        const response = await fetch('/api/contactForm', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -75,24 +98,29 @@ const FormContact = ({blok}) => {
                 id,
                 message,
                 token: captchaToken,
+                session_id: sessionId,
+                version: localeVersion,
+                form_page: typeof window !== 'undefined' ? window.location.href : pathname,
+                from_modal: Boolean(modal),
+                acceptLang: acceptLang,
+                referrer: referrer,
+                isReturning: isReturning,
                 ...utm
             })
         })
         const res = await response.json();
-        if(res.status === 500 || res.status === 400){
+
+        if(res.status === 500 || res.status === 400) {
             setSended(false);
         }else{
             setSended(true)
         }
         setDisable(false)
-        console.log(sended)
+        //console.log(res)
 
     }
     return (
         <section className={styles.formContact} {...storyblokEditable(blok)}>
-            <Suspense fallback={<div>Loading...</div>}>
-                <UTMParamsProvider onUTMParams={setUTM} />
-            </Suspense>
             <div className="container">
                 <div className={styles.contactBlock}>
                     <h2>{blok.title}</h2>

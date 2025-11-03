@@ -44,6 +44,8 @@ import {NextIntlClientProvider} from "next-intl";
 import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
 import Script from "next/script";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
+import {Suspense} from "react";
 
 
 
@@ -308,6 +310,9 @@ export default async function LocalLayout({ children, params}) {
           <GoogleTagManager gtmId={"GTM-W94Q2T3S"}/>
           <GoogleAnalytics gaId="G-F5H6Q18BRV" />
           <NextIntlClientProvider locale={params.locale}>
+            <Suspense fallback={null}>
+              <UTMParamsProvider />
+            </Suspense>
             <NavMenu headMenu={headMenu} menu={menu} contact={contactForm}/>
             {children}
             <footer className={'bg-[#3B604E]'}>

@@ -1,27 +1,50 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+
+import React, { useEffect, useMemo } from 'react';
+import { useSearchParams, usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
+import { useUserStore } from '@/src/store/userStore';
 
 const UTMParamsProvider = ({ onUTMParams }) => {
     const params = useSearchParams();
-    const [utmParams, setUTMParams] = useState({});
+    const pathname = usePathname();
+    const locale = useLocale();
+
+    const initUser = useUserStore.getState().initUser;
+    const setLocaleState = useUserStore.getState().setLocale;
+
+    const search = params?.toString() || '';
+
+    const utm = useMemo(() => {
+        const lower = new URLSearchParams(search);
+        return {
+            utm_source: lower.get('utm_source') || '',
+            utm_medium: lower.get('utm_medium') || '',
+            utm_campaign: lower.get('utm_campaign') || '',
+            utm_term: lower.get('utm_term') || '',
+            utm_content: lower.get('utm_content') || '',
+        };
+    }, [search]);
 
     useEffect(() => {
-        const lowerCaseParams = {};
-        for (const [key, value] of params.entries()) {
-            lowerCaseParams[key.toLowerCase()] = value;
-        }
-        const utmParams = {};
-        if (lowerCaseParams['utm_source']) utmParams.utm_source = lowerCaseParams['utm_source'];
-        if (lowerCaseParams['utm_medium']) utmParams.utm_medium = lowerCaseParams['utm_medium'];
-        if (lowerCaseParams['utm_campaign']) utmParams.utm_campaign = lowerCaseParams['utm_campaign'];
-        if (lowerCaseParams['utm_term']) utmParams.utm_term = lowerCaseParams['utm_term'];
-        if (lowerCaseParams['utm_content']) utmParams.utm_content = lowerCaseParams['utm_content'];
-        setUTMParams(utmParams);
-        onUTMParams(utmParams); // Callback to pass UTM params to parent component
-    }, [params]);
+        const acceptLang =
+            typeof navigator !== 'undefined' ? navigator.language : '';
 
-    return null; // This component doesn't render anything
+        const entryPage =
+            typeof window !== 'undefined' ? window.location.href : '';
+
+        const referrer =
+            typeof document !== 'undefined' ? document.referrer : '';
+
+        initUser({ acceptLang, locale, utm, entryPage, referrer });
+
+        setLocaleState(locale);
+
+        onUTMParams?.(utm);
+
+    }, [pathname, search, locale, utm]);
+
+    return null;
 };
 
 export default UTMParamsProvider;
