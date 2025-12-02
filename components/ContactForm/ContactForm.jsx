@@ -201,7 +201,7 @@ const ContactForm = ({blok, modal}) => {
                                 9.046875 L 43.236328 7.7539062 z" fill="#FFDA2B"/>
                                 </svg>
                                 <div className={styles.successText}>
-                                    {local === 'ru' ? 'Ваша заявка успешно отправлена. с Вами свяжутся в ближайшее время.'
+                                    {local === 'ru' ? 'Заявка успешно отправлена, с Вами свяжутся в ближайшее время.'
                                         : "The application has been successfully sent. You will be contacted shortly."}
                                 </div>
                             </div>

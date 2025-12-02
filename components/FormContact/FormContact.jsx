@@ -189,7 +189,7 @@ const FormContact = ({blok, modal=false}) => {
                                 9.046875 L 43.236328 7.7539062 z" fill="#FFDA2B"/>
                             </svg>
                             <div className={styles.successText}>
-                                Заявка успешно отправленна с Вами свяжются в ближайшее время
+                                Заявка успешно отправлена, с Вами свяжутся в ближайшее время.
                             </div>
                         </div>
 
@@ -208,7 +208,7 @@ const FormContact = ({blok, modal=false}) => {
                                 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z" fill="black"/>
                             </svg>
                             <div className={styles.errorText}>
-                                Не удалось отправить заявку пожалуйста попробуйте позже
+                                Не удалось отправить заявку, пожалуйста попробуйте позже
                             </div>
                             <button onClick={()=>{
                                 setSended('');
