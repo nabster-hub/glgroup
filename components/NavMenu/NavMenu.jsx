@@ -25,22 +25,31 @@ export default function NavMenu ({headMenu, menu, contact}) {
         "showcase",
     ]
     const checkType = (path) => {
-        const  parts = path.split('/');
-        if(locale === "eu") {
-            if (paths.includes(parts[1])) {
-                return true;
-            } else {
-                return false;
-            }
-        }else{
-            if(paths.includes(parts[2])){
-                return true;
-            }else{
-                return false;
-            }
+        const parts = path.split('/');
+        let segment, nextSegment;
+
+        if (locale === "eu") {
+            segment = parts[1];
+            nextSegment = parts[2];
+        } else {
+            segment = parts[2];
+            nextSegment = parts[3];
         }
 
-    }
+        if (segment === 'currency-converter' && nextSegment) {
+            return true;
+        }
+        if (segment === 'currency' && nextSegment) {
+            return true;
+        }
+
+        if (paths.includes(segment)) {
+            return true;
+        }
+
+        return false;
+    };
+
 
     const isHome = (path) =>{
         if(locale === "eu"){

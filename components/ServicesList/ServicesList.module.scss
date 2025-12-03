@@ -1,0 +1,86 @@
+@import "app/variables";
+
+
+.ServicesList{
+  font-family: var(--font-gilroy);
+  padding: 40px 0 60px;
+  background: #3B604E;
+  .content{
+    color: #FFFFFF;
+    max-width: 800px;
+    border-radius: 10px;
+    padding: 0 15px;
+    @media (min-width: 768px) {
+      border-radius: 30px;
+    }
+    @media (min-width: 1024px) {
+      border-radius: 50px;
+    }
+  }
+  .contentBlock{
+    h2 {
+      color: #fff;
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 50px;
+    }
+    .serviceslist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      .serviceWraper {
+        color: #000;
+        display: flex;
+        height: 174px;
+        gap: 20px;
+        background: #E5E7EB;
+        box-shadow: 0px 0px 4px 0px #00000040;
+        padding: 40px 25px 25px ;
+        border-bottom-left-radius: 30px;
+        border-top-right-radius: 30px;
+        max-width: 100%;
+        flex: 1 1 100%;
+        @media (min-width: 768px) {
+          max-width: 50%;
+          flex: 1 1 calc(50% - 20px);
+        }
+      }
+      .serviceDetail {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .serviceDetailTitle {
+          font-size: 18px;
+          line-height: 20px;
+          font-weight: 500;
+          @media (min-width: 768px) {
+            font-size: 20px;
+          }
+        }
+      }
+      .serviceImg {
+        position: relative;
+        width: 92px;
+        min-width: 92px;
+        height: 80px;
+      }
+      .linkitem {
+        font-size: 16px;
+        font-weight: 500;
+        text-align: center;
+        line-height: 30px;
+        width: 111px;
+        height: 30px;
+        border: 1px solid #3E7A5D;
+        border-radius: 100px;
+        @media (min-width: 768px) {
+          height: 30px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+}
