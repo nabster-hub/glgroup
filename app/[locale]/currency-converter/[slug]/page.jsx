@@ -30,6 +30,10 @@ export async function generateMetadata({ params, params: { locale } }, parent) {
                     'en_EN': 'https://www.glgconsult.com/en/currency-converter' + data.story.slug,
                 },
             },
+            robots:{
+                index: false,
+                follow: false,
+            },
             openGraph: {
                 siteName: "GLG Consult",
                 title: data.story.content.metaTitle,

@@ -8,5 +8,11 @@ module.exports = {
         additionalSitemaps: [
             'https://www.glgconsult.com/sitemap-index.xml',
         ],
+        policies: [
+            {
+                userAgent: '*',
+                disallow: ['/currency/', '/currency', '/currency-converter/', '/currency-converter'],
+            }
+        ],
     },
 }
