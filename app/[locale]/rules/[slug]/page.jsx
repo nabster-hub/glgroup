@@ -5,7 +5,6 @@ import {storyblokEditable} from "@storyblok/react";
 import Breadcrumbs from "/components/Breadcrumbs/Breadcrumbs";
 import {notFound} from "next/navigation";
 import {unstable_setRequestLocale} from "next-intl/server";
-import {console} from "next/dist/compiled/@edge-runtime/primitives";
 export const revalidate = 3600;
 
 

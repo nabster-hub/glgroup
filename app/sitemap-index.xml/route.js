@@ -34,4 +34,3 @@ export async function GET() {
     return getServerSideSitemap(object);
 }
 
-export const runtime = 'edge';

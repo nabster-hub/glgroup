@@ -7,7 +7,6 @@ import LazyLoadBlog from "@/components/LazyLoadBlog/LazyLoadBlog";
 import {getCategory} from "@/lib/category";
 import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 import {fetchBlog} from "@/lib/blog";
-import {console} from "next/dist/compiled/@edge-runtime/primitives";
 import {unstable_setRequestLocale} from "next-intl/server";
 import {fetchData} from "@/lib/api";
 import SearchBar from "@/components/SearchBar/SearchBar";

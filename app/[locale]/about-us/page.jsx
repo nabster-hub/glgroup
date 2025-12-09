@@ -4,7 +4,6 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import AuthorPage from "@/components/AutohorPage/AuthorPage";
 import {StoryblokComponent} from "@storyblok/react/rsc";
 import {unstable_setRequestLocale} from "next-intl/server";
-import {console} from "next/dist/compiled/@edge-runtime/primitives";
 
 export const revalidate = 3600;
 export async function generateMetadata({params},parent){
