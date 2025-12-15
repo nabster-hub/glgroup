@@ -20,6 +20,10 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
         }
     }
 
+    const filteredLinks = datas.links.filter((e) => {
+        return !(locale === 'id' && e.link.url.includes('blog'));
+    })
+
     const createForm = (link) => {
         if(locale === 'ru'){
             return '/ru/'+link.cached_url;
@@ -103,7 +107,7 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
             </div>
             <div className={clsx("container", styles.mobile, type && styles.black)}>
                 <div className={styles.block}>
-                    {datas.links && datas.links.map((e, _uid) => (
+                    {filteredLinks && filteredLinks.map((e, _uid) => (
                         <Link key={_uid}
                               href={createLink(e.link)} onClick={()=>(setShowNav(false))}>{e.label}</Link>
                     ))}

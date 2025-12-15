@@ -20,6 +20,7 @@ const MobileMenu = ({menu, link, type}) => {
     function handelNav(){
         setShowNav(true)
     }
+
     const number = menu?.whatsappNumber;
     return (
             <div className={clsx('flex lg:hidden items-center justify-between w-full px-5', styles.content, type && styles.black)}>

@@ -11,19 +11,16 @@ const AllCategroyes = ({blok, active, locale}) => {
     // const scrollContainerRef = useRef(null);
 
     function createLink(link, locale){
-        return locale === 'ru' ? '/ru/' + link : '/en/' + link;
-    }
-    //console.log(activeItemRef)
+        const prefixes = {
+            ru: '/ru/',
+            en: '/en/',
+            id: '/id/',
+        }
 
-    // useEffect(() => {
-    //     if(activeItemRef.current && scrollContainerRef.current){
-    //         activeItemRef.current.scrollIntoView({
-    //             behavior: 'smooth',
-    //             block: 'nearest',
-    //             inline: 'center',
-    //         })
-    //     }
-    // }, [active]);
+        const prefix = prefixes[locale];
+        return prefix + link;
+    }
+
     return (
         <div className={styles.allCategory} {...storyblokEditable(blok)}>
             {blok.map((e, index)=>(

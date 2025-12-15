@@ -24,8 +24,9 @@ export async function generateMetadata({params: {locale}}, parent) {
             alternates: {
                 canonical: './',
                 languages: {
-                    'ru_RU': 'https://www.glgconsult.com/ru/showcase',
-                    'en_EN': 'https://www.glgconsult.com/en/showcase',
+                    'ru-RU': 'https://www.glgconsult.com/ru/showcase',
+                    'en-EN': 'https://www.glgconsult.com/en/showcase',
+                    'id-ID': 'https://www.glgconsult.com/id/showcase',
                 },
             },
             openGraph: {
@@ -47,8 +48,9 @@ export async function generateMetadata({params: {locale}}, parent) {
             alternates: {
                 canonical: './',
                 languages: {
-                    'ru_RU': 'https://www.glgconsult.com/ru/showcase',
-                    'en_EN': 'https://www.glgconsult.com/en/showcase',
+                    'ru-RU': 'https://www.glgconsult.com/ru/showcase',
+                    'en-EN': 'https://www.glgconsult.com/en/showcase',
+                    'id-ID': 'https://www.glgconsult.com/id/showcase',
                 },
             },
             openGraph: {
