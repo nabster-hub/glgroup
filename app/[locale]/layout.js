@@ -45,7 +45,9 @@ import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
 import Script from "next/script";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
-import {Suspense} from "react";
+import React, {Suspense} from "react";
+import {ModalSec} from "@/components/Modal/ModalSec";
+import ForModal from "@/components/ContactForm/forModal";
 
 
 
@@ -320,6 +322,7 @@ export default async function LocalLayout({ children, params}) {
             </footer>
             <ScrollToTop />
             <CookieAlert data={global.data.story.content.CookieMessage} />
+            <ForModal locale={params.locale} />
           </NextIntlClientProvider>
           <Script id={'clarity-script'} strategy={'afterInteractive'}  dangerouslySetInnerHTML={{
             __html: `        
