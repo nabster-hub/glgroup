@@ -8,12 +8,12 @@ import ContactForm from "@/components/ContactForm/ContactForm";
 import {fetchData} from "@/lib/api";
 import OtherArticles from "@/components/OtherArticles/OtherArticles";
 import {storyblokEditable} from "@storyblok/react";
-import {useLocale} from "next-intl";
+// import {useLocale} from "next-intl";
 import {findAnchors} from "@/lib/findAnchors";
 import textStyles from '@/components/UI/UI.module.scss';
 import clsx from "clsx";
 import OurRecomendations from "@/components/OurRecomendations/OurRecomendations";
-
+import { headers } from "next/headers";
 export async function getData(title, locale, category, showcase) {
     let sbParams = !showcase ? {
         version: "published",
@@ -50,7 +50,8 @@ export async function getData(title, locale, category, showcase) {
 }
 
 export default async function Post ({blok, showcase}) {
-    const locale = useLocale();
+    // const locale = useLocale();
+    const locale = headers().get("x-next-intl-locale") || "en";
     const date = new Date(blok.published_at);
     const create  = new Date(blok.created_at);
     const contactForm = await fetchData('blog-contact', {version: 'draft', language: locale})
