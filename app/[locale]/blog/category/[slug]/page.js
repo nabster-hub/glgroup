@@ -4,10 +4,11 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import {getStoryblokApi} from "@storyblok/react/rsc";
 import PosePreview from "@/components/PostPreview/PosePreview";
 import LazyLoadBlog from "@/components/LazyLoadBlog/LazyLoadBlog";
+import {getCategory} from "@/lib/category";
 import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 import {unstable_setRequestLocale} from "next-intl/server";
 import {notFound} from "next/navigation";
-import {fetchData, getCategory} from "@/lib/api";
+import {fetchData} from "@/lib/api";
 import SearchBar from "@/components/SearchBar/SearchBar";
 
 

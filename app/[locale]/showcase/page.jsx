@@ -4,11 +4,12 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import {getStoryblokApi, StoryblokComponent} from "@storyblok/react/rsc";
 import PosePreview from "@/components/PostPreview/PosePreview";
 import LazyLoadBlog from "@/components/LazyLoadBlog/LazyLoadBlog";
+import {getCategory} from "@/lib/category";
 import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 import {fetchBlog} from "@/lib/blog";
 import {console} from "next/dist/compiled/@edge-runtime/primitives";
 import {unstable_setRequestLocale} from "next-intl/server";
-import {fetchData, getCategory} from "@/lib/api";
+import {fetchData} from "@/lib/api";
 import SearchBar from "@/components/SearchBar/SearchBar";
 
 export const revalidate = 3600;

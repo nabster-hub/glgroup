@@ -1,11 +1,12 @@
 import React from 'react';
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import {getCategory} from "@/lib/category";
 import AllCategroyes from "@/components/AllCategoryes/AllCategroyes";
 import {unstable_setRequestLocale} from "next-intl/server";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import PosePreview from "@/components/PostPreview/PosePreview";
 import LazyLoadBlog from "@/components/LazyLoadBlog/LazyLoadBlog";
-import {fetchData, getCategory} from "@/lib/api";
+import {fetchData} from "@/lib/api";
 
 
 export async function generateMetadata({params: {locale}},parent){
