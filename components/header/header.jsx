@@ -27,6 +27,10 @@ const Header = ({links, type, menu}) => {
       }
     }
 
+    const filteredLinks = itemLinks.filter((e) => {
+        return !(locale === 'id' && e.link.url.includes('blog'));
+    })
+
     return (
         <div className={clsx('py-5', styles.header, type && (styles.black), type ? 'text-black' : 'text-white')}>
 
@@ -46,7 +50,7 @@ const Header = ({links, type, menu}) => {
                         className={'w-fit font-gilroy text-sm lg:text-desc lowercase lg:max-w-[119px] xl:max-w-[139px] leading-4 lg:leading-3.5'}>{menu.siteDescription}</span>
                 </div>
                 <div className={'flex gap-4 xl:gap-10 font-gilroy text-base font-normal items-center'}>
-                    {itemLinks && itemLinks.map((e, _uid) => (
+                    {filteredLinks && filteredLinks.map((e, _uid) => (
                         <Link href={createLink(e.link)} key={_uid}
                               className={'hover:text-yellow-active'}>
 

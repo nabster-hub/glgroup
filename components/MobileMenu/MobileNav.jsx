@@ -10,15 +10,10 @@ import {useLocale} from "next-intl";
 const MobileNav = ({datas, setShowNav, contactUs, type}) => {
     const number = datas?.whatsappNumber;
     const locale = useLocale();
-    const style = () => {
-        if(locale === 'ru' && type){
-            return clsx('font-bold text-green-active');
-        }else if(locale === 'ru' && !type){
-            return clsx('text-yellow-active hover:text-yellow-active');
-        }else if(locale === 'en'){
 
-        }
-    }
+    const filteredLinks = datas.links.filter((e) => {
+        return !(locale === 'id' && e.link.url.includes('blog'));
+    })
 
     const createForm = (link) => {
         if(locale === 'ru'){
@@ -39,7 +34,7 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
     }
     return (
         <section className={clsx('fixed h-full w-full top-0 left-0', type ? 'bg-white' : 'bg-[#141414]')} id={'menu'}>
-            <div className={clsx('flex lg:hidden items-center justify-between w-full px-5 mb-20', styles.content, type && styles.black)}>
+            <div className={clsx('flex lg:hidden items-center justify-between w-full px-5 mb-10', styles.content, type && styles.black)}>
 
                 <div className={styles.logoBlock}>
                     <Link href={`/${locale}`} className={'flex gap-3 items-center'} onClick={()=>(setShowNav(false))}>
@@ -103,7 +98,7 @@ const MobileNav = ({datas, setShowNav, contactUs, type}) => {
             </div>
             <div className={clsx("container", styles.mobile, type && styles.black)}>
                 <div className={styles.block}>
-                    {datas.links && datas.links.map((e, _uid) => (
+                    {filteredLinks && filteredLinks.map((e, _uid) => (
                         <Link key={_uid}
                               href={createLink(e.link)} onClick={()=>(setShowNav(false))}>{e.label}</Link>
                     ))}

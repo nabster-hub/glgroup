@@ -12,10 +12,12 @@ export async function generateMetadata({params}, parent){
     const titles = {
         ru: "404 Страница не найдена - glgconsult",
         en: '404 page not found - glgconsult',
+        id: '404 page not found - glgconsult',
     }
     const descriptions = {
         ru: "Что-то пошло не так, данная страница не найдена 404",
         en: '404 page not found',
+        id: '404 page not found',
     }
 
     return  {
@@ -31,11 +33,13 @@ const NotFoundPage = () => {
         const titles = {
             ru: "404 Страница не найдена - glgconsult",
             en: "404 page not found - glgconsult",
+            id: "404 page not found - glgconsult",
         };
 
         const descriptions = {
             ru: "Что-то пошло не так, данная страница не найдена 404",
             en: "404 page not found",
+            id: "404 page not found",
         };
 
         document.title = titles[local] || titles['en'];
@@ -43,6 +47,10 @@ const NotFoundPage = () => {
     }, [local]);
 
     const en = {
+        title : "Page not found",
+        link: "Home"
+    }
+    const id = {
         title : "Page not found",
         link: "Home"
     }

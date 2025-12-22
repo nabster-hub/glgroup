@@ -27,8 +27,9 @@ export async function generateMetadata({params, params: {locale}},parent){
             alternates: {
                 canonical: './',
                 languages: {
-                    'ru_RU': 'https://www.glgconsult.com/ru/'+data.story.slug,
-                    'en_EN': 'https://www.glgconsult.com/en/'+data.story.slug,
+                    'ru-RU': 'https://www.glgconsult.com/ru/'+data.story.slug,
+                    'en-EN': 'https://www.glgconsult.com/en/'+data.story.slug,
+                    'id-ID': 'https://www.glgconsult.com/id/'+data.story.slug,
                 },
             },
             openGraph:{

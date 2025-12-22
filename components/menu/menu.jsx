@@ -1,10 +1,8 @@
 import React from 'react';
 import Link from "next/link";
-import Image from "next/image";
 import clsx from "clsx";
 import {useLocale} from "next-intl";
 import Modal from "@/components/Modal/Modal";
-import {fetchData} from "@/lib/api";
 
 export default function Menu ({menu, type, contactFrom}) {
     const locale = useLocale();
