@@ -80,7 +80,6 @@ export async function POST(request) {
 
         };
 
-        //console.log(body);
 
         const response = await fetch(process.env.API_URL, {
             method: 'POST',

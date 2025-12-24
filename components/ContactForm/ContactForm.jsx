@@ -10,13 +10,15 @@ import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider"
 import clsx from "clsx";
 import Turnstile from "react-turnstile";
 import {useUserStore} from "@/src/store/userStore";
+import 'react-phone-number-input/style.css';
+import PhoneInput from "react-phone-number-input";
 
 
 const ContactForm = ({blok, modal, mobile}) => {
     const [captchaToken, setCaptchaToken] = useState("");
     const local = useLocale();
     const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+    const [phone, setPhone] = useState();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [sended, setSended] = useState('');
@@ -145,13 +147,14 @@ const ContactForm = ({blok, modal, mobile}) => {
                                 <div className="flex flex-col lg:flex-row gap-5 mb-8 justify-between lg:mb-12">
                                     <div className="min-w-[45%]">
                                         <label htmlFor={"phone"}>{blok.phoneLabel}</label>
-                                        <input type="text" name={"phone"}
-                                               value={phone}
-                                               onChange={(e) => {
-                                                   setPhone(e.target.value)
-                                               }}
-                                               required={true}
-                                        />
+                                        <PhoneInput  name={"phone"} onChange={setPhone} value={phone} required={true}/>
+                                        {/*<input type="text" name={"phone"}*/}
+                                        {/*       value={phone}*/}
+                                        {/*       onChange={(e) => {*/}
+                                        {/*           setPhone(e.target.value)*/}
+                                        {/*       }}*/}
+                                        {/*       required={true}*/}
+                                        {/*/>*/}
                                         {errors.phone && <p className={styles.errorMessage}>{errors.phone}</p>}
                                     </div>
                                     <div className="min-w-[45%]">
