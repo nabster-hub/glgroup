@@ -27,6 +27,7 @@ import FormContact from "@/components/FormContact/FormContact";
 import HeroAboutUs from "@/components/HeroAboutUs/HeroAboutUs";
 import OurAdvantages from "@/components/OurAdvantages/OurAdvantages";
 import History from "@/components/History/History";
+import ButtonCTA from "@/components/ButtonCTA/ButtonCTA";
 
 storyblokInit({
     accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
@@ -59,6 +60,7 @@ storyblokInit({
         HeroAboutUs: HeroAboutUs,
         ourAdvantages: OurAdvantages,
         history: History,
+        buttonCTA: ButtonCTA,
     },
 });
 // Since we have a `not-found.tsx` page on the root, a layout file
