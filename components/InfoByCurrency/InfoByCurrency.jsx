@@ -119,8 +119,8 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
     const [showBuy, setShowBuy] = useState(true);
     const [showSell, setShowSell] = useState(true);
     const tableRef = useRef(null);
-    const toggleBuy = () => { if (!(showBuy && !showSell)) setShowBuy(!showBuy); };
-    const toggleSell = () => { if (!(showSell && !showBuy)) setShowSell(!showSell); };
+    const toggleBuy = () => setShowBuy(prev => !prev);
+    const toggleSell = () => setShowSell(prev => !prev);
 
     const now = new Date();
     const startDate = useMemo(() => {
@@ -162,14 +162,36 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
         sell: r.sell
     }));
 
+    const hasLines = showBuy || showSell;
+
     const [dataMin, dataMax] = useMemo(() => {
         const vals = [];
         if (showBuy) vals.push(...chartData.map(d => d.buy));
         if (showSell) vals.push(...chartData.map(d => d.sell));
-        if (!vals.length) return [0, 0];
+        if (!vals.length) return [0, 100]; // fallback
         return [Math.min(...vals), Math.max(...vals)];
     }, [chartData, showBuy, showSell]);
 
+    const getXTicks = (data) => {
+        if (data.length === 0) return [];
+        if (data.length <= 8) {
+            return data.map(d => d.date);
+        }
+
+        const ticks = [];
+        const step = Math.floor((data.length - 1) / 7);
+
+        for (let i = 0; i < 8; i++) {
+            const index = i * step;
+            if (i === 7) {
+                ticks.push(data[data.length - 1].date);
+            } else {
+                ticks.push(data[index].date);
+            }
+        }
+
+        return ticks;
+    };
     const yTicks = useMemo(() => {
         if (!chartData.length || dataMin === dataMax) return [];
 
@@ -306,14 +328,15 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
 
                     <div className={styles.chartWrap}>
                         <div className={styles.controlsBlock}>
-
                             <div className={styles.chartSwitchers}>
                                 <label className={clsx(styles.buttonSwapped, showBuy && styles.active)}>
-                                    <input type="checkbox" checked={showBuy} onChange={toggleBuy} /> {blok.buying}
+                                    <input type="checkbox" checked={showBuy} onChange={toggleBuy} />
+                                    {blok.buying}
                                 </label>
 
                                 <label className={clsx(styles.buttonSwapped, showSell && styles.active)}>
-                                    <input type="checkbox" checked={showSell} onChange={toggleSell} /> {blok.selling}
+                                    <input type="checkbox" checked={showSell} onChange={toggleSell} />
+                                    {blok.selling}
                                 </label>
                             </div>
 
@@ -339,14 +362,18 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
                             <ResponsiveContainer width="100%" height={300}>
                                 <LineChart data={chartData} margin={{ top: 20, right: 20, bottom: 30, left: 20 }}>
                                     <CartesianGrid vertical={false} />
+
                                     <XAxis
                                         axisLine={false}
                                         dataKey="date"
-                                        tickFormatter={(v) => {
-                                            const d = new Date(v);
+                                        ticks={getXTicks(chartData)}
+                                        padding={{ left: 20, right: 20 }}
+                                        tickFormatter={(timestamp) => {
+                                            const d = new Date(timestamp);
                                             return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}`;
                                         }}
                                     />
+
                                     <YAxis
                                         axisLine={false}
                                         domain={[domainMin, domainMax]}
@@ -354,11 +381,12 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
                                         ticks={visibleTicks}
                                         tick={{ dy: 5 }}
                                     />
+
                                     <Tooltip
                                         formatter={(v) => Math.round(v).toLocaleString("en-US")}
                                         labelFormatter={(label) => {
                                             const d = new Date(label);
-                                            return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}`;
+                                            return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}.${d.getFullYear()}`;
                                         }}
                                     />
 
