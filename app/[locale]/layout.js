@@ -303,10 +303,10 @@ export default async function LocalLayout({ children, params}) {
   return (
       <StoryblokProvider>
         <html lang={params.locale}>
+        <head>
+          <meta name="robots" content="noindex, nofollow" />
+        </head>
           <body className={clsx(inter.className, Gilroy.variable, Formular.variable)}>
-          <head>
-            <meta name="robots" content="noindex, nofollow" />
-          </head>
           <script
               src="https://challenges.cloudflare.com/turnstile/v0/api.js"
               async
