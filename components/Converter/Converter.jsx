@@ -86,36 +86,70 @@ export default function Converter({ blok, rates = [], ratesBI = [], banksMap = {
         return found ? (mode === "buy" ? found.buy : found.sell) : null;
     }, [selectedCurrency, selectedBank, mode, ratesBI]);
 
-    useEffect(() => {
-        if (currentRate && amountForeign) {
-            const numeric = parseFloat(amountForeign.replace(",", "."));
-            if (!isNaN(numeric)) {
-                setAmountIDR((numeric * currentRate).toFixed(2));
-            }
-        }
-    }, [currentRate, selectedCurrency, selectedBank, mode]);
+    const parseValue = (val) => {
+        if (!val) return null;
+        const cleaned = val.replace(/,/g, "").replace(/[^0-9.]/g, "");
+        const numeric = parseFloat(cleaned);
+        return isNaN(numeric) ? null : numeric;
+    };
+
+    const formatWithCommas = (value) => {
+        if (value === null || value === "" || isNaN(value)) return "";
+        const num = parseFloat(value);
+        const fixed = num.toFixed(2);
+        const [integer, decimal] = fixed.split(".");
+        const formattedInteger = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return `${formattedInteger}.${decimal}`;
+    };
 
     const handleForeignChange = (val) => {
-        const clean = val.replace(/[^0-9.,]/g, "");
+        const clean = val.replace(/,/g, ""); // видаляємо коми при вводі
         setAmountForeign(clean);
-        const numeric = parseFloat(clean.replace(",", "."));
-        if (currentRate && !isNaN(numeric)) {
-            setAmountIDR((numeric * currentRate).toFixed(2));
+
+        const numeric = parseValue(clean);
+        if (currentRate && numeric !== null) {
+            const result = numeric * currentRate;
+            setAmountIDR(formatWithCommas(result));
         } else {
             setAmountIDR("");
         }
     };
 
     const handleIDRChange = (val) => {
-        const clean = val.replace(/[^0-9.,]/g, "");
+        const clean = val.replace(/,/g, "");
         setAmountIDR(clean);
-        const numeric = parseFloat(clean.replace(",", "."));
-        if (currentRate && !isNaN(numeric)) {
-            setAmountForeign((numeric / currentRate).toFixed(4));
+
+        const numeric = parseValue(clean);
+        if (currentRate && numeric !== null) {
+            const result = numeric / currentRate;
+            setAmountForeign(formatWithCommas(result));
         } else {
             setAmountForeign("");
         }
     };
+
+    const handleIDRBlur = () => {
+        const numeric = parseValue(amountIDR);
+        if (numeric !== null) {
+            setAmountIDR(formatWithCommas(numeric));
+        }
+    };
+
+    const handleForeignBlur = () => {
+        const numeric = parseValue(amountForeign);
+        if (numeric !== null) {
+            setAmountForeign(formatWithCommas(numeric));
+        }
+    };
+
+    useEffect(() => {
+        if (currentRate && amountForeign) {
+            const numeric = parseValue(amountForeign);
+            if (numeric !== null) {
+                setAmountIDR(formatWithCommas(numeric * currentRate));
+            }
+        }
+    }, [currentRate]);
 
     return (
         <section className={clsx(styles.Converter)} {...storyblokEditable(blok)}>
@@ -155,7 +189,9 @@ export default function Converter({ blok, rates = [], ratesBI = [], banksMap = {
                                     type="text"
                                     value={amountIDR}
                                     onChange={(e) => handleIDRChange(e.target.value)}
+                                    onBlur={handleIDRBlur}
                                     className={styles.textInput}
+                                    placeholder="0.00"
                                 />
                                 <span className={styles.currencyLabel}>IDR</span>
                             </div>
@@ -167,7 +203,9 @@ export default function Converter({ blok, rates = [], ratesBI = [], banksMap = {
                                     type="text"
                                     value={amountForeign}
                                     onChange={(e) => handleForeignChange(e.target.value)}
+                                    onBlur={handleForeignBlur}
                                     className={styles.textInput}
+                                    placeholder="1.00"
                                 />
                                 <span className={styles.currencyLabel}>{selectedCurrency}</span>
                             </div>
@@ -180,12 +218,12 @@ export default function Converter({ blok, rates = [], ratesBI = [], banksMap = {
                         </div>
                         {banksMap[selectedBank] && (
                             <div className={styles.bankInfo}>
-                                <span className={styles.bankName}>{banksMap[selectedBank].name}</span>
                                 <img
                                     src={banksMap[selectedBank].logo || "/img/icons/bank-default.svg"}
                                     alt={banksMap[selectedBank].name}
                                     className={styles.bankLogo}
                                 />
+                                <span className={styles.bankName}>{banksMap[selectedBank].name}</span>
                             </div>
                         )}
                     </div>

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
+import Breadcrumbs from "./Breadcrumbs";
 import styles from "./SingleCurrencyTable.module.scss";
 import clsx from "clsx";
 import { render } from "storyblok-rich-text-react-renderer";
@@ -113,10 +114,20 @@ const SingleCurrencyTable = ({
     };
 
     const formattedDateForHeader = formatTimeByLocale(selectedDate, locale);
-
+    function getTodayDateFormatted() {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, "0");
+        const month = String(today.getMonth() + 1).padStart(2, "0");
+        const year = today.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
     return (
         <section className={styles.bestOfferForEachBank} {...storyblokEditable(blok)}>
             <div className={clsx("container", styles.content)}>
+                <div className={styles.topBlock}>
+                    <Breadcrumbs onHero={true} links={blok.breadcrumbs}/>
+                    <div className={styles.date}>{getTodayDateFormatted()}</div>
+                </div>
                 <h1>{blok.title}</h1>
                 <div className={styles.description}>{blok.description}</div>
                 <div className={styles.tableWrapper}>

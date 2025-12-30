@@ -9,7 +9,7 @@ export async function GET(req) {
     const dayEnd = `${date}T23:59:59`;
 
     const { data, error } = await supabase
-        .from('exchange_rates')
+        .from('exchange_rates_duplicate')
         .select('*')
         .gte('timestamp', dayStart)
         .lte('timestamp', dayEnd)

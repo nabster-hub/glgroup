@@ -8,14 +8,14 @@
     padding: 0;
 
     .description {
-      font-size: 16px;
+      font-size: 18px;
+      font-weight: 500;
       margin-bottom: 55px;
       padding: 0 15px;
-      text-align: center;
+      text-align: left;
       @media (min-width: 768px) {
         font-size: 18px;
         margin-bottom: 65px;
-        text-align: left;
       }
     }
     .wrapperBlock {
@@ -372,11 +372,13 @@
         font-size: 14px;
         color: #212121;
         flex: 0 50%;
-        align-items: center;
+        align-items: flex-start;
         justify-content: flex-start;
+        flex-direction: column;
         @media (min-width: 768px) {
           font-size: 16px;
           flex-direction: row;
+          align-items: center;
           padding-left: 0px;
         }
         @media (min-width: 1024px) { font-size: 20px; }
@@ -458,6 +460,61 @@
     .dropdownButton {
       margin-right: 10px;
       min-width: 130px;
+    }
+    .best_buy, .best_sell {
+      position: relative;
+      .crownWrapper {
+        font-size: 12px;
+        line-height: 20px;
+        background: #fff;
+        color: rgba(75, 97, 209, 1);
+        cursor: pointer;
+        display: flex;
+        position: absolute;
+        border-radius: 11px;
+        left: -10px;
+        top: 0;
+        @media (min-width: 768px) {
+          top: -20px;
+          bottom: auto;
+          left: auto;
+        }
+        .crown {
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+        }
+        .tooltip {
+          display: none;
+        }
+        &:hover {
+          padding-right: 5px;
+          .tooltip {
+            @media (min-width: 768px) {
+              padding: 0 10px;
+              display: inline;
+            }
+          }
+        }
+      }
+    }
+    .buy_mobile, .sell_mobile {
+      display: block;
+      flex: 0 20%;
+      text-align: left;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.5);
+      padding-left: 18px;
+      @media (min-width: 450px) {
+        flex: 0 50%;
+      }
+      @media (min-width: 768px) {
+        display: none;
+      }
     }
   }
 

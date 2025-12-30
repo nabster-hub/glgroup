@@ -8,7 +8,17 @@
     margin: 0 auto;
     padding: 0 15px;
   }
-
+  .topBlock {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    .date {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3B604E;
+    }
+  }
   .contentBlock {
   }
   h1 {
@@ -27,6 +37,8 @@
   }
   .description {
     margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: 500;
   }
 
   .label {

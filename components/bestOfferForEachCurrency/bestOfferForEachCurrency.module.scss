@@ -5,7 +5,7 @@
   font-family: var(--font-gilroy);
   .content {
     margin: 0 auto;
-    padding: 0;
+    padding: 0 15px;
     max-width: 800px;
   }
   .mobiletext {
@@ -49,6 +49,7 @@
     padding: 5px 5px 10px;
     margin: 0 auto;
     border-radius: 8px;
+    border: 1px solid #DADCE0;
     @media (min-width: 768px) {
       padding: 10px 8px 20px;
     }
@@ -112,6 +113,13 @@
   .currency {
     display: flex;
     align-items: center;
+    &:hover {
+      color: #3B604E;
+      img {
+        transition: transform 0.2s ease;
+        transform: scale(1.2);
+      }
+    }
     @media (min-width: 768px) {
       align-items: flex-start;
     }
@@ -187,6 +195,12 @@
       margin-left: 10px;
       img{
         height: 24px;
+      }
+      a {
+        img:hover {
+          transition: transform 0.2s ease;
+          transform: scale(1.3);
+        }
       }
     }
   }
