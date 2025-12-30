@@ -7,6 +7,8 @@ import clsx from "clsx";
 import { render } from "storyblok-rich-text-react-renderer";
 import { storyblokEditable } from "@storyblok/react";
 import DatePicker from "react-datepicker";
+import ru from "date-fns/locale/ru"; // Додаємо російську локаль
+import id from "date-fns/locale/id"; // Опціонально, якщо потрібна індонезійська
 import "react-datepicker/dist/react-datepicker.css";
 import Link from "next/link";
 
@@ -133,6 +135,10 @@ const BestOfferForEachBank = ({
                                   banksMap = {},
                               }) => {
     const [selectedCurrency, setSelectedCurrency] = useState("USD");
+    const tableRef = useRef(null);
+
+    const today = new Date();
+    const todayString = today.toISOString().split("T")[0];
 
     const availableDates = useMemo(() => {
         return Array.from(
@@ -144,21 +150,44 @@ const BestOfferForEachBank = ({
         ).map((d) => new Date(d));
     }, [rates, selectedCurrency]);
 
+    const hasTodayData = useMemo(() => {
+        return availableDates.some(
+            (date) =>
+                date.getFullYear() === today.getFullYear() &&
+                date.getMonth() === today.getMonth() &&
+                date.getDate() === today.getDate()
+        );
+    }, [availableDates]);
+
     const lastAvailableDate = useMemo(() => {
         if (availableDates.length === 0) return new Date();
         return availableDates.reduce((a, b) => (a > b ? a : b));
     }, [availableDates]);
 
     const [selectedDate, setSelectedDate] = useState(lastAvailableDate);
+
+    // При зміні валюти — залишаємо вибрану дату, якщо вона доступна, інакше останню
     useEffect(() => {
-        setSelectedDate(lastAvailableDate);
-    }, [lastAvailableDate]);
+        const selectedString = selectedDate.toISOString().split("T")[0];
+        const dateExistsForNewCurrency = rates.some(
+            (r) => r.currency === selectedCurrency && new Date(r.timestamp).toISOString().split("T")[0] === selectedString
+        );
+
+        if (!dateExistsForNewCurrency) {
+            setSelectedDate(lastAvailableDate);
+        }
+    }, [selectedCurrency, rates, lastAvailableDate]);
 
     const [visibleCount, setVisibleCount] = useState(5);
     const [sortField, setSortField] = useState(null);
     const [sortAsc, setSortAsc] = useState(true);
 
     const selectedDateString = selectedDate.toISOString().split("T")[0];
+
+    const isTodaySelected =
+        selectedDate.getFullYear() === today.getFullYear() &&
+        selectedDate.getMonth() === today.getMonth() &&
+        selectedDate.getDate() === today.getDate();
 
     const filteredRates = rates.filter((r) => {
         const itemDate = new Date(r.timestamp).toISOString().split("T")[0];
@@ -177,31 +206,50 @@ const BestOfferForEachBank = ({
     const bestBuyRate = latestByBank.length ? Math.min(...latestByBank.map((r) => r.buy)) : 0;
     const bestSellRate = latestByBank.length ? Math.max(...latestByBank.map((r) => r.sell)) : 0;
 
-    const bestBankBuy = banksMap[latestByBank.find((r) => r.buy === bestBuyRate)?.bank || "-"]?.name;
-    const bestBankSell = banksMap[latestByBank.find((r) => r.sell === bestSellRate)?.bank || "-"]?.name;
+    const bestBankBuyEntry = latestByBank.find((r) => r.buy === bestBuyRate);
+    const bestBankSellEntry = latestByBank.find((r) => r.sell === bestSellRate);
+
+    const bestBankBuy = bestBankBuyEntry ? banksMap[bestBankBuyEntry.bank]?.name || "-" : "-";
+    const bestBankSell = bestBankSellEntry ? banksMap[bestBankSellEntry.bank]?.name || "-" : "-";
 
     const sortedRates = [...latestByBank].sort((a, b) => {
         if (!sortField) return 0;
         return sortAsc ? a[sortField] - b[sortField] : b[sortField] - a[sortField];
     });
 
-    const visibleData = sortedRates.slice(0, visibleCount);
+    // Формуємо visibleData: спочатку best buy, потім best sell, потім решта
+    const visibleData = useMemo(() => {
+        const data = [...sortedRates];
+        const result = [];
+
+        if (bestBankBuyEntry) {
+            const index = data.findIndex((r) => r === bestBankBuyEntry);
+            if (index !== -1) {
+                result.push(...data.splice(index, 1));
+            }
+        }
+
+        if (bestBankSellEntry && bestBankSellEntry !== bestBankBuyEntry) {
+            const index = data.findIndex((r) => r === bestBankSellEntry);
+            if (index !== -1) {
+                result.push(...data.splice(index, 1));
+            }
+        }
+
+        result.push(...data.slice(0, visibleCount - result.length));
+        return result.slice(0, visibleCount);
+    }, [sortedRates, bestBankBuyEntry, bestBankSellEntry, visibleCount]);
+
     const isExpanded = visibleCount >= sortedRates.length;
 
-    const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
-        const today = new Date();
-        const selected = new Date(value);
-        const isToday =
-            selected.getFullYear() === today.getFullYear() &&
-            selected.getMonth() === today.getMonth() &&
-            selected.getDate() === today.getDate();
-        const displayValue = isToday
+    const CustomInput = React.forwardRef(({ onClick }, ref) => {
+        const displayValue = isTodaySelected
             ? blok.today
             : new Intl.DateTimeFormat(locale, {
                 day: "2-digit",
                 month: "long",
                 year: "numeric",
-            }).format(selected);
+            }).format(selectedDate);
 
         return (
             <button
@@ -219,9 +267,6 @@ const BestOfferForEachBank = ({
         );
     });
 
-    const bankList = latestByBank.map((r) => banksMap[r.bank]?.name || r.bank).filter(Boolean).join(", ");
-
-    const formattedDateForPlaceholder = formatDateLongByLocale(selectedDate, locale);
     const formattedDateForHeader = formatTimeByLocale(selectedDate, locale, blok.updatedat);
 
     const currencyBuy = bestBuyRate ? formatNumber(bestBuyRate) : "-";
@@ -239,10 +284,10 @@ const BestOfferForEachBank = ({
         bank_list: Object.values(banksMap).map((b) => b.name).join(", "),
     };
 
-
     const dynamicText1 = formatDynamicText(blok.text1, locale, placeholders);
     const dynamicText2 = formatDynamicText(blok.text2, locale, placeholders);
     const dynamicText3 = formatDynamicText(blok.text3, locale, placeholders);
+
     const handleSort = (field) => {
         if (sortField === field) {
             setSortAsc(!sortAsc);
@@ -257,11 +302,8 @@ const BestOfferForEachBank = ({
         blok[isExpanded ? "hideall" : "showall"];
     const showMoreText = showMoreTextRaw?.replace(/%s/g, selectedCurrency);
 
-    const today = new Date();
-    const isToday =
-        selectedDate.getFullYear() === today.getFullYear() &&
-        selectedDate.getMonth() === today.getMonth() &&
-        selectedDate.getDate() === today.getDate();
+    // Визначаємо правильну локаль для DatePicker
+    const datePickerLocale = locale === "ru" ? ru : locale === "id" ? id : undefined;
 
     return (
         <section className={styles.bestOfferForEachBank} {...storyblokEditable(blok)}>
@@ -269,14 +311,15 @@ const BestOfferForEachBank = ({
                 <div className={styles.text1Block} dangerouslySetInnerHTML={{ __html: dynamicText1.replace(/\n/g, "<br>") }} />
 
                 <div className={styles.filterBlock}>
-                    <div className={styles.filterBlockDate}>{formattedDateForHeader}</div>
-
+                    <div className={styles.filterBlockDate}>
+                        {isTodaySelected && hasTodayData && formattedDateForHeader}
+                    </div>
                     <div className={styles.filterBlockFilter}>
                         <DatePicker
                             selected={selectedDate}
                             onChange={setSelectedDate}
                             dateFormat="dd MMMM yyyy"
-                            locale={locale}
+                            locale={datePickerLocale}
                             includeDates={availableDates}
                             customInput={<CustomInput />}
                         />
@@ -288,13 +331,16 @@ const BestOfferForEachBank = ({
                         />
                     </div>
                 </div>
-                {!isToday && (
+
+                {/* Показуємо text3 тільки якщо сьогодні вибрано, але даних за сьогодні НЕМАЄ */}
+                {isTodaySelected && !hasTodayData && (
                     <div
                         className={styles.text3Block}
                         dangerouslySetInnerHTML={{ __html: dynamicText3.replace(/\n/g, "<br>") }}
                     />
                 )}
-                <div className={styles.tableWrapper}>
+
+                <div className={styles.tableWrapper} ref={tableRef}>
                     <div className={styles.table}>
                         <div className={clsx(styles.row, styles.header)}>
                             <div>{render(blok.bank?.[locale] || blok.bank)}</div>
@@ -302,30 +348,30 @@ const BestOfferForEachBank = ({
                             <div className={styles.sortable} onClick={() => handleSort("buy")}>
                                 {render(blok.buy?.[locale] || blok.buy)}
                                 <span className={styles.sortIcons}>
-                                  {sortField === "buy" ? (
-                                      sortAsc ? (
-                                          <img src="/img/icons/sortarrowup.svg" alt="Sort ascending" className={styles.sortArrow} />
-                                      ) : (
-                                          <img src="/img/icons/sortarrowdown.svg" alt="Sort descending" className={styles.sortArrow} />
-                                      )
-                                  ) : (
-                                      <img src="/img/icons/sortarrow2.svg" alt="Unsorted" className={styles.sortArrow} />
-                                  )}
+                                    {sortField === "buy" ? (
+                                        sortAsc ? (
+                                            <img src="/img/icons/sortarrowup.svg" alt="Sort ascending" className={styles.sortArrow} />
+                                        ) : (
+                                            <img src="/img/icons/sortarrowdown.svg" alt="Sort descending" className={styles.sortArrow} />
+                                        )
+                                    ) : (
+                                        <img src="/img/icons/sortarrow2.svg" alt="Unsorted" className={styles.sortArrow} />
+                                    )}
                                 </span>
                             </div>
 
                             <div className={styles.sortable} onClick={() => handleSort("sell")}>
                                 {render(blok.sell?.[locale] || blok.sell)}
                                 <span className={styles.sortIcons}>
-                                  {sortField === "sell" ? (
-                                      sortAsc ? (
-                                          <img src="/img/icons/sortarrowup.svg" alt="Sort ascending" className={styles.sortArrow} />
-                                      ) : (
-                                          <img src="/img/icons/sortarrowdown.svg" alt="Sort descending" className={styles.sortArrow} />
-                                      )
-                                  ) : (
-                                      <img src="/img/icons/sortarrow2.svg" alt="Unsorted" className={styles.sortArrow} />
-                                  )}
+                                    {sortField === "sell" ? (
+                                        sortAsc ? (
+                                            <img src="/img/icons/sortarrowup.svg" alt="Sort ascending" className={styles.sortArrow} />
+                                        ) : (
+                                            <img src="/img/icons/sortarrowdown.svg" alt="Sort descending" className={styles.sortArrow} />
+                                        )
+                                    ) : (
+                                        <img src="/img/icons/sortarrow2.svg" alt="Unsorted" className={styles.sortArrow} />
+                                    )}
                                 </span>
                             </div>
                         </div>
@@ -343,10 +389,10 @@ const BestOfferForEachBank = ({
                                         <div className={styles.buy_wrap}>
                                             {r.buy === bestBuyRate && (
                                                 <span className={styles.crownWrapper}>
-                                                  <span className={styles.crown}>
-                                                    <img src="/img/icons/crown.png" alt="Best buy rate" className={styles.crown} />
-                                                  </span>
-                                                  <span className={styles.tooltip}>Best buy rate</span>
+                                                    <span className={styles.crown}>
+                                                        <img src="/img/icons/crown.png" alt={render(blok.bestbuy)} className={styles.crown} />
+                                                    </span>
+                                                    <span className={styles.tooltip}>{render(blok.bestbuy)}</span>
                                                 </span>
                                             )}
                                             <span className={styles.boldnumber}>{formatNumber(r.buy)}</span> IDR
@@ -358,8 +404,8 @@ const BestOfferForEachBank = ({
                                         <div className={styles.sell_wrap}>
                                             {r.sell === bestSellRate && (
                                                 <span className={styles.crownWrapper}>
-                                                  <img src="/img/icons/crown.png" alt="Best sell rate" className={styles.crown} />
-                                                  <span className={styles.tooltip}>Best sell rate</span>
+                                                    <img src="/img/icons/crown.png" alt={render(blok.bestsell)} className={styles.crown} />
+                                                    <span className={styles.tooltip}>{render(blok.bestsell)}</span>
                                                 </span>
                                             )}
                                             <span className={styles.boldnumber}>{formatNumber(r.sell)}</span> IDR
@@ -367,7 +413,7 @@ const BestOfferForEachBank = ({
                                     </div>
 
                                     <div className={styles.wrapdetail}>
-                                        <Link href={banksMap[r.bank]?.url || "#"} passHref  className={styles.detail}>
+                                        <Link href={banksMap[r.bank]?.url || "#"} passHref className={styles.detail}>
                                             {blok.detail}
                                         </Link>
                                     </div>
@@ -389,12 +435,25 @@ const BestOfferForEachBank = ({
                     <div className={styles.buttonWrapper}>
                         <button
                             className={styles.showMoreBtn}
-                            onClick={() => setVisibleCount(isExpanded ? 5 : sortedRates.length)}
+                            onClick={() => {
+                                if (isExpanded) {
+                                    setVisibleCount(5);
+                                    setTimeout(() => {
+                                        tableRef.current?.scrollIntoView({
+                                            behavior: "smooth",
+                                            block: "start",
+                                        });
+                                    }, 0);
+                                } else {
+                                    setVisibleCount(sortedRates.length);
+                                }
+                            }}
                         >
                             {render(showMoreText)}
                         </button>
                     </div>
                 )}
+
                 <div className={styles.text2Block} dangerouslySetInnerHTML={{ __html: dynamicText2.replace(/\n/g, "<br>") }} />
             </div>
         </section>

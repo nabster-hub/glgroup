@@ -7,7 +7,7 @@
   .content {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 15px;
 
     .wrapBlock {
       background: #F8F8F9;
@@ -16,9 +16,10 @@
       display: flex;
       flex-direction: column-reverse;
       justify-content: space-between;
+      border: 1px solid #DADCE0;
       @media (min-width: 768px) {
         flex-direction: row;
-        padding: 35px 45px;
+        padding: 35px 25px;
       }
       .headerBlock {
         display: flex;
@@ -272,14 +273,15 @@
         }
         .bankInfo {
           display: flex;
-          gap: 10px;
+          gap: 5px;
           align-items: center;
           margin-bottom: 25px;
+          flex-direction: column;
           @media (min-width: 768px) {
             height: 51px;
           }
           span {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 600;
           }
           .bankLogo {

@@ -36,7 +36,7 @@ const singleBankInfo = ({blok}) => {
                              />
 
                          </div>
-                         <div>{render(blok.description)}</div>
+                         <div  className={styles.third}>{render(blok.description)}</div>
                      </div>
 
                 </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, Fragment } from "react";
+import React, { useState, useMemo, Fragment, useRef} from "react";
 import styles from "./BankExchangeList.module.scss";
 import clsx from "clsx";
 import { render } from "storyblok-rich-text-react-renderer";
@@ -72,7 +72,7 @@ const BankExchangeList = ({ blok, initialRates = [], currenciesMap = {}, currenc
     const [visibleCount, setVisibleCount] = useState(5);
     const visibleData = processedRates.slice(0, visibleCount);
     const isExpanded = visibleCount >= processedRates.length;
-
+    const tableRef = useRef(null);
     const formatDiff = (diff) => {
         if (diff === null || diff === 0) return "";
         const sign = diff > 0 ? "+" : "";
@@ -83,7 +83,7 @@ const BankExchangeList = ({ blok, initialRates = [], currenciesMap = {}, currenc
         <section className={clsx(styles.BankExchangeList)} {...storyblokEditable(blok)}>
             <div className={clsx("container", styles.content)}>
                 <div className={styles.contentBlock}>
-                    <div className={styles.tableWrapper}>
+                    <div className={styles.tableWrapper} ref={tableRef}>
                         <div className={styles.table}>
                             <div className={clsx(styles.row, styles.header)}>
                                 <div>{render(blok.currency?.[locale] || blok.currency)}</div>
@@ -136,7 +136,16 @@ const BankExchangeList = ({ blok, initialRates = [], currenciesMap = {}, currenc
                         <div className={styles.buttonWrapper}>
                             <button
                                 className={styles.showMoreBtn}
-                                onClick={() => setVisibleCount(isExpanded ? 5 : processedRates.length)}
+                                onClick={() => {
+                                    if (isExpanded) {
+                                        setVisibleCount(5);
+                                        setTimeout(() => {
+                                            tableRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                                        }, 0);
+                                    } else {
+                                        setVisibleCount(processedRates.length);
+                                    }
+                                }}
                             >
                                 {render(
                                     blok[isExpanded ? "showless" : "showmore"]?.[locale] ||

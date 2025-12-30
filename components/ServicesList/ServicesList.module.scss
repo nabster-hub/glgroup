@@ -31,8 +31,9 @@
       .serviceWraper {
         color: #000;
         display: flex;
+        justify-content: space-between;
         height: 174px;
-        gap: 20px;
+        gap: 10px;
         background: #E5E7EB;
         box-shadow: 0px 0px 4px 0px #00000040;
         padding: 40px 25px 25px ;
@@ -75,6 +76,11 @@
         height: 30px;
         border: 1px solid #3E7A5D;
         border-radius: 100px;
+        &:hover {
+          box-shadow: 0px 25px 74px 0px rgba(62, 122, 93, 0.2705882353);
+          color: white;
+          background: #3B604E;
+        }
         @media (min-width: 768px) {
           height: 30px;
           font-size: 14px;

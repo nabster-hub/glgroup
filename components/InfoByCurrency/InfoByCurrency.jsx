@@ -18,9 +18,6 @@ import {
     CartesianGrid,
 } from "recharts";
 
-// -----------------------------
-// HELPERS
-// -----------------------------
 function formatDynamicText(rawText, locale, placeholders = {}, bolder = false) {
     if (!rawText) return "";
     let text = "";
@@ -52,9 +49,6 @@ function formatNumber(value) {
     return value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// -----------------------------
-// DROPDOWN COMPONENT
-// -----------------------------
 function Dropdown({ list, selected, setSelected, getLabel, getIcon }) {
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef(null);
@@ -119,21 +113,15 @@ function Dropdown({ list, selected, setSelected, getLabel, getIcon }) {
     );
 }
 
-// -----------------------------
-// MAIN COMPONENT
-// -----------------------------
 const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList = [], banksMap, locale, bankid }) => {
     const [selectedCurrency, setSelectedCurrency] = useState("USD");
     const [selectedPeriod, setSelectedPeriod] = useState("1w");
     const [showBuy, setShowBuy] = useState(true);
     const [showSell, setShowSell] = useState(true);
-
+    const tableRef = useRef(null);
     const toggleBuy = () => { if (!(showBuy && !showSell)) setShowBuy(!showBuy); };
     const toggleSell = () => { if (!(showSell && !showBuy)) setShowSell(!showSell); };
 
-    // -----------------------------
-    // PERIOD DATES
-    // -----------------------------
     const now = new Date();
     const startDate = useMemo(() => {
         switch (selectedPeriod) {
@@ -144,9 +132,6 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
         }
     }, [selectedPeriod]);
 
-    // -----------------------------
-    // FIXED: CURRENCIES ONLY FOR THIS BANK
-    // -----------------------------
     const availableCurrencies = useMemo(() => {
         const set = Array.from(
             new Set(
@@ -159,16 +144,12 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
         );
     }, [rates, bankid, currenciesList]);
 
-    // Якщо поточна валюта не входить у доступні — ставимо першу
     useEffect(() => {
         if (!availableCurrencies.includes(selectedCurrency) && availableCurrencies.length > 0) {
             setSelectedCurrency(availableCurrencies[0]);
         }
     }, [availableCurrencies]);
 
-    // -----------------------------
-    // RATES FOR CHART
-    // -----------------------------
     const ratesForSelected = useMemo(() => {
         return rates
             .filter(r => r.bank === bankid && r.currency === selectedCurrency && new Date(r.timestamp) >= startDate)
@@ -181,29 +162,51 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
         sell: r.sell
     }));
 
-    const [minY, maxY] = useMemo(() => {
+    const [dataMin, dataMax] = useMemo(() => {
         const vals = [];
         if (showBuy) vals.push(...chartData.map(d => d.buy));
         if (showSell) vals.push(...chartData.map(d => d.sell));
         if (!vals.length) return [0, 0];
-        const min = Math.min(...vals);
-        const max = Math.max(...vals);
-        const pad = (max - min) * 0.1;
-        return [min - pad, max + pad];
+        return [Math.min(...vals), Math.max(...vals)];
     }, [chartData, showBuy, showSell]);
 
-    // -----------------------------
-    // PERIOD OPTIONS
-    // -----------------------------
+    const yTicks = useMemo(() => {
+        if (!chartData.length || dataMin === dataMax) return [];
+
+        const range = dataMax - dataMin;
+        const magnitude = Math.pow(10, Math.floor(Math.log10(range || 1)));
+
+        let niceStep;
+        const normalizedRange = range / magnitude;
+        if (normalizedRange <= 1.5) niceStep = magnitude * 0.2;
+        else if (normalizedRange <= 3) niceStep = magnitude * 0.5;
+        else if (normalizedRange <= 7) niceStep = magnitude;
+        else niceStep = magnitude * 2;
+
+        const minRounded = Math.floor(dataMin / niceStep) * niceStep - niceStep;
+        const maxRounded = Math.ceil(dataMax / niceStep) * niceStep + niceStep;
+
+        const step = (maxRounded - minRounded) / 4;
+
+        const ticks = [];
+        for (let i = 0; i < 5; i++) {
+            ticks.push(minRounded + i * step);
+        }
+
+        return ticks.map(v => Math.round(v));
+    }, [dataMin, dataMax]);
+
+    const visibleTicks = yTicks.slice(1);
+
+    const domainMin = yTicks[0] || 0;
+    const domainMax = yTicks[4] || 100;
+
     const periodOptions = [
         { label: blok.oneweek?.[locale] || blok.oneweek, value: "1w" },
         { label: blok.onemonth?.[locale] || blok.onemonth, value: "1m" },
         { label: blok.sixmonth?.[locale] || blok.sixmonth, value: "6m" },
     ];
 
-    // -----------------------------
-    // TABLE DATA
-    // -----------------------------
     const [sortField, setSortField] = useState(null);
     const [sortAsc, setSortAsc] = useState(true);
     const [expanded, setExpanded] = useState(false);
@@ -218,18 +221,50 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
                 return acc;
             }, {});
 
-        let arr = Object.values(latest);
+        return Object.values(latest);
+    }, [rates, selectedCurrency, bankid]);
+
+    const bestBuyRate = filteredByOtherBanks.length ? Math.min(...filteredByOtherBanks.map(r => r.buy)) : 0;
+    const bestSellRate = filteredByOtherBanks.length ? Math.max(...filteredByOtherBanks.map(r => r.sell)) : 0;
+
+    const bestBankBuyEntry = filteredByOtherBanks.find(r => r.buy === bestBuyRate);
+    const bestBankSellEntry = filteredByOtherBanks.find(r => r.sell === bestSellRate);
+
+    const baseSortedRates = useMemo(() => {
+        let data = [...filteredByOtherBanks];
 
         if (sortField) {
-            arr.sort((a, b) =>
-                sortAsc ? a[sortField] - b[sortField] : b[sortField] - a[sortField]
-            );
+            data.sort((a, b) => sortAsc ? a[sortField] - b[sortField] : b[sortField] - a[sortField]);
         }
 
-        return arr;
-    }, [rates, selectedCurrency, bankid, sortField, sortAsc]);
+        return data;
+    }, [filteredByOtherBanks, sortField, sortAsc]);
 
-    const visibleData = expanded ? filteredByOtherBanks : filteredByOtherBanks.slice(0, 5);
+    const visibleData = useMemo(() => {
+        const data = [...baseSortedRates];
+        const result = [];
+
+        if (!sortField) {
+            if (bestBankBuyEntry) {
+                const index = data.findIndex(r => r === bestBankBuyEntry);
+                if (index !== -1) {
+                    result.push(...data.splice(index, 1));
+                }
+            }
+
+            if (bestBankSellEntry && bestBankSellEntry !== bestBankBuyEntry) {
+                const index = data.findIndex(r => r === bestBankSellEntry);
+                if (index !== -1) {
+                    result.push(...data.splice(index, 1));
+                }
+            }
+        }
+
+        const remainingToShow = expanded ? data.length : 5 - result.length;
+        result.push(...data.slice(0, remainingToShow));
+
+        return result;
+    }, [baseSortedRates, bestBankBuyEntry, bestBankSellEntry, expanded, sortField]);
 
     const latestForSelected = ratesForSelected[ratesForSelected.length - 1];
     const currencyBuy = latestForSelected ? formatNumber(latestForSelected.buy) : "-";
@@ -253,16 +288,14 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
     const showMoreText = formatDynamicText(showMoreTextRaw, locale, placeholders);
 
     const handleSort = (field) => {
-        if (sortField === field) setSortAsc(!sortAsc);
-        else {
+        if (sortField === field) {
+            setSortAsc(!sortAsc);
+        } else {
             setSortField(field);
             setSortAsc(true);
         }
     };
 
-    // -----------------------------
-    // RENDER
-    // -----------------------------
     return (
         <section className={clsx(styles.InfoByCurrency)} {...storyblokEditable(blok)}>
             <div className={clsx("container", styles.content)}>
@@ -292,7 +325,6 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
                                     getLabel={(value) => periodOptions.find(p => p.value === value)?.label ?? value}
                                 />
 
-                                {/* FIXED CURRENCIES LIST */}
                                 <Dropdown
                                     list={availableCurrencies}
                                     selected={selectedCurrency}
@@ -305,7 +337,7 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
 
                         <div className={styles.chartBlock}>
                             <ResponsiveContainer width="100%" height={300}>
-                                <LineChart data={chartData} margin={{ right: 20, left: 20 }}>
+                                <LineChart data={chartData} margin={{ top: 20, right: 20, bottom: 30, left: 20 }}>
                                     <CartesianGrid vertical={false} />
                                     <XAxis
                                         axisLine={false}
@@ -317,11 +349,13 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
                                     />
                                     <YAxis
                                         axisLine={false}
-                                        domain={[minY, maxY]}
-                                        tickFormatter={(v) => v.toLocaleString("en-US", { minimumFractionDigits: 2 })}
+                                        domain={[domainMin, domainMax]}
+                                        tickFormatter={(v) => Math.round(v).toLocaleString("en-US")}
+                                        ticks={visibleTicks}
+                                        tick={{ dy: 5 }}
                                     />
                                     <Tooltip
-                                        formatter={(v) => v.toLocaleString("en-US", { minimumFractionDigits: 2 })}
+                                        formatter={(v) => Math.round(v).toLocaleString("en-US")}
                                         labelFormatter={(label) => {
                                             const d = new Date(label);
                                             return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}`;
@@ -337,8 +371,7 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
 
                     <div className={styles.chartTitle2}>{render(dynamicText2)}</div>
 
-                    {/* TABLE */}
-                    <div className={styles.tableWrapper}>
+                    <div className={styles.tableWrapper} ref={tableRef}>
                         <div className={styles.table}>
                             <div className={clsx(styles.row, styles.header)}>
                                 <div>{render(blok.bank?.[locale] || blok.bank)}</div>
@@ -370,12 +403,32 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
                                             {banksMap[r.bank]?.name}
                                         </div>
 
-                                        <div className={styles.buy}>
-                                            <span className={styles.boldnumber}>{formatNumber(r.buy)}</span> IDR
+                                        <div className={clsx(styles.buy, r.buy === bestBuyRate && styles.best_buy)}>
+                                            <div className={styles.buy_mobile}>{render(blok.buyrate?.[locale] || blok.buyrate)}</div>
+                                            <div className={styles.buy_wrap}>
+                                                {r.buy === bestBuyRate && (
+                                                    <span className={styles.crownWrapper}>
+                                                        <span className={styles.crown}>
+                                                            <img src="/img/icons/crown.png" alt={render(blok.bestbuy)} className={styles.crown} />
+                                                        </span>
+                                                        <span className={styles.tooltip}>{render(blok.bestbuy)}</span>
+                                                    </span>
+                                                )}
+                                                <span className={styles.boldnumber}>{formatNumber(r.buy)}</span> IDR
+                                            </div>
                                         </div>
 
-                                        <div className={styles.sell}>
-                                            <span className={styles.boldnumber}>{formatNumber(r.sell)}</span> IDR
+                                        <div className={clsx(styles.sell, r.sell === bestSellRate && styles.best_sell)}>
+                                            <div className={styles.sell_mobile}> {render(blok.sellrate?.[locale] || blok.sellrate)}</div>
+                                            <div className={styles.sell_wrap}>
+                                                {r.sell === bestSellRate && (
+                                                    <span className={styles.crownWrapper}>
+                                                        <img src="/img/icons/crown.png" alt={render(blok.bestsell)} className={styles.crown} />
+                                                        <span className={styles.tooltip}>{render(blok.bestsell)}</span>
+                                                    </span>
+                                                )}
+                                                <span className={styles.boldnumber}>{formatNumber(r.sell)}</span> IDR
+                                            </div>
                                         </div>
 
                                         <div className={styles.wrapdetail}>
@@ -397,7 +450,19 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
 
                     {filteredByOtherBanks.length > 5 && (
                         <div className={styles.buttonWrapper}>
-                            <button className={styles.showMoreBtn} onClick={() => setExpanded(!expanded)}>
+                            <button className={styles.showMoreBtn} onClick={() => {
+                                if (expanded) {
+                                    setExpanded(false);
+                                    setTimeout(() => {
+                                        tableRef.current?.scrollIntoView({
+                                            behavior: "smooth",
+                                            block: "start",
+                                        });
+                                    }, 0);
+                                } else {
+                                    setExpanded(true);
+                                }
+                            }}>
                                 {render(showMoreText)}
                             </button>
                         </div>

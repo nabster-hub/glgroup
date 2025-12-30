@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, Fragment } from "react";
+import React, { useState, useMemo, Fragment, useRef } from "react";
 import styles from "./bestOfferForEachCurrency.module.scss";
 import clsx from "clsx";
 import { render } from "storyblok-rich-text-react-renderer";
@@ -36,8 +36,14 @@ function processRates(initialRates, currenciesMap) {
             const validRates = rates.filter((r) => r.buy > 0 && r.sell > 0);
             if (!validRates.length) return null;
 
-            const bestBuy = validRates.reduce((min, r) => (r.buy < min.buy ? r : min), validRates[0]);
-            const bestSell = validRates.reduce((max, r) => (r.sell > max.sell ? r : max), validRates[0]);
+            const bestBuy = validRates.reduce(
+                (min, r) => (r.buy < min.buy ? r : min),
+                validRates[0]
+            );
+            const bestSell = validRates.reduce(
+                (max, r) => (r.sell > max.sell ? r : max),
+                validRates[0]
+            );
 
             return {
                 currency,
@@ -59,20 +65,50 @@ function processRates(initialRates, currenciesMap) {
     return processed;
 }
 
-const BestOfferForEachCurrency = ({ blok, initialRates = [], currenciesMap = {}, banksMap = {}, locale }) => {
+const BestOfferForEachCurrency = ({
+                                      blok,
+                                      initialRates = [],
+                                      currenciesMap = {},
+                                      banksMap = {},
+                                      locale,
+                                  }) => {
     const processedRates = useMemo(
         () => processRates(initialRates, currenciesMap),
         [initialRates, currenciesMap]
     );
+
     const [visibleCount, setVisibleCount] = useState(5);
-    const visibleData = processedRates.slice(0, visibleCount);
     const isExpanded = visibleCount >= processedRates.length;
+
+    const tableRef = useRef(null);
+
+    const handleToggle = () => {
+        if (isExpanded) {
+            setVisibleCount(5);
+
+            setTimeout(() => {
+                tableRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+            }, 0);
+        } else {
+            setVisibleCount(processedRates.length);
+        }
+    };
+
+    const visibleData = processedRates.slice(0, visibleCount);
+
     return (
-        <section className={clsx(styles.bestOfferForEachCurrency)} {...storyblokEditable(blok)}>
+        <section
+            className={clsx(styles.bestOfferForEachCurrency)}
+            {...storyblokEditable(blok)}
+        >
             <div className={clsx("container", styles.content)}>
                 <div className={styles.mobiletext}>{blok.mobiletext}</div>
+
                 <div className={styles.contentBlock}>
-                    <div className={styles.tableWrapper}>
+                    <div className={styles.tableWrapper} ref={tableRef}>
                         <div className={styles.table}>
                             <div className={clsx(styles.row, styles.header)}>
                                 <div>{render(blok.currency?.[locale] || blok.currency)}</div>
@@ -83,7 +119,10 @@ const BestOfferForEachCurrency = ({ blok, initialRates = [], currenciesMap = {},
                             {visibleData.map((item, i) => (
                                 <Fragment key={i}>
                                     <div className={styles.row}>
-                                        <Link href={`/${locale}/currency/${item.currency.toLowerCase()}`} passHref className={styles.currency}>
+                                        <Link
+                                            href={`/${locale}/currency/${item.currency.toLowerCase()}`}
+                                            className={styles.currency}
+                                        >
                                             <img
                                                 src={`/img/flags/twemoji_flag-${item.currency}.svg`}
                                                 alt={item.currency}
@@ -91,6 +130,7 @@ const BestOfferForEachCurrency = ({ blok, initialRates = [], currenciesMap = {},
                                             />
                                             <span className={styles.namedt}>{item.name}</span>
                                         </Link>
+
                                         <div className={styles.buy}>
                                             <div className={styles.buy_mobile}>
                                                 {render(blok.buy?.[locale] || blok.buy)}
@@ -98,7 +138,9 @@ const BestOfferForEachCurrency = ({ blok, initialRates = [], currenciesMap = {},
                                             <div className={styles.buy_wrap}>
                                                 <span>{formatNumber(item.best_buy?.rate)} IDR</span>
                                                 <span className={styles.bank}>
-                                                    <Link href={banksMap[item.best_buy?.bank]?.url || "#"} passHref>
+                                                    <Link
+                                                        href={banksMap[item.best_buy?.bank]?.url || "#"}
+                                                    >
                                                         <img
                                                             src={banksMap[item.best_buy?.bank]?.logo}
                                                             alt={item.best_buy?.bank}
@@ -109,6 +151,7 @@ const BestOfferForEachCurrency = ({ blok, initialRates = [], currenciesMap = {},
                                                 </span>
                                             </div>
                                         </div>
+
                                         <div className={styles.sell}>
                                             <div className={styles.sell_mobile}>
                                                 {render(blok.sell?.[locale] || blok.sell)}
@@ -116,7 +159,9 @@ const BestOfferForEachCurrency = ({ blok, initialRates = [], currenciesMap = {},
                                             <div className={styles.sell_wrap}>
                                                 <span>{formatNumber(item.best_sell?.rate)} IDR</span>
                                                 <span className={styles.bank}>
-                                                    <Link href={banksMap[item.best_sell?.bank]?.url || "#"} passHref>
+                                                    <Link
+                                                        href={banksMap[item.best_sell?.bank]?.url || "#"}
+                                                    >
                                                         <img
                                                             src={banksMap[item.best_sell?.bank]?.logo}
                                                             alt={item.best_sell?.bank}
@@ -137,7 +182,7 @@ const BestOfferForEachCurrency = ({ blok, initialRates = [], currenciesMap = {},
                         <div className={styles.buttonWrapper}>
                             <button
                                 className={styles.showMoreBtn}
-                                onClick={() => setVisibleCount(isExpanded ? 5 : processedRates.length)}
+                                onClick={handleToggle}
                             >
                                 {render(
                                     blok[isExpanded ? "showless" : "showmore"]?.[locale] ||
