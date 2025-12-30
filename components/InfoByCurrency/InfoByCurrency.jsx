@@ -205,10 +205,14 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
         else if (normalizedRange <= 7) niceStep = magnitude;
         else niceStep = magnitude * 2;
 
-        const minRounded = Math.floor(dataMin / niceStep) * niceStep - niceStep;
-        const maxRounded = Math.ceil(dataMax / niceStep) * niceStep + niceStep;
+        // Оригінальний відступ — один крок зверху і знизу
+        // Тепер зменшуємо його на 50% — додаємо/віднімаємо лише половину кроку
+        const halfStep = niceStep / 2;
 
-        const step = (maxRounded - minRounded) / 4;
+        const minRounded = Math.floor(dataMin / niceStep) * niceStep - halfStep;
+        const maxRounded = Math.ceil(dataMax / niceStep) * niceStep + halfStep;
+
+        const step = (maxRounded - minRounded) / 4; // 4 інтервали між 5 мітками
 
         const ticks = [];
         for (let i = 0; i < 5; i++) {
