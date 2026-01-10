@@ -8,7 +8,7 @@
   .topBlock {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-start;
     .date {
       font-size: 18px;

@@ -20,9 +20,11 @@ const singleBankInfo = ({blok}) => {
     return (
         <section className={styles.singleBankInfo} {...storyblokEditable(blok)}>
             <div className={clsx("container", styles.content)}>
-                <div className={styles.topBlock}>
+                <div>
                     <Breadcrumbs onHero={true} links={blok.breadcrumbs}/>
-                    <div className={styles.date}>{getTodayDateFormatted()}</div>
+                </div>
+                <div className={styles.topBlock}>
+                    <div className={clsx(styles.date, "z-10 relative mb-5 lg:mb-12")}>{getTodayDateFormatted()}</div>
                 </div>
                 <div className={styles.contentBlock}>
                      <div className={styles.first}>
