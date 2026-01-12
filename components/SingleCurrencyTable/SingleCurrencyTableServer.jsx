@@ -8,13 +8,12 @@ export default async function SingleCurrencyTableServer({ blok }) {
     const locale = headers().get("x-next-intl-locale") || "en";
 
     const { data: ratesData, error } = await supabase
-        .from("exchange_rates")
+        .from("exchange_rates_latest")
         .select("*")
+        .eq("currency", blok.idcurrency)  // "USD" як fallback
         .gt("buy", 0)
-        .gt("sell", 0)
-        .order("timestamp", { ascending: false });
+        .gt("sell", 0);
     if (error) console.error("Supabase error:", error);
-
     const normalizeRates = (rates) =>
         (rates || []).map((rate) => ({
             ...rate,

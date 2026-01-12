@@ -94,15 +94,35 @@ const SingleCurrencyTable = ({
     const bestBuyRate = latestByBank.length ? Math.min(...latestByBank.map((r) => r.buy)) : 0;
     const bestSellRate = latestByBank.length ? Math.max(...latestByBank.map((r) => r.sell)) : 0;
 
-    const bestBankBuy = banksMap[latestByBank.find((r) => r.buy === bestBuyRate)?.bank || "-"]?.name;
-    const bestBankSell = banksMap[latestByBank.find((r) => r.sell === bestSellRate)?.bank || "-"]?.name;
+    const bestBuyEntry = latestByBank.find((r) => r.buy === bestBuyRate);
+    const bestSellEntry = latestByBank.find((r) => r.sell === bestSellRate);
 
     const sortedRates = [...latestByBank].sort((a, b) => {
         if (!sortField) return 0;
         return sortAsc ? a[sortField] - b[sortField] : b[sortField] - a[sortField];
     });
 
-    const visibleData = sortedRates;
+    const visibleData = useMemo(() => {
+        const data = [...sortedRates];
+        const result = [];
+
+        if (bestBuyEntry) {
+            const index = data.findIndex(r => r.bank === bestBuyEntry.bank);
+            if (index !== -1) {
+                result.push(data.splice(index, 1)[0]);
+            }
+        }
+
+        if (bestSellEntry && bestSellEntry.bank !== bestBuyEntry?.bank) {
+            const index = data.findIndex(r => r.bank === bestSellEntry.bank);
+            if (index !== -1) {
+                result.push(data.splice(index, 1)[0]);
+            }
+        }
+
+        result.push(...data);
+        return result;
+    }, [sortedRates, bestBuyEntry, bestSellEntry]);
 
     const handleSort = (field) => {
         if (sortField === field) {

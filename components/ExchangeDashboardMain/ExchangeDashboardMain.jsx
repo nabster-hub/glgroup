@@ -3,7 +3,7 @@ import BestOfferForEachCurrency from "@/components/bestOfferForEachCurrency/Best
 import Converter from "@/components/Converter/Converter";
 import BestOfferForEachBank from "@/components/bestOfferForEachBank/BestOfferForEachBank";
 
-export default function ExchangeDashboardMain({ blok, rates, ratesBI, currenciesMap, currenciesList, banksMap, locale }) {
+export default function ExchangeDashboardMain({ blok, availableDates, rates, ratesBI, currenciesMap, currenciesList, banksMap, locale }) {
     return (
         <div>
             <BestOfferForEachCurrency blok={blok.BestExchangeForEachCurrency?.[0]} initialRates={rates} ratesBI={ratesBI} currenciesMap={currenciesMap} banksMap={banksMap} locale={locale} />
@@ -14,7 +14,7 @@ export default function ExchangeDashboardMain({ blok, rates, ratesBI, currencies
                 banksMap={banksMap}
                 currenciesMap={currenciesMap}
             />
-            <BestOfferForEachBank blok={blok.BestExchangeForEachBank?.[0]} rates={rates} currenciesMap={currenciesMap} currenciesList={currenciesList} banksMap={banksMap} locale={locale} />
+            <BestOfferForEachBank blok={blok.BestExchangeForEachBank?.[0]} availableDates={availableDates} rates={rates} currenciesMap={currenciesMap} currenciesList={currenciesList} banksMap={banksMap} locale={locale} />
         </div>
     );
 }

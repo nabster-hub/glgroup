@@ -81,7 +81,7 @@ export default function Converter({ blok, rates = [], ratesBI = [], banksMap = {
     const currentRate = useMemo(() => {
         if (!selectedCurrency || !selectedBank) return null;
         const found = ratesBI.find(
-            (r) => r.currency === selectedCurrency && r.bank === selectedBank
+            (r) => r.currency === selectedCurrency
         );
         return found ? (mode === "buy" ? found.buy : found.sell) : null;
     }, [selectedCurrency, selectedBank, mode, ratesBI]);

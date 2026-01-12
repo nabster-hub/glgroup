@@ -119,6 +119,9 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
     const [showBuy, setShowBuy] = useState(true);
     const [showSell, setShowSell] = useState(true);
     const tableRef = useRef(null);
+    const [chartRates, setChartRates] = useState([]);
+    const [chartLoading, setChartLoading] = useState(false);
+
     const toggleBuy = () => setShowBuy(prev => !prev);
     const toggleSell = () => setShowSell(prev => !prev);
 
@@ -131,6 +134,28 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
             default: return new Date(0);
         }
     }, [selectedPeriod]);
+
+    useEffect(() => {
+        if (!bankid || !selectedCurrency) return;
+
+        setChartLoading(true);
+
+        let range = "7d";
+        if (selectedPeriod === "1w") range = "7d";
+        else if (selectedPeriod === "1m") range = "1m";
+        else if (selectedPeriod === "6m") range = "6m";
+
+        fetch(`/api/exchange/chart?bank=${bankid}&currency=${selectedCurrency}&range=${range}`)
+            .then(r => r.json())
+            .then(data => {
+                setChartRates(Array.isArray(data) ? data : []);
+            })
+            .catch(() => {
+                setChartRates([]);
+            })
+            .finally(() => setChartLoading(false));
+
+    }, [bankid, selectedCurrency, selectedPeriod]);
 
     const availableCurrencies = useMemo(() => {
         const set = Array.from(
@@ -150,11 +175,7 @@ const InfoByCurrency = ({ blok, rates = [], currenciesMap = {}, currenciesList =
         }
     }, [availableCurrencies]);
 
-    const ratesForSelected = useMemo(() => {
-        return rates
-            .filter(r => r.bank === bankid && r.currency === selectedCurrency && new Date(r.timestamp) >= startDate)
-            .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-    }, [rates, bankid, selectedCurrency, startDate]);
+    const ratesForSelected = chartRates;
 
     const chartData = ratesForSelected.map(r => ({
         date: r.timestamp,

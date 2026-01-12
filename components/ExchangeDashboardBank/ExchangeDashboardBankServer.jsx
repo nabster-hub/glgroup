@@ -8,13 +8,11 @@ export default async function ExchangeDashboardBankServer({ blok }) {
 
     /* === 1. Дані з Supabase (exchange_rates) === */
     const { data: ratesData, error } = await supabase
-        .from("exchange_rates")
+        .from("exchange_rates_latest_2")
         .select("*")
         .gt("buy", 0)
-        .gt("sell", 0)
-        .order("timestamp", { ascending: false });
+        .gt("sell", 0);
     if (error) console.error("Supabase error:", error);
-
     /* === 2. Нормалізація валют (CNH / RMB → CNY) === */
     const normalizeRates = (rates) =>
         (rates || []).map((rate) => ({
