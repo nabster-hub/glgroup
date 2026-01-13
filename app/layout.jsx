@@ -28,6 +28,7 @@ import HeroAboutUs from "@/components/HeroAboutUs/HeroAboutUs";
 import OurAdvantages from "@/components/OurAdvantages/OurAdvantages";
 import History from "@/components/History/History";
 import ButtonCTA from "@/components/ButtonCTA/ButtonCTA";
+import Accordion from "@/components/Accordion/Accordion";
 
 storyblokInit({
     accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
@@ -61,6 +62,7 @@ storyblokInit({
         ourAdvantages: OurAdvantages,
         history: History,
         buttonCTA: ButtonCTA,
+        accordion: Accordion,
     },
 });
 // Since we have a `not-found.tsx` page on the root, a layout file

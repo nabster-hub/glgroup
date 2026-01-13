@@ -9,6 +9,7 @@
   --swiper-navigation-top-offset: 54%;
   --swiper-pagination-fraction-color: #fff;
   --color-text: #121212;
+  --brand: #FFDA2B;
 }
 
 @media (prefers-color-scheme: dark) {

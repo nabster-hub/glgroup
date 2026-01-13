@@ -3,9 +3,17 @@ import {storyblokEditable} from "@storyblok/react";
 import styles from "./OurRecomendations.module.scss";
 import Slider from "./Slider";
 import clsx from "clsx";
+import {fetchData} from "@/lib/api";
 
 
-const OurRecomendations = ({blok}) => {
+const OurRecomendations = async ({blok, locale}) => {
+
+    const {data} = await fetchData('reviews', {
+        language: locale,
+        version: 'draft',
+    })
+    const {items} = data.story.content.body[0];
+
     return (
         <section {...storyblokEditable(blok)} className={clsx(styles.blok, "py-20 lg:py-24")}>
             <div className="container">
@@ -45,8 +53,8 @@ const OurRecomendations = ({blok}) => {
 
             </div>
             <div className={styles.slider}>
-                {blok?.slider && (
-                    <Slider items={blok?.slider}/>
+                {items && (
+                    <Slider items={items}/>
                 )}
             </div>
         </section>
