@@ -37,6 +37,9 @@ import singleBankInfo from "@/components/singleBankInfo/singleBankInfo";
 import BankExchangeList from "@/components/BankExchangeList/BankExchangeList";
 import InfoByCurrency from "@/components/InfoByCurrency/InfoByCurrency";
 import SingleCurrencyTableServer from "../components/SingleCurrencyTable/SingleCurrencyTableServer";
+import ButtonCTA from "@/components/ButtonCTA/ButtonCTA";
+import Accordion from "@/components/Accordion/Accordion";
+
 
 storyblokInit({
     accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
@@ -79,6 +82,8 @@ storyblokInit({
         BankExchangeList: BankExchangeList,
         InfoByCurrency: InfoByCurrency,
         SingleCurrencyTable: SingleCurrencyTableServer,
+        buttonCTA: ButtonCTA,
+        accordion: Accordion,
     },
 });
 // Since we have a `not-found.tsx` page on the root, a layout file

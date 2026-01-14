@@ -48,6 +48,7 @@ import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider"
 import React, {Suspense} from "react";
 import {ModalSec} from "@/components/Modal/ModalSec";
 import ForModal from "@/components/ContactForm/forModal";
+import ButtonCTA from "@/components/ButtonCTA/ButtonCTA";
 
 
 
@@ -92,6 +93,7 @@ const AppStoryblokInit = () => {
       HeroAboutUs: HeroAboutUs,
       ourAdvantages: OurAdvantages,
       history: History,
+      buttonCTA: ButtonCTA,
     },
   });
 

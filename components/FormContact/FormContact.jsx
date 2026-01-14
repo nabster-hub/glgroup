@@ -7,12 +7,14 @@ import {usePathname} from "next/navigation";
 import { useUserStore } from '@/src/store/userStore';
 import UTMParamsProvider from "@/components/UTMParamsProvider/UTMParamsProvider";
 import Turnstile from "react-turnstile";
+import 'react-phone-number-input/style.css';
+import PhoneInput from "react-phone-number-input";
 
 
 const FormContact = ({blok, modal=false}) => {
     const [captchaToken, setCaptchaToken] = useState("");
     const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+    const [phone, setPhone] = useState();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [sended, setSended] = useState('');
@@ -136,12 +138,13 @@ const FormContact = ({blok, modal=false}) => {
                             <div className={styles.parts}>
                                 <div className="">
                                     <label htmlFor={"phone"}>{blok.phoneLabel}</label>
-                                    <input type="text" name={"phone"}
-                                           value={phone}
-                                           onChange={(e) => {
-                                               setPhone(e.target.value)
-                                           }}
-                                    />
+                                    <PhoneInput  name={"phone"} onChange={setPhone} value={phone} required={true}/>
+                                    {/*<input type="text" name={"phone"}*/}
+                                    {/*       value={phone}*/}
+                                    {/*       onChange={(e) => {*/}
+                                    {/*           setPhone(e.target.value)*/}
+                                    {/*       }}*/}
+                                    {/*/>*/}
                                 </div>
                                 <div className="">
                                     <label htmlFor={"email"}>{blok.emailLabel}</label>

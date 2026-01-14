@@ -36,7 +36,7 @@ const MobileMenu = ({menu, link, type}) => {
                         <button
                             onClick={() => open({source: "header-logo"})}
                             className={"py-2 px-3 text-base font-bold text-white rounded-xl bg-green-active"}
-                            >Связаться с нами</button>
+                            >{ locale === 'ru' ? "Связаться с нами" : "Contact Us"}</button>
                     ):(
                         <Link href={`/${locale}`} className={'flex gap-3 items-center'}>
                             <i className={styles.logo}>
