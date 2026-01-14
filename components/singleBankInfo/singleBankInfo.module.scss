@@ -1,0 +1,65 @@
+@import "app/variables";
+
+.singleBankInfo{
+  font-family: var(--font-gilroy);
+  .content {
+    max-width: 800px;
+  }
+  .topBlock {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    .date {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3B604E;
+    }
+  }
+  .contentBlock {
+    display: flex;
+    flex-wrap: nowrap;
+    h1 {
+      font-size: 24px;
+      line-height: 100%;
+      max-width: 300px;
+      margin-bottom: 40px;
+      @media (min-width: 768px) {
+        font-size: 38px;
+        max-width: 540px;
+      }
+      @media (min-width: 1024px) {
+        font-size: 48px;
+        max-width: 600px;
+      }
+    }
+    .first {
+      font-size: 16px;
+
+      @media (min-width: 768px) {
+        font-size: 18px;
+      }
+      div {
+        margin-bottom: 10px;
+      }
+    }
+    .second {
+      position: relative;
+      min-width: 160px;
+      height: 54px;
+      float: none;
+      @media (min-width: 768px) {
+        height: 82px;
+        float: right;
+      }
+      &:after {
+        clear: both;
+      }
+    }
+    .third {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+}
