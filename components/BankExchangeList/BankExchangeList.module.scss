@@ -1,0 +1,237 @@
+@import "app/variables";
+
+.BankExchangeList {
+  padding: 55px 0;
+  font-family: var(--font-gilroy);
+  .content {
+    margin: 0 auto;
+    padding: 0 15px;
+    max-width: 800px;
+  }
+
+  .contentBlock {
+  }
+
+  .label {
+    font-size: 12px;
+    color: #757575;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: #1a1a1a;
+  }
+
+  .second,
+  .third {
+    font-size: 14px;
+    color: #606060;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+
+  .tableWrapper {
+    overflow-x: auto;
+    background: rgba(229, 231, 235, 0.3);
+    padding: 5px 5px 10px;
+    margin: 0 auto;
+    border: 1px solid #DADCE0;
+    border-radius: 8px;
+    @media (min-width: 768px) {
+      padding: 10px 8px 20px;
+    }
+    @media (min-width: 1024px) {
+      padding: 20px 15px;
+    }
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .row.header {
+    display: none;
+    @media (min-width: 768px) {
+      display: grid;
+    }
+  }
+  .row {
+    color: #000000;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 11px 20px;
+    border-bottom: 1px solid #e0e0e0;
+
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 768px) {
+      font-size: 16px;
+      line-height: 18px;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      display: grid;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    @media (min-width: 1024px) {
+      font-size: 20px;
+      line-height: 22px;
+      grid-template-columns: 260px 200px 200px;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .header {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 11px 20px;
+    text-align: left;
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+    @media (min-width: 1024px) {
+      font-size: 18px;
+    }
+  }
+
+  .currency {
+    display: flex;
+    align-items: center;
+    &:hover {
+      color: #3B604E;
+      img {
+        transition: transform 0.2s ease;
+        transform: scale(1.2);
+      }
+    }
+    @media (min-width: 768px) {
+      align-items: flex-start;
+    }
+    gap: 8px;
+    img.flag {
+      width: 32px;   // або інший розмір
+      height: auto;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    span {
+      @media (min-width: 768px) {
+        max-width: 175px;
+      }
+      &.namedt {
+        margin-top: 4px;
+        font-size: 20px;
+        @media (min-width: 768px) {
+          display: inline;
+          font-size: 16px;
+          line-height: 18px;
+        }
+        @media (min-width: 1024px) {
+          display: inline;
+          font-size: 20px;
+          line-height: 22px;
+        }
+      }
+    }
+  }
+
+  .buy,
+  .sell {
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    color: #212121;
+    margin-top: 18px;
+    font-size: 20px;
+    @media (min-width: 768px) {
+      margin-top: 4px;
+    }
+    @media (min-width: 1024px) {
+    }
+    .buy_mobile, .sell_mobile {
+      display: block;
+      flex: 0 20%;
+      text-align: left;
+      font-size: 18px;
+      color: rgba(0, 0, 0, 0.5);
+      @media (min-width: 450px) {
+        flex: 0 50%;
+      }
+      @media (min-width: 768px) {
+        display: none;
+      }
+    }
+
+    .buy_wrap, .sell_wrap {
+      display: flex;
+      align-items: center;
+    }
+    .bank {
+      margin-left: 10px;
+      img{
+        height: 24px;
+      }
+    }
+  }
+
+  .loading {
+    text-align: center;
+    color: #757575;
+    padding: 15px;
+  }
+
+  .buttonWrapper {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .showMoreBtn {
+    display: block;
+    padding: 12px 28px;
+    font-family: var(--font-gilroy);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: white;
+    background: $backgroun-second;
+    border: 1px solid $backgroun-second;
+    box-shadow: 0px 25px 74px 0px #3E7A5D45;
+    width: fit-content;
+    border-radius: 85px;
+    margin: 0 auto;
+    @media (min-width: 1024px) {
+      color: $backgroun-second;
+      background: unset;
+      box-shadow: unset;
+      font-size: 16px;
+      line-height: 19px;
+      padding: 13px 43px;
+    }
+    &:hover{
+      box-shadow: 0px 25px 74px 0px #3E7A5D45;
+      color: white;
+      background: $backgroun-second;
+    }
+  }
+  .diff {
+    font-size: 14px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .positive {
+    color: #3FA822;
+  }
+  .negative {
+    color: #ED4C5C;
+  }
+}

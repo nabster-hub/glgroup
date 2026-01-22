@@ -27,8 +27,19 @@ import FormContact from "@/components/FormContact/FormContact";
 import HeroAboutUs from "@/components/HeroAboutUs/HeroAboutUs";
 import OurAdvantages from "@/components/OurAdvantages/OurAdvantages";
 import History from "@/components/History/History";
+import staticHeroForConverter from "@/components/staticHeroForConverter/staticHeroForConverter";
+import OrderConsultation from "@/components/OrderConsultation/OrderConsultation";
+import ExchangeDashboardMainServer from "@/components/ExchangeDashboardMain/ExchangeDashboardMainServer";
+import ExchangeDashboardBankServer from "@/components/ExchangeDashboardBank/ExchangeDashboardBankServer";
+import Converter from "@/components/Converter/Converter";
+import ServicesList from "@/components/ServicesList/ServicesList";
+import singleBankInfo from "@/components/singleBankInfo/singleBankInfo";
+import BankExchangeList from "@/components/BankExchangeList/BankExchangeList";
+import InfoByCurrency from "@/components/InfoByCurrency/InfoByCurrency";
+import SingleCurrencyTableServer from "../components/SingleCurrencyTable/SingleCurrencyTableServer";
 import ButtonCTA from "@/components/ButtonCTA/ButtonCTA";
 import Accordion from "@/components/Accordion/Accordion";
+
 
 storyblokInit({
     accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
@@ -61,6 +72,16 @@ storyblokInit({
         HeroAboutUs: HeroAboutUs,
         ourAdvantages: OurAdvantages,
         history: History,
+        staticHeroForConverter: staticHeroForConverter,
+        OrderConsultation: OrderConsultation,
+        ExchangeDashboardMain: ExchangeDashboardMainServer,
+        ExchangeDashboardBank: ExchangeDashboardBankServer,
+        Converter: Converter,
+        ServicesList: ServicesList,
+        singleBankInfo: singleBankInfo,
+        BankExchangeList: BankExchangeList,
+        InfoByCurrency: InfoByCurrency,
+        SingleCurrencyTable: SingleCurrencyTableServer,
         buttonCTA: ButtonCTA,
         accordion: Accordion,
     },
