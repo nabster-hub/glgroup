@@ -12,7 +12,10 @@ export default function Menu ({menu, type, contactFrom}) {
             return '/ru/'+link.cached_url;
         }else if(locale === 'en' && link.linktype !== 'story'){
             return '/en/'+link.cached_url;
-        }else{
+        }else if(locale === 'id' && link.linktype !== 'story'){
+            return '/id/'+link.cached_url;
+        }
+        else{
             return link.cached_url;
         }
     }
