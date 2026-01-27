@@ -88,9 +88,9 @@
         /* === Dropdown === */
         .dropdown {
           position: relative;
-          width: 100px;
+          width: 130px;
           @media (min-width: 768px) {
-            width: 128px;
+            width: 130px;
           }
           &Button {
             width: 100%;
@@ -276,9 +276,10 @@
           gap: 5px;
           align-items: center;
           margin-bottom: 25px;
-          flex-direction: column;
+          flex-direction: row-reverse;
           @media (min-width: 768px) {
             height: 51px;
+            flex-direction: column;
           }
           span {
             font-size: 18px;
@@ -308,9 +309,9 @@
       font-size: 18px;
       box-sizing: border-box;
       width: 100%;
-      max-width: 250px;
       @media (min-width: 768px) {
         width: auto;
+        max-width: 250px;
       }
     }
 
