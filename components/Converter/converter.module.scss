@@ -12,7 +12,7 @@
     .wrapBlock {
       background: #F8F8F9;
       border-radius: 8px;
-      padding: 25px 20px;
+      padding: 15px 5px;
       display: flex;
       flex-direction: column-reverse;
       justify-content: space-between;
@@ -25,15 +25,18 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        flex-direction: row-reverse;
+        flex-direction: row;
         @media (min-width: 768px) {
           flex-direction: row;
         }
         .swapButtons {
           display: flex;
           flex-wrap: wrap;
-          gap: 7px;
+          gap: 5px;
           margin-bottom: 25px;
+          @media (min-width: 768px) {
+            gap: 7px;
+          }
 
           .buttonSwapped {
             height: 44px;
@@ -48,12 +51,12 @@
             background: unset;
             box-shadow: unset;
             border: 1px solid $backgroun-second;
-            width: 130px;
+            width: 110px;
             border-radius: 85px;
             margin: 0 auto;
 
             @media (min-width: 768px) {
-              min-width: 130px;
+              min-width: 110px;
             }
             @media (min-width: 1024px) {
               color: $backgroun-second;
@@ -88,9 +91,9 @@
         /* === Dropdown === */
         .dropdown {
           position: relative;
-          width: 130px;
+          width: 110px;
           @media (min-width: 768px) {
-            width: 130px;
+            width: 110px;
           }
           &Button {
             width: 100%;
