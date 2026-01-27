@@ -51,12 +51,12 @@
             background: unset;
             box-shadow: unset;
             border: 1px solid $backgroun-second;
-            width: 110px;
+            width: 100px;
             border-radius: 85px;
             margin: 0 auto;
 
             @media (min-width: 768px) {
-              min-width: 110px;
+              min-width: 100px;
             }
             @media (min-width: 1024px) {
               color: $backgroun-second;
@@ -91,9 +91,9 @@
         /* === Dropdown === */
         .dropdown {
           position: relative;
-          width: 110px;
+          width: 100px;
           @media (min-width: 768px) {
-            width: 110px;
+            width: 100px;
           }
           &Button {
             width: 100%;
