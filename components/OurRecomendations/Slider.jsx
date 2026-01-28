@@ -4,8 +4,11 @@ import styles from './OurRecomendations.module.scss'
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import {render} from "storyblok-rich-text-react-renderer";
+import {useLocale} from "next-intl";
 
 const Slider = ({items}) => {
+
+    const locale = useLocale();
 
     return (
         <Marquee className={styles.sliders} autoFill={true} speed={80}>
@@ -17,7 +20,7 @@ const Slider = ({items}) => {
                         {render(item.text)}
                     </div>
                     <div className={"flex justify-end w-full pt-4"}>
-                        <Link href={"/reviews/#"+item.anchorLink} className={"bg-[#FFDA2B] border hover:border-black hover:bg-[#FFDA2B]/80 py-2 px-4 rounded-xl"}>{item.linkLabel}</Link>
+                        <Link href={`/${locale}/reviews/#`+item.anchorLink} className={"bg-[#FFDA2B] border hover:border-black hover:bg-[#FFDA2B]/80 py-2 px-4 rounded-xl"}>{item.linkLabel}</Link>
                     </div>
 
                 </div>

@@ -194,7 +194,7 @@ export default async function Post ({blok, showcase}) {
                 </div>
             </div>
             <ContactForm blok={contactForm.data.story.content.body[0]}/>
-            <OurRecomendations blok={recom.data.story.content.body[0]} />
+            <OurRecomendations blok={recom.data.story.content.body[0]} locale={locale} />
             {/*<OtherArticles posts={posts.data.stories}/>*/}
         </section>
     );
