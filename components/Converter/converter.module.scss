@@ -12,7 +12,7 @@
     .wrapBlock {
       background: #F8F8F9;
       border-radius: 8px;
-      padding: 25px 20px;
+      padding: 15px 5px;
       display: flex;
       flex-direction: column-reverse;
       justify-content: space-between;
@@ -25,15 +25,18 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        flex-direction: row-reverse;
+        flex-direction: row;
         @media (min-width: 768px) {
           flex-direction: row;
         }
         .swapButtons {
           display: flex;
           flex-wrap: wrap;
-          gap: 7px;
+          gap: 5px;
           margin-bottom: 25px;
+          @media (min-width: 768px) {
+            gap: 7px;
+          }
 
           .buttonSwapped {
             height: 44px;
@@ -42,18 +45,18 @@
             min-width: 85px;
             font-family: var(--font-gilroy);
             font-weight: 700;
-            font-size: 14px;
+            font-size: 16px;
             line-height: 17px;
             color: $backgroun-second;
             background: unset;
             box-shadow: unset;
             border: 1px solid $backgroun-second;
-            width: fit-content;
+            width: 100px;
             border-radius: 85px;
             margin: 0 auto;
 
             @media (min-width: 768px) {
-              min-width: 130px;
+              min-width: 100px;
             }
             @media (min-width: 1024px) {
               color: $backgroun-second;
@@ -90,7 +93,7 @@
           position: relative;
           width: 100px;
           @media (min-width: 768px) {
-            width: 128px;
+            width: 100px;
           }
           &Button {
             width: 100%;
@@ -267,6 +270,7 @@
         .date {
           font-weight: 500;
           font-size: 18px;
+          line-height: 31px;
           @media (min-width: 768px) {
             line-height: 44px;
           }
@@ -276,12 +280,14 @@
           gap: 5px;
           align-items: center;
           margin-bottom: 25px;
-          flex-direction: column;
+          flex-direction: row-reverse;
           @media (min-width: 768px) {
             height: 51px;
+            flex-direction: column;
           }
           span {
             font-size: 18px;
+            line-height: 31px;
             font-weight: 600;
           }
           .bankLogo {
@@ -308,9 +314,9 @@
       font-size: 18px;
       box-sizing: border-box;
       width: 100%;
-      max-width: 250px;
       @media (min-width: 768px) {
         width: auto;
+        max-width: 250px;
       }
     }
 
