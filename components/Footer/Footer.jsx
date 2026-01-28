@@ -20,7 +20,13 @@ const  Footer = ({links, sitename, footer}) => {
             return link.cached_url;
         }
     }
+
     const locale = useLocale();
+
+    const filteredLinks = itemLinks.filter((e) => {
+        return !(locale === 'id' && e.link.url.includes('blog'));
+    })
+
     return (
         <div className={'container pt-16 lg:pb-12'}>
             <div className={styles.block}>
@@ -72,7 +78,7 @@ const  Footer = ({links, sitename, footer}) => {
                     </span>
                         <ul>
                             <li><Link href={`/${locale}`} className={'hover:text-yellow-active'}>{footer.homeLinkLabel}</Link></li>
-                            {itemLinks && itemLinks.map((e, _uid)=>(
+                            {filteredLinks && filteredLinks.map((e, _uid)=>(
                                 <li key={_uid}><Link href={createLink(e.link)} key={_uid} className={'hover:text-yellow-active'}>{e.label}</Link></li>
                             ))}
                         </ul>

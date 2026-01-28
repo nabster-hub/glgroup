@@ -4,14 +4,17 @@ import styles from "./OurRecomendations.module.scss";
 import Slider from "./Slider";
 import clsx from "clsx";
 import {fetchData} from "@/lib/api";
+import {useLocale} from "next-intl";
 
 
-const OurRecomendations = async ({blok, locale}) => {
+const OurRecomendations = async ({blok}) => {
+    const locale = useLocale();
 
     const {data} = await fetchData('reviews', {
         language: locale,
         version: 'draft',
     })
+
     const {items} = data.story.content.body[0];
 
     return (
